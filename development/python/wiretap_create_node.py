@@ -4,24 +4,29 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 man-made-mekanyzms
-
+                
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
+
 #                   LOGIK-PROJEKT is free software.
+
 #                   You can redistribute it and/or modify it under the terms
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
-
+ 
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
 #                   PARTICULAR PURPOSE.
+
 #                   See the GNU General Public License for more details.
+
 #                   You should have received a copy of the GNU General
 #                   Public License along with this program.
-#                   If not, see <https://www.gnu.org/licenses/>.
 
+#                   If not, see <https://www.gnu.org/licenses/>.
+                
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -64,11 +69,10 @@ def get_base_path():
     else:
         return os.path.abspath(
             os.path.join(
-                # os.path.dirname(__file__), '..', '..', '..'
-                os.path.dirname(__file__), '..', '..'
+                os.path.dirname(__file__), '..', '..', '..'
             )
         )
-
+    
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -99,11 +103,12 @@ if modules_dir not in sys.path:
 # ========================================================================== #
 
 # These paths should be passed from the main app.
-the_hostname = "juliet"
+the_hostname = "delta"
 the_projekt_os = "Linux"
-the_software_version = "flame_2026.pr211"
-the_sanitized_version = "2026"
+the_software_version = "flame_2025.1.pr199"
+the_sanitized_version = "2025_1"
 the_framestore = "stonefs"
+
 '''
 Print the variables for debugging
 print(f"  Debug: the_hostname:              {the_hostname}")
@@ -173,17 +178,11 @@ print(f"  Debug: the_adsk_dir_macos:        {the_adsk_dir_macos}")
 # ========================================================================== #
 
 # These paths should be passed from the main app.
-the_projekt_name = "projekt_004"
+the_projekt_name = "8888_new_job"
 the_projekt_flame_name = f"{the_projekt_name}_{the_sanitized_version}_{the_hostname}"
-# projekt_xml_path = "resources/tmp/current_projekt_parameters.xml"
-# projekt_xml_path = "development/xml/project_template_2026_v01.xml"  # WORKING!!!
-projekt_xml_path = "development/xml/project_template_2026_v03.xml"
+projekt_xml_path = "resources/tmp/current_projekt_parameters.xml"
 
 separator = '# ' + '-' * 75 + ' #'
-
-# os.makedirs(f"/opt/Autodesk/projekt/{the_projekt_name}", mode=0o777, exist_ok=True)
-# os.makedirs(f"/opt/Autodesk/projekt/{the_projekt_flame_name}/flame/setups", mode=0o777, exist_ok=True)
-# os.makedirs(f"/mnt/StorageMedia/framestore/{the_projekt_flame_name}/flame/media/cache", mode=0o777, exist_ok=True)
 
 # ========================================================================== #
 # This section defines the primary functions for the script.
@@ -199,16 +198,20 @@ def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
 
     # Create the bash command
     bash_command = f"""
+
     # set -ex
 
     # Set the umask to 0
     umask 0
 
     # ---------------------------------------------------------------------- #
+
     # echo -e "{projekt_xml_path}"
+
     # ---------------------------------------------------------------------- #
 
     # Create the logik projekt flame project node using wiretap_create_node
+
     # -n <parent node ID>
     # -d <display name>
     # -t <server-specific node type string (default = NODE)>
@@ -221,10 +224,8 @@ def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
 
     # Create a logik projekt flame project node using wiretap
     /opt/Autodesk/wiretap/tools/current/wiretap_create_node \\
-    -n /projects \\
+    -n /volumes/stonefs \\
     -d "{the_projekt_flame_name}" \\
-    -t PROJECT \\
-    -h "{the_hostname}":IFFFS \\
     -s XML \\
     -f "{projekt_xml_path}"
 
@@ -237,6 +238,7 @@ def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
     # Run the bash command
     process = subprocess.Popen(bash_command, shell=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
+
     print(f"  Command output:\n")
     print(stdout.decode())
     # print(f"  Command errors:\n")
@@ -255,7 +257,8 @@ if __name__ == "__main__":
 # C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
 # ========================================================================== #
 
-# Changelist:
+# Changelist:       
+
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
 # created:          2024-01-19 - 12:34:56
