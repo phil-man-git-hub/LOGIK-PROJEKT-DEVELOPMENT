@@ -224,7 +224,9 @@ def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
 
     # Create a logik projekt flame project node using wiretap
     /opt/Autodesk/wiretap/tools/current/wiretap_create_node \\
-    -n /volumes/stonefs \\
+    -h 127.0.0.1 \\
+    -n /projects \\
+    -t PROJECT \\
     -d "{the_projekt_flame_name}" \\
     -s XML \\
     -f "{projekt_xml_path}"

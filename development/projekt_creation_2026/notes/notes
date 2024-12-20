@@ -1,0 +1,117 @@
+pr211 wiretap_create_node MediaDir problems
+I'm having some problems when trying to inject the sample parameters from the "FlameFamily_2026 PR211 Alpha - WhatsNew.pdf" file.
+
+If I try to specify the <MediaDir> the project will not get made.
+Is it because the cache is two subdirectories deep for <project home>?
+
+N.B* The <Partition> is only there for my reference for what I have been doing to date.
+
+Here is my test file (I have commented out <MediaDir> and <Partition> parameters.)
+
+<Project>
+<Workstation>juliet</Workstation>
+<Name>asdfgh_2026_juliet</Name>
+<Nickname>asdfgh</Nickname>
+<ShotgunProjectName>asdfgh</ShotgunProjectName>
+<ProjectDir>/opt/Autodesk/project/asdfgh_2026_juliet</ProjectDir>
+<SetupDir>/opt/Autodesk/project/asdfgh_2026_juliet/setups</SetupDir>
+<!-- <MediaDir>/opt/Autodesk/project/asdfgh_2026_juliet/media/cache</MediaDir> -->
+<OCIOConfigFile>/opt/Autodesk/colour_mgmt/configs/flame_internal_use/syncolor_foundation_config/config.ocio</OCIOConfigFile>
+<!-- <Partition>stonefs</Partition> -->
+<FrameWidth>1920</FrameWidth>
+<FrameHeight>1080</FrameHeight>
+<FrameDepth>16-bit fp</FrameDepth>
+<AspectRatio>1.7777778</AspectRatio>
+<FieldDominance>PROGRESSIVE</FieldDominance>
+<FrameRate>23.976 fps</FrameRate>
+<DefaultStartFrame>1001</DefaultStartFrame>
+<IntermediatesProfile>0:2</IntermediatesProfile>
+</Project>
+ 
+Status
+Open
+9 replies	
+Add a reply
+
+
+PC
+Philip Che Sung Man
+Last month
+@Stephane - thanks for the clarification.
+This functionality will be very useful.
+projects, setups and media cache could be very useful in the transition phase as well as the future phase.
+Happy Sunday
+
+
+Stephane Labrie
+Last month
+Autodesk Inc
+In Preview211, it is not possible to define the Setups location. So remove it for now in your XML.
+
+Define the desired locations in sysconfig.cfg.
+
+Template support is on our todo list so no need to fill request. Note that beta request is not enables for the alpha phase. It will be available when we enter beta.
+ 
+
+PC
+Philip Che Sung Man
+Last month
+it appears that one of the problems might be related to the hardcoded idea of /projects for wiretap.
+
+are there plans to make this less dependent on /opt/Autodesk/project ?
+
+PC
+Philip Che Sung Man
+Last month
+maybe because <project home> is the full path added to the path?
+
+PC
+Philip Che Sung Man
+Last month
+maybe it's the <project home> token for me?
+
+PC
+Philip Che Sung Man
+Last month
+oooh - unexpected and inexplicable progress:
+
+in the xml file:
+
+<ProjectDir>/opt/Autodesk/project/another_test_2026_juliet</ProjectDir>
+<SetupDir>/mnt/StorageMedia/2026_tests/another_test_2026_juliet/flame/setups</SetupDir>
+<MediaDir>/mnt/StorageMedia/2026_tests/another_test_2026_juliet/flame/media/cache</MediaDir>
+
+
+in the sysconfig.cfg file:
+"default_home": "/opt/Autodesk/project/<project name>",
+"default_setups_dir": "/mnt/StorageMedia/2026_tests/<project name>/flame/setups",
+"default_media_cache": "/mnt/StorageMedia/2026_tests/<project name>/flame/media/cache"
+
+PC
+Philip Che Sung Man
+Last month
+I also tried changing the sysconfig.cfg but that didn't help.
+It's puzzling:
+
+"project_folders": {
+"default_home": "/mnt/StorageMedia/2026_tests/<project name>",
+"default_setups_dir": "<project home>/setups",
+"default_media_cache": "<project home>/media/cache"
+}
+
+PC
+Philip Che Sung Man
+Last month
+If I change these lines the project creation fails.
+What have I done wrong?
+<ProjectDir>/mnt/StorageMedia/2026_tests/different_path_2026_juliet</ProjectDir>
+<SetupDir>/mnt/StorageMedia/2026_tests/different_path_2026_juliet/setups</SetupDir>
+
+PC
+Philip Che Sung Man
+Last month
+Also, I've been trying to get the recipe correct for the intermediates:
+
+I tried '0' and I tried '2' and I tried '0:2' bur far I'm unable to get Uncompressed/OpenEXR (PIZ) to show up in the project config.
+
+How do I make a request to get a <Project Config Template> token in Wiretap?

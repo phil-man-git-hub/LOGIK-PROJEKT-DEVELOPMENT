@@ -200,15 +200,18 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
         "Name": "the_projekt_flame_name",
         "Nickname": "the_projekt_name",
         "ShotgunProjectName": "the_projekt_name",
-        "SetupDir": "the_projekt_flame_name",
-        "Partition": "the_framestore",
+        "ProjectDir": "the_projekt_flame_dirs/the_projekt_flame_name",
+        "SetupDir": "the_projekt_flame_dirs/the_projekt_flame_name/setups",
+        "MediaDir": "the_projekt_flame_dirs/the_projekt_flame_name/media",
+        "OCIOConfigFile": "/opt/Autodesk/colour_mgmt/configs/flame_configs/example_config/config.ocio",
         "FrameWidth": "the_projekt_width",
         "FrameHeight": "the_projekt_height",
         "FrameDepth": "the_projekt_bit_depth",
         "AspectRatio": "the_projekt_aspect_ratio",
         "FieldDominance": "the_projekt_scan_mode",
         "FrameRate": "the_projekt_frame_rate",
-        "DefaultStartFrame": "the_projekt_start_frame"
+        "DefaultStartFrame": "the_projekt_start_frame",
+        "IntermediatesProfile": "0:596088"
     }
 
     for tag, param_name in mappings.items():

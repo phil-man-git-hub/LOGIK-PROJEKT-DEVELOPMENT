@@ -1,0 +1,19 @@
+<Project>
+    <Workstation>juliet</Workstation>
+    <Name>aaa_pr213_juliet</Name>
+    <Nickname>aaa</Nickname>
+    <ShotgunProjectName>aaa</ShotgunProjectName>
+    <ProjectDir>/opt/Autodesk/project/aaa_pr213_juliet</ProjectDir>
+    <SetupDir>/opt/Autodesk/project/aaa_pr213_juliet/setups</SetupDir>
+    <MediaDir>/opt/Autodesk/project/aaa_pr213_juliet/media</MediaDir>
+    <OCIOConfigFile>/opt/Autodesk/colour_mgmt/configs/flame_configs/example_config/config.ocio</OCIOConfigFile>
+    <!-- <Partition>stonefs</Partition> -->
+    <FrameWidth>1920</FrameWidth>
+    <FrameHeight>1080</FrameHeight>
+    <FrameDepth>16-bit fp</FrameDepth>
+    <AspectRatio>1.7777778</AspectRatio>
+    <FieldDominance>PROGRESSIVE</FieldDominance>
+    <FrameRate>23.976 fps</FrameRate>
+    <DefaultStartFrame>1001</DefaultStartFrame>
+    <IntermediatesProfile>0:2</IntermediatesProfile>
+</Project>

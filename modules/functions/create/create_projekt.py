@@ -936,15 +936,15 @@ def main():
 
         # ------------------------------------------------------------------ #
 
-        # Print a banner head
-        logger.log_and_print(f"{banner_head('Add Syncolor Policy')}")
+        # # Print a banner head
+        # logger.log_and_print(f"{banner_head('Add Syncolor Policy')}")
 
-        # Function to add_syncolor_policy
-        add_syncolor_policy(
-            the_projekt_color_science,
-            the_projekt_flame_name,
-            separator,
-        )
+        # # Function to add_syncolor_policy
+        # add_syncolor_policy(
+        #     the_projekt_color_science,
+        #     the_projekt_flame_name,
+        #     separator,
+        # )
 
         # ------------------------------------------------------------------ #
 
