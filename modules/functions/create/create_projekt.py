@@ -35,7 +35,6 @@
 # Version:          0.9.9
 # Created:          2024-01-19
 # Modified:         2024-08-31
-
 # ========================================================================== #
 # This section defines the import statements and directory paths.
 # ========================================================================== #
@@ -69,28 +68,46 @@ def get_base_path():
     else:
         return os.path.abspath(
             os.path.join(
-                os.path.dirname(__file__), '..', '..', '..'
+                os.path.dirname(__file__), '..', '..', '..',
             )
         )
-    
+
+print(f"Debug: base_path: {get_base_path()}")
+
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
     base_path = get_base_path()
-    return os.path.join(
-        base_path,
-        relative_path
-    )
+    return os.path.join(base_path, relative_path)
+
+# print(f"Debug: resource_path: {get_resource_path('resources')}")
+# print(f"Debug: resource_path: {get_resource_path('modules')}")
 
 # -------------------------------------------------------------------------- #
 
 # Set the path to the 'modules' directory
 modules_dir = get_resource_path('modules')
-# Set the path to the 'resources' directory
-resources_dir = get_resource_path('resources')
+
+# Verify if the modules directory exists
+if not os.path.exists(modules_dir):
+    print(f"Error: modules_dir does not exist: {modules_dir}")
+
 # Append the modules path to the system path
 if modules_dir not in sys.path:
     sys.path.append(modules_dir)
+print(f"Debug: modules_dir: {modules_dir}")
+
+# Set the path to the 'resources' directory
+resources_dir = get_resource_path('resources')
+
+# Verify if the resources directory exists
+if not os.path.exists(resources_dir):
+    print(f"Error: resources_dir does not exist: {resources_dir}")
+
+# # Append the resources path to the system path
+# if resources_dir not in sys.path:
+#     sys.path.append(resources_dir)
+# print(f"Debug: resources_dir: {resources_dir}")
 
 # ========================================================================== #
 # This section defines third party imports.
@@ -335,6 +352,7 @@ projekt_roots_config_path = os.path.join(
     'roots',
     'projekt_roots.json'
 )
+print(f"Debug: projekt_roots_config_path: {projekt_roots_config_path}")
 
 # Read the JSON configuration file
 try:

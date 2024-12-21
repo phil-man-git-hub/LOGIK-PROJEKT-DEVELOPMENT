@@ -72,11 +72,16 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+
+# Append the base path to the system path
+base_path = get_base_path()
+if base_path not in sys.path:
+    sys.path.append(base_path)
+
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
-    base_path = get_base_path()
+    # base_path = get_base_path()
     return os.path.join(
         base_path,
         relative_path
@@ -86,11 +91,27 @@ def get_resource_path(relative_path):
 
 # Set the path to the 'modules' directory
 modules_dir = get_resource_path('modules')
-# Set the path to the 'resources' directory
-resources_dir = get_resource_path('resources')
+
+# Verify if the modules directory exists
+if not os.path.exists(modules_dir):
+    print(f"Error: modules_dir does not exist: {modules_dir}")
+
 # Append the modules path to the system path
 if modules_dir not in sys.path:
     sys.path.append(modules_dir)
+print(f"Debug: modules_dir: {modules_dir}")
+
+# Set the path to the 'resources' directory
+resources_dir = get_resource_path('resources')
+
+# Verify if the resources directory exists
+if not os.path.exists(resources_dir):
+    print(f"Error: resources_dir does not exist: {resources_dir}")
+
+# Append the resources path to the system path
+if resources_dir not in sys.path:
+    sys.path.append(resources_dir)
+print(f"Debug: resources_dir: {resources_dir}")
 
 # ========================================================================== #
 # This section defines third party imports.
@@ -193,17 +214,23 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
     def add_element(parent, tag, value):
         elem = ET.SubElement(parent, tag)
         elem.text = value
-    
+
+    # xml_project_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')}"
+
+    # xml_setup_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')}/setups"
+
+    # xml_media_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')}/media"
+
     # Define the mapping of XML tags to parameter names
     mappings = {
         "Workstation": "the_hostname",
         "Name": "the_projekt_flame_name",
         "Nickname": "the_projekt_name",
         "ShotgunProjectName": "the_projekt_name",
-        "ProjectDir": "the_projekt_flame_dirs/the_projekt_flame_name",
-        "SetupDir": "the_projekt_flame_dirs/the_projekt_flame_name/setups",
-        "MediaDir": "the_projekt_flame_dirs/the_projekt_flame_name/media",
-        "OCIOConfigFile": "/opt/Autodesk/colour_mgmt/configs/flame_configs/example_config/config.ocio",
+        "ProjectDir": "xml_project_dir",
+        "SetupDir": "xml_setup_dir",
+        "MediaDir": "xml_media_dir",
+        "OCIOConfigFile": "xml_ocio_config",
         "FrameWidth": "the_projekt_width",
         "FrameHeight": "the_projekt_height",
         "FrameDepth": "the_projekt_bit_depth",
@@ -211,7 +238,7 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
         "FieldDominance": "the_projekt_scan_mode",
         "FrameRate": "the_projekt_frame_rate",
         "DefaultStartFrame": "the_projekt_start_frame",
-        "IntermediatesProfile": "0:596088"
+        "IntermediatesProfile": "xml_intermediates_profile"
     }
 
     for tag, param_name in mappings.items():

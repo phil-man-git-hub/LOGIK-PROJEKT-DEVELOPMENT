@@ -265,11 +265,12 @@ class GetEnvironment:
             "Username": GetEnvironment.projekt_user_name(),
             "Primary Group": GetEnvironment.projekt_primary_group(),
             "Operating System": GetEnvironment.projekt_os(),
+            "Workstation Name": GetEnvironment.projekt_workstation_name(),
+            "FQDN": GetEnvironment.projekt_computername(),
+            "Network Adress": GetEnvironment.projekt_localhostname(),
             # "Hostname": GetEnvironment.projekt_hostname(),
             "Hostname": GetEnvironment.projekt_workstation_name(),
             "Local Hostname": GetEnvironment.projekt_localhostname(),
-            "Computer Name": GetEnvironment.projekt_computername(),
-            "Workstation Name": GetEnvironment.projekt_workstation_name(),
         }
         
         # Add JSON config data to the summary

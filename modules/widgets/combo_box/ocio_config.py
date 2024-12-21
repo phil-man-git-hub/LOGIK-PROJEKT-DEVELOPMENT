@@ -31,7 +31,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        layout_main.py
+# File Name:        ocio_config.py
 # Version:          0.9.9
 # Created:          2024-01-19
 # Modified:         2024-08-31
@@ -96,19 +96,10 @@ if modules_dir not in sys.path:
 # This section defines third party imports.
 # ========================================================================== #
 
-from PySide6.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QWidget,
-    QHBoxLayout,
-)
+# Third-Party imports
+from PySide6.QtWidgets import QComboBox
 
-from PySide6.QtGui import QScreen
-from PySide6.QtCore import QProcess
-
-from modules.widgets.layout.layout_left import LayoutLeft
-from modules.widgets.layout.layout_right import WidgetLayoutRight
-from modules.widgets.style_sheet.projekt_style_sheet import ProjektStyleSheet
+from modules.widgets.combo_box.items_ocio_config import combo_box_items_ocio_config
 
 # ========================================================================== #
 # This section defines environment specific variables.
@@ -195,75 +186,55 @@ the_projekt_flame_name = f"{the_projekt_name}_{the_sanitized_version}_{the_hostn
 
 separator = '# ' + '-' * 75 + ' #'
 
+the_projekt_dir = f"{the_projekts_dir}/{the_projekt_name}"
+the_projekt_flame_dir = f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
+
 # ========================================================================== #
 # This section defines the primary functions for the script.
 # ========================================================================== #
 
-class LayoutMain(QMainWindow):
-    def __init__(self):
-        super().__init__()
+class WidgetOCIOConfig(QComboBox):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        
+        # Set object name if needed
+        self.setObjectName("template_ocio_config")
 
-        # Set up the main window
-        self.setWindowTitle("LOGIK PROJEKT DEVELOPMENT")
-        self.setGeometry(100, 100, 1728, 1080)  # Set window dimensions to 1728x1080
+        # Load items from the imported list
+        self.addItems(combo_box_items_ocio_config)
 
-        # Center the window on the screen
-        self.center_window()
+        # Set default properties
+        self.setCurrentText(self.get_default_ocio_configuration())
+        self.setEditable(False)
 
-        # Create instances of custom widgets
-        self.layout_left = LayoutLeft()
-        self.layout_right = WidgetLayoutRight()
+    def get_widget_parameters(self):
+        widget_parameters = {
+            "widget_name": "template_ocio_config",
+            "widget_type": "QComboBox",
+            "widget_label_name": "OCIO Config: ",
+            "widget_default_value": self.get_default_ocio_configuration(),
+            "widget_placeholder_value": "",
+            "widget_item_values": "items_ocio_config.py",
+            "widget_read_only": False
+        }
+        return widget_parameters
 
-        # Connect the data_exported signal to the update_summary slot in LayoutRight
-        # self.layout_left.data_exported.connect(self.layout_right.update_projekt_summary)
-        self.layout_left.data_exported.connect(self.layout_right.update_projekt_summary_from_emitted)
-
-        # Setup the central widget and layout
-        central_widget = QWidget()
-        main_layout = QHBoxLayout()
-        central_widget.setLayout(main_layout)
-        self.setCentralWidget(central_widget)
-
-        # Set background color for the central widget
-        central_widget.setStyleSheet("background-color: #242424;")
-
-        # Create layout panels
-        layout_panel_left = QWidget()
-        layout_panel_left.setFixedWidth(720)  # Set width of left panel to 720 pixels
-        layout_panel_right = QWidget()
-        layout_panel_right.setFixedWidth(1008)  # Set width of right panel to 1008 pixels
-
-        # Add layout_left to layout_panel_left
-        panel_left_layout = QHBoxLayout(layout_panel_left)
-        panel_left_layout.addWidget(self.layout_left)
-
-        # Add layout_right to layout_panel_right
-        panel_right_layout = QHBoxLayout(layout_panel_right)
-        panel_right_layout.addWidget(self.layout_right)
-
-        # Add panels to main_layout
-        main_layout.addWidget(layout_panel_left)
-        main_layout.addWidget(layout_panel_right)
-
-    def center_window(self):
-        screen = QApplication.primaryScreen()
-        screen_geometry = screen.geometry()
-        screen_width = screen_geometry.width()
-        screen_height = screen_geometry.height()
-
-        window_width = self.width()
-        window_height = self.height()
-        x = (screen_width - window_width) // 2
-        y = (screen_height - window_height) // 2
-
-        self.move(x, y)
-
-if __name__ == "__main__":
-    # If this script is run directly, create the application and main window
-    app = QApplication(sys.argv)
-    main_window = LayoutMain()
-    main_window.show()
-    sys.exit(app.exec())
+    def get_default_ocio_configuration(self):
+        """
+        Reads the JSON file and returns the default color science.
+        """
+        json_file_path = get_resource_path(
+            'resources/cfg/projekt_configuration/parameters/default_parameters.json'
+        )
+        
+        try:
+            with open(json_file_path, 'r') as file:
+                data = json.load(file)
+            ocio_config = data.get("OCIO Config: ")
+            return ocio_config
+        except:
+            # Return a default value in case of an error
+            return "ADSK_Example_OCIO"
 
 # ========================================================================== #
 # C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #

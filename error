@@ -1,12 +1,38 @@
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_comp.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_mattes.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_multichannel.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_neat_video.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_precomp.py
-Python encountered ModuleNotFoundError("No module named 'nuke'") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/config/menu.py
+Process Monitor initialized.
+
+Creating a PROJEKT will take a heartbeat.
+
+PROJEKT will process your parameters.
+
+PROJEKT will try to launch FLAME.
+
+Please be patient...
+
+  Starting PROJEKT creation...
+  Error executing modules/functions/create/create_projekt.py:
+Traceback (most recent call last):
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1101, in <module>
+    main()
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 527, in main
+    create_xml_file(the_projekt_information, projekt_xml_path, logger)
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_parameters_xml.py", line 224, in create_xml_file
+    xml_setup_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')/'setups'}"
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+
+  PROJEKT creation completed.
+  Starting FLAME Launcher...
+  Error executing modules/functions/run/run_flame_launcher_script.py:
+Traceback (most recent call last):
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 305, in <module>
+    main()
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 293, in main
+    subprocess.run([the_flame_launcher_script])
+  File "/usr/lib64/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib64/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/006_pr_213/cfg/workstation//006_pr_213-flame_launcher-.sh'
+
+  FLAME Launcher completed.
