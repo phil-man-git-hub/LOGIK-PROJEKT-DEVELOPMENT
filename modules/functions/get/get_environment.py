@@ -258,13 +258,23 @@ class GetEnvironment:
 
     @staticmethod
     def projekt_workstation_name():
-        """Get the first part of the computer name."""
+        """Get the first part of the FQDN as the workstation name."""
         try:
-            computer_name = GetEnvironment.projekt_computername()
-            parts = computer_name.split('.')
+            fqdn = socket.getfqdn()
+            parts = fqdn.split('.')
             return parts[0]
         except Exception as e:
             return str(e)
+
+    # @staticmethod
+    # def projekt_workstation_name():
+    #     """Get the first part of the computer name."""
+    #     try:
+    #         computer_name = GetEnvironment.projekt_computername()
+    #         parts = computer_name.split('.')
+    #         return parts[0]
+    #     except Exception as e:
+    #         return str(e)
 
     @staticmethod
     def get_environment_summary():
@@ -279,6 +289,8 @@ class GetEnvironment:
             "Workstation Name": GetEnvironment.projekt_workstation_name(),
             "FQDN": GetEnvironment.projekt_computername(),
             "Network Adress": GetEnvironment.projekt_localhostname(),
+            # "Hostname": GetEnvironment.projekt_hostname(),
+            # "Hostname": GetEnvironment.projekt_workstation_name(),
             # "Local Hostname": GetEnvironment.projekt_localhostname(),
         }
         
