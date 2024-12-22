@@ -1,5 +1,5 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
@@ -269,8 +269,8 @@ class GetEnvironment:
             "FQDN": GetEnvironment.projekt_computername(),
             "Network Adress": GetEnvironment.projekt_localhostname(),
             # "Hostname": GetEnvironment.projekt_hostname(),
-            "Hostname": GetEnvironment.projekt_workstation_name(),
-            "Local Hostname": GetEnvironment.projekt_localhostname(),
+            # "Hostname": GetEnvironment.projekt_workstation_name(),
+            # "Local Hostname": GetEnvironment.projekt_localhostname(),
         }
         
         # Add JSON config data to the summary
