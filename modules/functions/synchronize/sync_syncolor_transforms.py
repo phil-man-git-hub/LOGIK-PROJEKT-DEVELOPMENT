@@ -215,6 +215,9 @@ def sync_color_transforms(
     # Set the projekt_flame_dir
     the_projekt_flame_dir =f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
 
+    # Set the projekt_flame_setups_dir
+    the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, "setups")  # Fix for flame 2026
+
     # Set the source parent directory
     src_transforms_dir = "resources/flame/Syncolor/Shared/transforms"
     tgt_projekt_transforms_dir = os.path.join(the_projekt_dir, "utilities", "Synergy", "SynColor", "Shared", "transforms")

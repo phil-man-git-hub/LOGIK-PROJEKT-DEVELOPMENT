@@ -214,9 +214,13 @@ def sync_mediaimport_rules(
     # Set the projekt_flame_dir
     the_projekt_flame_dir =f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
 
+    # Set the projekt_flame_setups_dir
+    the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, "setups")  # Fix for flame 2026
+
     # Set the source and target directories for copying
     src_mediaimport_dir = "resources/flame/presets/mediaImport"
-    tgt_mediaimport_dir = os.path.join(the_projekt_flame_dir, "mediaImport")
+    # tgt_mediaimport_dir = os.path.join(the_projekt_flame_dir, "mediaImport")  # Disabled for flame 2026
+    tgt_mediaimport_dir = os.path.join(the_projekt_flame_setups_dir, "mediaImport")  # Enabled for flame 2026
 
     print("  synchronizing mediaImport preferences & rules.\n")
 

@@ -214,6 +214,9 @@ def sync_python_scripts(
     # Set the projekt_flame_dir
     the_projekt_flame_dir =f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
 
+    # Set the projekt_flame_setups_dir
+    the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, "setups")  # Fix for flame 2026
+
     # Set the source and target python directories
     src_shared_python_dir = "resources/flame/python"
     tgt_shared_python_dir = "/opt/Autodesk/shared/python"

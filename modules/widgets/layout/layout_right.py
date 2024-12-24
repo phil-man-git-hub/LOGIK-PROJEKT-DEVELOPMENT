@@ -102,6 +102,7 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QHBoxLayout,
     QLabel,
+    QLineEdit,
     QMessageBox,
     QPushButton,
     QTextEdit,
@@ -125,6 +126,10 @@ from functions.get.get_flame_software import (
 from functions.get.get_framestores import get_framestore_list
 
 from functions.string.string_utilities import string_clean
+
+from widgets.line_edit.flame_projekt_directory import WidgetFlameProjektDirectory
+from widgets.line_edit.flame_projekt_media_cache import WidgetFlameProjektMediaCache
+from widgets.line_edit.flame_projekt_setups_dir import WidgetFlameProjektSetupsDir
 
 from widgets.style_sheet.projekt_style_sheet import (
     ProjektStyleSheet,
@@ -240,14 +245,17 @@ class WidgetLayoutRight(QWidget):
 
         # Add widgets
         self.add_import_template_button()
-        self.projekt_summary = self.add_text_edit("Projekt Summary:", True, fixed_height=360)
+        self.projekt_summary = self.add_text_edit("Projekt Summary:", True, fixed_height=300)
         self.initialize_projekt_summary()
         self.combo_box_software_version = self.add_combobox("Software Version:")
-        self.combo_box_framestore = self.add_combobox("Media Cache:")
-        self.environment_summary = self.add_text_edit("Environment Summary:", True, fixed_height=216)
+        self.combo_box_framestore = self.add_combobox("Framestore:")
+        self.add_labeled_widget("Projekt Flame Directory:", WidgetFlameProjektDirectory())
+        self.add_labeled_widget("Setups Directory:", WidgetFlameProjektSetupsDir()) 
+        self.add_labeled_widget("Media Cache:", WidgetFlameProjektMediaCache())
+        self.environment_summary = self.add_text_edit("Environment Summary:", True, fixed_height=300)
         # self.create_projekt_button = self.add_button("Create Projekt")
         self.add_create_projekt_button()
-        self.command_monitor = self.add_text_edit("Command Monitor:", True, fixed_height=320)
+        self.command_monitor = self.add_text_edit("Command Monitor:", True, fixed_height=160)
 
         # Load data into widgets
         self.load_software_versions()
@@ -293,6 +301,11 @@ class WidgetLayoutRight(QWidget):
         self.add_labeled_widget(label_text, combobox)
         return combobox
 
+    def add_line_edit(self, label_text):
+        line_edit = QLineEdit()
+        self.add_labeled_widget(label_text, line_edit)
+        return line_edit
+
     def add_button(self, button_text):
         button = QPushButton(button_text)
         button.setMinimumHeight(self.widget_min_height)
@@ -330,6 +343,7 @@ class WidgetLayoutRight(QWidget):
             "Scan Mode:",
             "Start Frame:",
             "Init Config:",
+            "Color Science:",
             "OCIO Config:"
         ]
         self.projekt_summary.setPlainText("\n".join(keys))
@@ -353,6 +367,7 @@ class WidgetLayoutRight(QWidget):
             "template_scan_mode": "Scan Mode:",
             "template_start_frame": "Start Frame:",
             "template_init_config": "Init Config:",
+            "template_color_science": "Color Science:",
             "template_ocio_config": "OCIO Config:"
         }
 
@@ -452,15 +467,11 @@ class WidgetLayoutRight(QWidget):
     #     self.command_monitor.setPlainText("Command Monitor initialized.")
 
     def load_command_monitor(self):
-        self.update_command_monitor("Process Monitor initialized.")
+        self.update_command_monitor("LOGIK PROJEKT is initialized.")
         self.update_command_monitor("")
-        self.update_command_monitor("Creating a PROJEKT will take a heartbeat.")
+        self.update_command_monitor("Creating a LOGIK PROJEKT will take a moment.")
         self.update_command_monitor("")
-        self.update_command_monitor("PROJEKT will process your parameters.")
-        self.update_command_monitor("")
-        self.update_command_monitor("PROJEKT will try to launch FLAME.")
-        self.update_command_monitor("")
-        self.update_command_monitor("Please be patient...")
+        self.update_command_monitor("Breathe deeply and make a happy wish...")
         self.update_command_monitor("")
 
 # =========================================================================== #

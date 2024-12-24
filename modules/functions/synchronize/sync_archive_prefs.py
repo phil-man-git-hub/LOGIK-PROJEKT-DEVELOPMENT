@@ -214,13 +214,18 @@ def sync_archive_prefs(
     # Set the projekt_flame_dir
     the_projekt_flame_dir =f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
 
+    # Set the projekt_flame_setups_dir
+    the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, "setups")  # Fix for flame 2026
+
     # Set the source and target archive preferences
     src_project_archive_prefs = "resources/flame/presets/status/ArchiveCurrent.json"
-    tgt_project_archive_prefs = os.path.join(the_projekt_flame_dir, "status", "ArchiveCurrent.json")
+    # tgt_project_archive_prefs = os.path.join(the_projekt_flame_dir, "status", "ArchiveCurrent.json")  # Disable for flame 2026
+    tgt_project_archive_prefs = os.path.join(the_projekt_flame_setups_dir, "status", "ArchiveCurrent.json")  # Enable for flame 2026
 
     # Set the source and target archive cache preferences
     src_project_archive_cache_prefs = "resources/flame/presets/status/project.json"
-    tgt_project_archive_cache_prefs = os.path.join(the_projekt_flame_dir, "status", "project.json")
+    tgt_project_archive_cache_prefs = os.path.join(the_projekt_flame_dir, "status", "project.json")  # Disable for flame 2026
+    tgt_project_archive_cache_prefs = os.path.join(the_projekt_flame_setups_dir, "status", "project.json") # Enable for flame 2026
 
     print("  creating archive preferences.\n")
 

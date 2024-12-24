@@ -129,7 +129,10 @@ from modules.widgets.combo_box.frame_rate import WidgetFrameRate
 from modules.widgets.combo_box.scan_mode import WidgetScanMode
 from modules.widgets.combo_box.start_frame import WidgetStartFrame
 from modules.widgets.combo_box.init_config import WidgetInitConfig
-# from modules.widgets.combo_box.color_science import WidgetColorScience
+from modules.widgets.combo_box.color_science import WidgetColorScience
+from modules.widgets.line_edit.flame_projekt_directory import WidgetFlameProjektDirectory
+from modules.widgets.line_edit.flame_projekt_media_cache import WidgetFlameProjektMediaCache
+from modules.widgets.line_edit.flame_projekt_setups_dir import WidgetFlameProjektSetupsDir
 from modules.widgets.combo_box.ocio_config import WidgetOCIOConfig
 from modules.functions.string.string_utilities import string_clean
 from modules.functions.export.export_template import export_template_as_json
@@ -265,7 +268,10 @@ class LayoutLeft(QWidget):
             (WidgetScanMode(), QLabel()),
             (WidgetStartFrame(), QLabel()),
             (WidgetInitConfig(), QLabel()),
-            # (WidgetColorScience(), QLabel()),
+            (WidgetColorScience(), QLabel()),
+            # (WidgetFlameProjektDirectory(), QLabel()),
+            # (WidgetFlameProjektMediaCache(), QLabel()),
+            # (WidgetFlameProjektSetupsDir(), QLabel()),
             (WidgetOCIOConfig(), QLabel()),
         ]
 

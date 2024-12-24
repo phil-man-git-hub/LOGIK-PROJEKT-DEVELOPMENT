@@ -214,10 +214,14 @@ def sync_overlays(
     # Set the projekt_flame_dir
     the_projekt_flame_dir =f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
 
+    # Set the projekt_flame_setups_dir
+    the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, "setups")  # Fix for flame 2026
+
     # Set the source and target directories for copying
     src_burn_metadata_dir = "resources/flame/presets/burn_metadata"
     tgt_shared_burn_metadata_dir = "/opt/Autodesk/shared/burn_metadata"
-    tgt_project_burn_metadata_dir = os.path.join(the_projekt_flame_dir, "burn_metadata")
+    # tgt_project_burn_metadata_dir = os.path.join(the_projekt_flame_dir, "burn_metadata")  # Disabled for flame 2026
+    tgt_project_burn_metadata_dir = os.path.join(the_projekt_flame_setups_dir, "burn_metadata")  # Enabled for flame 2026
 
     print("  synchronizing burn_metadata overlays.\n")
 

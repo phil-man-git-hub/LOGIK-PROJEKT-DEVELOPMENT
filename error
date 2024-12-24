@@ -1,23 +1,23 @@
-Process Monitor initialized.
+LOGIK PROJEKT is initialized.
 
-Creating a PROJEKT will take a heartbeat.
+Creating a LOGIK PROJEKT will take a moment.
 
-PROJEKT will process your parameters.
-
-PROJEKT will try to launch FLAME.
-
-Please be patient...
+Breathe deeply and make a happy wish...
 
   Starting PROJEKT creation...
   Error executing modules/functions/create/create_projekt.py:
 Traceback (most recent call last):
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1101, in <module>
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1105, in <module>
     main()
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 527, in main
-    create_xml_file(the_projekt_information, projekt_xml_path, logger)
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_parameters_xml.py", line 224, in create_xml_file
-    xml_setup_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')/'setups'}"
-TypeError: unsupported operand type(s) for /: 'str' and 'str'
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 637, in main
+    sync_archive_prefs(
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/synchronize/sync_archive_prefs.py", line 239, in sync_archive_prefs
+    shutil.copy(src_project_archive_prefs, tgt_project_archive_prefs)
+  File "/usr/lib64/python3.9/shutil.py", line 427, in copy
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib64/python3.9/shutil.py", line 266, in copyfile
+    with open(dst, 'wb') as fdst:
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/Autodesk/project/019_pr_213_2026_juliet/status/ArchiveCurrent.json'
 
   PROJEKT creation completed.
   Starting FLAME Launcher...
@@ -33,6 +33,6 @@ Traceback (most recent call last):
     self._execute_child(args, executable, preexec_fn, close_fds,
   File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
     raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/006_pr_213/cfg/workstation//006_pr_213-flame_launcher-.sh'
+FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/019_pr_213/cfg/workstation/juliet/019_pr_213-flame_launcher-juliet.sh'
 
   FLAME Launcher completed.

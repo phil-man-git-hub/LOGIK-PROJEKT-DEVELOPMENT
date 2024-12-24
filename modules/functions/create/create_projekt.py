@@ -461,6 +461,7 @@ def main():
         the_hostname = the_projekt_information.get('the_hostname')
         the_projekt_localhostname = the_projekt_information.get('the_projekt_localhostname')
         the_projekt_computername = the_projekt_information.get('the_projekt_computername')
+        the_projekt_workstation_name = the_projekt_information.get('the_projekt_workstation_name')  #
         the_software_version = the_projekt_information.get('the_software_version')
         the_framestore = the_projekt_information.get('the_framestore')
         the_sanitized_sw_ver = the_projekt_information.get('the_sanitized_sw_ver')
@@ -474,6 +475,7 @@ def main():
 
         the_projekt_dir = the_projekt_information.get('the_projekt_name')
         the_projekt_flame_dir = the_projekt_information.get('the_projekt_flame_name')
+        the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, 'setups')  # this is a temp fix for flame 2026
 
         bookmarks_file = 'resources/tmp/current_projekt_bookmarks.json'
         tmp_bookmarks_file = 'resources/tmp/tmp_bookmarks.json'
@@ -568,7 +570,8 @@ def main():
         create_the_projekt_flame_directories(
             the_flame_dirs_json_file,
             the_projekt_flame_dirs,
-            the_projekt_flame_dir,
+            # the_projekt_flame_dir,  # Disable this for flame 2026
+            the_projekt_flame_setups_dir,  # this is a temp fix for flame 2026
             # logger
         )
 
@@ -616,7 +619,8 @@ def main():
 
         # Copy the init config to the flame projekt
         the_src_projekt_init_config = f"{template_directory_path}/{the_projekt_init_config}"
-        the_tgt_projekt_init_config = f"{the_projekt_flame_dirs}/{the_projekt_flame_dir}/cfg/{the_projekt_flame_name}.cfg"
+        # the_tgt_projekt_init_config = f"{the_projekt_flame_dirs}/{the_projekt_flame_dir}/cfg/{the_projekt_flame_name}.cfg"  # Disable this for flame 2026
+        the_tgt_projekt_init_config = f"{the_projekt_flame_dirs}/{the_projekt_flame_setups_dir}/cfg/{the_projekt_flame_name}.cfg"  # this is a temp fix for flame 2026
         logger.log_and_print(f"Copying file from {the_src_projekt_init_config} to {the_tgt_projekt_init_config}")
 
         shutil.copyfile(the_src_projekt_init_config, the_tgt_projekt_init_config)

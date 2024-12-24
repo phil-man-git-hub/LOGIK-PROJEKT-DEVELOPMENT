@@ -31,7 +31,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        sync_bookmarks.py
+# File Name:        projekt_name.py
 # Version:          0.9.9
 # Created:          2024-01-19
 # Modified:         2024-08-31
@@ -96,7 +96,7 @@ if modules_dir not in sys.path:
 # This section defines third party imports.
 # ========================================================================== #
 
-# -------------------------------------------------------------------------- #
+from PySide6.QtWidgets import QLineEdit
 
 # ========================================================================== #
 # This section defines environment specific variables.
@@ -183,110 +183,38 @@ the_projekt_flame_name = f"{the_projekt_name}_{the_sanitized_version}_{the_hostn
 
 separator = '# ' + '-' * 75 + ' #'
 
+the_projekt_dir = f"{the_projekts_dir}/{the_projekt_name}"
+the_projekt_flame_dir = f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
+
+
 # ========================================================================== #
 # This section defines the primary functions for the script.
 # ========================================================================== #
 
-# Function to create bookmarks for the logik project and job
-def sync_bookmarks(
-        the_projekts_dir,
-        the_projekt_flame_dirs,
-        the_adsk_dir,
-        the_adsk_dir_linux,
-        the_adsk_dir_macos,
-        the_projekt_name,
-        the_projekt_flame_name,
-        separator
-    ):
-    
-    # Nested function to generate backup filename with current date
-    def generate_backup_filename(filepath):
-        # Get the current date
-        date_str = datetime.datetime.now().strftime("%Y_%m_%d")
-        # Split the file path into name and extension
-        base, ext = os.path.splitext(filepath)
-        # Create the backup filename with the date suffix
-        return f"{base}-{date_str}.bak"
+class WidgetFlameProjektMediaCache(QLineEdit):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        
+        # Set object name if needed
+        self.setObjectName("template_media_cache")
 
-    # Set the projekt_dir
-    the_projekt_dir =f"{the_projekts_dir}/{the_projekt_name}"
+        # Set default properties
+        self.setPlaceholderText("Media Cache Will be Dynamically Calculated...")
+        self.setReadOnly(True)
 
-    # Set the projekt_flame_dir
-    the_projekt_flame_dir =f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
+        # Optionally, set additional properties based on widget_parameters
 
-    # Set the projekt_flame_setups_dir
-    the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, "setups")  # Fix for flame 2026
-
-    # Set the umask to 0
-    os.umask(0)
-
-    # # Set the tgt_status_dir preferences
-    # tgt_status_dir = os.path.join(
-    #     the_projekt_flame_dir,
-    #     'status',
-    # )  # Disabled for flame 2026
-
-    # Set the tgt_status_dir preferences
-    tgt_status_dir = os.path.join(
-        the_projekt_flame_setups_dir,
-        'status',
-    )  # Enabled for flame 2026
-
-    # Create the tgt_status_dir if it doesn't exist
-    os.makedirs(
-        tgt_status_dir,
-        exist_ok=True
-    )
-
-    # Set the source and target directories for copying
-    src_project_bookmarks = "resources/tmp/current_projekt_bookmarks.json"
-    tgt_project_bookmarks = os.path.join(
-        tgt_status_dir,
-        "cf_bookmarks.json"
-    )
-
-    # Archive the PROJEKT bookmarks
-    print(f"  Creating PROJEKT bookmarks.\n")
-
-    backup_filename = generate_backup_filename(tgt_project_bookmarks)
-
-    # Check if tgt_project_bookmarks exists and rename if it does
-    if os.path.exists(tgt_project_bookmarks):
-        print(f"  * {tgt_project_bookmarks} exists\n")
-        print(f"  * Backing up older bookmarks file:\n")
-        print(f"  *   {tgt_project_bookmarks}.bak")
-        shutil.move(tgt_project_bookmarks, backup_filename)
-
-    shutil.copy(src_project_bookmarks, tgt_project_bookmarks)
-
-    # set the permissions on the new bookmarks file
-    os.chmod(tgt_project_bookmarks, 0o666)
-
-    print(f"  Successfully created PROJEKT bookmarks JSON in:\n")
-    print(f"  {os.path.basename(tgt_project_bookmarks)}")
-    # print("\n" + separator + "\n")
-
-# ========================================================================== #
-# This section defines how to handle the main script function.
-# ========================================================================== #
-
-def main():
-    separator = "-" * 80
-
-    # Call the functions to backup logs and files
-    sync_bookmarks(
-        the_projekts_dir,
-        the_projekt_flame_dirs,
-        the_adsk_dir,
-        the_adsk_dir_linux,
-        the_adsk_dir_macos,
-        the_projekt_name,
-        the_projekt_flame_name,
-        separator,
-    )
-
-if __name__ == "__main__":
-    main()
+    def get_widget_parameters(self):
+        widget_parameters = {
+            "widget_name": "template_media_cache",
+            "widget_type": "QLineEdit",
+            "widget_label_name": "Media Cache: ",
+            "widget_default_value": "",
+            "widget_placeholder_value": "Media Cache Will be Dynamically Calculated...",
+            "widget_item_values": "",
+            "widget_read_only": True
+        }
+        return widget_parameters
 
 # ========================================================================== #
 # C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
@@ -316,6 +244,6 @@ if __name__ == "__main__":
 # comments:         started gui design with pyside6.
 # -------------------------------------------------------------------------- #
 # version:          0.9.9
-# modified:         2024-08-31 - 16:51:09
+# modified:         2024-08-31 - 16:51:10
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
