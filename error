@@ -1,38 +1,25 @@
-LOGIK PROJEKT is initialized.
-
-Creating a LOGIK PROJEKT will take a moment.
-
-Breathe deeply and make a happy wish...
-
-  Starting PROJEKT creation...
-  Error executing modules/functions/create/create_projekt.py:
-Traceback (most recent call last):
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1105, in <module>
-    main()
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 637, in main
-    sync_archive_prefs(
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/synchronize/sync_archive_prefs.py", line 239, in sync_archive_prefs
-    shutil.copy(src_project_archive_prefs, tgt_project_archive_prefs)
-  File "/usr/lib64/python3.9/shutil.py", line 427, in copy
-    copyfile(src, dst, follow_symlinks=follow_symlinks)
-  File "/usr/lib64/python3.9/shutil.py", line 266, in copyfile
-    with open(dst, 'wb') as fdst:
-FileNotFoundError: [Errno 2] No such file or directory: '/opt/Autodesk/project/019_pr_213_2026_juliet/status/ArchiveCurrent.json'
-
-  PROJEKT creation completed.
-  Starting FLAME Launcher...
-  Error executing modules/functions/run/run_flame_launcher_script.py:
-Traceback (most recent call last):
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 305, in <module>
-    main()
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 293, in main
-    subprocess.run([the_flame_launcher_script])
-  File "/usr/lib64/python3.9/subprocess.py", line 505, in run
-    with Popen(*popenargs, **kwargs) as process:
-  File "/usr/lib64/python3.9/subprocess.py", line 951, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/019_pr_213/cfg/workstation/juliet/019_pr_213-flame_launcher-juliet.sh'
-
-  FLAME Launcher completed.
+error
+modules/functions/backup/backup_projekt_parameters.py
+modules/functions/backup/backup_projekt_template.py
+modules/functions/create/create_projekt.py
+modules/functions/synchronize/sync_archive_prefs.py
+modules/functions/synchronize/sync_batch.py
+modules/functions/synchronize/sync_bookmarks.py
+modules/functions/synchronize/sync_burnmetadata.py
+modules/functions/synchronize/sync_io.py
+modules/functions/synchronize/sync_mediaImport.py
+modules/functions/synchronize/sync_media_import.py
+modules/functions/synchronize/sync_mediahub.py
+modules/functions/synchronize/sync_nuke_dirs.py
+modules/functions/synchronize/sync_overlays.py
+modules/functions/synchronize/sync_python.py
+modules/functions/synchronize/sync_syncolor_policies.py
+modules/functions/synchronize/sync_syncolor_transforms.py
+modules/widgets/layout/layout_left.py
+modules/widgets/layout/layout_right.py
+modules/widgets/line_edit/flame_projekt_directory.py
+modules/widgets/line_edit/flame_projekt_media_cache.py
+modules/widgets/line_edit/flame_projekt_setups_dir.py
+resources/tmp/current_projekt_bookmarks.json
+resources/tmp/current_projekt_parameters.xml
+resources/tmp/current_projekt_template.json

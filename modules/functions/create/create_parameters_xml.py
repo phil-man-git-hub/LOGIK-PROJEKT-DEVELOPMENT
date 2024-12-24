@@ -214,23 +214,19 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
     def add_element(parent, tag, value):
         elem = ET.SubElement(parent, tag)
         elem.text = value
-
-    # xml_project_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')}"
-
-    # xml_setup_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')}/setups"
-
-    # xml_media_dir = f"{the_projekt_flame_dirs}/{the_projekt_information.get('the_projekt_flame_name')}/media"
-
+    
     # Define the mapping of XML tags to parameter names
     mappings = {
         "Workstation": "the_hostname",
         "Name": "the_projekt_flame_name",
         "Nickname": "the_projekt_name",
         "ShotgunProjectName": "the_projekt_name",
-        "ProjectDir": "xml_project_dir",
-        "SetupDir": "xml_setup_dir",
-        "MediaDir": "xml_media_dir",
-        "OCIOConfigFile": "xml_ocio_config",
+        "ProjectDir": "xml_project_dir",  # ENABLE FOR 2026
+        "SetupDir": "xml_setup_dir",  # ENABLE FOR 2026
+        "MediaDir": "xml_media_dir",  # ENABLE FOR 2026
+        "OCIOConfigFile": "xml_ocio_config",  # ENABLE FOR 2026
+        # "SetupDir": "the_projekt_flame_name",  # DISABLE FOR 2026
+        # "Partition": "the_framestore",  # DISABLE FOR 2026
         "FrameWidth": "the_projekt_width",
         "FrameHeight": "the_projekt_height",
         "FrameDepth": "the_projekt_bit_depth",
