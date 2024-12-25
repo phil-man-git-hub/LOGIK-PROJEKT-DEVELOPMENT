@@ -32,9 +32,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        validate_downloads.sh
-# Version:          0.9.9
+# Version:          1.9.9
 # Created:          2024-01-19
-# Modified:         2024-08-31
+# Modified:         2024-12-25
 
 # ========================================================================== #
 # This section defines paths for the script.
@@ -511,3 +511,8 @@ echo -e "\n\n$separator\n$separator\n$separator\n\n"
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
+# Version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
+# comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+

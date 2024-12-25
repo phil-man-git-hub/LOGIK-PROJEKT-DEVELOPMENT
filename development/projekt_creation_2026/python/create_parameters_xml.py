@@ -23,9 +23,9 @@
 #                   Contact: phil_man@mac.com
 # -------------------------------------------------------------------------- #
 # File Name:        create_parameters_xml.py
-# Version:          0.9.9
+# Version:          1.9.9
 # Created:          2024-01-19
-# Modified:         2024-08-31
+# Modified:         2024-12-25
 # ========================================================================== #
 # This section defines the import statements and directory paths.
 # ========================================================================== #
@@ -216,4 +216,8 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
 # version:          0.9.9
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
+# -------------------------------------------------------------------------- #
+# Version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
+# comments:         Preparation for future features
 # -------------------------------------------------------------------------- #
