@@ -189,6 +189,8 @@ separator = '# ' + '-' * 75 + ' #'
 
 # Function to backup projekt template json
 def backup_projekt_template(
+        the_hostname,
+        the_projekt_os,
         the_projekts_dir,
         the_projekt_flame_dirs,
         the_adsk_dir,
@@ -196,7 +198,7 @@ def backup_projekt_template(
         the_adsk_dir_macos,
         the_projekt_name,
         the_projekt_flame_name,
-        the_hostname,
+        the_sanitized_version,
         separator,
     ):
     
@@ -261,6 +263,8 @@ def main():
 
     # Call the function to backup projekt template json
     backup_projekt_template(
+        the_hostname,
+        the_projekt_os,
         the_projekts_dir,
         the_projekt_flame_dirs,
         the_adsk_dir,
@@ -268,7 +272,7 @@ def main():
         the_adsk_dir_macos,
         the_projekt_name,
         the_projekt_flame_name,
-        the_hostname,
+        the_sanitized_version,
         separator,
     )
 

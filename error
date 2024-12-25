@@ -23,3 +23,40 @@ modules/widgets/line_edit/flame_projekt_setups_dir.py
 resources/tmp/current_projekt_bookmarks.json
 resources/tmp/current_projekt_parameters.xml
 resources/tmp/current_projekt_template.json
+
+
+
+
+
+LOGIK PROJEKT is initialized.
+
+Creating your LOGIK PROJEKT will take a moment.
+
+Breathe deeply and make a happy wish...
+
+  Starting PROJEKT creation...
+  Error executing modules/functions/create/create_projekt.py:
+Traceback (most recent call last):
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1139, in <module>
+    main()
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 945, in main
+    sync_color_policies(
+TypeError: sync_color_policies() missing 1 required positional argument: 'separator'
+
+  PROJEKT creation completed.
+  Starting FLAME Launcher...
+  Error executing modules/functions/run/run_flame_launcher_script.py:
+Traceback (most recent call last):
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 305, in <module>
+    main()
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 293, in main
+    subprocess.run([the_flame_launcher_script])
+  File "/usr/lib64/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib64/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/026_pr_213/cfg/workstation/juliet/026_pr_213-flame_launcher-juliet.sh'
+
+  FLAME Launcher completed.

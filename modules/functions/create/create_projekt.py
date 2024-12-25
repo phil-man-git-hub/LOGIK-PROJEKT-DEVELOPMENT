@@ -473,7 +473,6 @@ def main():
         # Define the XML file path
         projekt_xml_path = 'resources/tmp/current_projekt_parameters.xml'
 
-
         # Define the projekt and projekt flame parent directories
         the_projekt_dir = the_projekt_information.get('the_projekt_name')
         the_projekt_flame_dir = the_projekt_information.get('the_projekt_flame_name')
@@ -645,6 +644,8 @@ def main():
 
         # Function to create archive defaults for 'Convert to Local Path'
         sync_archive_prefs(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -652,7 +653,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -665,6 +667,8 @@ def main():
 
         # Function to copy batch project bins
         sync_batch_project_bins(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -672,7 +676,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -727,6 +732,8 @@ def main():
 
         # Function to copy projekt bookmarks
         sync_bookmarks(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -734,7 +741,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -747,6 +755,8 @@ def main():
 
         # Function to copy burnin metadata presets
         sync_overlays(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -754,7 +764,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -767,6 +778,8 @@ def main():
 
         # Function to copy io presets
         sync_io_presets(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -774,7 +787,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -787,6 +801,8 @@ def main():
 
         # Function to copy media import rules
         sync_media_import_rules(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -794,7 +810,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -807,6 +824,8 @@ def main():
 
         # Function to copy mediahub rules
         sync_mediahub_rules(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -814,7 +833,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -827,6 +847,8 @@ def main():
 
         # Function to copy mediaimport rules
         sync_mediaimport_rules(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -834,7 +856,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -847,6 +870,8 @@ def main():
 
         # Function to copy nuke directories
         sync_nuke_dirs(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -854,7 +879,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -865,37 +891,19 @@ def main():
         # Print a banner head
         logger.log_and_print(f"{banner_head('Creating Editorial Structure - Premiere')}")
 
-        # # # Function to create editorial directory structure - premiere
-        # # sync_editorial_tree_premiere(
-        # #     the_projekts_dir,
-        # #     the_projekt_flame_dirs,
-        # #     the_adsk_dir,
-        # #     the_adsk_dir_linux,
-        # #     the_adsk_dir_macos,
-        # #     the_projekt_name,
-        # #     the_projekt_flame_name,
-        # #     separator
-        # # )
-
-        # # Function to create editorial directory structure - premiere
-        # sync_editorial_tree_premiere(
-        #     the_projekts_dir,
-        #     the_projekt_name,
-        #     the_projekt_flame_name,
-        #     separator
-        # )
-
-        # # Print a separator
-        # logger.log_and_print(f"\n{separator}")
-
-        # # # ------------------------------------------------------------------ #
-
         # Function to create editorial directory structure - premiere
         sync_editorial_tree_premiere(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
+            the_projekt_flame_dirs,
+            the_adsk_dir,
+            the_adsk_dir_linux,
+            the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -908,6 +916,8 @@ def main():
 
         # Function to copy python scripts
         sync_python_scripts(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -915,7 +925,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            separator
+            the_sanitized_version,
+            separator,
         )
 
         # Print a separator
@@ -931,6 +942,8 @@ def main():
 
         # Function to copy syncolor policies
         sync_color_policies(
+            the_projekt_os,
+            the_hostname,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -938,8 +951,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
+            the_sanitized_version,
             separator,
-            the_projekt_os
         )
 
         # Print a separator
@@ -952,6 +965,8 @@ def main():
 
         # Function to copy syncolor transforms
         sync_color_transforms(
+            the_projekt_os,
+            the_hostname,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -959,8 +974,8 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
+            the_sanitized_version,
             separator,
-            the_projekt_os
         )
 
         # Print a separator
@@ -985,6 +1000,8 @@ def main():
 
         # Function to create_projekt_flame_archive_script
         create_projekt_flame_archive_script(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -992,7 +1009,7 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            the_hostname,
+            the_sanitized_version,
             separator,
         )
 
@@ -1006,6 +1023,8 @@ def main():
 
         # Function to create_projekt_backup_script
         create_projekt_backup_script(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -1013,7 +1032,7 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            the_hostname,
+            the_sanitized_version,
             separator,
         )
 
@@ -1027,17 +1046,19 @@ def main():
 
         # Function to create_projekt_flame_launcher_script
         create_projekt_flame_launcher_script(
-                the_projekts_dir,
-                the_projekt_flame_dirs,
-                the_adsk_dir,
-                the_adsk_dir_linux,
-                the_adsk_dir_macos,
-                the_projekt_name,
-                the_projekt_flame_name,
-                the_hostname,
-                separator,
-                the_software_version
-            )
+            the_hostname,
+            the_projekt_os,
+            the_projekts_dir,
+            the_projekt_flame_dirs,
+            the_adsk_dir,
+            the_adsk_dir_linux,
+            the_adsk_dir_macos,
+            the_projekt_name,
+            the_projekt_flame_name,
+            the_sanitized_version,
+            the_software_version,  # This is unique to the launcher script
+            separator,
+        )
 
         # Print a separator
         logger.log_and_print(f"\n{separator}")
@@ -1049,6 +1070,8 @@ def main():
 
         # Function to backup flame project parameters xml
         backup_projekt_parameters_xml(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -1056,7 +1079,7 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            the_hostname,
+            the_sanitized_version,
             separator,
         )
 
@@ -1070,6 +1093,8 @@ def main():
 
         # Function to back up the projekt template
         backup_projekt_template(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -1077,7 +1102,7 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            the_hostname,
+            the_sanitized_version,
             separator,
         )
 
@@ -1091,6 +1116,8 @@ def main():
 
         # Function to back up the projekt creation log
         backup_projekt_creation_log(
+            the_hostname,
+            the_projekt_os,
             the_projekts_dir,
             the_projekt_flame_dirs,
             the_adsk_dir,
@@ -1098,7 +1125,7 @@ def main():
             the_adsk_dir_macos,
             the_projekt_name,
             the_projekt_flame_name,
-            the_hostname,
+            the_sanitized_version,
             separator,
         )
 

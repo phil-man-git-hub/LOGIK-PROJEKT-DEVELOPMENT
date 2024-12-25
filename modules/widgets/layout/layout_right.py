@@ -469,7 +469,7 @@ class WidgetLayoutRight(QWidget):
     def load_command_monitor(self):
         self.update_command_monitor("LOGIK PROJEKT is initialized.")
         self.update_command_monitor("")
-        self.update_command_monitor("Creating a LOGIK PROJEKT will take a moment.")
+        self.update_command_monitor("Creating your LOGIK PROJEKT will take a moment.")
         self.update_command_monitor("")
         self.update_command_monitor("Breathe deeply and make a happy wish...")
         self.update_command_monitor("")
