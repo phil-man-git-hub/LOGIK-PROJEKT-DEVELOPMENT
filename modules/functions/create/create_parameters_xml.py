@@ -73,15 +73,15 @@ def get_base_path():
             )
         )
 
-# Append the base path to the system path
-base_path = get_base_path()
-if base_path not in sys.path:
-    sys.path.append(base_path)
+# # Append the base path to the system path
+# base_path = get_base_path()
+# if base_path not in sys.path:
+#     sys.path.append(base_path)
 
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
-    # base_path = get_base_path()
+    base_path = get_base_path()
     return os.path.join(
         base_path,
         relative_path
@@ -92,26 +92,26 @@ def get_resource_path(relative_path):
 # Set the path to the 'modules' directory
 modules_dir = get_resource_path('modules')
 
-# Verify if the modules directory exists
-if not os.path.exists(modules_dir):
-    print(f"Error: modules_dir does not exist: {modules_dir}")
-
-# Append the modules path to the system path
-if modules_dir not in sys.path:
-    sys.path.append(modules_dir)
-print(f"Debug: modules_dir: {modules_dir}")
+# # Verify if the modules directory exists
+# if not os.path.exists(modules_dir):
+#     print(f"Error: modules_dir does not exist: {modules_dir}")
 
 # Set the path to the 'resources' directory
 resources_dir = get_resource_path('resources')
 
-# Verify if the resources directory exists
-if not os.path.exists(resources_dir):
-    print(f"Error: resources_dir does not exist: {resources_dir}")
+# Append the modules path to the system path
+if modules_dir not in sys.path:
+    sys.path.append(modules_dir)
+# print(f"Debug: modules_dir: {modules_dir}")
 
-# Append the resources path to the system path
-if resources_dir not in sys.path:
-    sys.path.append(resources_dir)
-print(f"Debug: resources_dir: {resources_dir}")
+# # Verify if the resources directory exists
+# if not os.path.exists(resources_dir):
+#     print(f"Error: resources_dir does not exist: {resources_dir}")
+
+# # Append the resources path to the system path
+# if resources_dir not in sys.path:
+#     sys.path.append(resources_dir)
+# print(f"Debug: resources_dir: {resources_dir}")
 
 # ========================================================================== #
 # This section defines third party imports.
