@@ -1,5 +1,5 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
@@ -32,9 +32,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        layout_main.py
-# Version:          0.9.9
+# Version:          1.9.9
 # Created:          2024-01-19
-# Modified:         2024-08-31
+# Modified:         2024-12-25
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.
@@ -204,7 +204,7 @@ class LayoutMain(QMainWindow):
         super().__init__()
 
         # Set up the main window
-        self.setWindowTitle("LOGIK PROJEKT")
+        self.setWindowTitle("LOGIK PROJEKT DEVELOPMENT")
         self.setGeometry(100, 100, 1728, 1080)  # Set window dimensions to 1728x1080
 
         # Center the window on the screen
@@ -296,3 +296,8 @@ if __name__ == "__main__":
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
+# Version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
+# comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+

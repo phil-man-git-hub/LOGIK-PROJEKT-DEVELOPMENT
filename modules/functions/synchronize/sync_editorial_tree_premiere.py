@@ -1,5 +1,5 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
@@ -134,10 +134,17 @@ separator = '# ' + '-' * 75 + ' #'
 # ========================================================================== #
 
 def sync_editorial_tree_premiere(
+        the_hostname,
+        the_projekt_os,
         the_projekts_dir,
+        the_projekt_flame_dirs,
+        the_adsk_dir,
+        the_adsk_dir_linux,
+        the_adsk_dir_macos,
         the_projekt_name,
         the_projekt_flame_name,
-        separator
+        the_sanitized_version,
+        separator,
     ):
     """
     Function to create the directory structure for Premiere projects,
@@ -360,10 +367,17 @@ def main():
 
     # Call the main sync function
     sync_editorial_tree_premiere(
+        the_hostname,
+        the_projekt_os,
         the_projekts_dir,
+        the_projekt_flame_dirs,
+        the_adsk_dir,
+        the_adsk_dir_linux,
+        the_adsk_dir_macos,
         the_projekt_name,
         the_projekt_flame_name,
-        separator
+        the_sanitized_version,
+        separator,
     )
 
 if __name__ == "__main__":
@@ -400,3 +414,8 @@ if __name__ == "__main__":
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
+# Version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
+# comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+

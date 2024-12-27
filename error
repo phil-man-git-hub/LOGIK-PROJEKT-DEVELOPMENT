@@ -1,12 +1,62 @@
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_comp.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_mattes.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_multichannel.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_neat_video.py
-Python encountered ImportError("cannot import name 'pyside6_qt_output_config_ui' from 'modules.pyside6_qt_flame_functions' (/opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules/pyside6_qt_flame_functions.py)") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_precomp.py
-Python encountered ModuleNotFoundError("No module named 'nuke'") in unknown code
-[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/config/menu.py
+error
+modules/functions/backup/backup_projekt_parameters.py
+modules/functions/backup/backup_projekt_template.py
+modules/functions/create/create_projekt.py
+modules/functions/synchronize/sync_archive_prefs.py
+modules/functions/synchronize/sync_batch.py
+modules/functions/synchronize/sync_bookmarks.py
+modules/functions/synchronize/sync_burnmetadata.py
+modules/functions/synchronize/sync_io.py
+modules/functions/synchronize/sync_mediaImport.py
+modules/functions/synchronize/sync_media_import.py
+modules/functions/synchronize/sync_mediahub.py
+modules/functions/synchronize/sync_nuke_dirs.py
+modules/functions/synchronize/sync_overlays.py
+modules/functions/synchronize/sync_python.py
+modules/functions/synchronize/sync_syncolor_policies.py
+modules/functions/synchronize/sync_syncolor_transforms.py
+modules/widgets/layout/layout_left.py
+modules/widgets/layout/layout_right.py
+modules/widgets/line_edit/flame_projekt_directory.py
+modules/widgets/line_edit/flame_projekt_media_cache.py
+modules/widgets/line_edit/flame_projekt_setups_dir.py
+resources/tmp/current_projekt_bookmarks.json
+resources/tmp/current_projekt_parameters.xml
+resources/tmp/current_projekt_template.json
+
+
+
+
+
+LOGIK PROJEKT is initialized.
+
+Creating your LOGIK PROJEKT will take a moment.
+
+Breathe deeply and make a happy wish...
+
+  Starting PROJEKT creation...
+  Error executing modules/functions/create/create_projekt.py:
+Traceback (most recent call last):
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1149, in <module>
+    main()
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 584, in main
+    create_the_projekt_flame_directories(
+TypeError: create_the_projekt_flame_directories() takes 3 positional arguments but 5 were given
+
+  PROJEKT creation completed.
+  Starting FLAME Launcher...
+  Error executing modules/functions/run/run_flame_launcher_script.py:
+Traceback (most recent call last):
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 305, in <module>
+    main()
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 293, in main
+    subprocess.run([the_flame_launcher_script])
+  File "/usr/lib64/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib64/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/032_pr_213/cfg/workstation/juliet/032_pr_213-flame_launcher-juliet.sh'
+
+  FLAME Launcher completed.

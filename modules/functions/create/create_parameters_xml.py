@@ -1,5 +1,5 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
@@ -32,9 +32,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        create_parameters_xml.py
-# Version:          0.9.9
+# Version:          1.9.9
 # Created:          2024-01-19
-# Modified:         2024-08-31
+# Modified:         2024-12-25
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.
@@ -72,7 +72,12 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+
+# # Append the base path to the system path
+# base_path = get_base_path()
+# if base_path not in sys.path:
+#     sys.path.append(base_path)
+
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -86,11 +91,27 @@ def get_resource_path(relative_path):
 
 # Set the path to the 'modules' directory
 modules_dir = get_resource_path('modules')
+
+# # Verify if the modules directory exists
+# if not os.path.exists(modules_dir):
+#     print(f"Error: modules_dir does not exist: {modules_dir}")
+
 # Set the path to the 'resources' directory
 resources_dir = get_resource_path('resources')
+
 # Append the modules path to the system path
 if modules_dir not in sys.path:
     sys.path.append(modules_dir)
+# print(f"Debug: modules_dir: {modules_dir}")
+
+# # Verify if the resources directory exists
+# if not os.path.exists(resources_dir):
+#     print(f"Error: resources_dir does not exist: {resources_dir}")
+
+# # Append the resources path to the system path
+# if resources_dir not in sys.path:
+#     sys.path.append(resources_dir)
+# print(f"Debug: resources_dir: {resources_dir}")
 
 # ========================================================================== #
 # This section defines third party imports.
@@ -200,15 +221,20 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
         "Name": "the_projekt_flame_name",
         "Nickname": "the_projekt_name",
         "ShotgunProjectName": "the_projekt_name",
-        "SetupDir": "the_projekt_flame_name",
-        "Partition": "the_framestore",
+        "ProjectDir": "xml_project_dir",  # ENABLE FOR 2026
+        "SetupDir": "xml_setup_dir",  # ENABLE FOR 2026
+        "MediaDir": "xml_media_dir",  # ENABLE FOR 2026
+        "OCIOConfigFile": "xml_ocio_config",  # ENABLE FOR 2026
+        # "SetupDir": "the_projekt_flame_name",  # DISABLE FOR 2026
+        # "Partition": "the_framestore",  # DISABLE FOR 2026
         "FrameWidth": "the_projekt_width",
         "FrameHeight": "the_projekt_height",
         "FrameDepth": "the_projekt_bit_depth",
         "AspectRatio": "the_projekt_aspect_ratio",
         "FieldDominance": "the_projekt_scan_mode",
         "FrameRate": "the_projekt_frame_rate",
-        "DefaultStartFrame": "the_projekt_start_frame"
+        "DefaultStartFrame": "the_projekt_start_frame",
+        "IntermediatesProfile": "xml_intermediates_profile"
     }
 
     for tag, param_name in mappings.items():
@@ -258,3 +284,8 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
+# Version:          1.9.9
+# modified:         2024-12-25 - 09:50:16
+# comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+

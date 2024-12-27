@@ -1,5 +1,5 @@
 #
-
+# DEVELOPMENT
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
@@ -31,10 +31,10 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        wiretap_create_node.py
-# Version:          0.9.9
+# File Name:        projekt_name.py
+# Version:          1.9.9
 # Created:          2024-01-19
-# Modified:         2024-08-31
+# Modified:         2024-12-25
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.
@@ -96,7 +96,7 @@ if modules_dir not in sys.path:
 # This section defines third party imports.
 # ========================================================================== #
 
-# -------------------------------------------------------------------------- #
+from PySide6.QtWidgets import QLineEdit
 
 # ========================================================================== #
 # This section defines environment specific variables.
@@ -180,78 +180,41 @@ print(f"  Debug: the_adsk_dir_macos:        {the_adsk_dir_macos}")
 # These paths should be passed from the main app.
 the_projekt_name = "8888_new_job"
 the_projekt_flame_name = f"{the_projekt_name}_{the_sanitized_version}_{the_hostname}"
-projekt_xml_path = "resources/tmp/current_projekt_parameters.xml"
 
 separator = '# ' + '-' * 75 + ' #'
+
+the_projekt_dir = f"{the_projekts_dir}/{the_projekt_name}"
+the_projekt_flame_dir = f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
+
 
 # ========================================================================== #
 # This section defines the primary functions for the script.
 # ========================================================================== #
 
-# def run_wiretap_create_node(projekt_xml_path, the_projekt_flame_name):
-def run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator):
-    """
-    Create the logik projekt flame project node using wiretap_create_node.
-    """
+class WidgetFlameProjektSetupsDir(QLineEdit):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        
+        # Set object name if needed
+        self.setObjectName("template_setups_dir")
 
-    # separator = '# ' + '-' * 75 + ' #'
+        # Set default properties
+        self.setPlaceholderText("Setups Directory Will be Dynamically Calculated...")
+        self.setReadOnly(True)
 
-    # Create the bash command
-    bash_command = f"""
+        # Optionally, set additional properties based on widget_parameters
 
-    # set -ex
-
-    # Set the umask to 0
-    umask 0
-
-    # ---------------------------------------------------------------------- #
-
-    # echo -e "{projekt_xml_path}"
-
-    # ---------------------------------------------------------------------- #
-
-    # Create the logik projekt flame project node using wiretap_create_node
-
-    # -n <parent node ID>
-    # -d <display name>
-    # -t <server-specific node type string (default = NODE)>
-    # [-h <host name or IP address> (default = 127.0.0.1)]
-    # [-s <metadata stream name> (default = none]
-    # [-f <file containing metadata> (default = none)]
-    # [-g <effective group>] (assumes super-user privileges)
-
-    # ---------------------------------------------------------------------- #
-
-    # Create a logik projekt flame project node using wiretap
-    /opt/Autodesk/wiretap/tools/current/wiretap_create_node \\
-    -n /volumes/stonefs \\
-    -d "{the_projekt_flame_name}" \\
-    -s XML \\
-    -f "{projekt_xml_path}"
-
-    # ---------------------------------------------------------------------- #
-    """
-
-    print(f"  Running the following bash command:")
-    print(f"{bash_command}")
-
-    # Run the bash command
-    process = subprocess.Popen(bash_command, shell=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
-
-    print(f"  Command output:\n")
-    print(stdout.decode())
-    # print(f"  Command errors:\n")
-    # print(stderr.decode())
-
-# ========================================================================== #
-# This section defines how to handle the main script function.
-# ========================================================================== #
-
-if __name__ == "__main__":
-    # Example usage
-    # run_wiretap_create_node(projekt_xml_path, the_projekt_flame_name)
-    run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
+    def get_widget_parameters(self):
+        widget_parameters = {
+            "widget_name": "template_setups_dir",
+            "widget_type": "QLineEdit",
+            "widget_label_name": "Setups Directory: ",
+            "widget_default_value": "",
+            "widget_placeholder_value": "Setups Directory Will be Dynamically Calculated...",
+            "widget_item_values": "",
+            "widget_read_only": True
+        }
+        return widget_parameters
 
 # ========================================================================== #
 # C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
@@ -281,6 +244,6 @@ if __name__ == "__main__":
 # comments:         started gui design with pyside6.
 # -------------------------------------------------------------------------- #
 # version:          0.9.9
-# modified:         2024-08-31 - 16:51:09
+# modified:         2024-08-31 - 16:51:10
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
