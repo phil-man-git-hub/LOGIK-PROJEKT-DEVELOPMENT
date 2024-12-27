@@ -1,8 +1,8 @@
 {
-    "Serial Number: ": "029",
+    "Serial Number: ": "034",
     "Client Name: ": "pr",
     "Campaign Name: ": "213",
-    "Projekt Name: ": "029_pr_213",
+    "Projekt Name: ": "034_pr_213",
     "Resolution: ": "1920 x 1080 | HD 1080 16:9",
     "Width: ": "1920",
     "Height: ": "1080",
@@ -13,5 +13,5 @@
     "Start Frame: ": "1001",
     "Init Config: ": "1920x1080@23976p.cfg",
     "Color Science: ": "ADSK_ACES_1.1",
-    "OCIO Config: ": "ADSK_Example_OCIO"
+    "OCIO Config: ": "OCIO_studio_config"
 }

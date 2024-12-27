@@ -187,7 +187,11 @@ separator = '# ' + '-' * 75 + ' #'
 # This section defines the primary functions for the script.
 # ========================================================================== #
 
-def create_the_projekt_flame_directories(the_flame_dirs_json_file, base_path, project_path):
+def create_the_projekt_flame_directories(
+        the_flame_dirs_json_file,
+        base_path,
+        project_path
+    ):
     try:
         print(f"  Reading JSON config file: {the_flame_dirs_json_file}\n")
         with open(the_flame_dirs_json_file, 'r') as file:

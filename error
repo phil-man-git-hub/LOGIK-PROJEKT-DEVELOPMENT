@@ -37,11 +37,11 @@ Breathe deeply and make a happy wish...
   Starting PROJEKT creation...
   Error executing modules/functions/create/create_projekt.py:
 Traceback (most recent call last):
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1139, in <module>
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1149, in <module>
     main()
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 945, in main
-    sync_color_policies(
-TypeError: sync_color_policies() missing 1 required positional argument: 'separator'
+  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 584, in main
+    create_the_projekt_flame_directories(
+TypeError: create_the_projekt_flame_directories() takes 3 positional arguments but 5 were given
 
   PROJEKT creation completed.
   Starting FLAME Launcher...
@@ -57,6 +57,6 @@ Traceback (most recent call last):
     self._execute_child(args, executable, preexec_fn, close_fds,
   File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
     raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/026_pr_213/cfg/workstation/juliet/026_pr_213-flame_launcher-juliet.sh'
+FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/032_pr_213/cfg/workstation/juliet/032_pr_213-flame_launcher-juliet.sh'
 
   FLAME Launcher completed.
