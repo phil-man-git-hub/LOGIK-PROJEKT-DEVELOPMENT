@@ -73,8 +73,6 @@ def get_base_path():
             )
         )
 
-# print(f"Debug: base_path: {get_base_path()}")
-
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -84,9 +82,6 @@ def get_resource_path(relative_path):
         relative_path
     )
 
-# print(f"Debug: resource_path: {get_resource_path('resources')}")
-# print(f"Debug: resource_path: {get_resource_path('modules')}")
-
 # -------------------------------------------------------------------------- #
 
 # Set the path to the 'modules' directory
@@ -94,24 +89,9 @@ modules_dir = get_resource_path('modules')
 # Set the path to the 'resources' directory
 resources_dir = get_resource_path('resources')
 
-# # Verify if the modules directory exists
-# if not os.path.exists(modules_dir):
-#     print(f"Error: modules_dir does not exist: {modules_dir}")
-
 # Append the modules path to the system path
 if modules_dir not in sys.path:
     sys.path.append(modules_dir)
-# print(f"Debug: modules_dir: {modules_dir}")
-
-
-# # Verify if the resources directory exists
-# if not os.path.exists(resources_dir):
-#     print(f"Error: resources_dir does not exist: {resources_dir}")
-
-# # Append the resources path to the system path
-# if resources_dir not in sys.path:
-#     sys.path.append(resources_dir)
-# print(f"Debug: resources_dir: {resources_dir}")
 
 # ========================================================================== #
 # This section defines third party imports.
@@ -356,7 +336,6 @@ projekt_roots_config_path = os.path.join(
     'roots',
     'projekt_roots.json'
 )
-# print(f"Debug: projekt_roots_config_path: {projekt_roots_config_path}")
 
 # Read the JSON configuration file
 try:
@@ -486,9 +465,6 @@ def main():
             the_projekt_flame_setups_dir = the_projekt_flame_dir
         else:
             the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, 'setups')
-
-        # the_projekt_flame_setups_dir = the_projekt_flame_dir  # Disable for flame 2025
-        # the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, 'setups')  # Enable for flame 2026
 
         bookmarks_file = 'resources/tmp/current_projekt_bookmarks.json'
         tmp_bookmarks_file = 'resources/tmp/tmp_bookmarks.json'
@@ -1183,4 +1159,3 @@ if __name__ == "__main__":
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
 # -------------------------------------------------------------------------- #
-

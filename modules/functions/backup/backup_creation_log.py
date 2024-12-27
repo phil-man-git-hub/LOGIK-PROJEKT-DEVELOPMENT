@@ -212,10 +212,16 @@ def backup_projekt_creation_log(
         return f"{base}-{date_str}-{the_projekt_name}-{the_hostname}"
 
     # Set the projekt_dir
-    the_projekt_dir = f"{the_projekts_dir}/{the_projekt_name}"
+    the_projekt_dir =f"{the_projekts_dir}/{the_projekt_name}"
 
     # Set the projekt_flame_dir
-    the_projekt_flame_dir = f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
+    the_projekt_flame_dir =f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
+
+    # Define the projekt flame setups directory based on the flame version
+    if the_sanitized_version.startswith("2025"):
+        the_projekt_flame_setups_dir = the_projekt_flame_dir
+    else:
+        the_projekt_flame_setups_dir = os.path.join(the_projekt_flame_dir, 'setups')
 
     # Set the umask to 0
     os.umask(0)

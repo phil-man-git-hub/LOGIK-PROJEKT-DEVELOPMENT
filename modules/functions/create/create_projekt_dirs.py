@@ -320,7 +320,14 @@ def create_the_projekt_directories(
             children = item.get('children', {})
             if children:
                 for key, value in children.items():
-                    _collect_keys_values(value, bookmarks_list, the_projekts_dir, the_projekt_name, the_projekts_flame_dir, current_folder_bookmarks)
+                    _collect_keys_values(
+                        value,
+                        bookmarks_list,
+                        the_projekts_dir,
+                        the_projekt_name,
+                        the_projekts_flame_dir,
+                        current_folder_bookmarks
+                    )
 
     bookmarks_file_header = {
         "DlBookmark": {
@@ -460,8 +467,7 @@ if __name__ == "__main__":
 # modified:         2024-08-31 - 16:51:09
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
-# Version:          1.9.9
+# version:          1.9.9
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
 # -------------------------------------------------------------------------- #
-
