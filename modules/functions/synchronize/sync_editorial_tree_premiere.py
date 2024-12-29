@@ -33,9 +33,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        sync_editorial_tree_premiere_working.py
-# Version:          0.9.0
+# Version:          1.9.9
 # Created:          2024-10-31
-# Modified:         2024-10-31
+# Modified:         2024-12-25
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.

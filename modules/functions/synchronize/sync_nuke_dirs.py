@@ -32,9 +32,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        sync_nuke_dirs.py
-# Version:          0.0.1
+# Version:          1.9.9
 # Created:          2024-11-07
-# Modified:         2024-11-07
+# Modified:         2024-12-25
 
 # ========================================================================== #
 # This section defines the import statements and directory paths.
