@@ -94,4 +94,3 @@ echo "Created __init__.py in every subdirectory of $target_directory."
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
 # -------------------------------------------------------------------------- #
-

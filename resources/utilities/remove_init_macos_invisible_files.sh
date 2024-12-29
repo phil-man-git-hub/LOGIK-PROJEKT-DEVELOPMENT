@@ -87,4 +87,3 @@ echo "Removed files that begin with '._' in every subdirectory of $target_direct
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
 # -------------------------------------------------------------------------- #
-

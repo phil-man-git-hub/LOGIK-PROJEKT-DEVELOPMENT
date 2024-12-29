@@ -162,4 +162,3 @@ class WidgetClientName(QLineEdit):
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
 # -------------------------------------------------------------------------- #
-

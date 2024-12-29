@@ -288,4 +288,3 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
 # -------------------------------------------------------------------------- #
-
