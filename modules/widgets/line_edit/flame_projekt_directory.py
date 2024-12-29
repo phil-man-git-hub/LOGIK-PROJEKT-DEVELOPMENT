@@ -247,3 +247,7 @@ class WidgetFlameProjektDirectory(QLineEdit):
 # modified:         2024-08-31 - 16:51:10
 # comments:         prep for release - code appears to be functional
 # -------------------------------------------------------------------------- #
+# Version:          1.9.9
+# modified:         2024-12-25 - 09:50:18
+# comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
