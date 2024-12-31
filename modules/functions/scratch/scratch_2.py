@@ -1050,4 +1050,7 @@
   138:           config = json.load(config_file)
   139:   except Exception as e:
   140:       print(f"  Error reading JSON configuration file: {e}")
-  141:       config = {}
+  141:       config = {}# version:          2.0.0
+# modified:         2024-12-31 - 10:35:32
+# comments:         Improved legibility and minor modifications
+# -------------------------------------------------------------------------- #
