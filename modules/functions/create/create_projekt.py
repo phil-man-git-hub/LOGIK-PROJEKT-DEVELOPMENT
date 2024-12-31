@@ -160,7 +160,8 @@ from functions.create.create_parameters_xml import (
 
 # Import the run_wiretap_create_node function
 from functions.wiretap.wiretap_create_node import (
-    run_wiretap_create_node
+    run_wiretap_create_node_legacy,
+    run_wiretap_create_node,
 )
 
 # -------------------------------------------------------------------------- #
@@ -525,8 +526,17 @@ def main():
         # Print a banner head
         logger.log_and_print(f"{banner_head('Creating Flame Projekt')}")
 
-        # Call the run_wiretap_create_node function
-        run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
+
+        # Define the projekt flame setups directory based on the flame version
+        if the_sanitized_version.startswith("2025"):
+
+            # Call the run_wiretap_create_node_legacy function
+            run_wiretap_create_node_legacy(the_projekt_flame_name, projekt_xml_path, separator)
+
+        else:
+            
+            # Call the run_wiretap_create_node function
+            run_wiretap_create_node(the_projekt_flame_name, projekt_xml_path, separator)
 
         # Print a separator
         logger.log_and_print(f"\n{separator}")
