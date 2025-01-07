@@ -143,12 +143,12 @@ from functions.shell.shell_decorators import (
 
 # Import the shell utility functions
 from functions.shell.shell_utilities import (
-    TimestampUtility
+    TimestampUtility,
 )
 
 # Import the shell logging functions
 from functions.shell.shell_logging import (
-    ShellLogger
+    ShellLogger,
 )
 
 # -------------------------------------------------------------------------- #
@@ -169,143 +169,148 @@ from functions.wiretap.wiretap_create_node import (
 
 # Import the create_projekt_dirs function
 from functions.create.create_projekt_dirs import (
-    create_the_projekt_directories
+    create_the_projekt_directories,
 )
 
 # Import the create_the_projekt_flame_directories function
 from functions.create.create_projekt_flame_dirs import (
-    create_the_projekt_flame_directories
+    create_the_projekt_flame_directories,
 )
 
 # Import the symlink_iterations_dir function
 from functions.link.link_iterations_dir import (
-    symlink_iterations_dir
+    symlink_iterations_dir,
 )
 
 # Import the symlink_subdirectories function
 from functions.link.link_subdirectories import (
-    symlink_subdirectories
+    symlink_subdirectories,
 )
 
 # Import the template_directory_path for init_configs
 from widgets.combo_box.items_init_config import (
-    template_directory_path
+    template_directory_path,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the sync_archive_prefs function
 from functions.synchronize.sync_archive_prefs import (
-    sync_archive_prefs
+    sync_archive_prefs,
 )
 
 # Import the sync_batch_project_bins function
 from functions.synchronize.sync_batch import (
-    sync_batch_project_bins
+    sync_batch_project_bins,
 )
 
 # Import the update_flame_colortoolkit_bookmarks function
 from functions.update.update_flame_colortoolkit_bookmarks import (
-    update_flame_colortoolkit_bookmarks
+    update_flame_colortoolkit_bookmarks,
 )
 
 # Import the sync_bookmarks function
 from functions.synchronize.sync_bookmarks import (
-    sync_bookmarks
+    sync_bookmarks,
 )
 
 # Import the sync_overlays function
 from functions.synchronize.sync_burnmetadata import (
-    sync_overlays
+    sync_overlays,
 )
 
 # Import the sync_io_presets function
 from functions.synchronize.sync_io import (
-    sync_io_presets
+    sync_io_presets,
 )
 
 # Import the sync_media_import_rules function
 from functions.synchronize.sync_media_import import (
-    sync_media_import_rules
+    sync_media_import_rules,
 )
 
 # Import the sync_mediahub_rules function
 from functions.synchronize.sync_mediahub import (
-    sync_mediahub_rules
+    sync_mediahub_rules,
 )
 
 # Import the sync_mediaimport_rules function
 from functions.synchronize.sync_mediaImport import (
-    sync_mediaimport_rules
+    sync_mediaimport_rules,
 )
 
 # Import the sync_nuke_dirs function
 from functions.synchronize.sync_nuke_dirs import (
-    sync_nuke_dirs
+    sync_nuke_dirs,
 )
 
 # # Import the sync_overlays function  # DIFFERENT TO BURNIN METADATA OVERLAYS
 # from functions.synchronize.sync_overlays import (
-#     sync_overlays
+#     sync_overlays,
 # )
 
 # Import the sync_editorial_tree_premiere function
 from functions.synchronize.sync_editorial_tree_premiere import (
-    sync_editorial_tree_premiere
+    sync_editorial_tree_premiere,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the sync_python_scripts function
 from functions.synchronize.sync_python import (
-    sync_python_scripts
+    sync_python_scripts,
 )
 
 # Import the sync_color_policies function
 from functions.synchronize.sync_syncolor_policies import (
-    sync_color_policies
+    sync_color_policies,
 )
 
 # Import the sync_color_transforms function
 from functions.synchronize.sync_syncolor_transforms import (
-    sync_color_transforms
+    sync_color_transforms,
 )
 
 # Import the add_syncolor_policy function
 from functions.wiretap.wiretap_add_color_policy import (
-    add_syncolor_policy
+    add_syncolor_policy,
+)
+
+# Import the sync_ocio_configs function
+from functions.synchronize.sync_ocio_configs import (
+    sync_ocio_configs,
 )
 
 # Import the add_syncolor_policy function
 from functions.create.create_launcher_script import (
-    create_projekt_flame_launcher_script
+    create_projekt_flame_launcher_script,
 )
 
 # -------------------------------------------------------------------------- #
 
 # Import the create_projekt_flame_archive_script function
 from functions.create.create_archive_script import (
-    create_projekt_flame_archive_script
+    create_projekt_flame_archive_script,
 )
 
 # Import the create_projekt_backup_script function
 from functions.create.create_backup_script import (
-    create_projekt_backup_script
+    create_projekt_backup_script,
 )
 
 # Import the backup_projekt_template function
 from functions.backup.backup_projekt_template import (
-    backup_projekt_template
+    backup_projekt_template,
 )
 
 # Import the backup_projekt_parameters_xml function
 from functions.backup.backup_projekt_parameters import (
-    backup_projekt_parameters_xml
+    backup_projekt_parameters_xml,
 )
 
 # Import the backup_projekt_creation_log function
 from functions.backup.backup_creation_log import (
-    backup_projekt_creation_log
+    backup_projekt_creation_log,
 )
 
 # ========================================================================== #
