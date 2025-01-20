@@ -146,6 +146,7 @@ from pyside6_qt_flame_modules import (
     pyside6_qt_file_browser,
     pyside6_qt_load_config,
     pyside6_qt_open_in_finder,
+    pyside6_qt_output_config_ui,
     pyside6_qt_print,
     pyside6_qt_resolve_shot_name,
     pyside6_qt_resolve_path_tokens,
