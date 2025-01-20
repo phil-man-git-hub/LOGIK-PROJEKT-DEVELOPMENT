@@ -32,9 +32,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        pyside6_qt_flame_modules.py
-# Version:          1.0.1
+# Version:          1.0.2
 # Created:          2024-01-19
-# Modified:         2024-11-16
+# Modified:         2025-01-19
 
 # ========================================================================== #
 # This section imports the necessary modules and adds the modules directory
@@ -372,4 +372,8 @@ from modules.pyside6_qt_output_config_ui import (
 # version:               1.0.1
 # modified:              2024-11-16 - 16:52:07
 # comments:              Fixed circular import statements
+# -------------------------------------------------------------------------- #
+# version:               1.0.2
+# modified:              2025-01-19 - 17:47:49
+# comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
