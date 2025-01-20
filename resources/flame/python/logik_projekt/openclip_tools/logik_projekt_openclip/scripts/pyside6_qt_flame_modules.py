@@ -71,49 +71,112 @@ from PySide6 import (
 # Get the directory path of the currently executing script
 current_script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Append the 'modules' directory to sys.path to access modules
+# Print the current_script_dir
+print(f"current_script_dir: {current_script_dir}")
+
+# The current_script_dir should be 'resources/flame/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts'
+# The modules directory should be 'resources/flame/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules'
+# Check if this is true
 modules_dir = os.path.join(current_script_dir, 'modules')
-sys.path.append(modules_dir)
+print(f"modules_dir: {modules_dir}")
 
-# from pyside6_qt_flame_classes import (
-from modules.pyside6_qt_flame_classes import (
-    pyside6_qt_button,
-    pyside6_qt_clickable_line_edit,
-    pyside6_qt_label,
-    pyside6_qt_line_edit,
-    pyside6_qt_list_widget,
-    pyside6_qt_message_window,
-    pyside6_qt_password_window,
-    pyside6_qt_preset_window,
-    pyside6_qt_progress_window,
-    pyside6_qt_push_button,
-    pyside6_qt_push_button_menu,
-    pyside6_qt_qdialog,
-    pyside6_qt_slider,
-    pyside6_qt_text_edit,
-    pyside6_qt_token_push_button,
-    pyside6_qt_tree_widget,
-    pyside6_qt_window
-)
+# # Append the 'modules' directory to sys.path to access modules
+# modules_dir = os.path.join(current_script_dir, 'modules')
+# sys.path.append(modules_dir)
 
-# from pyside6_qt_flame_functions import (
-from modules.pyside6_qt_flame_functions import (
-    pyside6_qt_get_shot_name,
-    pyside6_qt_print,
-    pyside6_qt_get_flame_version,
-    pyside6_qt_file_browser,
-    pyside6_qt_resolve_shot_name,
-    pyside6_qt_resolve_path_tokens,
-    pyside6_qt_refresh_hooks,
-    pyside6_qt_open_in_finder,
-    pyside6_qt_load_config,
-    pyside6_qt_save_config
-)
+# # from pyside6_qt_flame_classes import (
+# # from modules.pyside6_qt_flame_classes import (
+# from modules.classes import (
+#     pyside6_qt_button,
+#     pyside6_qt_clickable_line_edit,
+#     pyside6_qt_label,
+#     pyside6_qt_line_edit,
+#     pyside6_qt_list_widget,
+#     pyside6_qt_message_window,
+#     pyside6_qt_password_window,
+#     pyside6_qt_preset_window,
+#     pyside6_qt_progress_window,
+#     pyside6_qt_push_button,
+#     pyside6_qt_push_button_menu,
+#     pyside6_qt_qdialog,
+#     pyside6_qt_slider,
+#     pyside6_qt_text_edit,
+#     pyside6_qt_token_push_button,
+#     pyside6_qt_tree_widget,
+#     pyside6_qt_window,
+# )
 
-from modules.functions.pyside6_qt_output_config_ui import (
-    pyside6_qt_output_config_ui as pyside6_qt_output_config_ui
-)
+# # from pyside6_qt_flame_functions import (
+# # from modules.pyside6_qt_flame_functions import (
+# from modules.functions import (
+#     pyside6_qt_get_shot_name,
+#     pyside6_qt_print,
+#     pyside6_qt_get_flame_version,
+#     pyside6_qt_file_browser,
+#     pyside6_qt_resolve_shot_name,
+#     pyside6_qt_resolve_path_tokens,
+#     pyside6_qt_refresh_hooks,
+#     pyside6_qt_open_in_finder,
+#     pyside6_qt_load_config,
+#     pyside6_qt_save_config,
+# )
 
+# from modules.functions.pyside6_qt_output_config_ui import (
+#     pyside6_qt_output_config_ui as pyside6_qt_output_config_ui
+# )
+
+# Append the 'modules' directory to sys.path to access modules
+if modules_dir not in sys.path:
+    sys.path.append(modules_dir)
+
+# Verify if the modules directory exists
+if not os.path.exists(modules_dir):
+    print(f"Error: modules_dir does not exist: {modules_dir}")
+else:
+    print(f"modules_dir exists: {modules_dir}")
+
+# Import modules from the 'modules' directory
+try:
+    from modules.classes import (
+        pyside6_qt_button,
+        pyside6_qt_clickable_line_edit,
+        pyside6_qt_label,
+        pyside6_qt_line_edit,
+        pyside6_qt_list_widget,
+        pyside6_qt_message_window,
+        pyside6_qt_password_window,
+        pyside6_qt_preset_window,
+        pyside6_qt_progress_window,
+        pyside6_qt_push_button,
+        pyside6_qt_push_button_menu,
+        pyside6_qt_qdialog,
+        pyside6_qt_slider,
+        pyside6_qt_text_edit,
+        pyside6_qt_token_push_button,
+        pyside6_qt_tree_widget,
+        pyside6_qt_window,
+    )
+
+    from modules.functions import (
+        pyside6_qt_get_shot_name,
+        pyside6_qt_print,
+        pyside6_qt_get_flame_version,
+        pyside6_qt_file_browser,
+        pyside6_qt_resolve_shot_name,
+        pyside6_qt_resolve_path_tokens,
+        pyside6_qt_refresh_hooks,
+        pyside6_qt_open_in_finder,
+        pyside6_qt_load_config,
+        pyside6_qt_save_config,
+    )
+
+    from modules.functions.pyside6_qt_output_config_ui import (
+        pyside6_qt_output_config_ui as pyside6_qt_output_config_ui
+    )
+    
+except ImportError as e:
+    print(f"Error importing modules: {e}")
+    
 # ========================================================================== #
 # This section defines how to handle the main script function.
 # ========================================================================== #

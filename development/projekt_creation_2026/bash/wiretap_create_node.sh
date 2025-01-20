@@ -1,12 +1,18 @@
 #! /bin/bash
 
-# set -ex
+set -ex
 
 # -------------------------------------------------------------------------- #
 
 initiative_name="projekt_creation_2026"
 
-pr_version=pr213
+project_nickname="33333"
+
+pr_version=pr214
+
+workstation_name="juliet"
+
+the_projekt_flame_name="${project_nickname}_${pr_version}_${workstation_name}"
 
 # -------------------------------------------------------------------------- #
 
@@ -28,24 +34,30 @@ path_to_xml_dir="$path_to_initiative_dir/xml"
 
 path_to_xml_version_dir="$path_to_xml_dir/$pr_version"
 
-xml_template_name="pr213_projekt_template.xml"
+xml_template_name="${pr_version}_projekt_template.xml"
 path_to_xml_template="$path_to_xml_version_dir/$xml_template_name"
 
 xml_file_name="projekt_template.xml"
 path_to_xml_file="$path_to_xml_dir/$xml_file_name"
 
-workstation_name="juliet"
-project_nickname="hhhh"
-
-the_projekt_flame_name="${project_nickname}_${pr_version}_${workstation_name}"
-
 projekt_xml_path="$path_to_xml_file"
+
+# Copy the projekt template to the xml file
+cp -v $path_to_xml_template $path_to_xml_file
+
+# replace the string '$WORKSTATION_NAME' with the workstation name
+sed -i "s/\$WORKSTATION/$workstation_name/g" $path_to_xml_file
+
+# Replace the string '$NICKNAME' with the project nickname
+sed -i "s/\$NICKNAME/$project_nickname/g" $path_to_xml_file
+
+# -------------------------------------------------------------------------- #
 
 umask 000
 
 # Create a logik projekt flame project node using wiretap
 /opt/Autodesk/wiretap/tools/current/wiretap_create_node \
--h 127.0.0.1 \
+-h localhost:IFFFS \
 -n /projects \
 -t PROJECT \
 -d "${the_projekt_flame_name}" \

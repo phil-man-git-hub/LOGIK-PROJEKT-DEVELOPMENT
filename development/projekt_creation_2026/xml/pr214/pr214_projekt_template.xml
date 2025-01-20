@@ -1,11 +1,11 @@
 <Project>
-    <!-- <Workstation>juliet</Workstation> -->
-    <Name>33333_pr214_juliet</Name>
-    <Nickname>33333</Nickname>
-    <ShotgunProjectName>33333</ShotgunProjectName>
-    <ProjectDir>/opt/Autodesk/project/33333_pr213_juliet</ProjectDir>
-    <SetupDir>/opt/Autodesk/project/33333_pr213_juliet/setups</SetupDir>
-    <MediaDir>/opt/Autodesk/project/33333_pr213_juliet/media</MediaDir>
+    <!-- <Workstation>$WORKSTATION</Workstation> -->
+    <Name>$NICKNAME_pr214_$WORKSTATION</Name>
+    <Nickname>$NICKNAME</Nickname>
+    <ShotgunProjectName>$NICKNAME</ShotgunProjectName>
+    <ProjectDir>/opt/Autodesk/project/$NICKNAME_pr213_$WORKSTATION</ProjectDir>
+    <SetupDir>/opt/Autodesk/project/$NICKNAME_pr213_$WORKSTATION/setups</SetupDir>
+    <MediaDir>/opt/Autodesk/project/$NICKNAME_pr213_$WORKSTATION/media</MediaDir>
     <OCIOConfigFile>/opt/Autodesk/colour_mgmt/configs/flame_configs/example_config/config.ocio</OCIOConfigFile>
     <!-- <Partition>stonefs</Partition> -->
     <FrameWidth>1920</FrameWidth>

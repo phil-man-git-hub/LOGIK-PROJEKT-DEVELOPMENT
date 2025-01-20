@@ -4,7 +4,7 @@
 
 initiative_name="projekt_creation_2026"
 
-pr_version=pr213
+pr_version=pr214
 
 # -------------------------------------------------------------------------- #
 
@@ -26,7 +26,7 @@ path_to_xml_dir="$path_to_initiative_dir/xml"
 
 path_to_xml_version_dir="$path_to_xml_dir/$pr_version"
 
-xml_template_name="pr213_projekt_template.xml"
+xml_template_name="${pr_version}_projekt_template.xml"
 path_to_xml_template="$path_to_xml_version_dir/$xml_template_name"
 
 xml_file_name="projekt_template.xml"

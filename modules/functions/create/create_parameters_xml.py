@@ -241,7 +241,7 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
     
     # Define the mapping of XML tags to parameter names
     mappings = {
-        "Workstation": "the_hostname",
+        # "Workstation": "the_hostname",  _DISABLE FOR PR214
         "Name": "the_projekt_flame_name",
         "Nickname": "the_projekt_name",
         "ShotgunProjectName": "the_projekt_name",
