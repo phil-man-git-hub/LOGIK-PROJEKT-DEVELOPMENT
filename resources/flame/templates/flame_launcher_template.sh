@@ -33,7 +33,7 @@ execute_command() {
 # -------------------------------------------------------------------------- #
 
 # Construct the flame launch command.
-launch_opt_1="/opt/Autodesk/FlameSoftwareVersion/bin/startFlame"
+launch_opt_1="/opt/Autodesk/FlameSoftwareVersion/bin/ApplicationStarter"
 launch_opt_2="-J LogikProjektFlameName"
 launch_opt_3="--start-workspace=\"$flame_workstation_name\" --create-workspace"
 logik_projekt_python_dir="/opt/Autodesk/shared/python/logik_projekt"

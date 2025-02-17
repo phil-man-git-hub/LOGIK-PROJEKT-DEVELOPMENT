@@ -292,6 +292,19 @@ def create_projekt_flame_launcher_script(
 
     # the_timestamp = f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
 
+    # if the_software_version contains 'flame' set app_starter to 'startFlame',
+    if 'flame' in the_software_version:
+        app_starter = 'startFlame'
+    # if the_software_version contains 'flare' set app_starter to 'startFlare',
+    elif 'flare' in the_software_version:
+        app_starter = 'startFlare'
+    # if the_software_version contains 'assist' set app_starter to 'startFlameAssist'
+    elif 'assist' in the_software_version:
+        app_starter = 'startFlameAssist'
+    # if the_software_version contains 'project' set app_starter to 'startProjectServer'
+    elif 'project' in the_software_version:
+        app_starter = 'startProjectServer'
+
     # Set the search and replace strings
     search_replace = {
         "LauncherScriptName": f"{the_projekt_name}-flame_first_run-{the_hostname}.sh",
@@ -305,7 +318,8 @@ def create_projekt_flame_launcher_script(
         "LogikProjektFlameDirectories": f"{the_projekt_flame_dirs}",
         "LogikProjektFlameDirectory": f"{the_projekt_flame_dir_path}",
         "FlameFirstRunName": f"{the_projekt_name}-flame_first_run-{the_hostname}.log",
-        "FlameSoftwareVersion": f"{the_software_version}"
+        "FlameSoftwareVersion": f"{the_software_version}",
+        "ApplicationStarter": f"{app_starter}"
     }
 
     # Modify the script file with the search and replace dictionary

@@ -1,0 +1,463 @@
+[pman@juliet Autodesk]$ cd ~/Downloads/Autodesk/Flame/beta/pr215/
+[pman@juliet pr215]$ tar -xvf DKU_20.0.0-PR215.tar 
+DKU_20.0.0-PR215/INSTALL_DKU
+DKU_20.0.0-PR215/LICENSES.pdf
+DKU_20.0.0-PR215/README
+DKU_20.0.0-PR215/Utils/
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/bin/
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/bin/konaburner
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/bin/ntv2firmwareinstaller.12
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/bin/ntv2firmwareinstaller
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona_4_2020-03-25.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona_5_retail_tprom_2020-12-24.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona_4_2021-04-14.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona_5_retail_tprom_2021-12-23.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona5_retail_tprom_2023-01-04.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona_5_retail_tprom_2023-07-06.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona_5_retail_tprom_2024-06-10.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/firmware/kona_x_2024-06-11.bit
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/AJAfw_update
+DKU_20.0.0-PR215/Utils/AJA_firmwareUpdate/changelog.txt
+DKU_20.0.0-PR215/Utils/Storage/
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/auto-format.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/clear_cache.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/clear_events.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/create_vdisk.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/create_volume.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/delete_vdisk.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/generate_expect.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/get_log.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/map_volume.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/reset_host_link.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/set_advanced_settings.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/set_controller_date.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/set_system.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/set_volume_cache_parameters.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_advanced_setting.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_controller_date.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_disks.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_enclosures.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_ports.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_system.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_vdisks.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_versions.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_volume_maps.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/show_volumes.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/unmap_volume.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/tools/create-filesystem.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/DH_config.sh
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/README.txt
+DKU_20.0.0-PR215/Utils/Storage/DH_Configurator/changelog.txt
+DKU_20.0.0-PR215/Utils/Storage/current_DH
+DKU_20.0.0-PR215/Utils/OS_easyUpgrade/
+DKU_20.0.0-PR215/Utils/OS_easyUpgrade/changelog.txt
+DKU_20.0.0-PR215/Utils/OS_easyUpgrade/easyupgrade.py
+DKU_20.0.0-PR215/bin/
+DKU_20.0.0-PR215/bin/extra_rpm/
+DKU_20.0.0-PR215/bin/extra_rpm/other/
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.5/
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.5/compat-readline6-6.3-20.fc33.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.5/qt5-qtwebkit-5.212.0-0.42.alpha3.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.5/gnome-shell-extension-top-icons-3.32.1-20.el8.noarch.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.5/accountsservice-0.6.55-2.el8_5.2.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.5/accountsservice-libs-0.6.55-2.el8_5.2.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/9.3/
+DKU_20.0.0-PR215/bin/extra_rpm/other/9.3/xorg-x11-font-utils-7.5-53.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/9.3/kernel-devel-matched-5.14.0-362.8.1.el9_3.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/9.5/
+DKU_20.0.0-PR215/bin/extra_rpm/other/9.5/kernel-devel-matched-5.14.0-503.14.1.el9_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/9.5/xorg-x11-font-utils-7.5-53.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/exfat_rocky8/
+DKU_20.0.0-PR215/bin/extra_rpm/other/exfat_rocky8/exfat-utils-1.3.0-3.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/exfat_rocky8/fuse-exfat-1.3.0-3.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky8/
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky8/ntfs-3g-2017.3.23-11.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky8/ntfs-3g-devel-2017.3.23-11.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky8/ntfsprogs-2017.3.23-11.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky9/
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky9/ntfs-3g-2022.10.3-1.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky9/ntfs-3g-devel-2022.10.3-1.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky9/ntfs-3g-libs-2022.10.3-1.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/ntfs3g_rocky9/ntfsprogs-2022.10.3-1.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky85/
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky85/hfsutils-3.2.6-34.el8.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky85/hfsutils-x11-3.2.6-34.el8.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky85/kmod-hfsplus-0.1-2.el8_5.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky87/
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky87/hfsutils-3.2.6-34.el8.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky87/hfsutils-x11-3.2.6-34.el8.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky87/kmod-hfsplus-0.2-1.el8_adsk.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky810/
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky810/hfsutils-3.2.6-34.el8.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky810/hfsutils-x11-3.2.6-34.el8.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky810/kmod-hfsplus-0.3-2.el8_10.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky93/
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky93/hfsutils-3.2.6-35.el9.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky93/hfsutils-x11-3.2.6-35.el9.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky93/kmod-hfsplus-0.7-1.el9_3.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky95/
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky95/hfsutils-3.2.6-35.el9.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky95/hfsutils-x11-3.2.6-35.el9.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/hfs_rocky95/kmod-hfsplus-0.7-5.el9_5.elrepo.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/firefox-115.11.0-1.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nspr-4.35.0-1.el8_8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nspr-devel-4.35.0-1.el8_8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-devel-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-softokn-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-softokn-devel-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-softokn-freebl-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-softokn-freebl-devel-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-sysinit-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-tools-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-util-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/firefox_rocky8/nss-util-devel-3.90.0-7.el8_10.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.7/
+DKU_20.0.0-PR215/bin/extra_rpm/other/8.7/gnome-shell-extension-top-icons-3.32.1-29.el8.noarch.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi/
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi/avahi-compat-libdns_sd-0.7-20.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi_rocky810/
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi_rocky810/avahi-compat-libdns_sd-0.7-27.el8.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi_rocky9/
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi_rocky9/avahi-compat-libdns_sd-0.8-15.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi_rocky95/
+DKU_20.0.0-PR215/bin/extra_rpm/other/avahi_rocky95/avahi-compat-libdns_sd-0.8-21.el9.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2021-4034_rocky85/
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2021-4034_rocky85/polkit-0.115-13.el8_5.1.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2021-4034_rocky85/polkit-devel-0.115-13.el8_5.1.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2021-4034_rocky85/polkit-docs-0.115-13.el8_5.1.noarch.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2021-4034_rocky85/polkit-libs-0.115-13.el8_5.1.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-all-langpacks-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-common-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-devel-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-gconv-extra-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-headers-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-langpack-en-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-langpack-ne-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-langpack-nl-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-langpack-nn-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-langpack-th-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-langpack-zu-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/glibc-utils-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2023-4911/libnsl-2.28-225.el8_8.6.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2024-6387_rocky93/
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2024-6387_rocky93/openssh-8.7p1-38.el9_4.1.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2024-6387_rocky93/openssh-clients-8.7p1-38.el9_4.1.x86_64.rpm
+DKU_20.0.0-PR215/bin/extra_rpm/cve/CVE-2024-6387_rocky93/openssh-server-8.7p1-38.el9_4.1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/bpftool-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-core-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-devel-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-doc-4.18.0-348.20.1.el8_5.noarch.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-headers-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-modules-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-modules-extra-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-tools-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/kernel-tools-libs-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/perf-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/kernel/python3-perf-4.18.0-348.20.1.el8_5.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/aja17.1.0-kmdl-4.18.0-348.20.1.el8_5.x86_64-17.1.0-0.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/atto164-kmdl-4.18.0-348.20.1.el8_5-2.04-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-348.20.1.el8_5.x86_64/atto164mp-kmdl-4.18.0-348.20.1.el8_5-2.04-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/NVIDIA-Linux-x86_64-550.90.07.run
+DKU_20.0.0-PR215/bin/system_rpm/DKU-20.0.0-PR215.rocky8.noarch.rpm
+DKU_20.0.0-PR215/bin/system_rpm/DKU-20.0.0-PR215.rocky9.noarch.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-425.3.1.el8.x86_64/
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-425.3.1.el8.x86_64/aja17.1.0-kmdl-4.18.0-425.3.1.el8.x86_64-17.1.0-0.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-425.3.1.el8.x86_64/atto164-kmdl-4.18.0-425.3.1.el8-2.04-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-425.3.1.el8.x86_64/atto164mp-kmdl-4.18.0-425.3.1.el8-2.04-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-553.el8_10.x86_64/
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-553.el8_10.x86_64/aja17.1.0-kmdl-4.18.0-553.el8_10.x86_64-17.1.0-0.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-553.el8_10.x86_64/atto164-kmdl-4.18.0-553.el8_10-2.11-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/4.18.0-553.el8_10.x86_64/atto164mp-kmdl-4.18.0-553.el8_10-2.11-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-362.8.1.el9_3.x86_64/
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-362.8.1.el9_3.x86_64/aja17.1.0-kmdl-5.14.0-362.8.1.el9_3.x86_64-17.1.0-0.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-362.8.1.el9_3.x86_64/atto164-kmdl-5.14.0-362.8.1.el9_3-2.11-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-362.8.1.el9_3.x86_64/atto164mp-kmdl-5.14.0-362.8.1.el9_3-2.11-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-503.14.1.el9_5.x86_64/
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-503.14.1.el9_5.x86_64/aja17.1.0-kmdl-5.14.0-503.14.1.el9_5.x86_64-17.1.0-0.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-503.14.1.el9_5.x86_64/atto164-kmdl-5.14.0-503.14.1.el9_5-2.11-1.x86_64.rpm
+DKU_20.0.0-PR215/bin/system_rpm/5.14.0-503.14.1.el9_5.x86_64/atto164mp-kmdl-5.14.0-503.14.1.el9_5-2.11-1.x86_64.rpm
+DKU_20.0.0-PR215/changelog.txt
+DKU_20.0.0-PR215/config/
+DKU_20.0.0-PR215/config/4.18.0-348.20.1.el8_5.x86_64/
+DKU_20.0.0-PR215/config/4.18.0-348.20.1.el8_5.x86_64/Config_generic.pl
+DKU_20.0.0-PR215/config/4.18.0-425.3.1.el8.x86_64/
+DKU_20.0.0-PR215/config/4.18.0-425.3.1.el8.x86_64/Config_generic.pl
+DKU_20.0.0-PR215/config/5.14.0-362.8.1.el9_3.x86_64/
+DKU_20.0.0-PR215/config/5.14.0-362.8.1.el9_3.x86_64/Config_generic.pl
+DKU_20.0.0-PR215/config/Config_generic_el9.pl
+DKU_20.0.0-PR215/config/Config_generic_el8.pl
+DKU_20.0.0-PR215/config/4.18.0-553.el8_10.x86_64/
+DKU_20.0.0-PR215/config/4.18.0-553.el8_10.x86_64/Config_generic.pl
+DKU_20.0.0-PR215/config/5.14.0-503.14.1.el9_5.x86_64/
+DKU_20.0.0-PR215/config/5.14.0-503.14.1.el9_5.x86_64/Config_generic.pl
+DKU_20.0.0-PR215/eula/
+DKU_20.0.0-PR215/eula/LICENSE_nvidia
+DKU_20.0.0-PR215/src/
+DKU_20.0.0-PR215/src/other/
+DKU_20.0.0-PR215/src/other/9.3/
+DKU_20.0.0-PR215/src/other/9.3/xorg-x11-font-utils-7.5-53.el9.src.rpm
+DKU_20.0.0-PR215/src/other/9.5/
+DKU_20.0.0-PR215/src/other/9.5/xorg-x11-font-utils-7.5-53.el9.src.rpm
+DKU_20.0.0-PR215/src/other/Rocky8/
+DKU_20.0.0-PR215/src/other/Rocky8/firefox/
+DKU_20.0.0-PR215/src/other/Rocky8/firefox/firefox-115.11.0-1.el8_10.src.rpm
+DKU_20.0.0-PR215/src/driver/
+DKU_20.0.0-PR215/src/driver/exfat_rocky8/
+DKU_20.0.0-PR215/src/driver/exfat_rocky8/exfat-utils-1.3.0-3.el8.src.rpm
+DKU_20.0.0-PR215/src/driver/exfat_rocky8/fuse-exfat-1.3.0-3.el8.src.rpm
+DKU_20.0.0-PR215/src/driver/ntfs3g_rocky8/
+DKU_20.0.0-PR215/src/driver/ntfs3g_rocky8/ntfs-3g-2017.3.23-11.el8.src.rpm
+DKU_20.0.0-PR215/src/driver/ntfs3g_rocky9/
+DKU_20.0.0-PR215/src/driver/ntfs3g_rocky9/ntfs-3g-2022.10.3-1.el9.src.rpm
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky87/
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky87/kmod-hfsplus-0.2-1.el8_adsk.src.rpm
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky810/
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky810/kmod-hfsplus-0.3-2.el8_10.elrepo.src.rpm
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky93/
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky93/kmod-hfsplus-0.7-1.el9_3.elrepo.src.rpm
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky95/
+DKU_20.0.0-PR215/src/driver/hfsplus_rocky95/kmod-hfsplus-0.7-5.el9_5.elrepo.src.rpm
+DKU_20.0.0-PR215/src/cve/
+DKU_20.0.0-PR215/src/cve/dirtypipe_rocky85/
+DKU_20.0.0-PR215/src/cve/dirtypipe_rocky85/kernel-4.18.0-348.20.1.el8_5.src.rpm
+DKU_20.0.0-PR215/src/cve/glibc-cve-2023-4911/
+DKU_20.0.0-PR215/src/cve/glibc-cve-2023-4911/glibc-2.28-225.el8_8.6.src.rpm
+DKU_20.0.0-PR215/src/cve/openssh-cve-2024-6387_rocky93/
+DKU_20.0.0-PR215/src/cve/openssh-cve-2024-6387_rocky93/openssh-8.7p1-38.el9_4.1.src.rpm
+DKU_20.0.0-PR215/.dlConfigCheck/
+DKU_20.0.0-PR215/.dlConfigCheck/2025/
+DKU_20.0.0-PR215/.dlConfigCheck/2025/Config_Checkx86_64.burn_generic
+DKU_20.0.0-PR215/.dlConfigCheck/2025/Config_Checkx86_64.burn_generic_4.18.0-425.3.1.el8.x86_64
+DKU_20.0.0-PR215/.dlConfigCheck/2025/Config_Checkx86_64.burn_generic_5.14.0-362.8.1.el9_3.x86_64
+DKU_20.0.0-PR215/.dlConfigCheck/2025/Config_Checkx86_64.flame_generic
+DKU_20.0.0-PR215/.dlConfigCheck/2025/Config_Checkx86_64.flame_generic_4.18.0-425.3.1.el8.x86_64
+DKU_20.0.0-PR215/.dlConfigCheck/2025/Config_Checkx86_64.flame_generic_5.14.0-362.8.1.el9_3.x86_64
+DKU_20.0.0-PR215/.dlConfigCheck/burn_2025
+DKU_20.0.0-PR215/.dlConfigCheck/dlConfigCheck
+DKU_20.0.0-PR215/.dlConfigCheck/flame_2025
+DKU_20.0.0-PR215/.dlConfigCheck/flameassist_2025
+DKU_20.0.0-PR215/.dlConfigCheck/flare_2025
+DKU_20.0.0-PR215/.dlConfigCheck/lustre_2025
+[pman@juliet pr215]$ cd DKU_20.0.0-PR215/
+[pman@juliet DKU_20.0.0-PR215]$ sudo ./INSTALL_DKU 
+[sudo] password for pman: 
+============================================================
+   Reading DKU Configuration file ...
+
+============================================================
+        Configuration for Creative Finishing system
+------------------------------------------------------------
+Using Configuration file : .//config/5.14.0-362.8.1.el9_3.x86_64/Config_generic.pl
+------------------------------------------------------------
+        Architecture      : x86_64
+        Kernel name       : 5.14.0-362.8.1.el9_3.x86_64/
+        Kernel            : 
+        Kernel devel      : 
+        Nvidia Installer  : NVIDIA-Linux-x86_64-550.90.07.run
+        Extra rpms        : {other/9.3/*,other/ntfs3g_rocky9/*,other/hfs_rocky93/*,other/avahi_rocky9/*}
+        CVEs rpm          : cve/CVE-2024-6387_rocky93/*
+
+--------- INFO ------------------- INFO ------------------ INFO ---------
+DKU will be configured for your Hewlett-Packard workstation
+-------------------------------------------------------------------------
+
+
+============================================================
+   Preconfigure /etc/dracut.conf.d/autodesk.conf before kernel installation...
+
+============================================================
+   Updating /etc/default/grub ...
+
+============================================================
+   Installing the kernel rpm ...
+
+============================================================
+   Setting up basic configuration files ...
+
+============================================================
+   Installing the DKU rpm ...
+
+  Disable adsk_nvinstall
+Verifying...                          ########################################
+Preparing...                          ########################################
+Updating / installing...
+DKU-20.0.0-PR215.rocky9               ########################################
+Cleaning up / removing...
+DKU-20.0.0-PR214.2.rocky9             ########################################
+============================================================
+   Installing Driver RPM ...
+
+============================================================
+   Installing extra RPMs ...
+
+Verifying...                          ########################################
+Preparing...                          ########################################
+Updating / installing...
+kernel-devel-matched-5.14.0-362.8.1.el########################################
+Cleaning up / removing...
+kernel-devel-matched-5.14.0-362.8.1.el########################################
+Updating / installing...
+xorg-x11-font-utils-1:7.5-53.el9      ########################################
+Cleaning up / removing...
+xorg-x11-font-utils-1:7.5-53.el9      ########################################
+Updating / installing...
+ntfs-3g-2:2022.10.3-1.el9             ########################################
+Cleaning up / removing...
+ntfs-3g-2:2022.10.3-1.el9             ########################################
+Updating / installing...
+ntfs-3g-devel-2:2022.10.3-1.el9       ########################################
+Cleaning up / removing...
+ntfs-3g-devel-2:2022.10.3-1.el9       ########################################
+Updating / installing...
+ntfs-3g-libs-2:2022.10.3-1.el9        ########################################
+Cleaning up / removing...
+ntfs-3g-libs-2:2022.10.3-1.el9        ########################################
+Updating / installing...
+ntfsprogs-2:2022.10.3-1.el9           ########################################
+Cleaning up / removing...
+ntfsprogs-2:2022.10.3-1.el9           ########################################
+Updating / installing...
+hfsutils-3.2.6-35.el9.elrepo          ########################################
+Cleaning up / removing...
+hfsutils-3.2.6-35.el9.elrepo          ########################################
+Updating / installing...
+hfsutils-x11-3.2.6-35.el9.elrepo      ########################################
+Cleaning up / removing...
+hfsutils-x11-3.2.6-35.el9.elrepo      ########################################
+Updating / installing...
+kmod-hfsplus-0.7-1.el9_3.elrepo       ########################################
+Cleaning up / removing...
+kmod-hfsplus-0.7-1.el9_3.elrepo       ########################################
+Updating / installing...
+avahi-compat-libdns_sd-0.8-15.el9     ########################################
+Cleaning up / removing...
+avahi-compat-libdns_sd-0.8-15.el9     ########################################
+============================================================
+   Installing CVEs RPM ...
+
+Verifying...                          ########################################
+Preparing...                          ########################################
+Updating / installing...
+openssh-8.7p1-38.el9_4.1              ########################################
+openssh-clients-8.7p1-38.el9_4.1      ########################################
+openssh-server-8.7p1-38.el9_4.1       ########################################
+Cleaning up / removing...
+openssh-server-8.7p1-38.el9_4.1       ########################################
+openssh-clients-8.7p1-38.el9_4.1      ########################################
+openssh-8.7p1-38.el9_4.1              ########################################
+============================================================
+   Running depmod ...
+
+============================================================
+   Settings some daemon flags ...
+
+  Systemd daemon-reload
+Created symlink /etc/systemd/system/network.target.wants/adsk_nvinstall.service → /usr/lib/systemd/system/adsk_nvinstall.service.
+  Enable adsk_nvinstall
+  Enable autofs
+  Enable nfs
+  Disable cpupower
+  Enable NetworkManager
+  Enable GDM
+  Enable pulseaudio
+  Mask power-profiles-daemon service
+  Restart tuned service
+============================================================
+   Set tuned default to balanced...
+
+============================================================
+   Set manage-gids in /etc/nfs.conf...
+
+============================================================
+   Settings rc.local ...
+
+============================================================
+   Update /etc/hosts file ...
+
+============================================================
+   Update /etc/exports file ...
+
+============================================================
+   Configure Autofs  - /etc/sysconfig/autofs ...
+
+============================================================
+   Configure Automount path  - /etc/auto.master ...
+
+============================================================
+   Configure NFS Export to allow non existing folder in /etc/exports ...
+
+============================================================
+   Configure multicast on loopback device ...
+
+============================================================
+   Copy DKU files in /opt/Autodesk/DKU/DKU_20.0.0-PR215 ...
+
+============================================================
+   System configuration ...
+
+============================================================
+   Check /etc/fstab for CDROM mount point...
+
+============================================================
+   Configuring ld.so.conf ...
+
+============================================================
+   Preparing drivers for recompilation ...
+
+============================================================
+   Creating symlink /usr/bin/python (to /usr/bin/python3) ...
+
+============================================================
+   Disabling Wayland ...
+
+============================================================
+   Disabling auto-updates ...
+
+============================================================
+   Adding Autodesk application group ...
+
+============================================================
+   uninstall insights-client rpm ...
+
+============================================================
+   Configure /etc/X11/xorg.conf  ...
+
+============================================================
+   Reading /var/log/Xorg.0.log  ...
+
+
+
+**********************************************************************
+ DKU-20.0.0 Installation completed...
+----------------------------------------------------------------------
+        Now you must:
+                   - Reconnect/Restart the framestore
+                   - Reboot Linux
+
+        You can find a copy of the DKU in: 
+        /opt/Autodesk/DKU/DKU_20.0.0-PR215
+
+--WARNING------------WARNING-------------WARNING-------------WARNING--
+        User Agreement...
+        =================
+        Please refer to folder "eula" for third-party end user
+        license agreements.
+
+--WARNING------------WARNING-------------WARNING-------------WARNING--
+
+**********************************************************************
+
+[pman@juliet DKU_20.0.0-PR215]$ 

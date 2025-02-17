@@ -1,62 +1,296 @@
-error
-modules/functions/backup/backup_projekt_parameters.py
-modules/functions/backup/backup_projekt_template.py
-modules/functions/create/create_projekt.py
-modules/functions/synchronize/sync_archive_prefs.py
-modules/functions/synchronize/sync_batch.py
-modules/functions/synchronize/sync_bookmarks.py
-modules/functions/synchronize/sync_burnmetadata.py
-modules/functions/synchronize/sync_io.py
-modules/functions/synchronize/sync_mediaImport.py
-modules/functions/synchronize/sync_media_import.py
-modules/functions/synchronize/sync_mediahub.py
-modules/functions/synchronize/sync_nuke_dirs.py
-modules/functions/synchronize/sync_overlays.py
-modules/functions/synchronize/sync_python.py
-modules/functions/synchronize/sync_syncolor_policies.py
-modules/functions/synchronize/sync_syncolor_transforms.py
-modules/widgets/layout/layout_left.py
-modules/widgets/layout/layout_right.py
-modules/widgets/line_edit/flame_projekt_directory.py
-modules/widgets/line_edit/flame_projekt_media_cache.py
-modules/widgets/line_edit/flame_projekt_setups_dir.py
-resources/tmp/current_projekt_bookmarks.json
-resources/tmp/current_projekt_parameters.xml
-resources/tmp/current_projekt_template.json
+current_script_dir: /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts
+modules_dir: /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules
+
+Python encountered ModuleNotFoundError("No module named 'nuke'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/config/menu.py
+
+Python encountered ModuleNotFoundError("No module named 'define_job_structure'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/scripts/create_after_effects_script.py
+
+Python encountered ModuleNotFoundError("No module named 'define_job_structure'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/scripts/create_nuke_script.py
 
 
 
+---------------------------------------------------------------------------
+
+Graphics : VULKAN
+MP: Using 32 cpus (32 visible)
+Output log to: '/opt/Autodesk/log/flame2026pr214_juliet_app.log'.
+Parsing Tooltips XML
+Tooltips loaded
+---------------------------------------------------------------------------
+Autodesk(R) Flame(R) Version 2026.pr214 Build 2026.0.0.259
+Autodesk and Flame are registered trademarks or trademarks of Autodesk, Inc., and/or its subsidiaries and/or affiliates in the USA and/or other countries. All other brand names, product names, or trademarks belong to their respective holders.
+Autodesk reserves the right to alter product offerings and specifications at any time without notice, and is not responsible for typographical or graphical errors that may appear in this document. (C) 2025 Autodesk, Inc.
+Autodesk(R) Flame(R) 2026 PR214 NOT FOR RESALE BETA
+
+BUILD DATE : Wed 15 Jan 2025 07:04:36 AM PST
+EXEC DATE  : Sun 19 Jan 2025 07:29:55 PM PST - (1737343795)
+SYS CONFIG : /opt/Autodesk/cfg/.2026.pr214/sysconfig.cfg
+CONFIG     : /opt/Autodesk/.flamefamily_2026.pr214/cfg/init.cfg
+POINTER    : Trying wacom
+CLIPMGT    : ArchiveLibrary = /opt/Autodesk/archive/.
+MENU       : /opt/Autodesk/.flamefamily_2026.pr214/menu/default.menu
+GRAPHICS: Visual depth detected as: 8-bit
+POINTER : Initialising.
+Unsupported offset into 'Wacom Button Actions' property.
+Unsupported offset into 'Wacom Button Actions' property.
+Unsupported offset into 'Wacom Button Actions' property.
+Unsupported offset into 'Wacom Button Actions' property.
+POINTER : Initialising Wacom UD.
+MEDIA : Initialising I/O...
+
+  Attribute 'GPUPowerMizerMode' (juliet.centeroftheuniverse.lan:1[gpu:0]) assigned value 1.
+
+current_script_dir: /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts
+modules_dir: /opt/Autodesk/shared/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules
+Python encountered ModuleNotFoundError("No module named 'nuke'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/config/menu.py
+Python encountered ModuleNotFoundError("No module named 'define_job_structure'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/scripts/create_after_effects_script.py
+Python encountered ModuleNotFoundError("No module named 'define_job_structure'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/scripts/create_nuke_script.py
 
 
-LOGIK PROJEKT is initialized.
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_conform_uploader.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_get_comments.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_get_status.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_shot_uploader.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_set_status.py
 
-Creating your LOGIK PROJEKT will take a moment.
 
-Breathe deeply and make a happy wish...
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_bbsync_ui/uc_bbsync_ui.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_change_permissions/uc_change_permissions.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_job_folders/uc_job_folders.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_project_starter/uc_project_starter.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_rsync_ui/uc_rsync.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_backburner_rsync.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/create_job_folder_automatically.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_immutable_commands.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/create_job_folders.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_batch_shot_sync.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_rsync_commands_failsafe.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_rsync_commands.py
+PROJECT    : 222_pr_213_2026_juliet
+USER DIR   : /home/pman/flame
+   Locking target ...
+      Options: LIMIT_PURGE_TIME
+      Initiating integrity check ...
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/.#project.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/Grabbed References.000.clib.
+            Extracted 1 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/masters.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/_Cache_.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/editorial.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/reference.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/desktops.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/Batch Renders.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/assets.000.clib.
+            Extracted 27 frames.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/.#workspace.000.wks.
+            Extracted 9 frames.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/shots.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/Timeline FX.000.clib.
+            Extracted 0 frame.
+         Extracting frames from /opt/Autodesk/project/222_pr_213_2026_juliet/catalog/juliet.wksp/Default Library.000.clib.
+            Extracted 0 frame.
+         Adding references to proxies...
+            Extracted 0 proxies.
+         Verifying video stonefs frames ...
+            Verifying Active Frames: 3%            Verifying Active Frames: 6%            Verifying Active Frames: 9%            Verifying Active Frames: 11%            Verifying Active Frames: 14%            Verifying Active Frames: 17%            Verifying Active Frames: 19%            Verifying Active Frames: 22%            Verifying Active Frames: 25%            Verifying Active Frames: 28%            Verifying Active Frames: 30%            Verifying Active Frames: 33%            Verifying Active Frames: 36%            Verifying Active Frames: 38%            Verifying Active Frames: 41%            Verifying Active Frames: 44%            Verifying Active Frames: 46%            Verifying Active Frames: 49%            Verifying Active Frames: 52%            Verifying Active Frames: 55%            Verifying Active Frames: 57%            Verifying Active Frames: 60%            Verifying Active Frames: 63%            Verifying Active Frames: 65%            Verifying Active Frames: 68%            Verifying Active Frames: 71%            Verifying Active Frames: 73%            Verifying Active Frames: 76%            Verifying Active Frames: 79%            Verifying Active Frames: 82%            Verifying Active Frames: 84%            Verifying Active Frames: 87%            Verifying Active Frames: 90%            Verifying Active Frames: 92%            Verifying Active Frames: 95%            Verifying Active Frames: 98%            Verifying Active Frames: 100%            Verified 37 active video frames
+         Extracting audio waveforms ...
+            Extracted 0 audio waveform from 0 audio frames (0 failed 0 had none).
+         Verifying audio waveforms ...
+            Verified 0 active audio waveform
+            Verified 0 deleted audio waveform
+         Verifying audio stonefs frames ...
+         Integrity Check: Found 37 active video frames having wire ref count too high
+      Recovering lost frames ...
+      Recovered 0 lost frames ...
+         Processing unreferenced (leaked) media on target ...:
+         {
+         }
+      Integrity check successful in 0.0490177 sec
+      Purging unreferenced frames ...
+   Unlocking target  ...
+Closing target ...
+CONFIG     : /opt/Autodesk/project/222_pr_213_2026_juliet/setups/cfg/222_pr_213_2026_juliet.cfg
+VIDEO WINDOW: no device matching (0,0,10-bit , YCrCb Rec.709 4:2:2, Normal)
+VIDEO WINDOW: video preview will be disabled.
+PROJECT VIDEO PREVIEW: Using the following parameters for the preview device:
+VIDEO PREVIEW : , channel -1, 0x0, +0, +0, ,  (none), 0-bit, None
+VIDEO      : width: 1920, height: 1080, pixelFormat = 10-bit, timing: 1920X1080_5994I
+MEMORY     : Bytes available: 231436 MB
+MEMORY     : 2 nodes found, distributed memory.
+MEMORY     : Using 92640 MB (or 5855 buffers of size 1920x1080 @ 16-bit fp).
+MEMORY     : Allocated 92640 MB at address 0x7f5ad1fc0000 using mmap()
+VIDEO: Display refresh rate detected as: 59.95 Hz
 
-  Starting PROJEKT creation...
-  Error executing modules/functions/create/create_projekt.py:
-Traceback (most recent call last):
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 1149, in <module>
-    main()
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/create/create_projekt.py", line 584, in main
-    create_the_projekt_flame_directories(
-TypeError: create_the_projekt_flame_directories() takes 3 positional arguments but 5 were given
+EDL Module: Portions Copyright 1991-1998 ALBA Editorial, Inc.,
+            All Rights Reserved.
 
-  PROJEKT creation completed.
-  Starting FLAME Launcher...
-  Error executing modules/functions/run/run_flame_launcher_script.py:
-Traceback (most recent call last):
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 305, in <module>
-    main()
-  File "/home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/modules/functions/run/run_flame_launcher_script.py", line 293, in main
-    subprocess.run([the_flame_launcher_script])
-  File "/usr/lib64/python3.9/subprocess.py", line 505, in run
-    with Popen(*popenargs, **kwargs) as process:
-  File "/usr/lib64/python3.9/subprocess.py", line 951, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File "/usr/lib64/python3.9/subprocess.py", line 1837, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: '/PROJEKTS/032_pr_213/cfg/workstation/juliet/032_pr_213-flame_launcher-juliet.sh'
+Output log to: '/opt/Autodesk/log/slateDiskCacheCleaner.log'.
+>>>>>>>>>>>>>>>>>>>> Add Matchbox Shaders and FrameIO Profiles Automatically v0.4 <<<<<<<<<<<<<<<<<<<<
 
-  FLAME Launcher completed.
+
+--> Add Matchbox Shaders Automatically: Enter System Password: System password required to install required matchbox shaders.This is required for each new version of Flame.
+
+--> Add Matchbox Shaders Automatically
+
+Flame Python Packages Folder: /opt/Autodesk/python/2026.pr214/lib/python3.11/site-packages
+
+--> Add Matchbox Shaders Automatically
+
+--> Add Matchbox Shaders Automatically
+
+Python encountered ModuleNotFoundError("No module named 'nuke'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/logik_projekt/projekt_tools/logik_projekt_create_scripts/config/menu.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_conform_uploader.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_get_comments.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_get_status.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_shot_uploader.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/frame_io/frame_io_set_status.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_bbsync_ui/uc_bbsync_ui.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_change_permissions/uc_change_permissions.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_job_folders/uc_job_folders.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_project_starter/uc_project_starter.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uc_rsync_ui/uc_rsync.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_backburner_rsync.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/create_job_folder_automatically.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_immutable_commands.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/create_job_folders.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_batch_shot_sync.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_rsync_commands_failsafe.py
+Python encountered ModuleNotFoundError("No module named 'requests'") in unknown code
+[PYTHON HOOK] An error occurred. Ignoring python hooks from /opt/Autodesk/shared/python/uppercut/uc_rsync_commands.py
+Help on PyBatch in module flame:
+
+None
+__class__
+__delattr__
+__dict__
+__dir__
+__doc__
+__eq__
+__format__
+__ge__
+__getattr__
+__getattribute__
+__getstate__
+__gt__
+__hash__
+__init__
+__init_subclass__
+__le__
+__lt__
+__module__
+__ne__
+__new__
+__reduce__
+__reduce_ex__
+__repr__
+__setattr__
+__sizeof__
+__str__
+__subclasshook__
+__weakref__
+append_setup
+append_to_batch
+append_to_setup
+attributes
+batch_iterations
+clear
+clear_all_contexts
+clear_colour
+clear_context
+clear_setup
+close
+connect_nodes
+contexts
+create_batch_group
+create_node
+create_reel
+create_shelf_reel
+current_iteration
+current_iteration_number
+cursor_position
+disconnect_node
+encompass_nodes
+frame_all
+frame_selected
+get_node
+go_to
+import_clip
+import_clips
+iterate
+load_setup
+mimic_link
+node_types
+nodes
+open
+open_as_batch_group
+opened
+organize
+parent
+reels
+render
+replace_setup
+save
+save_current_iteration
+save_setup
+select_nodes
+set_viewport_layout
+shelf_reels
+AUDIO: Uninitialisation complete.
+VIDEO: Display refresh rate detected as: 59.95 Hz
+Unknown parameter name 'xydefault'.
+
+  Attribute 'GPUPowerMizerMode' (juliet.centeroftheuniverse.lan:1[gpu:0]) assigned value 0.
+
+LOG : Uninitialising.
+Stopping managed threads.
+Uninitialisation complete.
+Disconnecting socket [fd:139]
+press ENTER to continue
