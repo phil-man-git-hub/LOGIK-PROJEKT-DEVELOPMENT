@@ -201,7 +201,8 @@ class WidgetFlameProjektMediaCache(QLineEdit):
         self.setObjectName("template_media_cache")
 
         # Set default properties
-        self.setPlaceholderText("Media Cache Will be Dynamically Calculated...")
+        # self.setPlaceholderText("Media Cache Will be Dynamically Calculated...")
+        self.setPlaceholderText("<project home>/setups")
         self.setReadOnly(True)
 
         # Optionally, set additional properties based on widget_parameters
@@ -212,7 +213,7 @@ class WidgetFlameProjektMediaCache(QLineEdit):
             "widget_type": "QLineEdit",
             "widget_label_name": "Media Cache: ",
             "widget_default_value": "",
-            "widget_placeholder_value": "Media Cache Will be Dynamically Calculated...",
+            "widget_placeholder_value": "<project home>/setups",
             "widget_item_values": "",
             "widget_read_only": True
         }

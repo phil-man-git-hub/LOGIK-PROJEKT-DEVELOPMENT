@@ -201,7 +201,7 @@ class WidgetFlameProjektDirectory(QLineEdit):
         self.setObjectName("template_flame_projekt_directory")
 
         # Set default properties
-        self.setPlaceholderText("/opt/Autodesk/project")
+        self.setPlaceholderText("/opt/Autodesk/project/<project name>")
         self.setReadOnly(True)
 
         # Optionally, set additional properties based on widget_parameters
@@ -212,7 +212,7 @@ class WidgetFlameProjektDirectory(QLineEdit):
             "widget_type": "QLineEdit",
             "widget_label_name": "Projekt Flame Directory: ",
             "widget_default_value": "",
-            "widget_placeholder_value": "/opt/Autodesk/project",
+            "widget_placeholder_value": "/opt/Autodesk/project/<project name>",
             "widget_item_values": "",
             "widget_read_only": True
         }

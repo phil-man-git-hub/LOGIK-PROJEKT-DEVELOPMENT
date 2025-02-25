@@ -201,7 +201,8 @@ class WidgetFlameProjektSetupsDir(QLineEdit):
         self.setObjectName("template_setups_dir")
 
         # Set default properties
-        self.setPlaceholderText("Setups Directory Will be Dynamically Calculated...")
+        # self.setPlaceholderText("Setups Directory Will be Dynamically Calculated...")
+        self.setPlaceholderText("<project home>/media")
         self.setReadOnly(True)
 
         # Optionally, set additional properties based on widget_parameters
@@ -212,7 +213,7 @@ class WidgetFlameProjektSetupsDir(QLineEdit):
             "widget_type": "QLineEdit",
             "widget_label_name": "Setups Directory: ",
             "widget_default_value": "",
-            "widget_placeholder_value": "Setups Directory Will be Dynamically Calculated...",
+            "widget_placeholder_value": "<project home>/media",
             "widget_item_values": "",
             "widget_read_only": True
         }
