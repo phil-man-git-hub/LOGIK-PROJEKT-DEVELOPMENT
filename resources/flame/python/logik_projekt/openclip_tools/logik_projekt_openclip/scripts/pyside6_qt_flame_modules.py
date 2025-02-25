@@ -32,9 +32,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        pyside6_qt_flame_modules.py
-# Version:          1.0.2
+# Version:          1.0.3
 # Created:          2024-01-19
-# Modified:         2025-01-19
+# Modified:         2025-02-25
 
 # ========================================================================== #
 # This section imports the necessary modules and adds the modules directory
@@ -62,11 +62,18 @@ import xml
 import xml.etree.ElementTree as ET
 
 # Third Party library imports
-from PySide6 import (
-    QtWidgets,
-    QtCore,
-    QtGui
-)
+try:
+    from PySide6 import (
+        QtWidgets,
+        QtCore,
+        QtGui,
+    )
+except ImportError:
+    from PySide2 import (
+        QtWidgets,
+        QtCore,
+        QtGui,
+    )
 
 # Get the directory path of the currently executing script
 current_script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -376,4 +383,8 @@ from modules.pyside6_qt_output_config_ui import (
 # version:               1.0.2
 # modified:              2025-01-19 - 17:47:49
 # comments:              Changed import statements to fix shell errors.
+# -------------------------------------------------------------------------- #
+# version:               1.0.3
+# modified:              2025-02-25 - 07:01:22
+# comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #

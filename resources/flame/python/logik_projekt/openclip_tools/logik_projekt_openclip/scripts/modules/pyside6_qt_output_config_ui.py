@@ -32,9 +32,9 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        pyside6_qt_output_config_ui.py
-# Version:          1.0.2
+# Version:          1.0.3
 # Created:          2024-01-19
-# Modified:         2025-01-19
+# Modified:         2025-02-25
 
 # ========================================================================== #
 # This section imports the necessary modules.
@@ -439,4 +439,8 @@ class pyside6_qt_output_config_ui:
 # version:               1.0.2
 # modified:              2025-01-19 - 17:47:49
 # comments:              Changed import statements to fix shell errors.
+# -------------------------------------------------------------------------- #
+# version:               1.0.3
+# modified:              2025-02-25 - 07:01:22
+# comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #
