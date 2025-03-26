@@ -1,0 +1,44 @@
+
++ --------------------------------------------------------------------------- +
+
+  2025-03-25 10:26:04 - Reading preference file:
+  2025-03-25 10:26:04 - /home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/install/current_adsk_python_version.pref
+  2025-03-25 10:26:04 - 
+  2025-03-25 10:26:04 - Preference file loaded:
+  2025-03-25 10:26:04 - /opt/Autodesk/python/2026.pr216/bin/python
+  2025-03-25 10:26:04 - 
+  2025-03-25 10:26:04 - Analyzing directory: /opt/Autodesk/python
+  2025-03-25 10:26:04 - Sorted contents of /opt/Autodesk/python:
+  2025-03-25 10:26:04 - 2026.pr218
+  2025-03-25 10:26:04 - 2026.pr216
+  2025-03-25 10:26:04 - 2026.pr215
+  2025-03-25 10:26:04 - 2026.pr214
+  2025-03-25 10:26:04 - 2026.pr213
+  2025-03-25 10:26:04 - 
+  2025-03-25 10:26:04 - The highest version is: 2026.pr218
+  2025-03-25 10:26:04 - 
+  2025-03-25 10:26:04 - Python version 2026.pr218 is available and executable
+  2025-03-25 10:26:04 - Updated preference file with:
+  2025-03-25 10:26:04 - /opt/Autodesk/python/2026.pr218/bin/python
+  2025-03-25 10:26:04 - 
+
++ --------------------------------------------------------------------------- +
+
+  2025-03-25 10:26:04 - Creating macOS application: LOGIK-PROJEKT.app
+  2025-03-25 10:26:04 - Creating the macOS application components
+
++ --------------------------------------------------------------------------- +
+
+  2025-03-25 10:26:04 - Creating LOGIK-PROJEKT shell script for linux: run_logikprojekt_linux.sh
+  2025-03-25 10:26:04 - Making the file executable: run_logikprojekt_linux.sh
+  2025-03-25 10:26:04 - Creating macOS application shell script: run_logikprojekt_macos
+
++ --------------------------------------------------------------------------- +
+
+  2025-03-25 10:26:07 - Creating desktop entry file: LOGIK-PROJEKT.desktop
+  2025-03-25 10:26:07 - Making the file executable: LOGIK-PROJEKT.desktop
+  2025-03-25 10:26:07 - Moving the file to ~/.local/share/applications/
+  2025-03-25 10:26:07 - File 'LOGIK-PROJEKT.desktop' has been created and made executable.
+
++ --------------------------------------------------------------------------- +
+
