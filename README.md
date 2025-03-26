@@ -81,7 +81,7 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
     sudo hostnamectl set-hostname "<new-pretty-hostname>" --pretty
 
 -------------------------------------------------------------------------------
-    
+   
     # Create a test directory for LOGIK-PROJEKTS:
     sudo mkdir -p -m 777 /home/shared/PROJEKTS
 
@@ -165,7 +165,7 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
 
     # (Linux)
 
-    # start flame 
+    # start flame
     # license the application
     # create a test project
 
@@ -173,7 +173,7 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
 
     # (macOS)
 
-    # start flame 
+    # start flame
     # license the application
     # create a test project
 
@@ -189,7 +189,7 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
     # sw_serverd
     # Terminal
     # Visual StudioCode
-    # wiretapgateway 
+    # wiretapgateway
 
 -------------------------------------------------------------------------------
 
@@ -210,7 +210,7 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
     Media Panel Tab
         ├── set Batch shelf to 1
         ├── set Reel Group to 2
-        ├── set Show Batch iterations (first column) 
+        ├── set Show Batch iterations (first column)
         └── set Desktop Column: Set to “Copy From/To Batch”
 
 -------------------------------------------------------------------------------
@@ -294,15 +294,15 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
     LOGIK-PROJEKT/
     │
     ├── docs/                                      # Documentation
-    │                                              
+    │                                             
     ├── install/                                   # Installation scripts
-    │   │                                          
+    │   │                                         
     │   └── logs/                                  # Installation logs
-    │                                              
+    │                                             
     ├── modules/                                   # Python modules
-    │   │                                          
+    │   │                                         
     │   ├── functions/                             # Python Functions
-    │   │   │                                      
+    │   │   │                                     
     │   │   ├── backup/                            # Backup functions
     │   │   ├── create/                            # Create functions
     │   │   ├── export/                            # Export functions
@@ -315,39 +315,39 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
     │   │   ├── synchronize/                       # Synchronize functions
     │   │   ├── update/                            # Update functions
     │   │   └── wiretap/                           # Wiretap functions
-    │   │                                          
+    │   │                                         
     │   ├── version/                               # Scripts Version
-    │   |                                          
+    │   |                                         
     │   └── widgets/                               # Widgets
-    │       │                                      
+    │       │                                     
     │       ├── combo_box/                         # Combo box widgets
     │       ├── layout/                            # Layout widgets
     │       ├── line_edit/                         # Line edit widgets
     │       └── style_sheet/                       # Style sheet widgets
-    │                                              
+    │                                             
     └── resources/                                 # Resources
-        │                                          
+        │                                         
         ├── cfg/                                   # Configuration files
-        │   │                                      
+        │   │                                     
         │   ├── nuke/                              # Foundry Nuke configuration
-        │   │                                      
+        │   │                                     
         │   └── projekt_configuration/             # Projekt configuration
-        │       │                                  
+        │       │                                 
         │       ├── bookmarks/                     # Bookmarks
         │       ├── parameters/                    # Parameters
         │       ├── roots/                         # Roots
         │       └── tree/                          # Tree
-        │                                          
+        │                                         
         ├── docstrings/                            # Docstrings
-        │                                          
+        │                                         
         ├── flame/                                 # Flame Resources
-        │   │                                      
+        │   │                                     
         │   ├── opencolorio/                       # OpenColorIO
-        │   |   │                                  
+        │   |   │                                 
         │   │   └── ocio_scripts/                  # OCIO scripts
-        │   │                                      
+        │   │                                     
         │   ├── presets/                           # Flame Presets
-        │   │   |                                  
+        │   │   |                                 
         │   │   ├── batch/                         # Batch presets
         │   │   ├── bookmarks/                     # Bookmark presets
         │   │   ├── burn_metadata/                 # Burn metadata presets
@@ -359,39 +359,39 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
         │   │   ├── mediaImport/                   # MediaImport presets
         │   │   ├── overlays/                      # Overlays presets
         │   │   └── status/                        # Status presets
-        │   │                                      
+        │   │                                     
         │   ├── python/                            # Flame Python
-        │   │   |                                  
+        │   │   |                                 
         │   │   └── logik_projekt/                 # Logik Projekt Python
-        │   │       │                              
+        │   │       │                             
         │   │       ├── openclip_tools/            # OpenClip tools
-        │   │       │                              
+        │   │       │                             
         │   │       └── projekt_tools/             # Projekt tools
-        │   │                                      
+        │   │                                     
         │   ├── Syncolor/                          # Syncolor Presets
-        │   │   |                                  
+        │   │   |                                 
         │   │   └── Shared/                        # Shared presets
-        │   │       |                              
+        │   │       |                             
         │   │       ├── policies/                  # Syncolor policies
-        │   │       |                              
+        │   │       |                             
         │   │       └── transforms/                # Syncolor transforms
-        │   │           |                          
+        │   │           |                         
         │   │           └── flame_colortoolkit/    # Flame ColorToolkit
-        │   │                                      
+        │   │                                     
         │   └── templates/                         # Flame Templates
-        │                                          
+        │                                         
         ├── icons/                                 # Application icons
-        │                                          
+        │                                         
         ├── tmp/                                   # Temporary files
-        │                                          
+        │                                         
         ├── utilities/                             # Application utilities
-        │   │                                      
+        │   │                                     
         │   └── flame_configs/                     # Flame configurations
-        │       |                                  
+        │       |                                 
         │       └── init_config/                   # Init configuration
-        │                                          
+        │                                         
         ├── version/                               # Application version
-        │                                          
+        │                                         
         └── www/                                   # HTML files
 
 -------------------------------------------------------------------------------
@@ -401,17 +401,17 @@ The tools were developed with Autodesk Flame 2025+, Python 3.11, & PySide 6.
     This file is part of LOGIK-PROJEKT.
     Copyright © 2024 man-made-mekanyzms
 
-    LOGIK-PROJEKT creates directories, files, scripts & tools for use with 
+    LOGIK-PROJEKT creates directories, files, scripts & tools for use with
     Autodesk Flame and other software.
 
     LOGIK-PROJEKT is free software.
 
-    You can redistribute it and/or modify it under the terms of the 
+    You can redistribute it and/or modify it under the terms of the
     GNU General Public License as published by the Free Software Foundation,
     either version 3 of the License, or any later version.
 
-    This program is distributed in the hope that it will be useful, 
-    but 
+    This program is distributed in the hope that it will be useful,
+    but
     WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
     or FITNESS FOR A PARTICULAR PURPOSE.
 

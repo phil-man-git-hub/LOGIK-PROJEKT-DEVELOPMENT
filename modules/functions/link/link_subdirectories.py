@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -72,7 +72,7 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+   
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -226,17 +226,17 @@ def symlink_subdirectories(
         return
 
     os.makedirs(target_setups_dir, exist_ok=True)
-    
+   
     for item in os.listdir(source_setups_dir):
         source_path = os.path.join(source_setups_dir, item)
         target_path = os.path.join(target_setups_dir, item)
-        
+       
         if os.path.isdir(source_path):
             try:
                 if os.path.lexists(target_path):
                     print(f"  Removing existing link: {item}")
                     os.remove(target_path)
-                
+               
                 os.symlink(source_path, target_path)
                 print(f"  Successfully linked: {item} -> {os.path.basename(target_path)}")
             except Exception as e:
@@ -269,10 +269,10 @@ if __name__ == "__main__":
     main()
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1

@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -37,9 +37,9 @@
 # -------------------------------------------------------------------------- #
 
 """
-This script manages the favorites directories in Nuke. It provides functions 
-to clear default bookmarks, configure global, shot, and work favorites, and 
-manage these favorites based on user actions. The script also includes a 
+This script manages the favorites directories in Nuke. It provides functions
+to clear default bookmarks, configure global, shot, and work favorites, and
+manage these favorites based on user actions. The script also includes a
 callback function to handle changes to the 'favorites' knob in Nuke.
 
 Key functionalities:
@@ -56,7 +56,7 @@ Key functionalities:
 - removeWorkFavorites: Removes work-specific favorites from Nuke.
 - favoritesKnobChanged: Callback function to handle changes to the 'favorites' knob.
 
-The script uses the projekt_core module for settings and utilities, and 
+The script uses the projekt_core module for settings and utilities, and
 integrates logging for tracking actions performed.
 
 # -------------------------------------------------------------------------- #
@@ -101,7 +101,7 @@ clear_default_bookmarks()
 # ========================================================================== #
 # This section defines the global and shot favorite configurations.
 # ========================================================================== #
-    
+   
 """
 type – Optional bitwise OR combination of nuke.IMAGE, nuke.SCRIPT, nuke.FONT or nuke.GEO.
 
@@ -124,16 +124,16 @@ def global_favorite_config():
             ['========== ', projekt_root_path, 0, 'Server.png'],
             ['Projekt dir', projekt_path, 0, 'Server.png'],
             ['==========', projekt_path / 'shots',0,''],
-            ['→ assets', projekt_path / 'assets', 0, 'Server.png'],             
-            ['→ shots', projekt_path /  'shots', 0, 'Server.png'], 
-            ['→ editorial', projekt_path / 'editorial', 0, 'Server.png'], 
-            ['→ reference', projekt_path / 'reference', 0, 'Server.png'], 
+            ['→ assets', projekt_path / 'assets', 0, 'Server.png'],            
+            ['→ shots', projekt_path /  'shots', 0, 'Server.png'],
+            ['→ editorial', projekt_path / 'editorial', 0, 'Server.png'],
+            ['→ reference', projekt_path / 'reference', 0, 'Server.png'],
               ]
     return projList
 
 def shot_favorite_config():
     """
-    
+   
     """
     projekt_name = projekt_core.settings.projekt_name()
     projekt_path = projekt_core.settings.projekt_path()
@@ -144,14 +144,14 @@ def shot_favorite_config():
     projList =[
 
         ['projekt dir', projekt_path, 0, 'Folder.png'],
-        ['→ assets dir', projekt_path / 'assets', 0, 'Server.png'],  
+        ['→ assets dir', projekt_path / 'assets', 0, 'Server.png'], 
         ['→ shots dir', projekt_path / 'shots', 0,''],
 
         ['========== ', projekt_path / 'shots',0,'Folder.png'],
-        [f"{shot_name}", projekt_shots_dir / shot_name,0, 'Folder.png'],   
+        [f"{shot_name}", projekt_shots_dir / shot_name,0, 'Folder.png'],  
         ['==========', projekt_path / 'shots',0,''],
-        [f" → {'scripts'}", projekt_shots_dir / shot_name / 'scripts' / 'nuke',0, 'Folder.png'], 
-        [f" → {'sources'}", projekt_shots_dir / shot_name / 'media' / 'sources',0, 'Folder.png'],  
+        [f" → {'scripts'}", projekt_shots_dir / shot_name / 'scripts' / 'nuke',0, 'Folder.png'],
+        [f" → {'sources'}", projekt_shots_dir / shot_name / 'media' / 'sources',0, 'Folder.png'], 
         [f" → {'renders'}", projekt_shots_dir / shot_name / 'media' /'renders',0, 'Folder.png']
         ]
 
@@ -164,7 +164,7 @@ def work_favorite_config():
     projList = [
         ["Projekt dir", settings.projekt_path(),0, 'LoadParent.png'],
         ["Shot dir", settings.projekt_shot_path(),0, 'LoadParentPartly.png'],
-        ['Work dir', settings.projekt_shot_path() / 'work' / 'compositing',0 ,'LoadNone.png'],        
+        ['Work dir', settings.projekt_shot_path() / 'work' / 'compositing',0 ,'LoadNone.png'],       
     ]
 
     return projList
@@ -270,5 +270,5 @@ def favoritesKnobChanged():
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

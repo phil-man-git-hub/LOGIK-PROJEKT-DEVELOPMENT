@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -37,11 +37,11 @@
 # -------------------------------------------------------------------------- #
 
 """
-This module provides utility functions for setting up logging, converting paths, 
+This module provides utility functions for setting up logging, converting paths,
 and opening directories in the file explorer.
 
 Functions:
-1. `setup_logger(name="projekt_core", log_level=logging.DEBUG, log_file=None, formatter=None) -> logging.Logger`: 
+1. `setup_logger(name="projekt_core", log_level=logging.DEBUG, log_file=None, formatter=None) -> logging.Logger`:
     Configures and returns a logger with the specified name and log level.
 2. `convert_to_nuke_path_string(path) -> str`: Converts path separators to forward slash ('/') for Nuke.
 3. `convert_to_nuke_path(path) -> Path`: Converts path separators to forward slash ('/') for Nuke and returns a Path object.
@@ -237,5 +237,5 @@ def placeholder_func():
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

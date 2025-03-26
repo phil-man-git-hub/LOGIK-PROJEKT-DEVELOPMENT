@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script prepends a disclaimer to all Python files 
+# This script prepends a disclaimer to all Python files
 # in a specified directory and its subdirectories.
 # It also logs the process to a file.
 

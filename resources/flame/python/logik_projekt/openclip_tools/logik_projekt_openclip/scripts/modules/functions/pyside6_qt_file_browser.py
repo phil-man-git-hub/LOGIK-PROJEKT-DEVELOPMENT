@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -142,7 +142,7 @@ def pyside6_qt_file_browser(
     window_to_hide=[]
 ) -> Union[str, list]:
     '''
-    Opens QT file browser window(Flame 2022 - Flame 2023). 
+    Opens QT file browser window(Flame 2022 - Flame 2023).
     Flame's file browser is used 2023.1 and later.
 
     title: File browser window title. [str]
@@ -151,7 +151,7 @@ def pyside6_qt_file_browser(
 
     default_path: Open file browser to this path. [str]
 
-    select_directory: (optional) Ability to select directories. 
+    select_directory: (optional) Ability to select directories.
         Default False. [bool]
 
     multi_selection: (optional) Ability to select multiple files/folders.
@@ -163,7 +163,7 @@ def pyside6_qt_file_browser(
     use_flame_browser: (optional) - Use Flame's file browser if using Flame
         2023.1 or later. Default True [bool]
 
-    window_to_hide: (optional) - Hide Qt window while file browser 
+    window_to_hide: (optional) - Hide Qt window while file browser
     window is open. window is restored when browser is closed. [QWidget]
 
     When Multi Selection is enabled, the file browser will return a list.
@@ -181,13 +181,13 @@ def pyside6_qt_file_browser(
 
     if not isinstance(extension, list):
         raise TypeError('Pyflame File Browser: extension must be a list.')
-    
+   
     if not isinstance(default_path, str):
         raise TypeError('Pyflame File Browser: default_path must be a string.')
-    
+   
     if not isinstance(select_directory, bool):
         raise TypeError('Pyflame File Browser: select_directory must be a boolean.')
-    
+   
     if not isinstance(multi_selection, bool):
         raise TypeError('Pyflame File Browser: multi_selection must be a boolean.')
 
@@ -201,7 +201,7 @@ def pyside6_qt_file_browser(
 
     while os.path.isdir(default_path) is not True:
         default_path = default_path.rsplit('/', 1)[0]
-        
+       
         if '/' not in default_path and not os.path.isdir(default_path):
             default_path = '/opt/Autodesk'
         print('Browser path:', default_path, '\n')
@@ -267,7 +267,7 @@ def pyside6_qt_file_browser(
 # if __name__ == "__main__":
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

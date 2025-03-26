@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -124,7 +124,7 @@ class pyside6_qt_output_config_ui:
         self.SCRIPT_NAME = script_name
         self.CONFIG_PATH = config_path
         self.VERSION = version
-        
+       
     def output_node_setup(self):
         def save_config():
             if not self.write_file_media_path_lineedit.text():
@@ -197,7 +197,7 @@ class pyside6_qt_output_config_ui:
                 self.write_file_open_clip_token_btn,
                 self.write_file_include_setup_token_btn
             ]
-            
+           
             disabled = self.write_file_render_node_type_push_btn.text() == 'Render Node'
             for control in controls:
                 control.setDisabled(disabled)
@@ -207,9 +207,9 @@ class pyside6_qt_output_config_ui:
                 write_file_include_setup_btn_check()
 
         def media_path_browse():
-            file_path = pyside6_qt_file_browser('Select Directory', [''], 
-                                              self.write_file_media_path_lineedit.text(), 
-                                              select_directory=True, 
+            file_path = pyside6_qt_file_browser('Select Directory', [''],
+                                              self.write_file_media_path_lineedit.text(),
+                                              select_directory=True,
                                               window_to_hide=[self.setup_window])
             if file_path:
                 self.write_file_media_path_lineedit.setText(file_path)
@@ -233,7 +233,7 @@ class pyside6_qt_output_config_ui:
 
             format_type = next((k for k in compression_settings.keys() if k in file_format), None)
             compression_list = compression_settings.get(format_type, [])
-            
+           
             self.write_file_compression_push_btn.setEnabled(bool(compression_list))
             if compression_list:
                 default_compression = 'PIZ' if format_type == 'OpenEXR' else 'Uncompressed'
@@ -246,7 +246,7 @@ class pyside6_qt_output_config_ui:
 
         # Setup UI
         gridbox = QtWidgets.QGridLayout()
-        self.setup_window = pyside6_qt_window(f'{self.SCRIPT_NAME}: Output Node Configuration <small>{self.VERSION}</small>', 
+        self.setup_window = pyside6_qt_window(f'{self.SCRIPT_NAME}: Output Node Configuration <small>{self.VERSION}</small>',
                                             gridbox, 1000, 570)
 
         # Create Labels
@@ -269,7 +269,7 @@ class pyside6_qt_output_config_ui:
         self.write_file_version_name_lineedit = pyside6_qt_line_edit(self.settings.write_file_version_name, max_width=150)
 
         # Create Slider
-        self.write_file_padding_slider = pyside6_qt_slider(int(self.settings.write_file_padding), 1, 20, 
+        self.write_file_padding_slider = pyside6_qt_slider(int(self.settings.write_file_padding), 1, 20,
                                                          value_is_float=False, slider_width=150)
 
         # Setup Image Format Menu
@@ -318,26 +318,26 @@ class pyside6_qt_output_config_ui:
         # Setup Render Type Menu
         render_node_options = ['Render Node', 'Write File Node']
         self.write_file_render_node_type_push_btn = pyside6_qt_push_button_menu(
-            self.settings.render_node_type, 
-            render_node_options, 
+            self.settings.render_node_type,
+            render_node_options,
             menu_action=render_node_type_toggle
         )
 
         # Setup Frame Index Menu
         frame_index = ['Use Start Frame', 'Use Timecode']
         self.write_file_frame_index_push_btn = pyside6_qt_push_button_menu(
-            self.settings.write_file_frame_index, 
+            self.settings.write_file_frame_index,
             frame_index
         )
 
         # # Setup Token Buttons
         # write_file_token_dict = {
-        #     'Batch Name': '<batch name>', 
-        #     'Batch Iteration': '<batch iteration>', 
+        #     'Batch Name': '<batch name>',
+        #     'Batch Iteration': '<batch iteration>',
         #     'Iteration': '<iteration>',
-        #     'Project': '<project>', 
-        #     'Project Nickname': '<project nickname>', 
-        #     'Shot Name': '<shot name>', 
+        #     'Project': '<project>',
+        #     'Project Nickname': '<project nickname>',
+        #     'Shot Name': '<shot name>',
         #     'Clip Height
 
 

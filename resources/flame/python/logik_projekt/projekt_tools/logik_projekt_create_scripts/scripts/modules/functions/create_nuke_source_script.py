@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -53,16 +53,16 @@ import fileinput
 # ========================================================================== #
 
 # Define function to create a source script
-def create_nuke_source_script(shot_name, 
-                         shots_dir, 
-                         shot_sources_dir, 
-                         shot_source_dir, 
-                         app_name, 
-                         task_type, 
-                         version_name, 
-                         shot_scripts_dir, 
-                         shot_source_version_openexr_sequences_info, 
-                         shot_source_version_start_frame, 
+def create_nuke_source_script(shot_name,
+                         shots_dir,
+                         shot_sources_dir,
+                         shot_source_dir,
+                         app_name,
+                         task_type,
+                         version_name,
+                         shot_scripts_dir,
+                         shot_source_version_openexr_sequences_info,
+                         shot_source_version_start_frame,
                          shot_source_version_end_frame):
 
     """
@@ -86,10 +86,10 @@ def create_nuke_source_script(shot_name,
     """
 
     # Define the directory for the specific app and task type
-    source_scripts_app_task_dir = os.path.join(shots_dir, 
-                                               shot_scripts_dir, 
-                                               app_name, 
-                                               'sources', 
+    source_scripts_app_task_dir = os.path.join(shots_dir,
+                                               shot_scripts_dir,
+                                               app_name,
+                                               'sources',
                                                task_type)
 
     # Create the directory if it doesn't exist
@@ -97,7 +97,7 @@ def create_nuke_source_script(shot_name,
 
     # Define the file path for the script
     source_scripts_app_task_file = f"{shot_source_dir}_{app_name}_{task_type}_{version_name}.nk"
-    source_scripts_app_task_path = os.path.join(source_scripts_app_task_dir, 
+    source_scripts_app_task_path = os.path.join(source_scripts_app_task_dir,
                                                 source_scripts_app_task_file)
 
     # Append the Nuke script content to the file
@@ -171,10 +171,10 @@ Write {{
         print(f"Nuke Source script created:  {source_scripts_app_task_file}\n")
 
     # Define the directory for the specific app and task type
-    shot_scripts_app_task_dir = os.path.join(shots_dir, 
-                                             shot_scripts_dir, 
-                                             app_name, 
-                                             'shot', 
+    shot_scripts_app_task_dir = os.path.join(shots_dir,
+                                             shot_scripts_dir,
+                                             app_name,
+                                             'shot',
                                              task_type)
 
     # Create the directory if it doesn't exist
@@ -182,7 +182,7 @@ Write {{
 
     # Define the file path for the script
     shot_scripts_app_task_file = f"{shot_name}_{app_name}_{task_type}_{version_name}.nk"
-    shot_scripts_app_task_path = os.path.join(shot_scripts_app_task_dir, 
+    shot_scripts_app_task_path = os.path.join(shot_scripts_app_task_dir,
                                               shot_scripts_app_task_file)
 
     # Open the file for in-place editing
@@ -244,7 +244,7 @@ Write {{
         print(f"Read/Write nodes appended:   {shot_source_dir}_{app_name}_{task_type}\n")
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -191,11 +191,11 @@ separator = '# ' + '-' * 75 + ' #'
 
 def create_xml_file_legacy(the_projekt_information, projekt_xml_path, logger):
     root = ET.Element("Project")
-    
+   
     def add_element(parent, tag, value):
         elem = ET.SubElement(parent, tag)
         elem.text = value
-    
+   
     # Define the mapping of XML tags to parameter names
     mappings = {
         "Workstation": "the_hostname",
@@ -234,11 +234,11 @@ def create_xml_file_legacy(the_projekt_information, projekt_xml_path, logger):
 
 def create_xml_file(the_projekt_information, projekt_xml_path, logger):
     root = ET.Element("Project")
-    
+   
     def add_element(parent, tag, value):
         elem = ET.SubElement(parent, tag)
         elem.text = value
-    
+   
     # Define the mapping of XML tags to parameter names
     mappings = {
         # "Workstation": "the_hostname",  _DISABLE FOR PR214
@@ -278,10 +278,10 @@ def create_xml_file(the_projekt_information, projekt_xml_path, logger):
 # Remove the log_and_print function as it's no longer needed
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1

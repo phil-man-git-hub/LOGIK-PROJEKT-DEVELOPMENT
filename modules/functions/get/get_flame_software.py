@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -72,7 +72,7 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+   
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -198,7 +198,7 @@ sys.path.append(
 def get_flame_family_apps_list():
     """
     Retrieves a list of flame family application directories from the hardcoded directory.
-    
+   
     Returns:
         list: Sorted list of flame family application directories.
     """
@@ -209,15 +209,15 @@ def get_flame_family_apps_list():
     try:
         # List all entries in the directory
         entries = os.listdir(directory)
-        
+       
         # Filter for directories that match any of the flame family prefixes
         flame_dirs = [entry for entry in entries if any(entry.startswith(prefix) for prefix in flame_family_prefixes) and os.path.isdir(os.path.join(directory, entry))]
-        
+       
         # Sort the list in descending order using custom sorting logic
         flame_dirs = sorted(flame_dirs, key=sort_key, reverse=True)
 
         return flame_dirs
-    
+   
     except Exception as e:
         print(f"An error occurred: {e}")
         return []
@@ -229,16 +229,16 @@ def sort_key(directory_name):
     """
     pattern = r'(\w+)_(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:\.(pr\d+))?'
     match = re.match(pattern, directory_name)
-    
+   
     if not match:
         return (0, 0, 0, 0, 0)  # Return a default tuple for non-matching names
-    
+   
     name = match.group(1)
     major = int(match.group(2)) if match.group(2) else 0
     minor = int(match.group(3)) if match.group(3) else 0
     patch = int(match.group(4)) if match.group(4) else 0
     prerelease = match.group(5) or ''
-    
+   
     # Determine app_key value
     app_importance = {
         'flame': 5,
@@ -248,20 +248,20 @@ def sort_key(directory_name):
         'smoke': 1
     }
     app_value = app_importance.get(name, 0)
-    
+   
     # Set prerelease_value based on whether it's a release or prerelease version
     prerelease_value = 999 if not prerelease else int(prerelease[2:])
-    
+   
     # Create a tuple for sorting
     return (app_value, major, minor, patch, prerelease_value)
 
 def sanitize_app_name(app_name):
     """
     Extract the prefix and version from the application name.
-    
+   
     Args:
         app_name (str): Application name to sanitize.
-        
+       
     Returns:
         str: The sanitized application name without periods and with underscores.
     """
@@ -270,28 +270,28 @@ def sanitize_app_name(app_name):
 
     # Check if the app name starts with any of the flame family prefixes
     prefix = next((prefix for prefix in flame_family_prefixes if app_name.startswith(prefix)), None)
-    
+   
     if not prefix:
         return app_name
 
     # Remove the preceding prerelease version if present
     app_name = re.sub(r'(pr\d+)', '', app_name)
-    
+   
     # Replace periods with underscores
     app_name = app_name.replace('.', '_')
-    
+   
     # Remove any trailing underscores
     app_name = app_name.rstrip('_')
-    
+   
     return app_name
 
 def sanitize_app_version(app_name):
     """
     Extract the numeric component of the sanitized application name.
-    
+   
     Args:
         app_name (str): Application name to sanitize.
-        
+       
     Returns:
         str: Sanitized application version without leading underscores.
     """
@@ -300,20 +300,20 @@ def sanitize_app_version(app_name):
 
     # Extract the prefix
     prefix = next((prefix for prefix in flame_family_prefixes if app_name.startswith(prefix)), None)
-    
+   
     if not prefix:
         return "0"
 
     # Sanitize the app name
     sanitized_name = sanitize_app_name(app_name)
-    
+   
     # Extract the numeric component
     pattern = r'(\d+(?:_\d+)*)'
     match = re.search(pattern, sanitized_name)
-    
+   
     if match:
         return match.group(0)
-    
+   
     return "0"
 
 # ========================================================================== #
@@ -329,17 +329,17 @@ if __name__ == "__main__":
         "smoke_2018.0",
         "flame_2022.3pr1"
     ]
-    
+   
     for app_name in test_app_names:
         sanitized_name = sanitize_app_name(app_name)
         sanitized_version = sanitize_app_version(app_name)
         print(f"\n  Original: {app_name},\n  Sanitized Name: {sanitized_name},\n  Sanitized Version: {sanitized_version}\n")
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1

@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -119,33 +119,33 @@ menubar = nuke.menu("Nuke")
 projekt_menu = menubar.addMenu(menuTitle,index=7)
 
 # add a info string to the menu /sh010, compositing {shot}/{task}
-# projekt_menu.addCommand(f"{shot}| compositing", 
-#                              '', 
+# projekt_menu.addCommand(f"{shot}| compositing",
+#                              '',
 #                              '')
 projekt_menu.addSeparator()
-projekt_menu.addCommand('work files...', 
-                             projekt_core.utilities.placeholder_func, 
+projekt_menu.addCommand('work files...',
+                             projekt_core.utilities.placeholder_func,
                              '')
 projekt_menu.addSeparator()
-projekt_menu.addCommand('publish...', 
-                             projekt_core.utilities.placeholder_func, 
+projekt_menu.addCommand('publish...',
+                             projekt_core.utilities.placeholder_func,
                              '')
-# projekt_menu.addCommand('load...', 
-#                              projekt_core.utilities.placeholder_func, 
+# projekt_menu.addCommand('load...',
+#                              projekt_core.utilities.placeholder_func,
 #                              '')
-# projekt_menu.addCommand('manage...', 
-#                              projekt_core.utilities.placeholder_func, 
+# projekt_menu.addCommand('manage...',
+#                              projekt_core.utilities.placeholder_func,
 #                              '')
 projekt_menu.addSeparator()
-# projekt_menu.addCommand('library...', 
-#                              projekt_core.utilities.placeholder_func, 
+# projekt_menu.addCommand('library...',
+#                              projekt_core.utilities.placeholder_func,
 #                              '')
 projekt_menu.addSeparator()
-projekt_menu.addCommand('scripts/print_env_vars', 
-                             'projekt_core.utilities.placeholder_func()', 
+projekt_menu.addCommand('scripts/print_env_vars',
+                             'projekt_core.utilities.placeholder_func()',
                              '')
-projekt_menu.addCommand('scripts/unpack_direnv_diff', 
-                             'print(projekt_core.vfxtools.unpack_direnv_diff())', 
+projekt_menu.addCommand('scripts/unpack_direnv_diff',
+                             'print(projekt_core.vfxtools.unpack_direnv_diff())',
                              '')
 
 # ========================================================================== #
@@ -212,8 +212,8 @@ if not hasattr(nuke, 'favoritesKnobChanged_registered'):
     nuke.favoritesKnobChanged_registered = True
 
 # -------------------------------------------------------------------------- #
-# def setShotFavesOnLoad(): 
-    # 
+# def setShotFavesOnLoad():
+    #
     # todo: this is not implemented yet... should be moved into favoritesRedux.py...
     # """
 #     logger.info("Running setShotFavesOnLoad")
@@ -253,8 +253,8 @@ except ImportError as e:
 
 # Toggle Viewer Pipes
 # import viewerOps
-# nuke.menu("Nuke").addCommand('Viewer/Toggle Viewer Pipes', 
-#                              viewerOps.toggleViewerPipes, 
+# nuke.menu("Nuke").addCommand('Viewer/Toggle Viewer Pipes',
+#                              viewerOps.toggleViewerPipes,
 #                              'alt+t')
 
 # # -------------------------------------------------------------------------- #
@@ -306,5 +306,5 @@ print("# -----------------------------------------------------------------------
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

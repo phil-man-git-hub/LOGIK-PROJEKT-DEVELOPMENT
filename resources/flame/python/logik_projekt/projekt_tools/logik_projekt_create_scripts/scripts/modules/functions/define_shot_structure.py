@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -53,9 +53,9 @@ import os
 # ========================================================================== #
 
 # Define function to define shot structure
-def define_shot_structure(shots_dir, 
-                          shot_dir, 
-                          app_name, 
+def define_shot_structure(shots_dir,
+                          shot_dir,
+                          app_name,
                           task_type):
     """
     Define directory structure for a shot.
@@ -95,13 +95,13 @@ def define_shot_structure(shots_dir,
 
     # Create directories if they don't exist
     for directory in [
-        shot_batch_setups_dir, 
-        shot_renders_dir, 
+        shot_batch_setups_dir,
+        shot_renders_dir,
         shot_sources_dir,
-        shot_output_clips_dir, 
+        shot_output_clips_dir,
         shot_output_clips_app_dir,
         # shot_output_clips_app_task_dir,
-        shot_segment_clips_dir, 
+        shot_segment_clips_dir,
         shot_segment_clips_app_dir,
         # shot_segment_clips_app_task_dir,
         shot_scripts_dir,
@@ -133,7 +133,7 @@ def define_shot_structure(shots_dir,
     }
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

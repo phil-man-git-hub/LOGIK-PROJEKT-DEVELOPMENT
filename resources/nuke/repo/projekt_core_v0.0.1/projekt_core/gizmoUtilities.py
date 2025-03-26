@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -238,11 +238,11 @@ class GizmoPathManager(object):
 def add_menu(root_menu: Optional[str] = None, index=9, default_top_menu: Optional[str] = None) -> None:
     """
     Add gizmos to the Nuke menu and the DAG tab menu, making them accessible.
-    
+   
     Parameters:
     root_menu (str, optional): The menu to which the gizmos will be added.
     default_top_menu (str, optional): The default top menu.
-    
+   
     Returns:
     None
     """
@@ -275,11 +275,11 @@ def add_menu(root_menu: Optional[str] = None, index=9, default_top_menu: Optiona
 def add_gizmo_menu_items(giz_manager, root_menu: Optional[str]) -> None:
     """
     Add gizmo menu items to the specified root menu.
-    
+   
     Parameters:
     giz_manager: The gizManager object to manage gizmos.
     root_menu (str, optional): The menu to which the gizmos will be added.
-    
+   
     Returns:
     None
     """
@@ -291,11 +291,11 @@ def add_gizmo_menu_items(giz_manager, root_menu: Optional[str]) -> None:
 def add_additional_items_to_menu(menu_name: str, root_menu: Optional[str]) -> None:
     """
     Add additional items to the specified menu.
-    
+   
     Parameters:
     menu_name (str): The name of the menu to which items will be added.
     root_menu (str, optional): The root menu to find the item.
-    
+   
     Returns:
     None
     """
@@ -312,10 +312,10 @@ def add_additional_items_to_menu(menu_name: str, root_menu: Optional[str]) -> No
 def remove_menu(root_menu: Optional[str] = None) -> None:
     """
     Remove gizmos from the Nuke menu and the DAG tab menu.
-    
+   
     Parameters:
     root_menu (str, optional): The menu from which the gizmos will be removed.
-    
+   
     Returns:
     None
     """
@@ -332,7 +332,7 @@ def remove_menu(root_menu: Optional[str] = None) -> None:
 def reload_menu() -> None:
     """
     Reload gizmos in the Nuke menu by removing and then adding them again.
-    
+   
     Returns:
     None
     """
@@ -352,7 +352,7 @@ def reload_menu() -> None:
 # This section defines the main function.
 # ========================================================================== #
 
-def main(): 
+def main():
     global gizManager
     if CUSTOM_GIZMO_LOCATION and os.path.isdir(CUSTOM_GIZMO_LOCATION):
         logger.info('CUSTOM_GIZMO_LOCATION found, and path exists')
@@ -360,9 +360,9 @@ def main():
     else:
         gizManager = GizmoPathManager()
     gizManager.addGizmoPaths()
-    
+   
     logger.info('Gizmo paths added')
-    
+   
     # check if gizManager is available as a global
     if 'gizManager' in globals():
         logger.info('gizManager is available as a global')
@@ -378,5 +378,5 @@ print("# -----------------------------------------------------------------------
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

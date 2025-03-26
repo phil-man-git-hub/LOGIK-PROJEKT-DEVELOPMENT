@@ -1,4 +1,4 @@
-[pman@juliet bash]$ ./create_project_directories-PT-BR.sh 
+[pman@juliet bash]$ ./create_project_directories-PT-BR.sh
 
 # --------------------------------------------------------------------------- #
   Criar Diretórios do Projeto
@@ -78,7 +78,7 @@
 
 
 
-[pman@juliet bash]$ ./create_project_directories-US-EN.sh 
+[pman@juliet bash]$ ./create_project_directories-US-EN.sh
 
 # --------------------------------------------------------------------------- #
 
@@ -124,7 +124,7 @@
 
 # --------------------------------------------------------------------------- #
 
-  Do you want to create the project directories? 
+  Do you want to create the project directories?
   [Y (Yes) / N (No) / Q (quit)]: y
 
   Creating project directories...

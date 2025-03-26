@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 
 # -------------------------------------------------------------------------- #
@@ -43,7 +43,7 @@ It fetches assets based on tags, platform data, and configuration data, and then
 to keep only specified active views and displays. The modifications include commenting out unwanted sections
 and adding a note with a timestamp and details of the changes made.
 
-If run inside a PROJEKT, the script will download the files to the software/ocio folder. 
+If run inside a PROJEKT, the script will download the files to the software/ocio folder.
 If run outside a PROJEKT, the files will be downloaded to the current directory.
 
 Functions:
@@ -142,9 +142,9 @@ def download_assets(
     except Exception as e:
         logger.warning(f"Error fetching assets: {e}")
         return downloaded_count
-    
+   
     assets = release_data.get('assets', [])
-    
+   
     for asset in assets:
         asset_name = asset['name']
         if any(asset_name.startswith(config) for config in config_data):
@@ -183,14 +183,14 @@ def download_file(url: str, path: Path):
         logger.warning(f"Error downloading file from {url}: {e}")
 
 # ========================================================================== #
-# This section modifies the content of an OCIO configuration file to keep specified active views and displays. 
+# This section modifies the content of an OCIO configuration file to keep specified active views and displays.
 # ========================================================================== #
 
 def modify_ocio_file(file_path: Path, keep_active_views: List[str], keep_displays: List[str]):
     try:
         config_content = file_path.read_text()
         config_content = comment_out_unwanted_sections(config_content, keep_active_views, keep_displays)
-        
+       
         match = DESCRIPTION_PATTERN.search(config_content)
         if match:
             insert_pos = match.end()
@@ -205,7 +205,7 @@ def modify_ocio_file(file_path: Path, keep_active_views: List[str], keep_display
             )
 
 
-            
+           
             config_content = config_content[:insert_pos] + note + config_content[insert_pos:]
 
         file_path.write_text(config_content)
@@ -247,11 +247,11 @@ if __name__ == "__main__":
     total_downloaded = 0
     for tag in TAG_DATA:
         total_downloaded += download_assets(tag, PLATFORM_DATA, CONFIG_DATA, keep_active_views, keep_displays, DESTINATION_DIR)
-    
+   
     logger.info(f"Total .ocio assets downloaded: {total_downloaded}")
 
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

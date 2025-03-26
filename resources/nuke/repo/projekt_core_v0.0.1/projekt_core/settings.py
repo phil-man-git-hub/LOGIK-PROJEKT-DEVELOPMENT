@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -37,7 +37,7 @@
 # -------------------------------------------------------------------------- #
 
 """
-This module provides functions to retrieve various directory paths used in the Nuke pipeline. 
+This module provides functions to retrieve various directory paths used in the Nuke pipeline.
 The paths are returned as pathlib.Path objects and include:
 
 1. `projekt_root_windows_path()`: Returns the root path of the pipeline on Windows.
@@ -154,12 +154,12 @@ def get_projekt_path_from_env():
 def projekt_path():
 	"""
 	Returns the resolved path of the project. Two options are available:
-	- get the project path from the environment variables using the `get_projekt_path_from_env()` function. 
+	- get the project path from the environment variables using the `get_projekt_path_from_env()` function.
 	- the  `projekt_full_path()` function with the project name to get the resolved project path.
 	Returns:
 		str: The resolved path of the project.
 	"""
-	# resolved_projekt_path = get_projekt_path_from_env() 
+	# resolved_projekt_path = get_projekt_path_from_env()
 	resolved_projekt_path = projekt_full_path(projekt_name())
 	return resolved_projekt_path
 
@@ -377,5 +377,5 @@ if projekt_shot() is None:
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

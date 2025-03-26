@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 
 # -------------------------------------------------------------------------- #
@@ -33,7 +33,7 @@
 # File Name:        disableGPUAcceleration.py
 # Version:          0.0.1
 # Created:          2024-11-08
-# Modified:         
+# Modified:        
 
 # -------------------------------------------------------------------------- #
 
@@ -43,8 +43,8 @@ def disableGPUAcceleration():
     """
     Disables GPU acceleration for all nodes in the current Nuke script.
 
-    This function iterates through all nodes in the Nuke script and sets the 
-    GPU-related knobs to 0 (disabled) if they exist. Specifically, it targets 
+    This function iterates through all nodes in the Nuke script and sets the
+    GPU-related knobs to 0 (disabled) if they exist. Specifically, it targets
     the following knobs:
     - 'useGPUIfAvailable'
     - 'r3dUseCUDA'
@@ -52,7 +52,7 @@ def disableGPUAcceleration():
     - 'Use GPU if Available'
 
     Note:
-    - This function requires the Nuke environment to be properly set up and 
+    - This function requires the Nuke environment to be properly set up and
       accessible.
     - The function does not return any value.
     """
@@ -75,5 +75,5 @@ def main():
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

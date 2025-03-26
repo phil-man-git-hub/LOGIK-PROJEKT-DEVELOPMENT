@@ -48,35 +48,35 @@ __FOLDER_TEMPLATE_2020
 │   │   │   │   └── fluid                           # Fluid Simulations
 │   │   │   ├── particles                           # Particle Simulations
 │   │   │   └── timeEditor                          # Time Editor
-│   │   ├── 05_SCENES                               # 
-│   │   │   └── SHOT_NAME                           # 
+│   │   ├── 05_SCENES                               #
+│   │   │   └── SHOT_NAME                           #
 │   │   │       └── publish                         # the final published versions of 3D scenes for a specific shot.
-│   │   ├── 06_TEXTURES                             # 
+│   │   ├── 06_TEXTURES                             #
 │   │   │   ├── 3dPaintTextures                     # Textures created using 3D painting tools.
-│   │   │   └── fur                                 # 
+│   │   │   └── fur                                 #
 │   │   │       ├── furAttrMap                      # Attribute maps for fur simulations.
 │   │   │       ├── furEqualMap                     # Equalization maps for fur.
 │   │   │       ├── furFiles                        # Files related to fur simulations.
 │   │   │       ├── furImages                       # Image files used in fur simulations.
 │   │   │       └── furShadowMap                    # Shadow maps for fur simulations.
-│   │   ├── 07_COMP                                 # 
+│   │   ├── 07_COMP                                 #
 │   │   │   └── SHOT_NAME                           # compositing files for a specific shot.
 │   │   ├── 08_RENDER_OUTPUT                        # the final rendered output files.
 │   │   ├── 09_PREVIEWS_OUT                         # preview renders or outputs.
 │   │   ├── 10_SHADER                               # shader files used in the project.
-│   │   └── 11_MAYA_FILES                           # 
+│   │   └── 11_MAYA_FILES                           #
 │   │       ├── 3dPaintTextures                     # Textures created using 3D painting tools within Maya.
 │   │       ├── autosave                            # Autosaved files from Maya.
 │   │       ├── Clip Exports                        # Exported clips from Maya.
-│   │       ├── data                                # 
+│   │       ├── data                                #
 │   │       │   └── depth                           # Depth data files.
 │   │       ├── nCache                              # Cache files for simulations in Maya.
 │   │       ├── scripts                             # Scripts used in Maya.
 │   │       └── sound                               # Sound files used in Maya.
-│   ├── ARTE                                        # 
-│   │   ├── IN                                      # 
+│   ├── ARTE                                        #
+│   │   ├── IN                                      #
 │   │   │   ├── FONT                                # Fonts used in the project.
-│   │   │   ├── PRJ_EXTERNO                         # 
+│   │   │   ├── PRJ_EXTERNO                         #
 │   │   │   │   ├── AEP                             # After Effects projects.
 │   │   │   │   ├── AI                              # Illustrator files.
 │   │   │   │   ├── C4D                             # Cinema 4D projects.
@@ -87,24 +87,24 @@ __FOLDER_TEMPLATE_2020
 │   │   │   ├── STILL                               # Still images.
 │   │   │   └── VIDEO                               # Video files.
 │   │   └── OUT                                     # Output files from the art department.
-│   ├── COMP                                        # 
+│   ├── COMP                                        #
 │   │   ├── IN                                      # Input files for compositing.
 │   │   └── OUT                                     # Output files from compositing.
 │   └── GRADING                                     # files related to color grading.
 ├── 06_REFS                                         # Reference materials for the project.
-├── 07_DOCUMENTOS                                   # 
+├── 07_DOCUMENTOS                                   #
 │   ├── APs                                         # Possibly approvals or action points.
-│   ├── CLAQUETES                                   # 
+│   ├── CLAQUETES                                   #
 │   │   ├── FONT                                    # Fonts used in clapperboards.
 │   │   └── MIDIA                                   # Media files for clapperboards.
 │   ├── CRONO                                       # Chronological data or timelines.
-│   ├── FRAMES                                      # 
+│   ├── FRAMES                                      #
 │   │   ├── IN                                      # Input frames.
 │   │   └── OUT                                     # Output frames.
 │   ├── LISTA_VFX                                   # VFX shot list.
 │   ├── PLANO_DE_FILMAGEM                           # Shooting plan.
 │   ├── PPM                                         # Possibly pre-production meeting notes.
-│   ├── REPORTS                                     # 
+│   ├── REPORTS                                     #
 │   │   ├── BOLETINS_CONT                           # Continuity reports.
 │   │   ├── BOLETINS_SOM                            # Sound reports.
 │   │   └── LOGGER                                  # Logging reports.
@@ -112,40 +112,40 @@ __FOLDER_TEMPLATE_2020
 │   ├── STORYBOARDS                                 # Storyboards.
 │   ├── TRATAMENTO                                  # Treatment documents.
 │   └── WORKFLOW                                    # Workflow documentation.
-├── 09_MASTER                                       # 
+├── 09_MASTER                                       #
 │   └── BASE_LIMPA                                  # Clean base files for mastering.
-├── 10_AUDIO                                        # 
+├── 10_AUDIO                                        #
 │   ├── _COPIAS                                     # Copies of audio files.
 │   ├── IN                                          # Input audio files.
 │   └── OUT                                         # Output audio files.
-├── 11_CLAQUETES                                    # 
-│   ├── EXPORT                                      # 
+├── 11_CLAQUETES                                    #
+│   ├── EXPORT                                      #
 │   │   ├── IN                                      # Input files for clapperboard exports.
 │   │   └── OUT                                     # Output files for clapperboard exports.
-│   └── TEMPLATE_NOVA_CLAQUETE                      # 
+│   └── TEMPLATE_NOVA_CLAQUETE                      #
 │       └── HD                                      # High-definition clapperboard templates.
-├── 12_TRABALHO                                     # 
+├── 12_TRABALHO                                     #
 │   └── _APROVADOS                                  # Approved work files.
-├── 13_CC                                           # 
+├── 13_CC                                           #
 │   ├── CHECK                                       # Files for checking closed captions.
 │   ├── IN                                          # Input closed caption files.
 │   ├── OUT                                         # Output closed caption files.
 │   ├── PROJETO                                     # Project files for closed captioning.
 │   ├── ROTEIRO                                     # Script files for closed captioning.
 │   └── SRT                                         # SubRip Subtitle files.
-├── 14_DELIVERIES                                   # 
+├── 14_DELIVERIES                                   #
 │   ├── APROVACAO                                   # Approval files.
-│   ├── COPIAS                                      # 
-│   │   └── _data                                   # 
-│   │       └── _roteiro                            # 
+│   ├── COPIAS                                      #
+│   │   └── _data                                   #
+│   │       └── _roteiro                            #
 │   │           └── _duracao                        # Duration data for copies.
 │   ├── ESPECIFICACOES                              # Specifications for deliveries.
-│   ├── PEDIDOS                                     # 
-│   │   └── _data                                   # 
-│   │       └── _roteiro                            # 
+│   ├── PEDIDOS                                     #
+│   │   └── _data                                   #
+│   │       └── _roteiro                            #
 │   │           └── _duracao                        # Duration data for orders.
 │   └── PROJETO                                     # Project files for deliveries.
-└── 15_REPERTORIO                                   # 
+└── 15_REPERTORIO                                   #
     ├── ARTE                                        # Art files.
     ├── COMP                                        # Compositing files.
     └── COR                                         # Color grading files.

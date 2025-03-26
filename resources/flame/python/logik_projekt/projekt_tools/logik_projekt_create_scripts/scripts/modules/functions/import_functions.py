@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -58,50 +58,50 @@ import fileinput
 # )
 
 # from debugging_and_logging import (
-#     debugging_and_logging as debugging_and_logging 
+#     debugging_and_logging as debugging_and_logging
 # )
 # from define_job_structure import (
-#     define_job_structure as define_job_structure 
+#     define_job_structure as define_job_structure
 # )
 # from list_shots_dir import (
-#     list_shots_dir as list_shots_dir 
+#     list_shots_dir as list_shots_dir
 # )
 # from define_shot_structure import (
-#     define_shot_structure as define_shot_structure 
+#     define_shot_structure as define_shot_structure
 # )
 # from list_shot_sources_dir import (
-#     list_shot_sources_dir as list_shot_sources_dir 
+#     list_shot_sources_dir as list_shot_sources_dir
 # )
 # from list_shot_source_dir import (
-#     list_shot_source_dir as list_shot_source_dir 
+#     list_shot_source_dir as list_shot_source_dir
 # )
 # from path_to_shot_source_openexr_sequences import (
-#     path_to_shot_source_openexr_sequences as path_to_shot_source_openexr_sequences 
+#     path_to_shot_source_openexr_sequences as path_to_shot_source_openexr_sequences
 # )
 # from create_openclip_output_clip import (
-#     create_openclip_output_clip as create_openclip_output_clip 
+#     create_openclip_output_clip as create_openclip_output_clip
 # )
 # from create_openclip_segment_clip import (
-#     create_openclip_segment_clip as create_openclip_segment_clip 
+#     create_openclip_segment_clip as create_openclip_segment_clip
 # )
 # from create_blender_shot_script import (
-#     create_blender_shot_script as create_blender_shot_script 
+#     create_blender_shot_script as create_blender_shot_script
 # )
 # from create_blender_source_script import (
-#     create_blender_source_script as create_blender_source_script 
+#     create_blender_source_script as create_blender_source_script
 # )
 # from create_nuke_shot_script import (
-#     create_nuke_shot_script as create_nuke_shot_script 
+#     create_nuke_shot_script as create_nuke_shot_script
 # )
 # from create_nuke_source_script import (
-#     create_nuke_source_script as create_nuke_source_script 
+#     create_nuke_source_script as create_nuke_source_script
 # )
 # from process_shot_info import (
 #     process_shot_info as process_shot_info
 # )
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

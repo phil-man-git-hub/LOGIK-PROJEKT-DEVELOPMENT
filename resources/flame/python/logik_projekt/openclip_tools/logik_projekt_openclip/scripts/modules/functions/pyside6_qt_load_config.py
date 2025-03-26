@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -137,17 +137,17 @@ def pyside6_qt_load_config(script_name: str, script_path: str, config_values: Di
 
     Attributes will be created based on the key names.
 
-    If a config file doesn't exist, a default config file will be 
+    If a config file doesn't exist, a default config file will be
     created/saved from the provied config_values dict.
 
-    New config values can be added to the config_values dict that may not 
-    exist in the config file. 
+    New config values can be added to the config_values dict that may not
+    exist in the config file.
 
-    These will be added to the config file when it is saved using 
+    These will be added to the config file when it is saved using
     pyside6_qt_save_config()
 
-    Config file will be loaded/saved to: 
-    
+    Config file will be loaded/saved to:
+   
     /opt/Autodesk/shared/python/man_made_material/openclip_workflow/SCRIPT_NAME/config/config.xml
 
     pyside6_qt_load_config(script_name, script_path, config_values)
@@ -156,8 +156,8 @@ def pyside6_qt_load_config(script_name: str, script_path: str, config_values: Di
 
     script_path: [str] Path to script.
 
-    config_values: [Dict] Default config values. 
-                    Keys and values must be strings. 
+    config_values: [Dict] Default config values.
+                    Keys and values must be strings.
                     Attributes will be added based on key names.
 
     Example:
@@ -187,18 +187,18 @@ def pyside6_qt_load_config(script_name: str, script_path: str, config_values: Di
 
     if not isinstance(script_name, str):
         raise TypeError('script_name: script_name must be a string.')
-    
+   
     if not isinstance(script_path, str):
         raise TypeError('script_path: script_path must be a string.')
-    
+   
     elif not isinstance(config_values, dict):
         raise TypeError('config_values: config_values must be a dict.')
-    
+   
     for key, value in config_values.items():
 
         if not isinstance(key, str):
             raise TypeError('config_values: config_values keys must be strings.')
-        
+       
         if not isinstance(value, str):
             raise TypeError('config_values: config_values values must be strings.')
 
@@ -340,7 +340,7 @@ def pyside6_qt_load_config(script_name: str, script_path: str, config_values: Di
 # if __name__ == "__main__":
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

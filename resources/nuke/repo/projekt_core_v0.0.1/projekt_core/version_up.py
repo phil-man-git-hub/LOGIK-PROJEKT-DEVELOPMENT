@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,14 +25,14 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
 # File Name:        version_up.py
 # Version:          0.0.1
 # Created:          2024-11-07
-# Modified:         
+# Modified:        
 
 # -------------------------------------------------------------------------- #
 
@@ -43,9 +43,9 @@ import re
 def version_up_write_nodes():
     """
     Version up 'Write' nodes (EXR, QT, JPG) on save.
-    
+   
     This function looks for Write nodes named 'Write_exr', 'Write_QT', and 'Write_jpg',
-    regardless of case. It updates their file path version to match the version from the 
+    regardless of case. It updates their file path version to match the version from the
     root script's name.
     """
     # List of write nodes to match (case-insensitive)
@@ -53,10 +53,10 @@ def version_up_write_nodes():
 
     # Get the version from the root file name
     root_version_match = re.search(r'[vV]\d+', os.path.split(nuke.root().name())[1])
-    
+   
     if root_version_match:
         root_version = root_version_match.group()
-        
+       
         for node_name in write_nodes:
             # Match nodes case-insensitively
             for node in nuke.allNodes():
@@ -75,5 +75,5 @@ nuke.addOnScriptSave(version_up_write_nodes)
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

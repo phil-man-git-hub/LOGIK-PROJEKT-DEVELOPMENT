@@ -39,11 +39,11 @@ cleanup() {
     if [[ -f "$tar_filepath" ]]; then
         secure_delete "$tar_filepath"
     fi
-    
+   
     # Clear sensitive variables
     if [[ -v my_password ]]; then unset my_password; fi
     if [[ -v confirm_password ]]; then unset confirm_password; fi
-    
+   
     # Kill any remaining background processes
     jobs -p | xargs -r kill
 }
@@ -67,13 +67,13 @@ secure_delete() {
 check_dependencies() {
     local deps=("openssl" "ssh-keygen" "zenity" "tar")
     local missing=()
-    
+   
     for dep in "${deps[@]}"; do
         if ! command -v "$dep" >/dev/null 2>&1; then
             missing+=("$dep")
         fi
     done
-    
+   
     if ((${#missing[@]} > 0)); then
         zenity --error --text="Missing required dependencies: ${missing[*]}"
         exit 1
@@ -100,7 +100,7 @@ check_dependencies() {
 validate_email() {
     local email="$1"
     local email_regex="^[[:alnum:]]([-._[:alnum:]]*[[:alnum:]])*@[[:alnum:]]([-._[:alnum:]]*[[:alnum:]])*\.[[:alpha:]]{2,}$"
-    
+   
     if [[ ! "$email" =~ $email_regex ]]; then
         zenity --error --text="Invalid email format. Please ensure:\n- No special characters except . - _\n- Valid domain format\n- At least 2 character domain extension"
         return 1
@@ -112,15 +112,15 @@ validate_email() {
 validate_password_strength() {
     local password="$1"
     local min_length=12
-    
+   
     if (( ${#password} < min_length )); then
         zenity --error --text="Password must be at least $min_length characters long"
         return 1
     fi
-    
-    if [[ ! "$password" =~ [[:upper:]] ]] || 
-       [[ ! "$password" =~ [[:lower:]] ]] || 
-       [[ ! "$password" =~ [[:digit:]] ]] || 
+   
+    if [[ ! "$password" =~ [[:upper:]] ]] ||
+       [[ ! "$password" =~ [[:lower:]] ]] ||
+       [[ ! "$password" =~ [[:digit:]] ]] ||
        [[ ! "$password" =~ [[:punct:]] ]]; then
         zenity --error --text="Password must contain:\n- Uppercase letters\n- Lowercase letters\n- Numbers\n- Special characters"
         return 1
@@ -185,7 +185,7 @@ while [ "$password_match" -eq 0 ]; do
     my_password=$(zenity --password \
         --title="Enter Password (min 12 chars, mixed case, numbers, symbols)" \
         --width=600)
-    
+   
     if [ $? -ne 0 ]; then
         zenity --error --text="Operation cancelled. Exiting."
         exit 1
@@ -194,11 +194,11 @@ while [ "$password_match" -eq 0 ]; do
     if ! validate_password_strength "$my_password"; then
         continue
     fi
-    
+   
     confirm_password=$(zenity --password \
         --title="Confirm Password" \
         --width=600)
-    
+   
     if [ "$my_password" = "$confirm_password" ]; then
         password_match=1
     else
@@ -340,7 +340,7 @@ cleanup
 zenity --info --text="Script finished successfully.\n\nKeys were generated in: $ssh_keys_folder\n\nEncrypted backup created: $encrypted_tar_filename\n\nUse decrypt.sh and extract.sh scripts to restore keys when needed."
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

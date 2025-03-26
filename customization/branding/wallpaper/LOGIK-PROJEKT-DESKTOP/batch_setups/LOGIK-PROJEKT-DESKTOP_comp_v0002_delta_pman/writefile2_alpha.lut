@@ -72,9 +72,9 @@
 # CTBCustom no
 # CTBInvert no
 # CTBIsColourSpaceConversion no
-# CTBSrcColourSpace 
+# CTBSrcColourSpace
 # CTBDstColourSpace ACEScg
-# CTBTaggedColourSpace 
+# CTBTaggedColourSpace
 # CTBViewTransformEnabled no
 # CTBVTSrcCS From Source
 # CTBVTViewCS From Rules

@@ -26,7 +26,7 @@
                 'Setups Directory': xml_setup_dir,
                 'Media Cache': xml_media_dir,
             }
-            
+           
             # Update environment summary text
             summary_text = '\n'.join(f"{key}: {value}" for key, value in env_data.items())
             self.environment_summary.setPlainText(summary_text)

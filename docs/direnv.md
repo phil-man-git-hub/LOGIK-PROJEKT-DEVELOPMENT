@@ -12,10 +12,10 @@ Environment variables are widely used in VFX to manage project-specific settings
 1. **Install via DNF**:
    ```bash
    sudo dnf install direnv
-2. **Hook direnv into the shell** 
-    
+2. **Hook direnv into the shell**
+   
     add the following to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc):
-    
+   
         eval "$(direnv hook bash)" # or "zsh" if using zsh
 
 #### macOS
@@ -27,10 +27,10 @@ Environment variables are widely used in VFX to manage project-specific settings
 
     Rename the binary to direnv and make it executable:
 
-        
+       
         mv path/to/downloaded/direnv.darwin-amd64 /usr/local/bin/direnv
         chmod +x /usr/local/bin/direnv
-        
+       
 
 **Option 2: Install with Homebrew**
 

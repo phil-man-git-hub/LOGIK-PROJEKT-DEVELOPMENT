@@ -3,21 +3,21 @@
 
   2024-12-20 13:32:00 - Reading preference file:
   2024-12-20 13:32:00 - /home/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEVELOPMENT/install/current_adsk_python_version.pref
-  2024-12-20 13:32:00 - 
+  2024-12-20 13:32:00 -
   2024-12-20 13:32:00 - Preference file loaded:
   2024-12-20 13:32:00 - /opt/Autodesk/python/2026.pr211/bin/python
-  2024-12-20 13:32:00 - 
+  2024-12-20 13:32:00 -
   2024-12-20 13:32:00 - Analyzing directory: /opt/Autodesk/python
   2024-12-20 13:32:00 - Sorted contents of /opt/Autodesk/python:
   2024-12-20 13:32:00 - 2026.pr213
   2024-12-20 13:32:00 - 2026.pr212
-  2024-12-20 13:32:00 - 
+  2024-12-20 13:32:00 -
   2024-12-20 13:32:00 - The highest version is: 2026.pr213
-  2024-12-20 13:32:00 - 
+  2024-12-20 13:32:00 -
   2024-12-20 13:32:00 - Python version 2026.pr213 is available and executable
   2024-12-20 13:32:00 - Updated preference file with:
   2024-12-20 13:32:00 - /opt/Autodesk/python/2026.pr213/bin/python
-  2024-12-20 13:32:00 - 
+  2024-12-20 13:32:00 -
 
 + --------------------------------------------------------------------------- +
 

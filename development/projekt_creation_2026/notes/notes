@@ -27,7 +27,7 @@ Here is my test file (I have commented out <MediaDir> and <Partition> parameters
 <DefaultStartFrame>1001</DefaultStartFrame>
 <IntermediatesProfile>0:2</IntermediatesProfile>
 </Project>
- 
+
 Status
 Open
 9 replies	
@@ -51,7 +51,7 @@ In Preview211, it is not possible to define the Setups location. So remove it fo
 Define the desired locations in sysconfig.cfg.
 
 Template support is on our todo list so no need to fill request. Note that beta request is not enables for the alpha phase. It will be available when we enter beta.
- 
+
 
 PC
 Philip Che Sung Man

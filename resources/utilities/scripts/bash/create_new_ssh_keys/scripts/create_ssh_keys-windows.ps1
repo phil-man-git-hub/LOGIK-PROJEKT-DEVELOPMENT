@@ -33,7 +33,7 @@ function Handle-Error {
         [Parameter(Mandatory = $true)]
         [string]$ErrorMessage
     )
-    
+   
     [System.Windows.Forms.MessageBox]::Show(
         $ErrorMessage,
         "Error",
@@ -50,7 +50,7 @@ function Cleanup {
     if (Test-Path -Path $tarFilePath) {
         Secure-Delete -Path $tarFilePath
     }
-    
+   
     # Clear sensitive variables
     if (Get-Variable -Name "myPassword" -ErrorAction SilentlyContinue) {
         Remove-Variable -Name "myPassword" -Scope Script
@@ -66,16 +66,16 @@ function Secure-Delete {
         [Parameter(Mandatory = $true)]
         [string]$Path
     )
-    
+   
     # Overwrite the file with random data 3 times
     for ($i = 0; $i -lt 3; $i++) {
         $randomBytes = New-Object byte[] (100MB)
         $rng = New-Object System.Security.Cryptography.RNGCryptoServiceProvider
         $rng.GetBytes($randomBytes)
-        
+       
         [System.IO.File]::WriteAllBytes($Path, $randomBytes)
     }
-    
+   
     # Delete the file
     Remove-Item -Path $Path -Force
 }
@@ -84,13 +84,13 @@ function Secure-Delete {
 function Check-Dependencies {
     $deps = @("ssh-keygen", "openssl")
     $missing = @()
-    
+   
     foreach ($dep in $deps) {
         if (-not (Get-Command $dep -ErrorAction SilentlyContinue)) {
             $missing += $dep
         }
     }
-    
+   
     if ($missing.Count -gt 0) {
         $message = "Missing required dependencies: $($missing -join ', ')"
         [System.Windows.Forms.MessageBox]::Show(
@@ -109,9 +109,9 @@ function Validate-Email {
         [Parameter(Mandatory = $true)]
         [string]$Email
     )
-    
+   
     $emailRegex = "^[[:alnum:]]([-._[:alnum:]]*[[:alnum:]])*@[[:alnum:]]([-._[:alnum:]]*[[:alnum:]])*\.[[:alpha:]]{2,}$"
-    
+   
     if ($Email -notmatch $emailRegex) {
         [System.Windows.Forms.MessageBox]::Show(
             "Invalid email format. Please ensure:`n- No special characters except . - _`n- Valid domain format`n- At least 2 character domain extension",
@@ -130,9 +130,9 @@ function Validate-PasswordStrength {
         [Parameter(Mandatory = $true)]
         [string]$Password
     )
-    
+   
     $minLength = 12
-    
+   
     if ($Password.Length -lt $minLength) {
         [System.Windows.Forms.MessageBox]::Show(
             "Password must be at least $minLength characters long",
@@ -142,10 +142,10 @@ function Validate-PasswordStrength {
         )
         return $false
     }
-    
-    if (-not ($Password -cmatch "[A-Z]") -or 
-        -not ($Password -cmatch "[a-z]") -or 
-        -not ($Password -cmatch "[0-9]") -or 
+   
+    if (-not ($Password -cmatch "[A-Z]") -or
+        -not ($Password -cmatch "[a-z]") -or
+        -not ($Password -cmatch "[0-9]") -or
         -not ($Password -cmatch "[^a-zA-Z0-9]")) {
         [System.Windows.Forms.MessageBox]::Show(
             "Password must contain:`n- Uppercase letters`n- Lowercase letters`n- Numbers`n- Special characters",
@@ -163,7 +163,7 @@ function Choose-Folder {
     $folderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog
     $folderBrowser.Description = "Choose Folder to Save New SSH Keys"
     $folderBrowser.RootFolder = [System.Environment+SpecialFolder]::MyComputer
-    
+   
     if ($folderBrowser.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
         return $folderBrowser.SelectedPath
     }
@@ -176,43 +176,43 @@ function Get-TextInput {
         [Parameter(Mandatory = $true)]
         [string]$Prompt
     )
-    
+   
     $form = New-Object System.Windows.Forms.Form
     $form.Text = $Prompt
     $form.Size = New-Object System.Drawing.Size(400, 200)
     $form.StartPosition = "CenterScreen"
-    
+   
     $textBox = New-Object System.Windows.Forms.TextBox
     $textBox.Location = New-Object System.Drawing.Point(10, 40)
     $textBox.Size = New-Object System.Drawing.Size(365, 20)
-    
+   
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 20)
     $label.Size = New-Object System.Drawing.Size(365, 20)
     $label.Text = $Prompt
-    
+   
     $okButton = New-Object System.Windows.Forms.Button
     $okButton.Location = New-Object System.Drawing.Point(140, 100)
     $okButton.Size = New-Object System.Drawing.Size(75, 23)
     $okButton.Text = "OK"
     $okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
-    
+   
     $cancelButton = New-Object System.Windows.Forms.Button
     $cancelButton.Location = New-Object System.Drawing.Point(220, 100)
     $cancelButton.Size = New-Object System.Drawing.Size(75, 23)
     $cancelButton.Text = "Cancel"
     $cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
-    
+   
     $form.AcceptButton = $okButton
     $form.CancelButton = $cancelButton
-    
+   
     $form.Controls.Add($textBox)
     $form.Controls.Add($label)
     $form.Controls.Add($okButton)
     $form.Controls.Add($cancelButton)
-    
+   
     $result = $form.ShowDialog()
-    
+   
     if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
         return $textBox.Text
     }
@@ -225,44 +225,44 @@ function Get-PasswordInput {
         [Parameter(Mandatory = $true)]
         [string]$Prompt
     )
-    
+   
     $form = New-Object System.Windows.Forms.Form
     $form.Text = $Prompt
     $form.Size = New-Object System.Drawing.Size(400, 200)
     $form.StartPosition = "CenterScreen"
-    
+   
     $textBox = New-Object System.Windows.Forms.MaskedTextBox
     $textBox.Location = New-Object System.Drawing.Point(10, 40)
     $textBox.Size = New-Object System.Drawing.Size(365, 20)
     $textBox.PasswordChar = "*"
-    
+   
     $label = New-Object System.Windows.Forms.Label
     $label.Location = New-Object System.Drawing.Point(10, 20)
     $label.Size = New-Object System.Drawing.Size(365, 20)
     $label.Text = $Prompt
-    
+   
     $okButton = New-Object System.Windows.Forms.Button
     $okButton.Location = New-Object System.Drawing.Point(140, 100)
     $okButton.Size = New-Object System.Drawing.Size(75, 23)
     $okButton.Text = "OK"
     $okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
-    
+   
     $cancelButton = New-Object System.Windows.Forms.Button
     $cancelButton.Location = New-Object System.Drawing.Point(220, 100)
     $cancelButton.Size = New-Object System.Drawing.Size(75, 23)
     $cancelButton.Text = "Cancel"
     $cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
-    
+   
     $form.AcceptButton = $okButton
     $form.CancelButton = $cancelButton
-    
+   
     $form.Controls.Add($textBox)
     $form.Controls.Add($label)
     $form.Controls.Add($okButton)
     $form.Controls.Add($cancelButton)
-    
+   
     $result = $form.ShowDialog()
-    
+   
     if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
         return $textBox.Text
     }
@@ -275,14 +275,14 @@ function Show-Confirmation {
         [Parameter(Mandatory = $true)]
         [string]$Message
     )
-    
+   
     $result = [System.Windows.Forms.MessageBox]::Show(
         $Message,
         "Confirmation",
         [System.Windows.Forms.MessageBoxButtons]::YesNo,
         [System.Windows.Forms.MessageBoxIcon]::Question
     )
-    
+   
     return $result -eq [System.Windows.Forms.DialogResult]::Yes
 }
 
@@ -292,7 +292,7 @@ function Show-Info {
         [Parameter(Mandatory = $true)]
         [string]$Message
     )
-    
+   
     [System.Windows.Forms.MessageBox]::Show(
         $Message,
         "Information",
@@ -308,24 +308,24 @@ function Show-Info {
 try {
     # Check dependencies
     Check-Dependencies
-    
+   
     # Define today's date
     $today = Get-Date -Format "yyyy_MM_dd-HH_mm_ss"
-    
+   
     # Prompt user to choose a folder
     $chosenFolder = Choose-Folder
     if ($null -eq $chosenFolder) {
         Handle-Error "Operation cancelled. Exiting."
     }
-    
+   
     # Create an enclosing folder
     $sshKeysFolder = Join-Path -Path $chosenFolder -ChildPath "ssh_keys-$today"
     New-Item -Path $sshKeysFolder -ItemType Directory -Force | Out-Null
-    
+   
     # Setup logging with reduced sensitive information
     $sshKeyCreationLog = Join-Path -Path $sshKeysFolder -ChildPath "$today-ssh_key_creation_log.txt"
     New-Item -Path $sshKeyCreationLog -ItemType File -Force | Out-Null
-    
+   
     # Get and validate email address
     do {
         $emailAddress = Get-TextInput "Enter your email address:"
@@ -333,7 +333,7 @@ try {
             Handle-Error "Operation cancelled. Exiting."
         }
     } while (-not (Validate-Email -Email $emailAddress))
-    
+   
     # Enhanced password collection with strength validation
     $passwordMatch = $false
     do {
@@ -341,16 +341,16 @@ try {
         if ($null -eq $myPassword) {
             Handle-Error "Operation cancelled. Exiting."
         }
-        
+       
         if (-not (Validate-PasswordStrength -Password $myPassword)) {
             continue
         }
-        
+       
         $confirmPassword = Get-PasswordInput "Confirm Password:"
         if ($null -eq $confirmPassword) {
             Handle-Error "Operation cancelled. Exiting."
         }
-        
+       
         if ($myPassword -eq $confirmPassword) {
             $passwordMatch = $true
         } else {
@@ -362,17 +362,17 @@ try {
             )
         }
     } while (-not $passwordMatch)
-    
+   
     # Ensure .ssh directory exists
     $sshDir = "$env:USERPROFILE\.ssh"
     if (-not (Test-Path -Path $sshDir)) {
         New-Item -Path $sshDir -ItemType Directory | Out-Null
     }
-    
+   
     # Define SSH key paths
     $sshkeyPathEd25519 = "$sshDir\id_ed25519-$today"
     $sshkeyPathRsa = "$sshDir\id_rsa-$today"
-    
+   
     # Generate ED25519 key
     $ed25519Params = @(
         "-t", "ed25519",
@@ -382,7 +382,7 @@ try {
         "-N", "`"$myPassword`""
     )
     & ssh-keygen $ed25519Params | Out-File -FilePath $sshKeyCreationLog -Append
-    
+   
     # Generate RSA key
     $rsaParams = @(
         "-t", "rsa",
@@ -394,35 +394,35 @@ try {
         "-N", "`"$myPassword`""
     )
     & ssh-keygen $rsaParams | Out-File -FilePath $sshKeyCreationLog -Append
-    
+   
     # Define the filepaths for the tar files (using zip for Windows)
     $tarFilePath = Join-Path -Path $sshKeysFolder -ChildPath "ssh_keys_$today.zip"
     $encryptedTarFilename = "encrypted_ssh_keys_$today.zip.enc"
     $encryptedTarFilepath = Join-Path -Path $sshKeysFolder -ChildPath $encryptedTarFilename
-    
+   
     # Create a zip file of the private keys
     Compress-Archive -Path "$sshkeyPathEd25519", "$sshkeyPathRsa" -DestinationPath $tarFilePath
-    
+   
     # Convert password to secure string for OpenSSL
     $passwordBytes = [System.Text.Encoding]::UTF8.GetBytes($myPassword)
     $tempPasswordFile = [System.IO.Path]::GetTempFileName()
     [System.IO.File]::WriteAllBytes($tempPasswordFile, $passwordBytes)
-    
+   
     # Encrypt the zip file
     & openssl enc -aes-256-cbc -pbkdf2 -iter 100000 -salt -in $tarFilePath -out $encryptedTarFilepath -pass "file:$tempPasswordFile"
-    
+   
     # Securely delete the temporary password file
     Secure-Delete -Path $tempPasswordFile
-    
+   
     # Verify encryption was successful
     if (-not (Test-Path -Path $encryptedTarFilepath)) {
         Handle-Error "Failed to create encrypted backup. Exiting."
     }
-    
+   
     # Copy public keys to the chosen folder
     Copy-Item -Path "$sshkeyPathEd25519.pub" -Destination $sshKeysFolder
     Copy-Item -Path "$sshkeyPathRsa.pub" -Destination $sshKeysFolder
-    
+   
     # Generate decryption script for Windows
     $decryptScript = @"
 # PowerShell script to decrypt SSH keys
@@ -437,39 +437,39 @@ function Get-PasswordInput {
     `$form.Text = "Enter Password"
     `$form.Size = New-Object System.Drawing.Size(400, 200)
     `$form.StartPosition = "CenterScreen"
-    
+   
     `$textBox = New-Object System.Windows.Forms.MaskedTextBox
     `$textBox.Location = New-Object System.Drawing.Point(10, 40)
     `$textBox.Size = New-Object System.Drawing.Size(365, 20)
     `$textBox.PasswordChar = "*"
-    
+   
     `$label = New-Object System.Windows.Forms.Label
     `$label.Location = New-Object System.Drawing.Point(10, 20)
     `$label.Size = New-Object System.Drawing.Size(365, 20)
     `$label.Text = "Enter Password"
-    
+   
     `$okButton = New-Object System.Windows.Forms.Button
     `$okButton.Location = New-Object System.Drawing.Point(140, 100)
     `$okButton.Size = New-Object System.Drawing.Size(75, 23)
     `$okButton.Text = "OK"
     `$okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
-    
+   
     `$cancelButton = New-Object System.Windows.Forms.Button
     `$cancelButton.Location = New-Object System.Drawing.Point(220, 100)
     `$cancelButton.Size = New-Object System.Drawing.Size(75, 23)
     `$cancelButton.Text = "Cancel"
     `$cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
-    
+   
     `$form.AcceptButton = `$okButton
     `$form.CancelButton = `$cancelButton
-    
+   
     `$form.Controls.Add(`$textBox)
     `$form.Controls.Add(`$label)
     `$form.Controls.Add(`$okButton)
     `$form.Controls.Add(`$cancelButton)
-    
+   
     `$result = `$form.ShowDialog()
-    
+   
     if (`$result -eq [System.Windows.Forms.DialogResult]::OK) {
         return `$textBox.Text
     }
@@ -563,10 +563,10 @@ if (Test-Path -Path `$outputFile) {
     )
 }
 "@
-    
+   
     $decryptScriptPath = Join-Path -Path $sshKeysFolder -ChildPath "Decrypt-SSHKeys.ps1"
     Set-Content -Path $decryptScriptPath -Value $decryptScript
-    
+   
     # Generate extraction script for Windows
     $extractScript = @"
 # PowerShell script to extract SSH keys
@@ -612,13 +612,13 @@ Remove-Item -Path `$decryptedFile.FullName -Force
     [System.Windows.Forms.MessageBoxIcon]::Information
 )
 "@
-    
+   
     $extractScriptPath = Join-Path -Path $sshKeysFolder -ChildPath "Extract-SSHKeys.ps1"
     Set-Content -Path $extractScriptPath -Value $extractScript
-    
+   
     # Secure deletion of the unencrypted zip file
     Secure-Delete -Path $tarFilePath
-    
+   
     # Add SSH keys to SSH agent if requested
     if (Show-Confirmation "SSH keys generated and encrypted. Do you want to add them to the SSH agent?") {
         try {
@@ -636,19 +636,19 @@ Remove-Item -Path `$decryptedFile.FullName -Force
     } else {
         Show-Info "SSH keys were not added to SSH agent.`nYou can add them manually later using ssh-add."
     }
-    
+   
     # Final cleanup
     Cleanup
-    
+   
     # Show summary of actions
     Show-Info "Script finished successfully.`n`nKeys were generated in: $sshKeysFolder`n`nEncrypted backup created: $encryptedTarFilename`n`nUse Decrypt-SSHKeys.ps1 and Extract-SSHKeys.ps1 scripts to restore keys when needed."
-    
+   
 } catch {
     Handle-Error "An unexpected error occurred: $_"
 }
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

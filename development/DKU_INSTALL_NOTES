@@ -1,5 +1,5 @@
 [pman@juliet Autodesk]$ cd ~/Downloads/Autodesk/Flame/beta/pr215/
-[pman@juliet pr215]$ tar -xvf DKU_20.0.0-PR215.tar 
+[pman@juliet pr215]$ tar -xvf DKU_20.0.0-PR215.tar
 DKU_20.0.0-PR215/INSTALL_DKU
 DKU_20.0.0-PR215/LICENSES.pdf
 DKU_20.0.0-PR215/README
@@ -252,8 +252,8 @@ DKU_20.0.0-PR215/.dlConfigCheck/flameassist_2025
 DKU_20.0.0-PR215/.dlConfigCheck/flare_2025
 DKU_20.0.0-PR215/.dlConfigCheck/lustre_2025
 [pman@juliet pr215]$ cd DKU_20.0.0-PR215/
-[pman@juliet DKU_20.0.0-PR215]$ sudo ./INSTALL_DKU 
-[sudo] password for pman: 
+[pman@juliet DKU_20.0.0-PR215]$ sudo ./INSTALL_DKU
+[sudo] password for pman:
 ============================================================
    Reading DKU Configuration file ...
 
@@ -264,8 +264,8 @@ Using Configuration file : .//config/5.14.0-362.8.1.el9_3.x86_64/Config_generic.
 ------------------------------------------------------------
         Architecture      : x86_64
         Kernel name       : 5.14.0-362.8.1.el9_3.x86_64/
-        Kernel            : 
-        Kernel devel      : 
+        Kernel            :
+        Kernel devel      :
         Nvidia Installer  : NVIDIA-Linux-x86_64-550.90.07.run
         Extra rpms        : {other/9.3/*,other/ntfs3g_rocky9/*,other/hfs_rocky93/*,other/avahi_rocky9/*}
         CVEs rpm          : cve/CVE-2024-6387_rocky93/*
@@ -447,7 +447,7 @@ Created symlink /etc/systemd/system/network.target.wants/adsk_nvinstall.service 
                    - Reconnect/Restart the framestore
                    - Reboot Linux
 
-        You can find a copy of the DKU in: 
+        You can find a copy of the DKU in:
         /opt/Autodesk/DKU/DKU_20.0.0-PR215
 
 --WARNING------------WARNING-------------WARNING-------------WARNING--

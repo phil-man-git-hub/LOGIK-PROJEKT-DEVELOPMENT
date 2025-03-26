@@ -4,7 +4,7 @@
 # This section echoes stderr to the shell or quits on error.
 # ========================================================================== #
 
-# Write stderr to shell (-x) & exit upon failure (-e). 
+# Write stderr to shell (-x) & exit upon failure (-e).
 # set -ex
 
 # Set the umask to 0
@@ -176,5 +176,5 @@ echo -e "  Backup of ${src_rsync_dir} completed."
 echo -e "\n$separator\n"
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

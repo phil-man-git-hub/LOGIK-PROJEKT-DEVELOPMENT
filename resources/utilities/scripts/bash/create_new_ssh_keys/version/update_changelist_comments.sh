@@ -101,14 +101,14 @@ echo -e "\n$separator\n"
 # Update version information based on user input
 case $update_type in
     1)  ((major++));;
-    2)  
+    2) 
         ((minor++))
         if [ "$minor" -eq 10 ]; then
             minor=0
             ((major++))
         fi
         ;;
-    3)  
+    3) 
         ((patch++))
         if [ "$patch" -eq 10 ]; then
             patch=0
@@ -212,7 +212,7 @@ update_shell_scripts() {
 update_python_scripts() {
     python_scripts_dir="$parent_dir/scripts"
     # local python_scripts_dir="$1"
-    
+   
     # Check if the directory exists or create it
     if [ ! -d "$python_scripts_dir" ]; then
         echo -e "  Directory '$python_scripts_dir' not found.\n"
@@ -263,7 +263,7 @@ update_shell_scripts "$scripts_dir"
 update_python_scripts "$scripts_dir"
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 
 # -------------------------------------------------------------------------- #
@@ -33,7 +33,7 @@
 # File Name:        unpack_direnv_diff.py
 # Version:          0.0.1
 # Created:          2024-11-08
-# Modified:         
+# Modified:        
 
 # -------------------------------------------------------------------------- #
 
@@ -77,7 +77,7 @@ def main():
     """
     Main function to unpack and print environment variables from the DIRENV_DIFF environment variable.
 
-    This function retrieves the 'DIRENV_DIFF' environment variable, decompresses it using the 
+    This function retrieves the 'DIRENV_DIFF' environment variable, decompresses it using the
     decompress_diff function, and then prints each key-value pair in the resulting dictionary.
 
     Raises:
@@ -94,5 +94,5 @@ def main():
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

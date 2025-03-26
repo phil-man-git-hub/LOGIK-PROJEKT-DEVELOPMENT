@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 
 # -------------------------------------------------------------------------- #
@@ -33,7 +33,7 @@
 # File Name:        hello_from_pyside2.py
 # Version:          0.0.1
 # Created:          2024-11-08
-# Modified:         
+# Modified:        
 
 # -------------------------------------------------------------------------- #
 
@@ -52,16 +52,16 @@ def main():
 
     This function checks if a QApplication instance already exists.
     If not, it creates a new QApplication instance. Then, it creates
-    a QDialog with a QLabel displaying "Hello from PySide2!" and 
+    a QDialog with a QLabel displaying "Hello from PySide2!" and
     shows the dialog.
 
-    The dialog has the title "Nuke PySide/PySide2 Compatibility" and 
+    The dialog has the title "Nuke PySide/PySide2 Compatibility" and
     is set to a geometry of 400x200 pixels at position (100, 100).
 
     Returns:
         None
     """
-    
+   
     # Check if a QApplication instance already exists
     app = QtGui.QApplication.instance()
     if not app:
@@ -84,5 +84,5 @@ if __name__ == "__main__":
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

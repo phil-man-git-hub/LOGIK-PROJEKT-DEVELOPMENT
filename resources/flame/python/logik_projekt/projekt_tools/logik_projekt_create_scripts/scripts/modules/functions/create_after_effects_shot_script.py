@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -53,12 +53,12 @@ import fileinput
 # ========================================================================== #
 
 # Define function to create a shot script for after effects based on task
-def create_after_effects_shot_script(shot_name, 
-                       app_name, 
-                       task_type, 
+def create_after_effects_shot_script(shot_name,
+                       app_name,
+                       task_type,
                        version_name,
-                       shots_dir, 
-                       shot_renders_dir, 
+                       shots_dir,
+                       shot_renders_dir,
                        shot_scripts_dir):
     """
     Create a shot script for after effects based on task.
@@ -94,7 +94,7 @@ def create_after_effects_shot_script(shot_name,
     shot_scripts_app_task_file = f"{shot_name}_{app_name}_{task_type}_{version_name}.aep"
     shot_scripts_app_task_file_path = os.path.join(shot_scripts_app_task_dir,
                                               shot_scripts_app_task_file)
-    
+   
     # Define the script path for the script
     shot_scripts_app_task_script = f"{shot_name}_{app_name}_{task_type}_{version_name}.jsx"
     shot_scripts_app_task_script_path = os.path.join(shot_scripts_app_task_dir,
@@ -283,7 +283,7 @@ def create_after_effects_shot_script(shot_name,
         print(f"After Effects Shot script created:    {shot_scripts_app_task_script}\n")
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

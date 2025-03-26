@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -53,10 +53,10 @@ import os
 # ========================================================================== #
 
 # Define function to create an openclip segment clip for a source.
-def create_openclip_segment_clip(shot_source_dir, 
-                                 app_name, 
-                                 task_type, 
-                                 shots_dir, 
+def create_openclip_segment_clip(shot_source_dir,
+                                 app_name,
+                                 task_type,
+                                 shots_dir,
                                  shot_dir,
                                  shot_segment_clips_app_dir):
     """
@@ -73,17 +73,17 @@ def create_openclip_segment_clip(shot_source_dir,
     None
     """
 
-    shot_segment_clips_app_task_dir = os.path.join(shots_dir, 
-                                                   shot_segment_clips_app_dir, 
+    shot_segment_clips_app_task_dir = os.path.join(shots_dir,
+                                                   shot_segment_clips_app_dir,
                                                    task_type) # May be unnecessary.
 
     # Create the directory if it doesn't exist
     os.makedirs(shot_segment_clips_app_task_dir, exist_ok=True) # May be unnecessary.
 
     shot_segment_clips_app_task_file = f"{shot_source_dir}_{app_name}_{task_type}.clip"
-    shot_segment_clips_app_task_path = os.path.join(shots_dir, 
-                                                    shot_segment_clips_app_dir, 
-                                                    task_type, 
+    shot_segment_clips_app_task_path = os.path.join(shots_dir,
+                                                    shot_segment_clips_app_dir,
+                                                    task_type,
                                                     shot_segment_clips_app_task_file)
 
     with open(shot_segment_clips_app_task_path, 'w') as segment_clip_file:
@@ -97,14 +97,14 @@ def create_openclip_segment_clip(shot_source_dir,
         </options>
     </handler>
 </clip>""")
-        
+       
     # # This section is for logging purposes
     # logging.debug(f"segment clip created for:    {shot_source_dir}_{app_name}_{task_type}")
 
     print(f"Segment clip created:        {shot_source_dir}_{app_name}_{task_type}.clip\n")
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
+#                   Copyright Strength In Numbers © 2025
 
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
@@ -115,7 +115,7 @@ get_highest_version() {
 # Function to read and write the current_adsk_python_version from/to a preference file
 manage_preferences() {
     local pref_file="$install_dir/current_adsk_python_version.pref"
-    
+   
     if [ ! -f "$pref_file" ]; then
         echo -e "\n$separator\n"
         log_message "Preference file not found."
@@ -138,10 +138,10 @@ manage_preferences() {
 write_preference() {
     local pref_file="$install_dir/current_adsk_python_version.pref"
     local new_version_path="/opt/Autodesk/python/$current_adsk_python_version/bin/python"
-    
+   
     # Read the current preference value
     local current_pref_version=$(cat "$pref_file")
-    
+   
     if [ "$current_pref_version" != "$new_version_path" ]; then
         echo "$new_version_path" > "$pref_file"
         log_message "Updated preference file with:"
@@ -199,10 +199,10 @@ fi
 current_adsk_python_version=$(cat "$install_dir/current_adsk_python_version.pref")
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1

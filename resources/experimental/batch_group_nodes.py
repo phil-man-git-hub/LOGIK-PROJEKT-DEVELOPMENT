@@ -27,7 +27,7 @@ first_mux_node.pos_x = 0
 first_mux_node.pos_y = 0
 
 first_elbow_node.pos_x = first_mux_node.pos_x + 100
-first_elbow_node.pos_y = first_mux_node.pos_y + 100 
+first_elbow_node.pos_y = first_mux_node.pos_y + 100
 
 second_mux_node.pos_x = first_mux_node.pos_x + 200
 second_mux_node.pos_y = first_mux_node.pos_y + 000

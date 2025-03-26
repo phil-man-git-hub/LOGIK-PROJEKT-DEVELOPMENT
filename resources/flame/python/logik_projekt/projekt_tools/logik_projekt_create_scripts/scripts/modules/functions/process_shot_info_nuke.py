@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -67,37 +67,37 @@ import os
 # )
 
 # from debugging_and_logging import (
-#     debugging_and_logging as debugging_and_logging 
+#     debugging_and_logging as debugging_and_logging
 # )
 from define_job_structure import (
-    define_job_structure as define_job_structure 
+    define_job_structure as define_job_structure
 )
 from list_shots_dir import (
-    list_shots_dir as list_shots_dir 
+    list_shots_dir as list_shots_dir
 )
 from define_shot_structure import (
-    define_shot_structure as define_shot_structure 
+    define_shot_structure as define_shot_structure
 )
 from list_shot_sources_dir import (
-    list_shot_sources_dir as list_shot_sources_dir 
+    list_shot_sources_dir as list_shot_sources_dir
 )
 from list_shot_source_dir import (
-    list_shot_source_dir as list_shot_source_dir 
+    list_shot_source_dir as list_shot_source_dir
 )
 from path_to_shot_source_openexr_sequences import (
-    path_to_shot_source_openexr_sequences as path_to_shot_source_openexr_sequences 
+    path_to_shot_source_openexr_sequences as path_to_shot_source_openexr_sequences
 )
 from create_openclip_output_clip import (
-    create_openclip_output_clip as create_openclip_output_clip 
+    create_openclip_output_clip as create_openclip_output_clip
 )
 from create_openclip_segment_clip import (
-    create_openclip_segment_clip as create_openclip_segment_clip 
+    create_openclip_segment_clip as create_openclip_segment_clip
 )
 from create_nuke_shot_script import (
-    create_nuke_shot_script as create_nuke_shot_script 
+    create_nuke_shot_script as create_nuke_shot_script
 )
 from create_nuke_source_script import (
-    create_nuke_source_script as create_nuke_source_script 
+    create_nuke_source_script as create_nuke_source_script
 )
 # from process_shot_info import (
 #     process_shot_info as process_shot_info
@@ -108,10 +108,10 @@ from create_nuke_source_script import (
 # ========================================================================== #
 
 # Define function to process shot information
-def process_shot_info(job_structure, 
-                      app_name, 
-                      task_types_list, 
-                      start_frame_min, 
+def process_shot_info(job_structure,
+                      app_name,
+                      task_types_list,
+                      start_frame_min,
                       end_frame_max):
     """
     Process shot information.
@@ -143,32 +143,32 @@ def process_shot_info(job_structure,
 
         # Iterate over task types list
         for task_type in task_types_list:
-            shot_structure = define_shot_structure(shots_dir, 
-                                                   shot_dir, 
-                                                   app_name, 
+            shot_structure = define_shot_structure(shots_dir,
+                                                   shot_dir,
+                                                   app_name,
                                                    task_type)
-            
+           
             # Log shot structure
             # logging.info(f"Shot structure for {shot_dir} ({task_type}): {shot_structure}")
 
             # Create openclip output clip
-            create_openclip_output_clip(shot_name, 
-                                        app_name, 
-                                        task_type, 
-                                        shots_dir, 
+            create_openclip_output_clip(shot_name,
+                                        app_name,
+                                        task_type,
+                                        shots_dir,
                                         shot_structure["shot_output_clips_app_dir"])
 
             # Create Nuke script for the shot
-            create_nuke_shot_script(shot_name, 
-                               app_name, 
-                               task_type, 
-                               version_name, 
-                               shots_dir, 
-                               shot_structure["shot_renders_dir"], 
+            create_nuke_shot_script(shot_name,
+                               app_name,
+                               task_type,
+                               version_name,
+                               shots_dir,
+                               shot_structure["shot_renders_dir"],
                                shot_structure["shot_scripts_dir"])
 
             # Construct the correct path for listing source directories
-            shot_sources_dir = os.path.join(shots_dir, 
+            shot_sources_dir = os.path.join(shots_dir,
                                             shot_structure["shot_sources_dir"])
 
             # List source directories
@@ -179,15 +179,15 @@ def process_shot_info(job_structure,
 
             # Call path_to_shot_source_openexr_sequences for each source directory
             for shot_source_dir in shot_sources_dir_list:
-                shot_source_dir_path = os.path.join(shot_sources_dir, 
+                shot_source_dir_path = os.path.join(shot_sources_dir,
                                                     shot_source_dir)
                 shot_source_version_openexr_sequences_info, \
                     shot_source_version_start_frame, \
                         shot_source_version_end_frame = path_to_shot_source_openexr_sequences(
-                            shot_source_dir_path, 
-                            start_frame_min, 
+                            shot_source_dir_path,
+                            start_frame_min,
                             end_frame_max)
-                
+               
                 if shot_source_version_openexr_sequences_info:
 
                     # logging.info(f"OpenEXR files found in {shot_source_dir_path} ({task_type}):")
@@ -196,24 +196,24 @@ def process_shot_info(job_structure,
                     # logging.info(f"Start Frame: {shot_source_version_start_frame}, End Frame: {shot_source_version_end_frame}")
 
                     # Create openclip segment clip
-                    create_openclip_segment_clip(shot_source_dir, 
-                                                 app_name, 
-                                                 task_type, 
-                                                 shots_dir, 
+                    create_openclip_segment_clip(shot_source_dir,
+                                                 app_name,
+                                                 task_type,
+                                                 shots_dir,
                                                  shot_dir,
                                                  shot_structure["shot_segment_clips_app_dir"])
 
                     # Create Nuke script for the shot
-                    create_nuke_source_script(shot_name, 
-                                         shots_dir, 
-                                         shot_sources_dir, 
-                                         shot_source_dir, 
-                                         app_name, 
-                                         task_type, 
-                                         version_name, 
-                                         shot_structure["shot_scripts_dir"], 
-                                         shot_source_version_openexr_sequences_info, 
-                                         shot_source_version_start_frame, 
+                    create_nuke_source_script(shot_name,
+                                         shots_dir,
+                                         shot_sources_dir,
+                                         shot_source_dir,
+                                         app_name,
+                                         task_type,
+                                         version_name,
+                                         shot_structure["shot_scripts_dir"],
+                                         shot_source_version_openexr_sequences_info,
+                                         shot_source_version_start_frame,
                                          shot_source_version_end_frame)
 
                 # else:
@@ -222,7 +222,7 @@ def process_shot_info(job_structure,
                     # logging.info(f"No OpenEXR files found in {shot_source_dir_path} ({task_type})")
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
 # Changelist:

@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -72,7 +72,7 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+   
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -198,7 +198,7 @@ the_projekt_flame_dir = f"{the_projekt_flame_dirs}/{the_projekt_flame_name}"
 class WidgetFrameRate(QComboBox):
     def __init__(self, parent=None):
         super().__init__(parent)
-        
+       
         # Set object name if needed
         self.setObjectName("template_frame_rate")
 
@@ -208,7 +208,7 @@ class WidgetFrameRate(QComboBox):
         # Set default properties
         self.setCurrentText(self.get_default_framerate())
         self.setEditable(False)
-        
+       
     def get_widget_parameters(self):
         widget_parameters = {
             "widget_name": "template_frame_rate",
@@ -228,7 +228,7 @@ class WidgetFrameRate(QComboBox):
         json_file_path = get_resource_path(
             'resources/cfg/projekt_configuration/parameters/default_parameters.json'
         )
-        
+       
         try:
             with open(json_file_path, 'r') as file:
                 data = json.load(file)
@@ -239,10 +239,10 @@ class WidgetFrameRate(QComboBox):
             return "23.976 fps"
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1

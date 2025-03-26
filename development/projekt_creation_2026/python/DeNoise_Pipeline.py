@@ -44,7 +44,7 @@ original_clip.pos_y = 0
 
 denoise_compass.name = 'DeNoise_Pipeline'
 denoise_compass.pos_x = original_clip.pos_x - 200
-denoise_compass.pos_y = original_clip.pos_y - 200 
+denoise_compass.pos_y = original_clip.pos_y - 200
 denoise_compass.height = 800
 denoise_compass.width = 1600
 denoise_compass.colour = (0.0,0.194,0.0)
@@ -107,7 +107,7 @@ match_grain.pos_y = write_denoise.pos_y - 400
 
 match_grain_compass.name = 'Match_Grain_Pipeline'
 match_grain_compass.pos_x = denoise_compass.pos_x + 2000
-match_grain_compass.pos_y = denoise_compass.pos_y 
+match_grain_compass.pos_y = denoise_compass.pos_y
 match_grain_compass.height = 800
 match_grain_compass.width = 800
 

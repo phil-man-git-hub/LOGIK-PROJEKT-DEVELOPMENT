@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -37,8 +37,8 @@
 # -------------------------------------------------------------------------- #
 
 """
-This module provides utility functions for managing Nuke toolsets and templates. 
-It includes functions to open directories, export selected nodes as scripts, 
+This module provides utility functions for managing Nuke toolsets and templates.
+It includes functions to open directories, export selected nodes as scripts,
 and create menus in Nuke's menu bar.
 
 Functions:
@@ -48,7 +48,7 @@ Functions:
 4. `exportNodesAsScript() -> None`: Exports selected nodes as an nk script on disk in the specified directory.
 5. `saveNodesAsToolset() -> None`: Exports selected nodes as an nk script on disk in the toolSetsDir folder.
 6. `saveNodesAsTemplate() -> None`: Exports selected nodes as an nk script on disk in the templatesDir folder.
-7. `createMenu() -> None`: Creates a menu in Nuke's menu bar with the specified title and index, 
+7. `createMenu() -> None`: Creates a menu in Nuke's menu bar with the specified title and index,
     populated with items found in the specified directory path.
 8. `addMenu(menu_title: str, index: int) -> None`: Adds a menu to Nuke.
 9. `reloadMenu(menu_title: str, index: int) -> None`: Reloads the specified menu in Nuke.
@@ -118,7 +118,7 @@ def exportNodesAsScript(export_type: str, directory: Path, reload_function) -> N
             nuke.message('No nodes selected!')
             return
         nukeExt = ".nknc" if nuke.env['nc'] else ".nk"
-        
+       
         # Use f-strings for modern and readable string formatting
         s = nuke.getFilename(f"Export Nodes As {export_type}", f"*{nukeExt}", f"{directory}/", "script", "save", extension=nukeExt)
         if s is not None:
@@ -126,7 +126,7 @@ def exportNodesAsScript(export_type: str, directory: Path, reload_function) -> N
         reload_function()
     except Exception as e:
         logger.error(f'Error saving {export_type}: {str(e)}')
-        
+       
 
 # ========================================================================== #
 # This section exports selected nodes as a script into the toolsets and templates directories.
@@ -244,5 +244,5 @@ def reloadMenu(menu_title: str, index: int) -> None:
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

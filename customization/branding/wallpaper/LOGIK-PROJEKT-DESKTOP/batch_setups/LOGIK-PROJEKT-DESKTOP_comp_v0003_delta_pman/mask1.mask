@@ -34,7 +34,7 @@ FrameColourSpace "Rec.709 video"
 	AntiAliasingLevel 0
 	AntiAliasingSoftness 1
 	MotionBlurEditor
-		Channel 
+		Channel
 			Extrapolation constant
 			Value 1
 			Size 3

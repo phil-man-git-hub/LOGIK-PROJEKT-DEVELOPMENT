@@ -4,7 +4,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 
 # -------------------------------------------------------------------------- #
@@ -104,7 +104,7 @@ fi
 
 # -------------------------------------------------------------------------- #
 # aces 1.3
-# config_type="cg" 
+# config_type="cg"
 # config_type="studio"
 # config_type="custom"
 
@@ -142,7 +142,7 @@ if [[ "$config_type" == "aces_1.2" ]]; then
     echo
     echo "# -------------------------------------------------------------------------- #"
     echo
-    
+   
 fi
 
 if [[ "$config_type" != "aces_1.2" ]]; then
@@ -165,7 +165,7 @@ fi
 # ========================================================================== #
 # echo $config_file
 # if [[ "$config_file" == "nuke" ]]; then
-#     export -n OCIO 
+#     export -n OCIO
 # fi
 
 
@@ -174,15 +174,15 @@ fi
 # ========================================================================== #
 
 # path to the default Nuke installs
-if [[ $PROJEKT_OS == "mac" ]]; 
-then 
+if [[ $PROJEKT_OS == "mac" ]];
+then
     export nuke_root=/Applications/Nuke$nuke_version/Nuke$nuke_version.app/Contents/MacOS
     export NUKE_FONT_PATH=$PROJEKT_PATH/assets/font #fonts
 
 fi
 
-if [[ $PROJEKT_OS == "lin" ]]; 
-then 
+if [[ $PROJEKT_OS == "lin" ]];
+then
 
     # server apps
     # export PROJEKT_APPS=/s84/apps
@@ -192,7 +192,7 @@ then
     # local apps
     export nuke_root=/usr/local/Nuke$nuke_version
     export NUKE_FONT_PATH=$PROJEKT_PATH/assets/font #fonts
-    
+   
 
 fi
 
@@ -203,15 +203,15 @@ fi
 # export NUKE_PERF_TIMING=1
 
 # -------------------------------------------------------------------------- #
-# The 'import nuke' function checks-out a nuke_r render license by default. 
+# The 'import nuke' function checks-out a nuke_r render license by default.
 # To use an interactive license instead, set this environment variable to 1.
 
-# export NUKE_INTERACTIVE=1 
+# export NUKE_INTERACTIVE=1
 
 
 # -------------------------------------------------------------------------- #
 # Environment Variable: NUKE_LOCALIZATION_NUMWATCHERS
-# Description: This environment variable is used to specify the number of watchers 
+# Description: This environment variable is used to specify the number of watchers
 # for the localization process.
 # Usage: Set this variable to control how many localization watchers are active.
 # Example: export NUKE_LOCALIZATION_NUMWATCHERS=5
@@ -265,5 +265,5 @@ $nuke_root/$nuke_command $@
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

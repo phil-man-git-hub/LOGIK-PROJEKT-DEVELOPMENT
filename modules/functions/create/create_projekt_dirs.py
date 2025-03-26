@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -72,7 +72,7 @@ def get_base_path():
                 os.path.dirname(__file__), '..', '..', '..'
             )
         )
-    
+   
 # -------------------------------------------------------------------------- #
 
 def get_resource_path(relative_path):
@@ -387,13 +387,13 @@ def create_the_projekt_directories(
         # Load the existing bookmarks file to append new bookmarks
         with open(bookmarks_file, 'r+') as f:
             data = json.load(f)
-            
+           
             # Read tmp_bookmarks_file
             if os.path.getsize(tmp_bookmarks_file) > 0:
                 try:
                     with open(tmp_bookmarks_file, 'r') as tmp_file:
                         tmp_bookmarks_data = json.load(tmp_file)
-                        
+                       
                         # Insert tmp_bookmarks_file content into the bookmarks list
                         projekt_dirs_folder = _find_bookmark_folder(data['DlBookmark']['Sections'][0]['Bookmarks'], "projekt directories")
                         if projekt_dirs_folder is not None:
@@ -402,7 +402,7 @@ def create_the_projekt_directories(
                     print(f"* Error decoding JSON from {tmp_bookmarks_file}: {e}")
             else:
                 print(f"  {tmp_bookmarks_file} is empty or does not exist.")
-            
+           
             # Write updated data back to the file
             f.seek(0)
             json.dump(data, f, indent=4)
@@ -422,7 +422,7 @@ def create_the_projekt_directories(
 
 if __name__ == "__main__":
     import argparse
-    
+   
     parser = argparse.ArgumentParser(description="Create project directories and bookmarks.")
     parser.add_argument("the_projekts_dir", help="Path to the projects directory")
     parser.add_argument("the_projekt_name", help="Name of the specific project")
@@ -434,15 +434,15 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    create_the_projekt_directories(args.the_projekts_dir, args.the_projekt_name, args.the_projekts_flame_dir, 
-                        args.bookmarks_file, args.tmp_bookmarks_file, 
+    create_the_projekt_directories(args.the_projekts_dir, args.the_projekt_name, args.the_projekts_flame_dir,
+                        args.bookmarks_file, args.tmp_bookmarks_file,
                         args.the_projekt_dirs_json_dir, args.the_projekt_dirs_json_files)
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1

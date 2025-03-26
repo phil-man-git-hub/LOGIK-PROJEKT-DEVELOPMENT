@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 
 # -------------------------------------------------------------------------- #
@@ -39,7 +39,7 @@ This script downloads the ACES 1.2 OpenColorIO (OCIO) configuration file from a 
 It fetches the asset, extracts it, and modifies the downloaded files to keep only specified active views and displays.
 The modifications include commenting out unwanted sections and adding a note with a timestamp and details of the changes made.
 
-If run inside a PROJEKT, the script will download the files to the software/ocio folder. 
+If run inside a PROJEKT, the script will download the files to the software/ocio folder.
 If run outside a PROJEKT, the files will be downloaded to the current directory.
 
 Functions:
@@ -135,7 +135,7 @@ def modify_ocio_file(file_path: Path, keep_active_views: List[str], keep_display
     try:
         config_content = file_path.read_text()
         config_content = comment_out_unwanted_sections(config_content, keep_active_views, keep_displays)
-        
+       
         match = DESCRIPTION_PATTERN.search(config_content)
         if match:
             insert_pos = match.start()
@@ -182,5 +182,5 @@ if __name__ == "__main__":
     ocio_file_path = DESTINATION_DIR / "aces_1.2" / "config.ocio"
     if ocio_file_path.exists():
         modify_ocio_file(ocio_file_path, keep_active_views, keep_displays)
-    
+   
     logger.info("ACES 1.2 config download and modification complete.")

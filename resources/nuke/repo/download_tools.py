@@ -25,14 +25,14 @@
 # -------------------------------------------------------------------------- #
 
 """
-This script downloads and extracts tools and scripts from specified 
-GitHub repositories and zip URLs. It sets up logging to track the process 
+This script downloads and extracts tools and scripts from specified
+GitHub repositories and zip URLs. It sets up logging to track the process
 and includes functions to:
 
 1. Download and extract zip files from given URLs with retry logic.
 2. Download the latest release from specified GitHub repositories.
 3. Process lists of repository and zip URLs and track them for updates.
-4. Create an `init.py` and `menu.py` file with `nuke.pluginAddPath()` 
+4. Create an `init.py` and `menu.py` file with `nuke.pluginAddPath()`
    statements based on the extracted directories.
 """
 
@@ -180,7 +180,7 @@ def download_and_extract_zip(zip_url: str, final_dir: str) -> None:
     """
     if "github.com" in zip_url and not zip_url.endswith("?raw=true"):
         zip_url += "?raw=true"
-    
+   
     zip_content = fetch_url_with_retries(zip_url)
     if zip_content:
         try:
@@ -211,13 +211,13 @@ def download_latest_release(repo_url: str) -> Optional[str]:
     """
     owner, repo = repo_url.rstrip('/').split('/')[-2:]
     release_url = f"https://github.com/{owner}/{repo}/releases/latest"
-    
+   
     try:
         with urllib.request.urlopen(release_url, timeout=10) as response:
             tag_name = response.geturl().split('/')[-1]
             zip_url = f"https://github.com/{owner}/{repo}/archive/refs/tags/{tag_name}.zip"
             final_dir = f"{repo}_{tag_name}"
-            
+           
             if Path(final_dir).exists():
                 logger.info(f"Directory {final_dir} already exists. Skipping download.")
                 return final_dir
@@ -255,7 +255,7 @@ def process_repo_urls(repo_urls: Dict[str, str]) -> None:
     Process a dictionary of repository URLs and add the processed data to respective dictionaries.
 
     Args:
-        repo_urls (Dict[str, str]): A dictionary where the keys are repository URLs and the values are 
+        repo_urls (Dict[str, str]): A dictionary where the keys are repository URLs and the values are
                                     strings indicating the type of processing ('init' or other).
 
     Returns:
@@ -275,16 +275,16 @@ def process_zip_urls(zip_urls: Dict[str, str]) -> None:
     Processes a dictionary of zip URLs and their corresponding keys.
 
     For each zip URL in the dictionary, this function checks if the directory
-    corresponding to the zip file already exists. If it does not exist, it 
-    downloads and extracts the zip file into that directory. If the directory 
-    already exists, it logs an informational message. Additionally, it adds 
-    the directory to either the `init_py_items` or `menu_py_items` dictionary 
+    corresponding to the zip file already exists. If it does not exist, it
+    downloads and extracts the zip file into that directory. If the directory
+    already exists, it logs an informational message. Additionally, it adds
+    the directory to either the `init_py_items` or `menu_py_items` dictionary
     based on the provided key.
 
     Args:
-        zip_urls (Dict[str, str]): A dictionary where the keys are zip URLs 
-                                   and the values are strings indicating 
-                                   whether the zip file should be added to 
+        zip_urls (Dict[str, str]): A dictionary where the keys are zip URLs
+                                   and the values are strings indicating
+                                   whether the zip file should be added to
                                    `init_py_items` or `menu_py_items`.
 
     Returns:
@@ -416,5 +416,5 @@ if __name__ == "__main__":
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

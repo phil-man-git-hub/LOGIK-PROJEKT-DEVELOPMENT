@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -51,13 +51,13 @@ import os
 # ========================================================================== #
 
 # Project Settings > Default FPS: 23.976
-nuke.knobDefault("Root.fps", "23.976") 
+nuke.knobDefault("Root.fps", "23.976")
 
 # Project Settings > Default FPS: 24
-# nuke.knobDefault("Root.fps", "24") 
+# nuke.knobDefault("Root.fps", "24")
 
 # Project Settings > Default FPS: 29.976
-#nuke.knobDefault("Root.fps", "29.976") 
+#nuke.knobDefault("Root.fps", "29.976")
 
 #nuke.knobDefault("Root.fps", '25')
 #nuke.knobDefault("Viewer.fps", "25")
@@ -76,14 +76,14 @@ nuke.knobDefault("Root.lock_range", "1")
 # This section sets the default projekt format
 # ========================================================================== #
 
-# Project Settings > Default format: 4K_DCP 4096x2160 
-# nuke.knobDefault("Root.format", "4K_DCP") 
+# Project Settings > Default format: 4K_DCP 4096x2160
+# nuke.knobDefault("Root.format", "4K_DCP")
 
-# Project Settings > Default format: UHD_4K 3840x2160 
-nuke.knobDefault("Root.format", "UHD_4K")  
+# Project Settings > Default format: UHD_4K 3840x2160
+nuke.knobDefault("Root.format", "UHD_4K") 
 
-# Project Settings > Default format: HD_1080 1920x1080 
-# nuke.knobDefault("Root.format", "HD_1080") 
+# Project Settings > Default format: HD_1080 1920x1080
+# nuke.knobDefault("Root.format", "HD_1080")
 
 # ========================================================================== #
 # This section sets the render_mode to top-down as the default
@@ -105,7 +105,7 @@ nuke.knobDefault('Root.colorManagement', 'OCIO')
 
 nuke.knobDefault("Write.label", '[if {[value file_type] == "exr"} {return [value compression]\\n[value datatype]} else {return ""}] [if {[value file_type] == "mov"} {return [value mov_prores_codec_profile]} else {return ""}]')
 
-# Write > Default for MOV files: ProRes 4444 XQ with ALPHA 
+# Write > Default for MOV files: ProRes 4444 XQ with ALPHA
 nuke.knobDefault("Write.mov.mov_prores_codec_profile","ProRes 4444 XQ 12-bit")
 nuke.knobDefault("Write.mov.channels","rgba")
 #nuke.knobDefault("Write.mov.colorspace","sRGB")
@@ -201,7 +201,7 @@ nuke.knobDefault("AdjBBox.numpixels", "100")
 # ========================================================================== #
 
 nuke.knobDefault("Dot.note_font_size", "22")
-# nuke.knobDefault("Dot.note_font", "Bitstream Vera Sans Bold") 
+# nuke.knobDefault("Dot.note_font", "Bitstream Vera Sans Bold")
 
 
 # ========================================================================== #
@@ -209,9 +209,9 @@ nuke.knobDefault("Dot.note_font_size", "22")
 # ========================================================================== #
 
 # nuke.knobDefault("StickyNote.note_font_size", "40")
-# nuke.knobDefault("StickyNote.note_font", "Avenir Black")  
+# nuke.knobDefault("StickyNote.note_font", "Avenir Black") 
 
- 
+
 # ========================================================================== #
 # This section sets the default value for the Retime node
 # ========================================================================== #
@@ -225,7 +225,7 @@ nuke.knobDefault("Retime.filter", "nearest")
 # This section sets the default values for for the following nodes
 # ========================================================================== #
 
-# Exposure Tool > Use stops instead of densities  
+# Exposure Tool > Use stops instead of densities 
 nuke.knobDefault("EXPTool.mode", "0")
 nuke.knobDefault("Gamma.channels", "rgba")
 nuke.knobDefault('Multiply.channels', 'rgba')
@@ -347,9 +347,9 @@ nuke.knobDefault("CheckerBoard2.centerlinewidth","0")
 # This section sets the default values for Viewer
 # ========================================================================== #
 
-nuke.knobDefault("Viewer.frame_increment", "4") 
+nuke.knobDefault("Viewer.frame_increment", "4")
 
-nuke.knobDefault("Viewer.center_fstop", "0") 
+nuke.knobDefault("Viewer.center_fstop", "0")
 nuke.knobDefault("Viewer.useGPUForViewer", "1")
 nuke.knobDefault("Viewer.useGPUForInputs", "1")
 nuke.knobDefault("Viewer.disableGPUDitherForViewer", "1")
@@ -369,5 +369,5 @@ nuke.knobDefault("ReadGeo2.localizationPolicy", "off")
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

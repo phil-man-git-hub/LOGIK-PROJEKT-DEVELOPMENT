@@ -2,7 +2,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -24,7 +24,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 # -------------------------------------------------------------------------- #
 
@@ -144,8 +144,8 @@ def setup_root_projekt_knobs():
     add_knob_if_not_exists('fav_div', nuke.Text_Knob, "", "")
     # PROJEKT <-> from env_vars
     add_knob_if_not_exists('set_projekt_from_env_vars', nuke.PyScript_Knob, '---setup PROJEKT---', 'projekt_core.vfxtools.set_projekt_from_env_vars()')
-    
-    
+   
+   
     # add_knob_if_not_exists('set_env_from_script', nuke.PyScript_Knob, 'PROJEKT <-> from nuke script', 'projekt_core.vfxtools.parse_script_for_env()')
     # if nuke.root().knob('set_env_from_script') is not None:
         # nuke.root().knob('set_env_from_script').setFlag(nuke.STARTLINE)
@@ -170,9 +170,9 @@ def create_projekt_panel():
     """
     Creates a pipeline panel for the root.PROJEKT in Nuke.
 
-    This function checks if the root.PROJEKT panel already exists in Nuke. 
-    If it exists, it logs an information message and moves on. If it doesn't exist, 
-    it logs an information message and creates the root.PIPELINE panel using the rootTemplates function. 
+    This function checks if the root.PROJEKT panel already exists in Nuke.
+    If it exists, it logs an information message and moves on. If it doesn't exist,
+    it logs an information message and creates the root.PIPELINE panel using the rootTemplates function.
     It then parses the script for environment variables using the parseScriptForEnv function.
 
     Returns:
@@ -196,19 +196,19 @@ def update_root_warnings():
     """
     Add warnings to the root.PROJEKT tab if the folders do not exist.
     This function checks if the job folder exists and if it is set to the project root.
-    If the job folder does not exist or is set to the project root, it adds a warning message 
+    If the job folder does not exist or is set to the project root, it adds a warning message
     to the root.PROJEKT tab.
     """
     projekt_name_value = str(settings.projekt_name())
     projekt_path_value = str(settings.projekt_path())
 
-   
+  
     # root_node = nuke.root()
     projekt_name_knob = nuke.root().knob('projekt_name_knob').value()
     projekt_path_knob = nuke.root().knob('projekt_path_knob').value()
     shot_name_knob = nuke.root().knob('shot_name_knob').value()
 
-  
+ 
 
     job_message = '<b style="color:green">Name: good</b>'
     path_message = '<b style="color:green">Path: good</b>'
@@ -225,7 +225,7 @@ def update_root_warnings():
 
     # PROJEKT checks
     # if not projekt_name_knob and not projekt_path_knob:
-    # if not projekt_name_knob:        
+    # if not projekt_name_knob:       
     #     job_message = '<b style="color:orange">ERROR: name is blank!</b>'
     #     # path_message = '<b style="color:orange">ERROR: path is blank!</b>'
     #     logger.warning('PROJEKT name is blank!')
@@ -275,7 +275,7 @@ def update_root_warnings():
     nuke.root().knob('projekt_warning').setValue(job_message)
     nuke.root().knob('path_warning').setValue(path_message)
     nuke.root().knob('shot_warning').setValue(shot_message)
-    
+   
 print("# -------------------------------------------------------------------------- #")
 
 # -------------------------------------------------------------------------- #
@@ -380,7 +380,7 @@ def set_projekt_from_env_vars():
         else:
             logger.warning(f'{env_var} not set')
     update_root_warnings()
-    
+   
 # -------------------------------------------------------------------------- #
 
 def on_root_node_create_callback():
@@ -391,7 +391,7 @@ def on_root_node_create_callback():
         None
     """
     logger.info('on_root_node_create callback triggered')
-    
+   
     root_name = nuke.root().name()
     if not root_name:
         logger.info('Root node name is empty, setting projekt from environment variables')
@@ -406,9 +406,9 @@ def parse_script_for_env():
     """
     Given a script saved onto disk, parseScriptForEnv() will set the projekt, path, and shot in the nuke.root() tab.
     This function checks if the script is saved into a job/seq/shot structure. It verifies the path exists before continuing.
-        
+       
     """
- 
+
     projekt_root_value = str(settings.projekt_root_path())
 
     logger.info('Checking if the script exists...')
@@ -491,7 +491,7 @@ def read_projekt_env():
 # not implemented/updated yet...
 # def set_projekt_env():
 #     """
-#     Sets the shell's env variables after loading a script with nuke.root() job env's set    
+#     Sets the shell's env variables after loading a script with nuke.root() job env's set   
 #     """
 #     if nuke.root().knob('jobEnv'):
 #         os.environ['JOB'] = vfxtools.jobDir()
@@ -556,5 +556,5 @@ def direnv_diff_to_string() -> str:
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #

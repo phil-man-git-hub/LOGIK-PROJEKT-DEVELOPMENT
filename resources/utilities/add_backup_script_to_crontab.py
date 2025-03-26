@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -277,10 +277,10 @@ if __name__ == "__main__":
     sys.exit(app.exec())
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
@@ -506,7 +506,7 @@ def create_crontab_entry(script_path, cron_time):
     """Adds a crontab entry to run the specified script at the specified time and log the activity."""
     # Construct the command to run the script and append output to the log file
     cron_command = f"{cron_time} {script_path} >> {backup_script_cron_log_path} 2>&1"
-    
+   
     try:
         # Get existing crontab
         existing_crontab = subprocess.check_output("crontab -l", shell=True, universal_newlines=True)
@@ -522,7 +522,7 @@ def create_crontab_entry(script_path, cron_time):
 
     print(f"Crontab entry for {script_path} created successfully.")
     print(f"Cron activity will be logged to: {backup_script_cron_log_path}")
-    
+   
     user = os.getlogin()
     cron_file_location = f"/var/spool/cron/{user}" if os.name != 'darwin' else f"/var/cron/tabs/{user}"
     print(f"Crontab file location: {cron_file_location}")
@@ -636,10 +636,10 @@ if __name__ == "__main__":
     sys.exit(app.exec())
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1

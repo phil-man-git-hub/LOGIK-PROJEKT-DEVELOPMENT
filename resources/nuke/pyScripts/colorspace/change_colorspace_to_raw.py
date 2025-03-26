@@ -3,7 +3,7 @@
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
 #                   Copyright © 2024 Silo 84
-               
+              
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -25,7 +25,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-               
+              
 #                   Contact: brian@silo84.com
 
 # -------------------------------------------------------------------------- #
@@ -33,13 +33,13 @@
 # File Name:        change_colorspace_to_raw.py
 # Version:          0.0.1
 # Created:          2024-11-08
-# Modified:         
+# Modified:        
 
 # -------------------------------------------------------------------------- #
 
 import nuke
- 
-def change_colorspace_to_raw(): 
+
+def change_colorspace_to_raw():
     """
     Change the colorspace of selected 'Read' nodes in Nuke to 'raw'.
     This function iterates through all currently selected nodes in Nuke,
@@ -53,12 +53,12 @@ def change_colorspace_to_raw():
     """
     # Get the selected nodes
     selected_nodes = nuke.selectedNodes()
-     
+    
     # Iterate through the selected nodes and set the colorspace
     for node in selected_nodes:
         if node.Class() == 'Read':
             node['colorspace'].setValue('raw')
-     
+    
     # Optional: Refresh the GUI to reflect the changes
     nuke.updateUI()
 
@@ -68,6 +68,6 @@ def main():
 # -------------------------------------------------------------------------- #
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 20 7C 20 62 72 69 61 6E 40 73 69 6C 6F 38 34 2E 63 6F 6D #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 

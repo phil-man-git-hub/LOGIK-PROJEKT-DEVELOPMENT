@@ -3,8 +3,8 @@
 # -------------------------------------------------------------------------- #
 
 # DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-                
+#                   Copyright Strength In Numbers © 2025
+               
 #                   LOGIK-PROJEKT creates directories, files, scripts & tools
 #                   for use with Autodesk Flame and other software.
 
@@ -14,7 +14,7 @@
 #                   of the GNU General Public License as published by the
 #                   Free Software Foundation, either version 3 of the License,
 #                   or any later version.
- 
+
 #                   This program is distributed in the hope that it will be
 #                   useful, but WITHOUT ANY WARRANTY; without even the
 #                   implied warranty of MERCHANTABILITY or FITNESS FOR A
@@ -26,7 +26,7 @@
 #                   Public License along with this program.
 
 #                   If not, see <https://www.gnu.org/licenses/>.
-                
+               
 #                   Contact: phil_man@mac.com
 
 # -------------------------------------------------------------------------- #
@@ -74,7 +74,7 @@ def get_base_path():
 
         # If the application is run as a bundle, use the sys._MEIPASS
         return sys._MEIPASS
-    
+   
     else:
 
         # If the application is run from a script, use the script's directory
@@ -188,7 +188,7 @@ the_hostname = "delta"
 
 def combine_resolution_file(directory, order_file):
     combined_resolutions = []
-    
+   
     try:
         with open(order_file, 'r') as file:
             order = json.load(file)
@@ -197,7 +197,7 @@ def combine_resolution_file(directory, order_file):
     except (FileNotFoundError, json.JSONDecodeError, ValueError) as e:
         print(f"  Error loading order file: {e}\n")
         return combined_resolutions
-    
+   
     for filename in order:
         filepath = os.path.join(directory, filename)
         try:
@@ -206,15 +206,15 @@ def combine_resolution_file(directory, order_file):
                 combined_resolutions.append(data)
         except (FileNotFoundError, json.JSONDecodeError) as e:
             print(f"  Skipping invalid resolution file {filepath}: {e}\n")
-    
+   
     return combined_resolutions
 
 def combine_resolutions(directory, order_file):
     combined_resolutions = combine_resolution_file(directory, order_file)
-    
+   
     combobox_items = []
     resolution_details = []
-    
+   
     for data in combined_resolutions:
         if 'items' in data:
             for item_group in data['items']:
@@ -232,26 +232,26 @@ def combine_resolutions(directory, order_file):
                             'pixel_aspect_ratio': resolution.get('pixel_aspect_ratio', 'N/A'),
                             'aspect_ratio': resolution.get('aspect_ratio', 'N/A')
                         })
-    
+   
     return combobox_items, resolution_details
 
 if __name__ == '__main__':
     directory = 'resources/cfg/projekt_configuration/parameters/resolution_json_files'
     order_file = 'resources/cfg/projekt_configuration/parameters/load_order/load_order_resolutions.json'
     combobox_items, resolution_details = combine_resolutions(directory, order_file)
-    
+   
     print("Combobox Items:")
     print(combobox_items)
-    
+   
     print("\nResolution Details:")
     for detail in resolution_details:
         print(detail)
 
 # ========================================================================== #
-# C2 A9 32 30 32 34 2D 4D 41 4E 2D 4D 41 44 45 2D 4D 45 4B 41 4E 59 5A 4D 53 #
+# 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
 # ========================================================================== #
 
-# Changelist:       
+# Changelist:      
 
 # -------------------------------------------------------------------------- #
 # version:          0.0.1
