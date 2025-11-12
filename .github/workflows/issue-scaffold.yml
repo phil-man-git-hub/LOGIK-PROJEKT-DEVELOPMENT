@@ -1,0 +1,54 @@
+name: Issue scaffolding
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  scaffold:
+    name: Scaffold issue directory and open PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Extract issue info
+        run: |
+          ISSUE_NUM=${{ github.event.issue.number }}
+          ISSUE_ID=$(printf '%03d' "$ISSUE_NUM")
+          echo "ISSUE_NUM=$ISSUE_NUM" >> $GITHUB_ENV
+          echo "ISSUE_ID=$ISSUE_ID" >> $GITHUB_ENV
+          echo "ISSUE_TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
+
+      - name: Install minimal deps
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Run scaffold script
+        run: |
+          python scripts/scaffold_issue.py \
+            --template docs/idd/issues/github-issue-tree-template.json \
+            --issue-id "${{ env.ISSUE_ID }}" \
+            --issue-title "${{ env.ISSUE_TITLE }}"
+
+      - name: Create Pull Request with scaffolded files
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(idd): scaffold issue-${{ env.ISSUE_ID }} from template"
+          branch: "issue-${{ env.ISSUE_ID }}/scaffold"
+          title: "chore(idd): scaffold issue-${{ env.ISSUE_ID }}"
+          body: |
+            Scaffolded files for issue #${{ github.event.issue.number }} ("${{ github.event.issue.title }}").
+            This PR was generated automatically by the IDD scaffolding workflow.
+          base: prod-2027.0.0
+          committer: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
+          author: GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>
