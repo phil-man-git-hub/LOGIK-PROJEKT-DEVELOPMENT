@@ -1,0 +1,22 @@
+name: Validate Issue Filenames
+
+on:
+  pull_request:
+    paths:
+      - 'docs/idd/issues/*.md'
+  push:
+    paths:
+      - 'docs/idd/issues/*.md'
+
+jobs:
+  filename-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Run filename validation script
+        run: python scripts/validate_issue_filenames.py

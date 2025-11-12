@@ -1,0 +1,81 @@
+name: Sync Issues to TO-DO
+
+on:
+  # Trigger on issue events
+  issues:
+    types: [opened, closed, reopened, labeled, unlabeled, assigned, unassigned]
+  
+  # Scheduled sync every hour
+  schedule:
+    - cron: '0 * * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Permissions needed for the workflow
+permissions:
+  contents: write  # To commit changes to TO-DO.md
+  issues: read     # To fetch issue data
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    name: Sync Issues to TO-DO.md
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install dependencies
+        run: |
+          pip install PyGithub python-dotenv
+      
+      - name: 🔄 Run sync script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python .github/scripts/sync_issues_to_todo.py
+      
+      - name: 📊 Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet TO-DO.md; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No changes to TO-DO.md"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✓ Changes detected in TO-DO.md"
+          fi
+      
+      - name: 💾 Commit and push changes
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add TO-DO.md
+          git commit -m "chore: sync issues to TO-DO.md [skip ci]
+          
+          Auto-synced by GitHub Actions
+          Triggered by: ${{ github.event_name }}
+          Workflow: ${{ github.workflow }}
+          Run: ${{ github.run_number }}"
+          git push
+      
+      - name: ✅ Sync complete
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          echo "✅ TO-DO.md successfully updated and pushed"
+      
+      - name: ℹ️  No update needed
+        if: steps.check_changes.outputs.changed == 'false'
+        run: |
+          echo "ℹ️  TO-DO.md is already up to date"

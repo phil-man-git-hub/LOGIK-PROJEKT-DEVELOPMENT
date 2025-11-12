@@ -1,0 +1,50 @@
+{
+    "name": "issue-directory-template",
+    "GitHubIssueID": "{{issue_id}}",
+    "GitHubIssueName": "{{issue_title}}",
+    "IssueTitle": "{{issue_title}}",
+    "children": [
+        {
+            "name": "step-01-feature-type",
+            "children": [
+                { "name": "issue-{{issue_id}}-feature-type.md", "type": "file" }
+            ]
+        },
+        {
+            "name": "step-11-research",
+            "children": [
+                { "name": "issue-{{issue_id}}-research.md", "type": "file" }
+            ]
+        },
+        {
+            "name": "step-21-insight",
+            "children": [
+                { "name": "issue-{{issue_id}}-insight.md", "type": "file" }
+            ]
+        },
+        {
+            "name": "step-31-cognition",
+            "children": [
+                { "name": "issue-{{issue_id}}-cognition.md", "type": "file" }
+            ]
+        },
+        {
+            "name": "step-41-how-to",
+            "children": [
+                { "name": "issue-{{issue_id}}-how-to.md", "type": "file" }
+            ]
+        },
+        {
+            "name": "step-51-to-do",
+            "children": [
+                { "name": "issue-{{issue_id}}-to-do.md", "type": "file" }
+            ]
+        },
+        {
+            "name": "step-61-memory",
+            "children": [
+                { "name": "issue-{{issue_id}}-memory.md", "type": "file" }
+            ]
+        }
+    ]
+}

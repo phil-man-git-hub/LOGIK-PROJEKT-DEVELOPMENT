@@ -1,0 +1,207 @@
+# Label Definitions for WORKSTATION-CONFIGURATION
+# This file documents all labels used in the repository
+# Labels should be created manually in GitHub or via GitHub CLI
+
+## Type Labels (what kind of change)
+- name: bug
+  color: d73a4a
+  description: Something isn't working
+
+- name: enhancement
+  color: a2eeef
+  description: New feature or request
+
+- name: documentation
+  color: 0075ca
+  description: Improvements or additions to documentation
+
+- name: chore
+  color: fef2c0
+  description: Maintenance tasks and housekeeping
+
+- name: refactoring
+  color: fbca04
+  description: Code refactoring without behavior changes
+
+- name: testing
+  color: c5def5
+  description: Adding or updating tests
+
+- name: performance
+  color: f9d0c4
+  description: Performance improvements
+
+- name: style
+  color: e4e669
+  description: Code style and formatting
+
+- name: breaking-change
+  color: b60205
+  description: Changes that break backward compatibility
+
+## Area Labels (what part of the system)
+- name: automation
+  color: 0e8a16
+  description: GitHub Actions, workflows, and automation
+
+- name: idd
+  color: 5319e7
+  description: Issue-Driven Development infrastructure
+
+- name: infrastructure
+  color: 006b75
+  description: Infrastructure and system administration
+
+- name: monitoring
+  color: 0366d6
+  description: Monitoring and observability
+
+- name: network
+  color: 1d76db
+  description: Network configuration and management
+
+- name: security
+  color: d93f0b
+  description: Security, certificates, and authentication
+
+- name: storage
+  color: 5c7cfa
+  description: Storage, backup, and data management
+
+- name: database
+  color: 7057ff
+  description: Database related changes
+
+- name: services
+  color: 54b5a6
+  description: Service management and configuration
+
+## Size Labels (PR size)
+- name: size/XS
+  color: 00ff00
+  description: Extra small PR (<10 lines changed)
+
+- name: size/S
+  color: 90ee90
+  description: Small PR (10-100 lines changed)
+
+- name: size/M
+  color: ffff00
+  description: Medium PR (100-500 lines changed)
+
+- name: size/L
+  color: ffa500
+  description: Large PR (500-1000 lines changed)
+
+- name: size/XL
+  color: ff0000
+  description: Extra large PR (>1000 lines changed)
+
+## Priority Labels
+- name: priority/high
+  color: d93f0b
+  description: High priority issue or PR
+
+- name: priority/medium
+  color: fbca04
+  description: Medium priority issue or PR
+
+- name: priority/low
+  color: 0e8a16
+  description: Low priority issue or PR
+
+## Status Labels
+- name: status/blocked
+  color: b60205
+  description: Blocked by another issue or external dependency
+
+- name: status/in-progress
+  color: 0052cc
+  description: Currently being worked on
+
+- name: status/needs-review
+  color: fbca04
+  description: Waiting for code review
+
+- name: status/needs-testing
+  color: d4c5f9
+  description: Needs testing before merge
+
+## Meta Labels
+- name: good-first-issue
+  color: 7057ff
+  description: Good for newcomers
+
+- name: help-wanted
+  color: 008672
+  description: Extra attention is needed
+
+- name: question
+  color: d876e3
+  description: Further information is requested
+
+- name: duplicate
+  color: cfd3d7
+  description: This issue or PR already exists
+
+- name: invalid
+  color: e4e669
+  description: This doesn't seem right
+
+- name: wontfix
+  color: ffffff
+  description: This will not be worked on
+
+- name: stale
+  color: eeeeee
+  description: No activity for extended period
+
+## Special Labels
+- name: dependencies
+  color: 0366d6
+  description: Pull requests that update a dependency file
+
+- name: config
+  color: 1d76db
+  description: Configuration file changes
+
+- name: scripts
+  color: 0e8a16
+  description: Shell script changes
+
+- name: python
+  color: 3572a5
+  description: Python code changes
+
+- name: task
+  color: 1d76db
+  description: General development task
+
+## Platform/Environment Labels
+- name: linux
+  color: 2ecc40
+  description: Related to Linux systems
+
+- name: macos
+  color: 8e44ad
+  description: Related to macOS systems
+
+- name: windows
+  color: 0074d9
+  description: Related to Windows systems
+
+- name: bsd
+  color: 7fdbff
+  description: Related to BSD systems
+
+- name: container
+  color: 39cccc
+  description: Related to containerization (Docker, Podman, etc.)
+
+- name: vm
+  color: ff851b
+  description: Related to virtual machines
+
+- name: firewall
+  color: ff4136
+  description: Related to firewall configuration or issues

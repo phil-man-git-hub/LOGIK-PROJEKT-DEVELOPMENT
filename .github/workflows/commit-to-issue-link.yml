@@ -1,0 +1,162 @@
+name: Commit to Issue Linking
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  link-commits-to-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Link commits to issues
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Get commit messages from the push
+            const commits = context.payload.commits || [];
+            
+            console.log(`Processing ${commits.length} commit(s)...`);
+            
+            for (const commit of commits) {
+              console.log(`\nProcessing commit: ${commit.id.substring(0, 7)}`);
+              console.log(`Message: ${commit.message}`);
+              
+              // Parse commit message for issue references
+              const issuePatterns = [
+                /(?:Fixes|Closes|Resolves|Fixed|Closed|Resolved):\s*#(\d+)/gi,
+                /(?:Fixes|Closes|Resolves|Fixed|Closed|Resolved)\s+#(\d+)/gi,
+                /Related(?:\s+to)?:\s*#(\d+(?:,\s*#\d+)*)/gi,
+                /(?:Issue|Issues):\s*#(\d+(?:,\s*#\d+)*)/gi
+              ];
+              
+              const closingKeywords = ['fixes', 'closes', 'resolves', 'fixed', 'closed', 'resolved'];
+              const relatedKeywords = ['related', 'issue', 'issues'];
+              
+              // Track issues to close and issues to comment on
+              const issuesToClose = new Set();
+              const issuesToComment = new Set();
+              
+              // Parse all issue references
+              for (const pattern of issuePatterns) {
+                let match;
+                while ((match = pattern.exec(commit.message)) !== null) {
+                  const keyword = match[0].split(/[:\s#]/)[0].toLowerCase();
+                  
+                  // Extract issue numbers (handle comma-separated lists)
+                  const issueNumbers = match[1].split(',').map(n => 
+                    n.trim().replace('#', '')
+                  );
+                  
+                  for (const issueNum of issueNumbers) {
+                    const issueNumber = parseInt(issueNum);
+                    if (isNaN(issueNumber)) continue;
+                    
+                    if (closingKeywords.includes(keyword)) {
+                      issuesToClose.add(issueNumber);
+                    } else {
+                      issuesToComment.add(issueNumber);
+                    }
+                  }
+                }
+              }
+              
+              console.log(`Issues to close: ${Array.from(issuesToClose).join(', ') || 'none'}`);
+              console.log(`Issues to comment: ${Array.from(issuesToComment).join(', ') || 'none'}`);
+              
+              // Process issues to close
+              for (const issueNumber of issuesToClose) {
+                try {
+                  // Add comment with commit details
+                  const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${commit.id}`;
+                  const commitShort = commit.id.substring(0, 7);
+                  
+                  // Extract bullet points from commit message
+                  const lines = commit.message.split('\n');
+                  const bulletPoints = lines
+                    .filter(line => line.trim().startsWith('-') || line.trim().startsWith('*'))
+                    .map(line => line.trim())
+                    .join('\n');
+                  
+                  let commentBody = `✅ **Closed by commit [${commitShort}](${commitUrl})**\n\n`;
+                  commentBody += `**Commit message:**\n\`\`\`\n${commit.message.split('\n')[0]}\n\`\`\`\n\n`;
+                  
+                  if (bulletPoints) {
+                    commentBody += `**Changes:**\n${bulletPoints}\n\n`;
+                  }
+                  
+                  commentBody += `**Author:** ${commit.author.name} (${commit.author.email})`;
+                  
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    body: commentBody
+                  });
+                  
+                  console.log(`Added closing comment to issue #${issueNumber}`);
+                  
+                  // Close the issue
+                  await github.rest.issues.update({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    state: 'closed'
+                  });
+                  
+                  console.log(`Closed issue #${issueNumber}`);
+                } catch (error) {
+                  console.error(`Error processing issue #${issueNumber}:`, error.message);
+                }
+              }
+              
+              // Process issues to comment (but not close)
+              for (const issueNumber of issuesToComment) {
+                // Skip if already closed
+                if (issuesToClose.has(issueNumber)) continue;
+                
+                try {
+                  const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${commit.id}`;
+                  const commitShort = commit.id.substring(0, 7);
+                  
+                  // Extract bullet points from commit message
+                  const lines = commit.message.split('\n');
+                  const bulletPoints = lines
+                    .filter(line => line.trim().startsWith('-') || line.trim().startsWith('*'))
+                    .map(line => line.trim())
+                    .join('\n');
+                  
+                  let commentBody = `🔗 **Related commit: [${commitShort}](${commitUrl})**\n\n`;
+                  commentBody += `**Commit message:**\n\`\`\`\n${commit.message.split('\n')[0]}\n\`\`\`\n\n`;
+                  
+                  if (bulletPoints) {
+                    commentBody += `**Changes:**\n${bulletPoints}\n\n`;
+                  }
+                  
+                  commentBody += `**Author:** ${commit.author.name} (${commit.author.email})`;
+                  
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    body: commentBody
+                  });
+                  
+                  console.log(`Added related comment to issue #${issueNumber}`);
+                } catch (error) {
+                  console.error(`Error commenting on issue #${issueNumber}:`, error.message);
+                }
+              }
+            }
+            
+            console.log('\n✅ Commit-to-issue linking complete!');

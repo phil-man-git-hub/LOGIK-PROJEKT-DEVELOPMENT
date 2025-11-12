@@ -1,0 +1,127 @@
+# Path-based auto-labeling configuration for GitHub Actions Labeler
+# See: https://github.com/actions/labeler
+
+# Documentation changes
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: ['docs/**', '*.md', 'README*']
+
+# Infrastructure and system administration
+infrastructure:
+  - changed-files:
+    - any-glob-to-any-file: 
+      - 'src/workstation-configuration/infrastructure/**'
+      - 'src/workstation-configuration/hypervisor/**'
+      - 'prefs/**'
+
+# Monitoring and logging
+monitoring:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/workstation-configuration/monitoring/**'
+      - 'docs/monitoring/**'
+      - 'docs/logging/**'
+
+# Network configuration
+network:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/workstation-configuration/network/**'
+      - 'data/templates/network_templates/**'
+      - 'bin/executable_scripts/CONFIGURE_NETWORK.sh'
+
+# Storage and backup
+storage:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/workstation-configuration/storage/**'
+      - 'src/workstation-configuration/backup/**'
+      - 'docs/infrastructure/NFS_STORAGE_ARCHITECTURE.md'
+      - 'utils/ZFS-UTILITIES/**'
+
+# Security and identity
+security:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/workstation-configuration/identity/**'
+      - 'src/workstation-configuration/ssh/**'
+      - 'src/workstation-configuration/vpn/**'
+      - 'src/workstation-configuration/firewall/**'
+      - 'bin/manage_certificates.sh'
+      - 'docs/infrastructure/CERTIFICATE_MANAGEMENT_GUIDE.md'
+
+# Automation and workflows
+automation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/workflows/**'
+      - '.github/scripts/**'
+      - 'src/workstation-configuration/automation/**'
+
+# Issue-Driven Development
+idd:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'docs/idd/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/pull_request_template.md'
+
+# Testing
+testing:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'tests/**'
+      - '**/*test*'
+      - '**/*spec*'
+
+# Configuration files
+config:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'prefs/**'
+      - 'data/templates/**'
+      - '*.conf'
+      - '*.config'
+      - '*.yml'
+      - '*.yaml'
+      - '*.json'
+
+# Database changes
+database:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/workstation-configuration/database/**'
+
+# Service management
+services:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/workstation-configuration/services/**'
+      - 'src/workstation-configuration/email/**'
+
+# Scripts and utilities
+scripts:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'bin/**/*.sh'
+      - 'utils/**/*.sh'
+      - 'src/**/*.sh'
+
+# Python code
+python:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.py'
+      - 'requirements.txt'
+      - 'setup.py'
+      - 'pyproject.toml'
+
+# Dependencies
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'requirements.txt'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'Gemfile'
+      - 'Gemfile.lock'

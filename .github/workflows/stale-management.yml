@@ -1,0 +1,125 @@
+name: Stale Issue Management
+
+on:
+  schedule:
+    # Run daily at midnight UTC
+    - cron: '0 0 * * *'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Mark stale issues and PRs
+        uses: actions/stale@v9
+        with:
+          # Repository token
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # Stale detection timing
+          days-before-stale: 30  # Issues inactive for 30 days
+          days-before-pr-stale: 14  # PRs inactive for 14 days
+          days-before-close: 7  # Close 7 days after marked stale
+          
+          # Stale label
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          
+          # Exempt labels (never mark as stale)
+          exempt-issue-labels: 'keep-open,in-progress,blocked,pinned,security'
+          exempt-pr-labels: 'keep-open,in-progress,blocked,work-in-progress'
+          
+          # Exempt other conditions
+          exempt-milestones: true  # Don't mark issues in milestones as stale
+          exempt-all-assignees: false  # Still mark assigned issues as stale
+          
+          # Stale issue message
+          stale-issue-message: |
+            👋 This issue has been automatically marked as **stale** because it has not had any activity for 30 days.
+            
+            **What happens next:**
+            - This issue will be closed in 7 days if no further activity occurs
+            - To keep this issue open, simply comment on it or remove the `stale` label
+            - If closed, you can still reopen it at any time
+            
+            **Why does this happen?**
+            We use stale issue management to keep our issue tracker clean and focused on active work.
+            
+            **Need more time?**
+            - Comment to show this is still relevant
+            - Add label `keep-open` to exempt from stale detection
+            - Add label `blocked` if waiting on external dependencies
+            
+            Thank you for your contributions! 🙏
+          
+          # Stale PR message
+          stale-pr-message: |
+            👋 This pull request has been automatically marked as **stale** because it has not had any activity for 14 days.
+            
+            **What happens next:**
+            - This PR will be closed in 7 days if no further activity occurs
+            - To keep this PR open, push new commits, add comments, or remove the `stale` label
+            - If closed, you can still reopen it at any time
+            
+            **Why does this happen?**
+            We use stale PR management to keep our pull request queue focused on active reviews.
+            
+            **Need more time?**
+            - Push commits or comment to show work is ongoing
+            - Add label `work-in-progress` or `keep-open` to exempt from stale detection
+            - Request review if ready for merge
+            
+            Thank you for your contributions! 🙏
+          
+          # Close issue message
+          close-issue-message: |
+            🔒 This issue has been automatically **closed** because it was marked as stale and received no further activity for 7 days.
+            
+            **This is not permanent!**
+            - You can reopen this issue at any time by commenting
+            - The issue history and discussion are preserved
+            - Simply explain why it should be reopened
+            
+            **To prevent this in the future:**
+            - Add label `keep-open` for long-term issues
+            - Add label `blocked` if waiting on dependencies
+            - Comment periodically to show continued relevance
+            
+            **Stale Policy:** Issues inactive for 30+ days may be marked stale and closed after 7 more days.
+            
+            Thank you for understanding! 🙏
+          
+          # Close PR message
+          close-pr-message: |
+            🔒 This pull request has been automatically **closed** because it was marked as stale and received no further activity for 7 days.
+            
+            **This is not permanent!**
+            - You can reopen this PR at any time
+            - The code and discussion are preserved
+            - Simply push new commits or explain why it should be reopened
+            
+            **To prevent this in the future:**
+            - Push commits regularly to show active work
+            - Add label `work-in-progress` for ongoing development
+            - Request review when ready for merge
+            
+            **Stale Policy:** PRs inactive for 14+ days may be marked stale and closed after 7 more days.
+            
+            Thank you for your contributions! 🙏
+          
+          # Operation limits
+          operations-per-run: 30  # Max operations per run to avoid rate limits
+          remove-stale-when-updated: true  # Remove stale label when issue is updated
+          
+          # Enable debug output
+          debug-only: false
+          
+          # Ascending order (oldest first)
+          ascending: true

@@ -1,0 +1,72 @@
+{
+  "sessions": [
+    {
+      "date": "2025-11-05",
+      "file": "2025-11-05.md",
+      "commits": 32,
+      "issues_referenced": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        12,
+        14,
+        16
+      ],
+      "issues_closed": [],
+      "prs_merged": [],
+      "commit_types": [
+        "chore",
+        "docs",
+        "feat",
+        "fix",
+        "other",
+        "test"
+      ],
+      "files_changed": 138,
+      "lines_changed": 10180,
+      "generated": "2025-11-05T12:03:39.409428"
+    }
+  ],
+  "index_metadata": {
+    "total_sessions": 1,
+    "earliest_session": "2025-11-05",
+    "latest_session": "2025-11-05",
+    "total_issues_completed": 2,
+    "total_prs_merged": 2,
+    "total_commits": 5,
+    "last_updated": "2025-11-05T19:30:00Z"
+  },
+  "topic_index": {
+    "idd-implementation": [
+      "2025-11-05"
+    ],
+    "testing": [
+      "2025-11-05"
+    ],
+    "automation": [
+      "2025-11-05"
+    ],
+    "ai-context": [
+      "2025-11-05"
+    ],
+    "infrastructure": [
+      "2025-11-05"
+    ]
+  },
+  "issue_index": {
+    "#10": [
+      "2025-11-05"
+    ],
+    "#11": [
+      "2025-11-05"
+    ],
+    "#15": [
+      "2025-11-05"
+    ]
+  }
+}

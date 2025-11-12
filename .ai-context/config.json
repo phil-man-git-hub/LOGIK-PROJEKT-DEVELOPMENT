@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "created": "2025-11-05",
+  "repository": {
+    "name": "WORKSTATION-CONFIGURATION",
+    "owner": "phil-man-git-hub",
+    "description": "Infrastructure workstation configuration and automation"
+  },
+  "memory": {
+    "retention_days": 90,
+    "context_depth": 3,
+    "auto_capture": true,
+    "max_session_size_mb": 5
+  },
+  "sessions": {
+    "auto_generate": true,
+    "capture_git_activity": true,
+    "include_diffs": false,
+    "include_issues": true,
+    "include_prs": true,
+    "format": "markdown"
+  },
+  "context_snippets": {
+    "topics": [
+      "infrastructure",
+      "monitoring",
+      "networking",
+      "idd-implementation",
+      "certificate-management",
+      "storage",
+      "virtualization"
+    ],
+    "auto_update": false,
+    "max_size_kb": 50
+  },
+  "decisions": {
+    "use_adr": true,
+    "adr_format": "markdown",
+    "track_minor_decisions": true
+  },
+  "ai_integration": {
+    "context_window_tokens": 32000,
+    "priority_order": [
+      "active-context",
+      "recent-sessions",
+      "topic-snippets",
+      "decisions"
+    ],
+    "auto_summarize": true
+  }
+}

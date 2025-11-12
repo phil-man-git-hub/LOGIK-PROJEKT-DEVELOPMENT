@@ -1,0 +1,202 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    name: Validate PR Standards
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: ✅ Validate PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            const title = pr.title;
+            const body = pr.body || '';
+            const changedFiles = pr.changed_files;
+            const additions = pr.additions;
+            const deletions = pr.deletions;
+            const totalChanges = additions + deletions;
+            
+            // Validation results
+            const checks = {
+              title_format: false,
+              linked_issue: false,
+              description: false,
+              size_warning: false,
+              checklist: false
+            };
+            
+            const messages = [];
+            const warnings = [];
+            
+            // 1. Check conventional commit title format
+            const conventionalPattern = /^(feat|fix|docs|style|refactor|test|chore|ci|build|perf)(\(.+\))?!?:\s.+/;
+            if (conventionalPattern.test(title)) {
+              checks.title_format = true;
+              messages.push('✅ Title follows conventional commit format');
+            } else {
+              messages.push('❌ Title does not follow conventional commit format');
+              messages.push('   Expected format: `type(scope): description`');
+              messages.push('   Types: feat, fix, docs, style, refactor, test, chore, ci, build, perf');
+              messages.push('   Example: `feat(monitoring): add LibreNMS support`');
+            }
+            
+            // 2. Check for linked issue
+            const issuePattern = /(close|closes|closed|fix|fixes|fixed|resolve|resolves|resolved)\s+#\d+/i;
+            if (issuePattern.test(body)) {
+              checks.linked_issue = true;
+              messages.push('✅ PR is linked to an issue');
+            } else {
+              messages.push('⚠️  PR is not linked to an issue');
+              messages.push('   Add "Closes #123" or "Fixes #123" to the description');
+            }
+            
+            // 3. Check for non-empty description
+            const minDescriptionLength = 50;
+            if (body.length >= minDescriptionLength) {
+              checks.description = true;
+              messages.push('✅ PR has adequate description');
+            } else {
+              messages.push('❌ PR description is too short or missing');
+              messages.push(`   Minimum length: ${minDescriptionLength} characters`);
+            }
+            
+            // 4. Check PR size
+            if (totalChanges > 1000) {
+              warnings.push('⚠️  **Large PR**: This PR has over 1000 lines of changes');
+              warnings.push('   Consider breaking it into smaller, focused PRs for easier review');
+              checks.size_warning = true;
+            } else if (totalChanges > 500) {
+              warnings.push('⚠️  **Medium-Large PR**: This PR has 500-1000 lines of changes');
+              warnings.push('   Ensure changes are well-organized and documented');
+            } else {
+              messages.push(`✅ PR size is manageable (${totalChanges} lines changed)`);
+            }
+            
+            // 5. Check for checklist in description
+            const hasChecklist = body.includes('- [') || body.includes('- [ ]') || body.includes('- [x]');
+            if (hasChecklist) {
+              checks.checklist = true;
+              messages.push('✅ PR includes checklist');
+              
+              // Count completed vs total checklist items
+              const totalItems = (body.match(/- \[[ x]\]/g) || []).length;
+              const completedItems = (body.match(/- \[x\]/gi) || []).length;
+              if (totalItems > 0) {
+                messages.push(`   📋 Checklist: ${completedItems}/${totalItems} items completed`);
+              }
+            } else {
+              messages.push('⚠️  PR does not include a checklist');
+              messages.push('   Consider using the PR template for structured reviews');
+            }
+            
+            // Calculate overall score
+            const totalChecks = Object.keys(checks).length;
+            const passedChecks = Object.values(checks).filter(v => v === true).length;
+            const score = Math.round((passedChecks / totalChecks) * 100);
+            
+            // Determine status
+            let status = '✅ **PASS**';
+            let statusEmoji = '✅';
+            if (score < 60) {
+              status = '❌ **NEEDS WORK**';
+              statusEmoji = '❌';
+            } else if (score < 80) {
+              status = '⚠️  **NEEDS IMPROVEMENT**';
+              statusEmoji = '⚠️';
+            }
+            
+            // Build comment
+            const comment = [
+              `## ${statusEmoji} PR Validation Results`,
+              '',
+              `**Status**: ${status}`,
+              `**Score**: ${score}% (${passedChecks}/${totalChecks} checks passed)`,
+              '',
+              '### Validation Checks',
+              '',
+              ...messages,
+              ''
+            ];
+            
+            if (warnings.length > 0) {
+              comment.push('### ⚠️  Warnings', '');
+              comment.push(...warnings);
+              comment.push('');
+            }
+            
+            comment.push('---');
+            comment.push('');
+            comment.push('### 📝 Recommendations');
+            comment.push('');
+            
+            if (!checks.title_format) {
+              comment.push('- Update the PR title to follow [conventional commit format](https://www.conventionalcommits.org/)');
+            }
+            if (!checks.linked_issue) {
+              comment.push('- Link this PR to an issue using "Closes #N" in the description');
+            }
+            if (!checks.description) {
+              comment.push('- Add a comprehensive description explaining the changes');
+            }
+            if (!checks.checklist) {
+              comment.push('- Use the PR template which includes helpful checklists');
+            }
+            
+            comment.push('');
+            comment.push('---');
+            comment.push('*Automated validation • Part of IDD workflow*');
+            
+            // Post or update comment
+            const commentBody = comment.join('\n');
+            
+            // Check if bot has already commented
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number
+            });
+            
+            const botComment = comments.find(c => 
+              c.user.type === 'Bot' && c.body.includes('PR Validation Results')
+            );
+            
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+              console.log('Updated existing validation comment');
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: commentBody
+              });
+              console.log('Created new validation comment');
+            }
+            
+            // Exit with error if critical checks fail
+            if (!checks.title_format || !checks.description) {
+              core.setFailed('PR validation failed: Critical checks did not pass');
+            } else if (score < 80) {
+              core.warning(`PR validation score is ${score}% - consider addressing recommendations`);
+            }

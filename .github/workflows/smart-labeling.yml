@@ -1,0 +1,227 @@
+name: Smart Labeling
+
+on:
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, edited, synchronize]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  smart-label:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Analyze and apply labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const isIssue = context.eventName === 'issues';
+            const isPR = context.eventName === 'pull_request';
+            const item = isIssue ? context.payload.issue : context.payload.pull_request;
+            const itemType = isIssue ? 'issue' : 'PR';
+            const number = item.number;
+            
+            console.log(`🔍 Analyzing ${itemType} #${number}: ${item.title}`);
+            
+            const title = item.title.toLowerCase();
+            const body = (item.body || '').toLowerCase();
+            const content = title + ' ' + body;
+            
+            // Define label patterns with keywords and confidence weights
+            const labelPatterns = {
+              // Type labels
+              'bug': {
+                keywords: ['bug', 'error', 'issue', 'problem', 'broken', 'fail', 'crash', 'exception', 'not working'],
+                weight: 1.0
+              },
+              'enhancement': {
+                keywords: ['feature', 'add', 'new', 'enhancement', 'improve', 'implement', 'create'],
+                weight: 1.0
+              },
+              'documentation': {
+                keywords: ['docs', 'documentation', 'readme', 'guide', 'tutorial', 'comment'],
+                weight: 1.0
+              },
+              'question': {
+                keywords: ['question', 'how', 'why', 'what', 'help', 'unclear'],
+                weight: 0.8
+              },
+              'security': {
+                keywords: ['security', 'vulnerability', 'exploit', 'cve', 'auth', 'authentication'],
+                weight: 1.2
+              },
+              
+              // Component labels
+              'monitoring': {
+                keywords: ['librenms', 'monitoring', 'snmp', 'metrics', 'grafana', 'alert', 'dashboard'],
+                weight: 1.0
+              },
+              'infrastructure': {
+                keywords: ['proxmox', 'vm', 'network', 'server', 'host', 'infrastructure', 'hardware'],
+                weight: 1.0
+              },
+              'automation': {
+                keywords: ['script', 'workflow', 'github actions', 'ci/cd', 'automation', 'pipeline'],
+                weight: 1.0
+              },
+              'idd': {
+                keywords: ['issue-driven', 'idd', 'workflow', 'issue template', 'pr template'],
+                weight: 1.0
+              },
+              'certificate': {
+                keywords: ['ssl', 'tls', 'certificate', 'cert', 'freeipa', 'ca'],
+                weight: 1.0
+              },
+              'netboot': {
+                keywords: ['netboot', 'pxe', 'ipxe', 'boot', 'imaging'],
+                weight: 1.0
+              },
+              'storage': {
+                keywords: ['storage', 'zfs', 'nfs', 'truenas', 'disk', 'volume'],
+                weight: 1.0
+              }
+            };
+            
+            // Calculate confidence scores for each label
+            const scores = {};
+            const matches = {};
+            
+            for (const [label, config] of Object.entries(labelPatterns)) {
+              let score = 0;
+              const foundKeywords = [];
+              
+              for (const keyword of config.keywords) {
+                const regex = new RegExp('\\b' + keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+                const matchCount = (content.match(regex) || []).length;
+                
+                if (matchCount > 0) {
+                  score += matchCount * config.weight;
+                  foundKeywords.push(keyword);
+                }
+              }
+              
+              if (score > 0) {
+                scores[label] = score;
+                matches[label] = foundKeywords;
+              }
+            }
+            
+            // For PRs, add size label
+            let sizeLabel = null;
+            if (isPR) {
+              const additions = item.additions || 0;
+              const deletions = item.deletions || 0;
+              const totalChanges = additions + deletions;
+              
+              if (totalChanges < 10) {
+                sizeLabel = 'size:xs';
+              } else if (totalChanges < 100) {
+                sizeLabel = 'size:s';
+              } else if (totalChanges < 500) {
+                sizeLabel = 'size:m';
+              } else if (totalChanges < 1000) {
+                sizeLabel = 'size:l';
+              } else {
+                sizeLabel = 'size:xl';
+              }
+              
+              console.log(`📏 PR size: ${totalChanges} lines changed → ${sizeLabel}`);
+            }
+            
+            // Get existing labels
+            const existingLabels = item.labels.map(l => l.name);
+            console.log('📋 Existing labels:', existingLabels.join(', ') || 'none');
+            
+            // Sort by score and select top candidates
+            const sortedLabels = Object.entries(scores)
+              .sort(([, a], [, b]) => b - a)
+              .slice(0, 5); // Max 5 auto-labels
+            
+            console.log('\n🎯 Confidence scores:');
+            sortedLabels.forEach(([label, score]) => {
+              console.log(`  ${label}: ${score.toFixed(1)} (keywords: ${matches[label].join(', ')})`);
+            });
+            
+            // Apply labels with confidence > 0.7
+            const labelsToAdd = [];
+            const CONFIDENCE_THRESHOLD = 0.7;
+            
+            for (const [label, score] of sortedLabels) {
+              if (score >= CONFIDENCE_THRESHOLD && !existingLabels.includes(label)) {
+                labelsToAdd.push(label);
+                console.log(`✅ Will apply: ${label} (confidence: ${score.toFixed(1)})`);
+              } else if (score < CONFIDENCE_THRESHOLD) {
+                console.log(`⏭️  Skipped: ${label} (confidence too low: ${score.toFixed(1)})`);
+              } else {
+                console.log(`ℹ️  Already has: ${label}`);
+              }
+            }
+            
+            // Add size label for PRs
+            if (sizeLabel && !existingLabels.includes(sizeLabel)) {
+              // Remove old size labels first
+              const oldSizeLabels = existingLabels.filter(l => l.startsWith('size:'));
+              for (const oldLabel of oldSizeLabels) {
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: number,
+                    name: oldLabel
+                  });
+                  console.log(`🗑️  Removed old size label: ${oldLabel}`);
+                } catch (error) {
+                  console.log(`⚠️  Could not remove ${oldLabel}:`, error.message);
+                }
+              }
+              
+              labelsToAdd.push(sizeLabel);
+            }
+            
+            // Apply labels
+            if (labelsToAdd.length > 0) {
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: number,
+                  labels: labelsToAdd
+                });
+                
+                console.log(`\n✅ Applied ${labelsToAdd.length} label(s): ${labelsToAdd.join(', ')}`);
+                
+                // Add comment explaining the labeling
+                const comment = `🏷️ **Smart Labeling Applied**\n\n` +
+                  `I've automatically added the following labels based on content analysis:\n\n` +
+                  labelsToAdd.map(l => `- \`${l}\``).join('\n') + '\n\n' +
+                  `**Detection details:**\n` +
+                  sortedLabels
+                    .filter(([label]) => labelsToAdd.includes(label) && label !== sizeLabel)
+                    .map(([label, score]) => `- **${label}**: Matched keywords: ${matches[label].slice(0, 3).join(', ')}`)
+                    .join('\n') + '\n\n' +
+                  (sizeLabel ? `- **${sizeLabel}**: Based on ${item.additions + item.deletions} lines changed\n\n` : '') +
+                  `*You can manually add or remove labels as needed. This is just a suggestion!* 🤖`;
+                
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: number,
+                  body: comment
+                });
+                
+                console.log('💬 Added explanation comment');
+                
+              } catch (error) {
+                console.error('❌ Error applying labels:', error.message);
+              }
+            } else {
+              console.log('\nℹ️  No new labels to apply');
+            }
+            
+            console.log('\n✅ Smart labeling complete!');

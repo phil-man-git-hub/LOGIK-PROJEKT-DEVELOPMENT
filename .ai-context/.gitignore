@@ -1,0 +1,31 @@
+# Sensitive Data - Never commit
+**/secrets.json
+**/api-keys.json
+**/tokens.txt
+**/*.key
+**/*.pem
+**/credentials.*
+
+# Personal Notes - Optional exclusion
+**/personal-notes.md
+**/private-*.md
+
+# Temporary Files
+**/*.tmp
+**/*.temp
+**/*.swp
+**/*~
+
+# Large Context Files - Optionally exclude if too large
+# Uncomment if session files become too large for git
+# memory/sessions/*.md
+
+# IDE and Editor Files
+.DS_Store
+.vscode/settings.json
+.idea/
+*.sublime-*
+
+# Generated Files
+**/index.generated.json
+**/*.cache
