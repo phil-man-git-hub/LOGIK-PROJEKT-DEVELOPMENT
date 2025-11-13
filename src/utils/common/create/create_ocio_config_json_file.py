@@ -290,8 +290,8 @@ except Exception as e:
 # ------------------------------------------------------------------------- #
 # Changelog:
 # ------------------------------------------------------------------------- #
-# Version:      2026.2.0
-# Modified:     2025-10-30
+# Version:      2027.0.0
+# Modified:     2025-11-13
 # Changelist:   Updated version to 2026.2.0.
 #               Verified compatibility with Autodesk Flame 2026.2.0.
 #               No code changes required.
