@@ -1,4 +1,37 @@
-<!-- 
+# Pull Request Template for LOGIK-PROJEKT
+
+## Title
+<!--
+  - Use format: [TYPE] Short description (#issue-number)
+  - Example: [FEATURE] Add desktop app automation (#42)
+-->
+
+## Linked Issue
+<!--
+  - Link to the relevant issue using: Closes #issue-number
+  - Example: Closes #42
+-->
+
+## Description
+<!--
+  - Briefly describe the purpose and context of this PR.
+  - Include any relevant background, motivation, or design decisions.
+-->
+
+## Checklist
+- [ ] PR title follows required format
+- [ ] Linked to a relevant issue (Closes #...)
+- [ ] All new and updated code is documented
+- [ ] Tests added or updated (if applicable)
+- [ ] CI checks pass (lint, tests, workflows)
+- [ ] Changelog and release notes updated
+- [ ] No large, unrelated changes (PR is focused)
+- [ ] All reviewers added
+
+## Additional Notes
+<!--
+  - Add any extra context, screenshots, or migration notes here.
+--><!-- 
 Thank you for your Pull Request! 
 Please fill out this template to help reviewers understand your changes.
 Delete sections that aren't applicable to your PR.

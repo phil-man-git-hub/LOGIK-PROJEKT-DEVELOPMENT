@@ -1,0 +1,19 @@
+name: Require Issue Link in PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  require-issue-link:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR description for issue link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prBody = github.context.payload.pull_request.body || '';
+            const issueLinkPattern = /(Closes|Fixes)\s+#\d+/i;
+            if (!issueLinkPattern.test(prBody)) {
+              core.setFailed('PR description must include "Closes #N" or "Fixes #N" to link an issue.');
+            }
