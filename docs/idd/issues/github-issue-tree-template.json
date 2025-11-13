@@ -5,7 +5,7 @@
     "IssueTitle": "{{issue_title}}",
     "children": [
         {
-            "name": "step-01-feature-type",
+            "name": "step-01-issue-type",
             "children": [
                 { "name": "issue-{{issue_id}}-feature-type.md", "type": "file" }
             ]

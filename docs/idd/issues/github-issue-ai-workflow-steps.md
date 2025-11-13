@@ -82,7 +82,7 @@ This conversational approach allows the LLM to rationalize user desires and gene
 5. **Subdirectory & Document Creation**
     - Automation reads [`github-issue-tree-template.json`](github-issue-tree-template.json) to scaffold the standard subdirectories and files for each workflow step.
     - Typical structure includes:
-       - [`step-01-feature-type/`](step-01-feature-type/), [`step-11-research/`](step-11-research/), [`step-21-insight/`](step-21-insight/), [`step-31-cognition/`](step-31-cognition/), [`step-41-how-to/`](step-41-how-to/), [`step-51-to-do/`](step-51-to-do/), [`step-61-memory/`](step-61-memory/)
+      - [`step-01-issue-type/`](step-01-issue-type/), [`step-11-research/`](step-11-research/), [`step-21-insight/`](step-21-insight/), [`step-31-cognition/`](step-31-cognition/), [`step-41-how-to/`](step-41-how-to/), [`step-51-to-do/`](step-51-to-do/), [`step-61-memory/`](step-61-memory/)
     - Each subdirectory is populated with a README or markdown file as defined in the template.
 
 6. **Automated Population & Updates**
