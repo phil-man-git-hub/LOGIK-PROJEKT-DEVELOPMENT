@@ -23,6 +23,15 @@
 
 -------------------------------------------------------------------------------
 
+## 🚀 Issue-Driven Development & AI Workflow
+
+For standardized, automated, and sustainable GitHub Issue management, see:
+**[GitHub Issue AI Workflow Steps](docs/idd/issues/github-issue-ai-workflow-steps.md)**
+
+This guide details the AI-driven workflow, templates, and automation for maintainers, contributors, and onboarding.
+
+-------------------------------------------------------------------------------
+
 ## Introduction
 
 LOGIK-PROJEKT is a toolkit designed for the creation, business continuity and lifecycle management of Digital Content Creation (DCC) projekts.

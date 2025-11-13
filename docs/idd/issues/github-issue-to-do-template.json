@@ -1,0 +1,53 @@
+{
+  "phases": [
+    {
+      "name": "Feature/Task Definition",
+      "tasks": [
+        "Clarify scope and requirements",
+        "Link to related documentation and drafts"
+      ]
+    },
+    {
+      "name": "Research & Discovery",
+      "tasks": [
+        "Gather background information",
+        "Identify dependencies and blockers"
+      ]
+    },
+    {
+      "name": "Insight & Planning",
+      "tasks": [
+        "Summarize findings",
+        "Outline solution or implementation steps"
+      ]
+    },
+    {
+      "name": "Implementation",
+      "tasks": [
+        "Develop code, scripts, or configuration",
+        "Write tests and validation scripts"
+      ]
+    },
+    {
+      "name": "Review & Documentation",
+      "tasks": [
+        "Peer review changes",
+        "Update documentation and changelogs"
+      ]
+    },
+    {
+      "name": "Memory & Decision Log",
+      "tasks": [
+        "Record key decisions and rationale",
+        "Update AI context and session history"
+      ]
+    },
+    {
+      "name": "Finalization",
+      "tasks": [
+        "Prepare PR with 'Closes #<issue-number>'",
+        "Ensure all automation checks pass"
+      ]
+    }
+  ]
+}

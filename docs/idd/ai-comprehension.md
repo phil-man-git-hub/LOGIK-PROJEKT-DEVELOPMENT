@@ -130,13 +130,54 @@ gh workflow run auto-label.yml --repo phil-man-git-hub/LOGIK-PROJEKT-DEV
 
 ## Recommended Next Actions
 
-1. Run the label-sync script in dry-run and then apply to the repository if mapping is correct.
-2. Run the issue→TO-DO sync script in dry-run and inspect generated `TO-DO.md` diffs; if the auto-sync markers are missing, add them as documented.
-3. Add two small unit tests in `tests/idd/`:
-   - `test_sync_issues_happy_path.py` — simulate two issues and assert generated TO-DO content contains them.
-   - `test_label_sync_empty.py` — simulate empty labels file and assert script exits gracefully.
-4. Add a short `CONTRIBUTING.md` entry pointing to `docs/idd/guides/guide-best-practices.md` and `docs/idd/ai-comprehension.md` for future contributors.
-5. Optionally wire a small CI job that runs `python3 .github/scripts/sync_labels.py --dry-run` on PRs modifying `.github/labels.yml`.
+
+---
+
+## Crucial IDD Workflow Information
+
+## See also: [GitHub Issue AI Workflow Steps](github-issue-ai-workflow-steps.md)
+
+### Generic To-Do Phases Template
+- The file `docs/idd/issues/github-issue-to-do-template.json` defines standard phases and tasks for every GitHub Issue to-do file.
+- Automation scripts read this template and inject the phases/tasks into each new issue’s to-do file (e.g., `docs/idd/issues/issue-XX/step-51-to-do/README.md`).
+- This ensures every issue starts with a consistent, actionable workflow and enables easy updates to the process by editing the template.
+
+#### Example Usage in Automation
+1. When a new issue is scaffolded, the script loads `github-issue-to-do-template.json`.
+2. The script generates a markdown checklist for the issue’s to-do file, replacing placeholders (like `<issue-number>`) as needed.
+3. Contributors and AI agents follow these phases for every issue, ensuring process consistency and traceability.
+
+#### Template Structure
+See [`github-issue-to-do-template.json`](github-issue-to-do-template.json) for the current phases and tasks.
+
+#### Issue Directory Tree Template
+For Phase 5 and directory scaffolding, see [`github-issue-tree-template.json`](github-issue-tree-template.json) for the standard issue directory and file structure.
+
+### Issue Draft Storage
+- Drafts for new GitHub Issues are stored in `docs/idd/issues/drafts/` (e.g., `ISSUE-001-add-idd-workflow.md`).
+- This enables collaborative editing and review before publishing the issue on GitHub.
+
+### Procedures After GitHub Issue Creation
+- After an issue is created, contributors:
+   - Create a related branch (e.g., `issue-001-add-idd-workflow`).
+   - Link the branch and PR to the GitHub Issue using references like “Closes #1”.
+   - Scaffold a directory in `docs/idd/issues/issue-<number>/` for the new issue.
+
+### Creation of Subdirectories and Documents
+- Each issue directory contains subdirectories for workflow steps:
+   - `step-01-feature-type/`, `step-11-research/`, `step-21-insight/`, `step-31-cognition/`, `step-41-how-to/`, `step-51-to-do/`, `step-61-memory/`
+- Each step contains a README or markdown file for documentation and tracking.
+
+### Automated Steps to Populate Documents
+- Scripts and workflows scaffold the directory and populate files with templates and required metadata.
+- Automation fills in initial context, links to the GitHub issue, and sets up placeholders for research, insights, and to-dos.
+
+### Documentation of Memories and Decisions Before Final Commit
+- The `step-61-memory/` subdirectory (e.g., `issue-001-memory.md`) is used to record decisions, context, and session history.
+- Contributors and AI agents document key choices, rationale, and outcomes before the final commit and PR.
+- This ensures traceability and context preservation for future work and reviews.
+
+---
 
 ---
 
