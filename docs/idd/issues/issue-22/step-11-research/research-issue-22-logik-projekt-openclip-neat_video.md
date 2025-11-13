@@ -5,17 +5,41 @@ This document links to and analyzes the following script:
 - [logik_projekt_openclip_neat_video.py](../../../../../cfg/site-cfg/flame-cfg/flame-python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/logik_projekt_openclip_neat_video.py)
 
 ## Purpose
+Implements the Neat Video composition and configuration logic for LOGIK-PROJEKT OpenClip workflows in Autodesk Flame.
 
-*Describe the purpose and context of the logik_projekt_openclip_neat_video script.*
+## Key Classes & Features
 
-## Key Features
+### Class: `class_projekt_openclip_neat_video`
+- **Purpose:** Main entry point for OpenClip Neat Video composition and configuration.
+- **Constructor Args:**
+  - `selection`: Input selection/context for the workflow
+- **UI Integration:**
+  - Loads configuration using `pyside6_qt_load_config`
+  - Integrates all major LOGIK-PROJEKT UI widgets and utility functions via `pyside6_qt_flame_modules`
+  - Sets up paths and versioning for the tool
+- **Workflow:**
+  - Loads and manages configuration for output nodes
+  - Provides hooks for UI-driven Neat Video composition and automation
+  - Uses custom widgets for user interaction and configuration dialogs
 
-*List and explain the main features and functions of the script.*
+## Implementation Details
+- Dynamically determines and sets up paths for script, config, and tool family
+- Imports all major LOGIK-PROJEKT UI classes and utility functions for use in Neat Video composition workflows
+- Modular design allows for easy extension and integration with other LOGIK-PROJEKT tools
+- Robust error handling and configuration management via imported functions
+- No hardcoded secrets or sensitive data detected
 
 ## Integration Points
-
-*Describe how this module integrates with Flame and other LOGIK-PROJEKT components.*
+- Used as the main script for OpenClip Neat Video composition in Flame
+- Integrates with LOGIK-PROJEKT modular UI and automation toolset
+- Facilitates migration from legacy Flame Neat Video composition scripts to modular LOGIK-PROJEKT workflows
 
 ## Research Notes
+- Well-structured for maintainability and extensibility
+- Recommend adding automated tests for configuration loading, UI integration, and workflow logic
+- Further analysis recommended for all imported modules and functions
 
-*Add any findings, references, or questions for further investigation.*
+## Changelist Summary
+- Migration from monolithic Neat Video composition scripts to modular LOGIK-PROJEKT architecture
+- Recent updates focus on compatibility, bug fixes, and workflow consistency
+- No breaking changes detected in recent versions
