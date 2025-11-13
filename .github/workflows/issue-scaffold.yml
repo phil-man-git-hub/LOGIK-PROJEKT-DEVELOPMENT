@@ -34,7 +34,7 @@ jobs:
 
       - name: Run scaffold script
         run: |
-          python scripts/scaffold_issue.py \
+          python .github/scripts/scaffold_issue.py \
             --template docs/idd/issues/github-issue-tree-template.json \
             --issue-id "${{ env.ISSUE_ID }}" \
             --issue-title "${{ env.ISSUE_TITLE }}"

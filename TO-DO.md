@@ -5,7 +5,7 @@ Immediate tasks
 - [ ] Create PR to add `.github/workflows/issue-scaffold.yml` to the repository default branch (e.g., `dev-2026.2.0`) so the scaffolding workflow runs on issue creation.
 - [ ] Add `.gitignore` entries to exclude macOS and Linux app bundles and other build artifacts.
 - [ ] Add `.gitattributes` export-ignore entries for any artifact directories if needed.
-- [ ] Finalize unit tests for `scripts/scaffold_issue.py` and `sync_labels.py` and add them to CI.
+- [ ] Finalize unit tests for `.github/scripts/scaffold_issue.py` and `sync_labels.py` and add them to CI.
 
 Short-term improvements
 
@@ -20,4 +20,4 @@ Longer term
 
 Notes
 
-- We already scaffolded issue-001 locally and created `scripts/scaffold_issue.py`. Use the scaffolded `issue-019/scaffold` branch for testing PR flows.
+- We already scaffolded issue-001 locally and created `.github/scripts/scaffold_issue.py`. Use the scaffolded `issue-019/scaffold` branch for testing PR flows.

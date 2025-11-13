@@ -24,7 +24,7 @@ jobs:
       - name: Run solve_github_issue.py
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
-          python scripts/solve_github_issue.py $ISSUE_NUMBER
+          python .github/scripts/solve_github_issue.py $ISSUE_NUMBER
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
