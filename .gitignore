@@ -158,3 +158,8 @@ cfg/site-cfg/flame-cfg/flame-presets/colour_mgmt
 
 # Temporary session files
 scratch
+
+# Local test artifacts (do not push to prod or upstream)
+LOGIK-PROJEKT-2027.0.0.app/
+LOGIK-PROJEKT-2027.0.0.desktop
+run_logik_projekt.sh

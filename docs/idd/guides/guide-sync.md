@@ -213,7 +213,7 @@ schedule:
   - cron: '0 9,17 * * *'  # 9 AM and 5 PM UTC
 
 # Change Python version
-python-version: '3.11'
+python-version: '3.13'
 ```
 
 ### Category Customization
