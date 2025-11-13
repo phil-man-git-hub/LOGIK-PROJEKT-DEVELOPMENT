@@ -11,8 +11,8 @@ This documentation hub provides a detailed overview, setup instructions, usage g
 If you're new to IDD or need a quick refresher, start here:
 
 *   **[quick_start.md](quick_start.md)**: Get IDD up and running in your repository in just 5 minutes.
-*   **[roadmap_issue_driven_development.md](roadmap_issue_driven_development.md)**: Understand the overall implementation plan, phases, and current status of IDD in MAN-IAC.
-*   **[architecture.md](architecture.md)**: A high-level overview of the IDD system's components, design principles, and overall structure.
+*   **[idd-workflow-roadmap_issue_driven_development.md](idd-workflow-roadmap_issue_driven_development.md)**: Understand the overall implementation plan, phases, and current status of IDD in MAN-IAC.
+*   **[idd-workflow-architecture.md](idd-workflow-architecture.md)**: A high-level overview of the IDD system's components, design principles, and overall structure.
 
 ---
 
@@ -29,10 +29,10 @@ For a deeper understanding of each major component of the IDD system, explore th
 *   **[guides/guide-sync.md](guides/guide-sync.md)**: Dedicated guide for the Issue ↔ TO-DO.md synchronization system, explaining its architecture, usage, and configuration.
 *   **[templates/pr-template-guide.md](templates/pr-template-guide.md)**: Comprehensive guide to the Pull Request template, its purpose, structure, and best practices for authors and reviewers.
 *   **[templates/issue-templates-guide.md](templates/issue-templates-guide.md)**: Guide to the standardized GitHub Issue Templates, explaining when to use each, their key sections, and best practices for writing good issues.
-*   **[example_workflows.md](example_workflows.md)**: Real-world usage patterns and advanced workflows for leveraging the AI Context System.
+*   **[idd-workflow-example_workflows.md](idd-workflow-example_workflows.md)**: Real-world usage patterns and advanced workflows for leveraging the AI Context System.
 
 ### 🧠 AI Memory & Context System
-*   **[quick_start_ai_context.md](quick_start_ai_context.md)**: A 5-minute guide to getting started with the AI Memory & Context system.
+*   **[idd-workflow-quick_start_ai_context.md](idd-workflow-quick_start_ai_context.md)**: A 5-minute guide to getting started with the AI Memory & Context system.
 *   **[guides/guide-session-capture.md](guides/guide-session-capture.md)**: Detailed guide on how the system automatically captures development session activity and generates AI context files.
 *   **[guides/guide-memory-search.md](guides/guide-memory-search.md)**: Guide to searching and querying captured development sessions and AI context memory.
 *   **[guides/guide-context-retrieval.md](guides/guide-context-retrieval.md)**: Explains how the system intelligently assembles relevant context from multiple sources for AI assistants.
@@ -59,7 +59,7 @@ Documents related to the reusability and sharing of the IDD system:
 
 *   **[guides/guide-template-extraction.md](guides/guide-template-extraction.md)**: Documents how to extract the IDD system into a reusable template.
 *   **[guides/guide-template-file-inventory.md](guides/guide-template-file-inventory.md)**: A complete inventory of all files that should be extracted for the reusable IDD template.
-*   **[template_readme.md](template_readme.md)**: The README for the extracted IDD template repository.
+*   **[idd-workflow-template_readme.md](idd-workflow-template_readme.md)**: The README for the extracted IDD template repository.
 *   **[guides/guide-publication.md](guides/guide-publication.md)**: Guide for publishing and releasing your Issue-Driven Development system.
 *   **[guides/guide-sharing.md](guides/guide-sharing.md)**: Strategies and templates for sharing your IDD system with the community.
 *   **[week_4_completion_summary.md](status-updates/week_4_completion_summary.md)**: A summary of the deliverables and achievements from Phase 4 (Reusable Template).

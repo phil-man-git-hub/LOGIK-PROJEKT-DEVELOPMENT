@@ -279,8 +279,8 @@ Now that IDD is set up:
 
 1. **Read the detailed guide:** [SETUP_GUIDE.md](SETUP_GUIDE.md)
 2. **Customize configuration:** Edit `idd-config.yml`
-3. **Learn best practices:** [BEST_PRACTICES.md](BEST_PRACTICES.md)
-4. **Understand architecture:** [ARCHITECTURE.md](ARCHITECTURE.md)
+3. **Learn best practices:** [idd-workflow-best_practices.md](idd-workflow-best_practices.md)
+4. **Understand architecture:** [idd-workflow-architecture.md](idd-workflow-architecture.md)
 5. **Train your team:** Share this guide!
 
 ## Quick Reference Card

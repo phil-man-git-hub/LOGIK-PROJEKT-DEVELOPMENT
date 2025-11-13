@@ -138,8 +138,7 @@ gh workflow run auto-label.yml --repo phil-man-git-hub/LOGIK-PROJEKT-DEV
 ## See also: [GitHub Issue AI Workflow Steps](github-issue-ai-workflow-steps.md)
 
 ### Generic To-Do Phases Template
-- The file `docs/idd/issues/github-issue-to-do-template.json` defines standard phases and tasks for every GitHub Issue to-do file.
-- Automation scripts read this template and inject the phases/tasks into each new issue’s to-do file (e.g., `docs/idd/issues/issue-XX/step-51-to-do/README.md`).
+ Automation scripts read this template and inject the phases/tasks into each new issue’s to-do file (e.g., `docs/idd/issues/issue-XX/step-51-to-do/to-do-issue-XX.md`).
 - This ensures every issue starts with a consistent, actionable workflow and enables easy updates to the process by editing the template.
 
 #### Example Usage in Automation

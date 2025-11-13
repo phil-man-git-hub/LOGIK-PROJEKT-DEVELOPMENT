@@ -83,7 +83,7 @@ This conversational approach allows the LLM to rationalize user desires and gene
 5. **Subdirectory & Document Creation**
     - Automation reads [`github-issue-tree-template.json`](github-issue-tree-template.json) to scaffold the standard subdirectories and files for each workflow step.
     - Typical structure includes:
-      - [`step-01-issue-type/issue-type-XX.md`](step-01-issue-type/issue-type-XX.md), [`step-11-research/research-XX.md`](step-11-research/research-XX.md), [`step-21-insight/insight-XX.md`](step-21-insight/insight-XX.md), [`step-31-cognition/cognition-XX.md`](step-31-cognition/cognition-XX.md), [`step-41-how-to/how-to-XX.md`](step-41-how-to/how-to-XX.md), [`step-51-to-do/to-do-XX.md`](step-51-to-do/to-do-XX.md), [`step-61-memory/memory-XX.md`](step-61-memory/memory-XX.md)
+      - [`step-01-issue-type/issue-type-issue-XX.md`](step-01-issue-type/issue-type-issue-XX.md), [`step-11-research/research-issue-XX.md`](step-11-research/research-issue-XX.md), [`step-21-insight/insight-issue-XX.md`](step-21-insight/insight-issue-XX.md), [`step-31-cognition/cognition-issue-XX.md`](step-31-cognition/cognition-issue-XX.md), [`step-41-how-to/how-to-issue-XX.md`](step-41-how-to/how-to-issue-XX.md), [`step-51-to-do/to-do-issue-XX.md`](step-51-to-do/to-do-issue-XX.md), [`step-61-memory/memory-issue-XX.md`](step-61-memory/memory-issue-XX.md)
     - Each subdirectory is populated with a README or markdown file as defined in the template.
 
 6. **Automated Population & Updates**
