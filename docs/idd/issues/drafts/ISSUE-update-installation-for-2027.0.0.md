@@ -5,7 +5,7 @@ Upgrade all installation scripts, templates, and related files from version `202
 
 ## Tasks
 - [ ] Update all version markers in installation scripts and templates from `2026.2.0` to `2027.0.0`.
-- [ ] Rename `run_logikprojekt_linux.sh.template` to `run_logikprojekt.sh.template` (if desired for clarity and cross-platform use).
+- [ ] Rename `run_logikprojekt_linux.sh.template` to `run_logik_projekt.sh.template` (if desired for clarity and cross-platform use).
 - [ ] Update all references in scripts (e.g., `create_desktop_apps.sh`) to use the new template filename.
 - [ ] Review and update logic in `create_desktop_apps.sh` and `get_current_adsk_python.sh` for compatibility with 2027.0.0.
 - [ ] Update documentation to reflect new installation steps and file names.
@@ -22,7 +22,7 @@ Upgrade all installation scripts, templates, and related files from version `202
 ## Related Files
 - `install/create_desktop_apps.sh`
 - `install/get_current_adsk_python.sh`
-- `install/run_logikprojekt_linux.sh.template` (to be renamed)
+- `install/run_logik_projekt.sh.template` (renamed)
 - `install/current_adsk_python_version.pref`
 - `docs/idd/ISSUE-update-installation-for-2027.0.0.md`
 - `CHANGELOG.md`

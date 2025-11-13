@@ -67,7 +67,7 @@ app_name_sanitize=$(echo "$app_name" | tr -d '[:punct:]' | tr ' ' '_')
 app_name_lc=$(echo "$app_name_sanitize" | tr '[:upper:]' '[:lower:]')
 
 # Define the application version number
-app_version="2026.2.0"
+app_version="2027.0.0"
 
 # Define the macOS application name
 macos_app_name="${app_name}-${app_version}.app"
@@ -249,8 +249,7 @@ EOF
 
 # -------------------------------------------------------------------------- #
 
-# Define the shell script
-projekt_script_runner_linux="run_${app_name_lc}_linux.sh"
+projekt_script_runner_linux="run_logik_projekt.sh"
 projekt_script_runner_macos="run_${app_name_lc}_macos"
 
 # Echo progress to the shell and log to the log file
@@ -259,8 +258,7 @@ log_message "Creating $app_name shell script for linux: $projekt_script_runner_l
 # Read the full Python executable path from the preference file
 PYTHON_EXECUTABLE=$(cat "$install_dir/current_adsk_python_version.pref")
 
-# Create the file and add the block of text
-sed "s|__PYTHON_EXECUTABLE__|$PYTHON_EXECUTABLE|" "$install_dir/run_logikprojekt_linux.sh.template" > "$projekt_script_runner_linux"
+sed "s|__PYTHON_EXECUTABLE__|$PYTHON_EXECUTABLE|" "$install_dir/run_logik_projekt.sh.template" > "$projekt_script_runner_linux"
 
 # Echo progress to the shell and log to the log file
 log_message "Making the file executable: $projekt_script_runner_linux"
@@ -298,7 +296,7 @@ printf "\n%s\n" "$separator"
 # -------------------------------------------------------------------------- #
 
 # Define the desktop entry file for linux
-desktop_entry_file="${app_name}.desktop"
+desktop_entry_file="${app_name}-${app_version}.desktop"
 
 # Echo progress to the shell and log to the log file
 log_message "Creating desktop entry file: $desktop_entry_file"
@@ -309,7 +307,7 @@ cat <<EOF > $desktop_entry_file
 Name=$app_name
 Comment=This application will create a brand new PROJEKT
 Version=$app_version
-Exec=$parent_dir/$projekt_script_runner_linux
+Exec=$parent_dir/run_logik_projekt.sh
 Icon=$icons_dir/logik_projekt_icon_01.png
 Type=Application
 Terminal=True
@@ -325,8 +323,9 @@ chmod +x $desktop_entry_file
 if [[ "$(uname)" == "Linux" ]]; then
     log_message "Moving the file to ~/.local/share/applications/"
     mv $desktop_entry_file ~/.local/share/applications/
-elif [[ "	$(uname)" == "Darwin" ]]; then
+elif [[ "$(uname)" == "Darwin" ]]; then
     log_message "This script is not configured to move files on macOS (Darwin)."
+    log_message "macOS detected. No move needed; desktop entry is not used on macOS."
 else
     log_message "Unsupported operating system: $(uname)"
 fi
@@ -384,8 +383,11 @@ printf "\n%s\n" "$separator"
 # created:          2024-09-01 - 11:00:00
 # comments:         Added logic to compare and update the preference file only if needed.
 # -------------------------------------------------------------------------- #
-
 # version:          2026.2.0
 # created:          2025-10-30
 # comments:         Updated version to 2026.2.0. Verified compatibility with Autodesk Flame 2026.2.0. No code changes required.
+# -------------------------------------------------------------------------- #
+# version:          2027.0.0
+# created:          2025-11-13
+# comments:         Updated version to 2027.0.0. Verified compatibility with Autodesk Flame 2027.0.0. No code changes required.
 # -------------------------------------------------------------------------- #

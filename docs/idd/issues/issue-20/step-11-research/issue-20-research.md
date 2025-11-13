@@ -7,7 +7,7 @@
 **Scripts Involved:**
 - create_desktop_apps.sh
 - get_current_adsk_python.sh
-- run_logikprojekt_linux.sh.template
+- run_logik_projekt.sh.template
 - current_adsk_python_version.pref
 
 **Information Gathered:**
@@ -20,7 +20,7 @@
 - current_adsk_python_version.pref: updated with the path to the chosen Python executable.
 - Log files: created in install/logs/ with details of the installation and version selection.
 - macOS .app bundle: directories and files created for the application, including Info.plist and shell runner scripts.
-- Linux shell script: generated from run_logikprojekt_linux.sh.template with the correct Python path substituted.
+- Linux shell script: generated from run_logik_projekt.sh.template with the correct Python path substituted.
 - Linux desktop entry: .desktop file created and moved to ~/.local/share/applications/.
 
 **How Information Is Gathered:**
