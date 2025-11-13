@@ -164,14 +164,6 @@ For Phase 5 and directory scaffolding, see [`github-issue-tree-template.json`](g
    - Scaffold a directory in `docs/idd/issues/issue-<number>/` for the new issue.
 
 ### Creation of Subdirectories and Documents
-- Each issue directory contains subdirectories for workflow steps:
-   - `step-01-issue-type/`, `step-11-research/`, `step-21-insight/`, `step-31-cognition/`, `step-41-how-to/`, `step-51-to-do/`, `step-61-memory/`
-- Each step contains a README or markdown file for documentation and tracking.
-
-### Automated Steps to Populate Documents
-- Scripts and workflows scaffold the directory and populate files with templates and required metadata.
-- Automation fills in initial context, links to the GitHub issue, and sets up placeholders for research, insights, and to-dos.
-
 ### Documentation of Memories and Decisions Before Final Commit
 - The `step-61-memory/` subdirectory (e.g., `issue-001-memory.md`) is used to record decisions, context, and session history.
 - Contributors and AI agents document key choices, rationale, and outcomes before the final commit and PR.
