@@ -310,7 +310,15 @@ class pyside6_qt_slider(QtWidgets.QLineEdit):
 
         # Limit characters that can be entered into lineedit
 
-        regex = QtCore.QRegularExpression('[0-9_,=,/,*,+,\-,.]+') # Fix for flame 2025
+        # # Original (causes warning)
+        # regex = QtCore.QRegularExpression('[0-9_,=,/,*,+,\-,.]+')
+
+        # # Fixed (raw string)
+        # regex = QtCore.QRegularExpression(r'[0-9_,=,/,*,+,\-,.]+') # Fix for flame 2027
+
+        # Fixed (not raw string)
+        regex = QtCore.QRegularExpression('[0-9_,=,/,*,+,\\-,.]+') # Alt Fix for flame 2027
+
         validator = QtGui.QRegularExpressionValidator(regex) # Fix for flame 2025
         calc_lineedit.setValidator(validator)
 
