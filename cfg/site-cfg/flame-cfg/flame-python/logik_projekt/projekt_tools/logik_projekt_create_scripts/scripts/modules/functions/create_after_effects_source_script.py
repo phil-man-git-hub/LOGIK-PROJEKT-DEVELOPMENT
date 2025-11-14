@@ -2,35 +2,6 @@
 
 # -------------------------------------------------------------------------- #
 
-# DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-              
-#                   LOGIK-PROJEKT creates directories, files, scripts & tools
-#                   for use with Autodesk Flame and other software.
-
-#                   LOGIK-PROJEKT is free software.
-
-#                   You can redistribute it and/or modify it under the terms
-#                   of the GNU General Public License as published by the
-#                   Free Software Foundation, either version 3 of the License,
-#                   or any later version.
-
-#                   This program is distributed in the hope that it will be
-#                   useful, but WITHOUT ANY WARRANTY; without even the
-#                   implied warranty of MERCHANTABILITY or FITNESS FOR A
-#                   PARTICULAR PURPOSE.
-
-#                   See the GNU General Public License for more details.
-
-#                   You should have received a copy of the GNU General
-#                   Public License along with this program.
-
-#                   If not, see <https://www.gnu.org/licenses/>.
-              
-#                   Contact: phil_man@mac.com
-
-# -------------------------------------------------------------------------- #
-
 # File Name:        create_after_effects_source_script.py
 # Version:          2.2.7
 # Created:          2024-01-19
@@ -211,7 +182,7 @@ def create_after_effects_source_script(shot_name,
         function processFolder(theFolder) {{
             // Get an array of files in the target folder, excluding .DS_Store files.
             var files = theFolder.getFiles(function(file) {{
-                return !file.name.match(/^\..*$/); // Exclude files starting with a dot (hidden files)
+                return !file.name.match("^\\..*$"); // Exclude files starting with a dot (hidden files)
             }});
 
             // Test whether theFolder contains a sequence.

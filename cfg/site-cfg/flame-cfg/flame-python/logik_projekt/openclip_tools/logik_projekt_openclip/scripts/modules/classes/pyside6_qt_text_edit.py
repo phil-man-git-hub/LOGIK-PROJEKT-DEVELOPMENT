@@ -2,35 +2,6 @@
 
 # -------------------------------------------------------------------------- #
 
-# DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-              
-#                   LOGIK-PROJEKT creates directories, files, scripts & tools
-#                   for use with Autodesk Flame and other software.
-
-#                   LOGIK-PROJEKT is free software.
-
-#                   You can redistribute it and/or modify it under the terms
-#                   of the GNU General Public License as published by the
-#                   Free Software Foundation, either version 3 of the License,
-#                   or any later version.
-
-#                   This program is distributed in the hope that it will be
-#                   useful, but WITHOUT ANY WARRANTY; without even the
-#                   implied warranty of MERCHANTABILITY or FITNESS FOR A
-#                   PARTICULAR PURPOSE.
-
-#                   See the GNU General Public License for more details.
-
-#                   You should have received a copy of the GNU General
-#                   Public License along with this program.
-
-#                   If not, see <https://www.gnu.org/licenses/>.
-              
-#                   Contact: phil_man@mac.com
-
-# -------------------------------------------------------------------------- #
-
 # File Name:        pyside6_qt_text_edit.py
 # Version:          1.0.3
 # Created:          2024-01-19

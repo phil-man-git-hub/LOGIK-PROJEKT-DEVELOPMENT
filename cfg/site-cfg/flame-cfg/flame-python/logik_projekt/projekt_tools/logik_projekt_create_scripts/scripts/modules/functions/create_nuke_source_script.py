@@ -2,35 +2,6 @@
 
 # -------------------------------------------------------------------------- #
 
-# DISCLAIMER:       This file is part of LOGIK-PROJEKT.
-#                   Copyright © 2024 man-made-mekanyzms
-              
-#                   LOGIK-PROJEKT creates directories, files, scripts & tools
-#                   for use with Autodesk Flame and other software.
-
-#                   LOGIK-PROJEKT is free software.
-
-#                   You can redistribute it and/or modify it under the terms
-#                   of the GNU General Public License as published by the
-#                   Free Software Foundation, either version 3 of the License,
-#                   or any later version.
-
-#                   This program is distributed in the hope that it will be
-#                   useful, but WITHOUT ANY WARRANTY; without even the
-#                   implied warranty of MERCHANTABILITY or FITNESS FOR A
-#                   PARTICULAR PURPOSE.
-
-#                   See the GNU General Public License for more details.
-
-#                   You should have received a copy of the GNU General
-#                   Public License along with this program.
-
-#                   If not, see <https://www.gnu.org/licenses/>.
-              
-#                   Contact: phil_man@mac.com
-
-# -------------------------------------------------------------------------- #
-
 # File Name:        create_nuke_source_script.py
 # Version:          2.2.9
 # Created:          2024-01-19
@@ -45,6 +16,7 @@ import os
 # import pdb; pdb.set_trace()
 import re
 import fileinput
+from string import Template
 # import logging
 # from datetime import datetime
 
@@ -102,68 +74,23 @@ def create_nuke_source_script(shot_name,
 
     # Append the Nuke script content to the file
     with open(source_scripts_app_task_path, 'a') as nuke_source_script_file:
-        nuke_source_script_file.write(f"""# LOGIK-PROJEKT Nuke Source Script
-# Task Name: {shot_source_dir}_{app_name}_{task_type}
-Root {{
- inputs 0
- name "{shot_source_dir}_{app_name}_{task_type}_{version_name}.nk"
- frame "{shot_source_version_start_frame}"
- first_frame "{shot_source_version_start_frame}"
- last_frame "{shot_source_version_end_frame}"
- lock_range true
- format "1920 1080 0 0 1920 1080 1 HD_1080"
- proxy_type scale
- proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
- render_mode top-down
- colorManagement OCIO
- OCIO_config aces_1.2
- defaultViewerLUT "OCIO LUTs"
- workingSpaceLUT "ACES - ACEScg"
- monitorLut "Rec.709 (ACES)"
- monitorOutLUT "Rec.709 (ACES)"
- int8Lut matte_paint
- int16Lut "ACES - ACEScct"
- logLut "ACES - ACEScct"
- floatLut "ACES - ACEScg"
-}}""")
+        template_path = Path(__file__).resolve().parent / "templates" / "nuke_source_script_template.nk"
+        with open(template_path, 'r') as template_file:
+            template_content = template_file.read()
 
-        # Write the Read node
-        nuke_source_script_file.write(f"""
-Read {{
- inputs 0
- file_type exr
- file "{shot_source_version_openexr_sequences_info[1]['shot_source_version_sequence_dir']}/{shot_source_dir}_{version_name}.########.exr"
- first {shot_source_version_start_frame}
- last {shot_source_version_end_frame}
- origfirst {shot_source_version_start_frame}
- origlast {shot_source_version_end_frame}
- origset true
- name Read1
- label "\n<center><b>{shot_source_dir}\n\n<center><b>Frame range :</b></font> <font color = green>\[value first] - \[value last] </font></center>"
- xpos 0
- ypos 0
-}}
-set Ndbbb980 [stack 0]
-Write {{
- file "{shot_sources_dir}/{shot_source_dir}_{app_name}_{task_type}_{version_name}/{shot_source_dir}_{app_name}_{task_type}_{version_name}.%08d.exr"
- file_type exr
- write_ACES_compliant_EXR false
- metadata "all metadata"
- first_part rgba
- create_directories true
- first "{shot_source_version_start_frame}"
- last "{shot_source_version_end_frame}"
- use_limit true
- version 0
- ocioColorspace "ACES - ACEScg"
- display ACES
- view sRGB
- name Write_EXR
- label "<b>{shot_source_dir}_{app_name}_{task_type}"
- xpos 0
- ypos 192
- postage_stamp true
-}}""")
+        substitutions = {
+            "SHOT_SOURCE_DIR": shot_source_dir,
+            "APP_NAME": app_name,
+            "TASK_TYPE": task_type,
+            "VERSION_NAME": version_name,
+            "SHOT_SOURCE_VERSION_START_FRAME": str(shot_source_version_start_frame),
+            "SHOT_SOURCE_VERSION_END_FRAME": str(shot_source_version_end_frame),
+            "SHOT_SOURCE_VERSION_SEQUENCE_DIR": shot_source_version_openexr_sequences_info[1]['shot_source_version_sequence_dir'],
+            "SHOT_SOURCES_DIR": shot_sources_dir,
+        }
+        
+        nuke_script_content = Template(template_content).substitute(substitutions)
+        nuke_source_script_file.write(nuke_script_content)
 
         # # This section is for logging purposes
         # logging.debug(f"Nuke script created for:  {shot_source_dir}_{version_name}")
@@ -196,47 +123,23 @@ Write {{
 
     # Write the Nuke script content to the file
     with open(shot_scripts_app_task_path, 'a') as nuke_shot_script_file:
+        template_path = Path(__file__).resolve().parent / "templates" / "nuke_source_script_template.nk"
+        with open(template_path, 'r') as template_file:
+            template_content = template_file.read()
 
-        # Write the Read node
-        nuke_shot_script_file.write(f"""
-# Source Nodes
-Read {{
- inputs 0
- file_type exr
- file "{shot_source_version_openexr_sequences_info[1]['shot_source_version_sequence_dir']}/{shot_source_dir}_{version_name}.########.exr"
- first {shot_source_version_start_frame}
- last {shot_source_version_end_frame}
- origfirst {shot_source_version_start_frame}
- origlast {shot_source_version_end_frame}
- origset true
- name Read1
- label "\n<center><b>{shot_source_dir}\n\n<center><b>Frame range :</b></font> <font color = green>\[value first] - \[value last] </font></center>"
-
- xpos 0
- ypos 0
-}}
-set Ndbbb980 [stack 0]
-Write {{
- file "{shot_sources_dir}/{shot_source_dir}_{app_name}_{task_type}_{version_name}/{shot_source_dir}_{app_name}_{task_type}_{version_name}.%08d.exr"
- file_type exr
- write_ACES_compliant_EXR false
- metadata "all metadata"
- first_part rgba
- create_directories true
- first "{shot_source_version_start_frame}"
- last "{shot_source_version_end_frame}"
- use_limit true
- version 0
- ocioColorspace "ACES - ACEScg"
- display ACES
- view sRGB
- name Write_EXR_source
- label "{shot_source_dir}_{app_name}_{task_type}"
-
- xpos 0
- ypos 192
- postage_stamp true
-}}""")
+        substitutions = {
+            "SHOT_SOURCE_DIR": shot_source_dir,
+            "APP_NAME": app_name,
+            "TASK_TYPE": task_type,
+            "VERSION_NAME": version_name,
+            "SHOT_SOURCE_VERSION_START_FRAME": str(shot_source_version_start_frame),
+            "SHOT_SOURCE_VERSION_END_FRAME": str(shot_source_version_end_frame),
+            "SHOT_SOURCE_VERSION_SEQUENCE_DIR": shot_source_version_openexr_sequences_info[1]['shot_source_version_sequence_dir'],
+            "SHOT_SOURCES_DIR": shot_sources_dir,
+        }
+        
+        nuke_script_content = Template(template_content).substitute(substitutions)
+        nuke_shot_script_file.write(nuke_script_content)
 
         # # This section is for logging purposes
         # logging.debug(f"Nuke script appended for:  {shot_name}_{app_name}_{task_type}_{version_name}")
