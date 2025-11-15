@@ -145,7 +145,7 @@ class LogikProjektOpenClipBase:
             'write_file_create_open_clip_value': '<project nickname>/shots/<shot name>/openclip/output_clips/flame/<name><ext>',
             'write_file_include_setup_value': '<project nickname>/shots/<shot name>/batch_setups/<name>_<version name>_<workstation>_<user nickname><ext>',
             'write_file_image_format': 'OpenEXR 16-bit fp',
-            'write_file_compression': 'PIZ',
+            'write_file_compression': 'DWAA',
             'write_file_padding': '8',
             'write_file_frame_index': 'Use Start Frame',
             'write_file_version_name': 'v<version>'

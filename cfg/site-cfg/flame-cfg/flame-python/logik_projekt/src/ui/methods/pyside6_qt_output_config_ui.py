@@ -218,14 +218,14 @@ class pyside6_qt_output_config_ui:
         self.write_file_version_name_label = pyside6_qt_label('Version Name')
 
         # Create Line Edits
-        self.write_file_media_path_lineedit = pyside6_qt_line_edit(self.settings.write_file_media_path)
-        self.write_file_pattern_lineedit = pyside6_qt_line_edit(self.settings.write_file_pattern)
-        self.write_file_create_open_clip_lineedit = pyside6_qt_line_edit(self.settings.write_file_create_open_clip_value)
-        self.write_file_include_setup_lineedit = pyside6_qt_line_edit(self.settings.write_file_include_setup_value)
-        self.write_file_version_name_lineedit = pyside6_qt_line_edit(self.settings.write_file_version_name, max_width=150)
+        self.write_file_media_path_lineedit = pyside6_qt_line_edit(self.settings['write_file_media_path'])
+        self.write_file_pattern_lineedit = pyside6_qt_line_edit(self.settings['write_file_pattern'])
+        self.write_file_create_open_clip_lineedit = pyside6_qt_line_edit(self.settings['write_file_create_open_clip_value'])
+        self.write_file_include_setup_lineedit = pyside6_qt_line_edit(self.settings['write_file_include_setup_value'])
+        self.write_file_version_name_lineedit = pyside6_qt_line_edit(self.settings['write_file_version_name'], max_width=150)
 
         # Create Slider
-        self.write_file_padding_slider = pyside6_qt_slider(int(self.settings.write_file_padding), 1, 20,
+        self.write_file_padding_slider = pyside6_qt_slider(int(self.settings['write_file_padding']), 1, 20,
                                                          value_is_float=False, slider_width=150)
 
         # Setup Image Format Menu
@@ -233,7 +233,7 @@ class pyside6_qt_output_config_ui:
         image_format_menu.setStyleSheet('QMenu {color: #9a9a9a; background-color:#2d3744; border: none; font: 14px "Discreet"}'
                                       'QMenu::item:selected {color: #d9d9d9; background-color: #3a4551}')
 
-        self.write_file_image_format_push_btn = QtWidgets.QPushButton(self.settings.write_file_image_format)
+        self.write_file_image_format_push_btn = QtWidgets.QPushButton(self.settings['write_file_image_format'])
         self.write_file_image_format_push_btn.setMenu(image_format_menu)
         self.write_file_image_format_push_btn.setMinimumSize(QtCore.QSize(150, 28))
         self.write_file_image_format_push_btn.setMaximumSize(QtCore.QSize(150, 28))
@@ -248,7 +248,7 @@ class pyside6_qt_output_config_ui:
         compression_menu.setStyleSheet('QMenu {color: #9a9a9a; background-color:#2d3744; border: none; font: 14px "Discreet"}'
                                      'QMenu::item:selected {color: #d9d9d9; background-color: #3a4551}')
 
-        self.write_file_compression_push_btn = QtWidgets.QPushButton(self.settings.write_file_compression)
+        self.write_file_compression_push_btn = QtWidgets.QPushButton(self.settings['write_file_compression'])
         self.write_file_compression_push_btn.setMenu(compression_menu)
         self.write_file_compression_push_btn.setMinimumSize(QtCore.QSize(150, 28))
         self.write_file_compression_push_btn.setMaximumSize(QtCore.QSize(150, 28))
@@ -274,7 +274,7 @@ class pyside6_qt_output_config_ui:
         # Setup Render Type Menu
         render_node_options = ['Render Node', 'Write File Node']
         self.write_file_render_node_type_push_btn = pyside6_qt_push_button_menu(
-            self.settings.render_node_type,
+            self.settings['render_node_type'],
             render_node_options,
             menu_action=render_node_type_toggle
         )
@@ -282,7 +282,7 @@ class pyside6_qt_output_config_ui:
         # Setup Frame Index Menu
         frame_index = ['Use Start Frame', 'Use Timecode']
         self.write_file_frame_index_push_btn = pyside6_qt_push_button_menu(
-            self.settings.write_file_frame_index,
+            self.settings['write_file_frame_index'],
             frame_index
         )
 
@@ -304,11 +304,11 @@ class pyside6_qt_output_config_ui:
         self.write_file_include_setup_token_btn = pyside6_qt_token_push_button('Add Token', write_file_token_dict, self.write_file_include_setup_lineedit)
 
         # Setup Push Buttons
-        self.write_file_create_open_clip_btn = pyside6_qt_push_button('Create Open Clip', self.settings.write_file_create_open_clip)
+        self.write_file_create_open_clip_btn = pyside6_qt_push_button('Create Open Clip', self.settings['write_file_create_open_clip'])
         self.write_file_create_open_clip_btn.clicked.connect(write_file_create_open_clip_btn_check)
         write_file_create_open_clip_btn_check()
 
-        self.write_file_include_setup_btn = pyside6_qt_push_button('Include Setup', self.settings.write_file_include_setup)
+        self.write_file_include_setup_btn = pyside6_qt_push_button('Include Setup', self.settings['write_file_include_setup'])
         self.write_file_include_setup_btn.clicked.connect(write_file_include_setup_btn_check)
         write_file_include_setup_btn_check()
 
@@ -319,7 +319,7 @@ class pyside6_qt_output_config_ui:
 
         # Initialize Compression and Render Node Type
         compression(self.write_file_image_format_push_btn.text())
-        self.write_file_compression_push_btn.setText(self.settings.write_file_compression)
+        self.write_file_compression_push_btn.setText(self.settings['write_file_compression'])
         render_node_type_toggle()
 
         # Layout Setup
