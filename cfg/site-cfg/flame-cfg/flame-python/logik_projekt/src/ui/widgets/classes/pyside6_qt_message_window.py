@@ -45,8 +45,8 @@ except ImportError:
         QtGui,
     )
 
-from pyside6_qt_button import pyside6_qt_button
-from pyside6_qt_label import pyside6_qt_label
+from src.ui.widgets.classes.pyside6_qt_button import pyside6_qt_button
+from src.ui.widgets.classes.pyside6_qt_label import pyside6_qt_label
 
 class pyside6_qt_message_window(QtWidgets.QDialog):
     '''

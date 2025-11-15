@@ -45,9 +45,10 @@ except ImportError:
         QtGui,
     )
 
-from pyside6_qt_button import pyside6_qt_button
-from pyside6_qt_label import pyside6_qt_label
-from pyside6_qt_line_edit import pyside6_qt_line_edit
+from src.ui.widgets.classes.pyside6_qt_button import pyside6_qt_button
+from src.ui.widgets.classes.pyside6_qt_label import pyside6_qt_label
+from src.ui.widgets.classes.pyside6_qt_label import pyside6_qt_label
+from src.ui.widgets.classes.pyside6_qt_line_edit import pyside6_qt_line_edit
 
 class pyside6_qt_password_window(QtWidgets.QDialog):
     '''

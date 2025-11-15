@@ -6,24 +6,21 @@
 # Created:          2025-11-14
 # Modified:         2025-11-14
 
-# ========================================================================== #
-# This section imports the necessary modules.
-# ========================================================================== #
+# -------------------------------------------------------------------------- #
+# Imports
+# -------------------------------------------------------------------------- #
 
+# Standard library imports
 import os
 import sys
 import logging
 from pathlib import Path
 from typing import List
 
-# Get the directory path of the currently executing script
-current_script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Append parent_dir to sys.path to access modules relative to the script
-parent_dir = os.path.abspath(os.path.join(current_script_dir, ".."))
-sys.path.append(parent_dir)
 
-from pyside6_qt_flame_modules import (
+# Third-party imports (from Flame's PySide6 Qt modules)
+from src.ui.pyside6_qt_flame_modules import (
     pyside6_qt_load_config,
     pyside6_qt_output_config_ui,
     pyside6_qt_print,

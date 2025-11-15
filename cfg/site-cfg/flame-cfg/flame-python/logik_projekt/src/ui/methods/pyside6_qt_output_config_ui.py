@@ -3,89 +3,75 @@
 # -------------------------------------------------------------------------- #
 
 # File Name:        pyside6_qt_output_config_ui.py
-# Version:          1.0.3
+# Version:          1.1.1
 # Created:          2024-01-19
-# Modified:         2025-02-25
+# Modified:         2025-11-15
 
 # ========================================================================== #
-# This section imports the necessary modules.
+# Imports - Standard Library
 # ========================================================================== #
-
-import os
 import re
 import datetime
 import shutil
 import ast
+import os
 import sys
 import xml.etree.ElementTree as ET
-
 from functools import partial
-
 from pathlib import Path
+from typing import Union, List, Dict, Optional, Callable
 
-from PySide6 import (
-    QtWidgets,
-    QtCore,
-    QtGui
-)
-
-from typing import (
-    Union,
-    List,
-    Dict,
-    Optional,
-    Callable
-)
-
-# Get the directory path of the currently executing script
-current_script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Append parent_dir to sys.path to access modules relative to the script
-sys.path.append(current_script_dir)
+# Ensure the parent directory of 'src' is in sys.path for canonical imports
+current_file = os.path.abspath(__file__)
+src_parent = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
+if src_parent not in sys.path:
+    sys.path.insert(0, src_parent)
 
 # ========================================================================== #
-# This section imports the Qt UI classes.
+# Imports - Third Party
 # ========================================================================== #
 
-from pyside6_qt_flame_classes import (
-    pyside6_qt_button,
-    pyside6_qt_clickable_line_edit,
-    pyside6_qt_label,
-    pyside6_qt_line_edit,
-    pyside6_qt_list_widget,
-    pyside6_qt_message_window,
-    pyside6_qt_password_window,
-    pyside6_qt_preset_window,
-    pyside6_qt_progress_window,
-    pyside6_qt_push_button,
-    pyside6_qt_push_button_menu,
-    pyside6_qt_qdialog,
-    pyside6_qt_slider,
-    pyside6_qt_text_edit,
-    pyside6_qt_token_push_button,
-    pyside6_qt_tree_widget,
-    pyside6_qt_window
-)
+from PySide6 import QtWidgets, QtCore, QtGui
 
 # ========================================================================== #
-# This section imports the pyflame functions.
+# Imports - LOGIK-PROJEKT UI Classes (Direct from widgets)
 # ========================================================================== #
 
-from pyside6_qt_flame_functions import (
-    pyside6_qt_get_flame_version,
-    pyside6_qt_get_shot_name,
-    pyside6_qt_file_browser,
-    pyside6_qt_load_config,
-    pyside6_qt_open_in_finder,
-    pyside6_qt_print,
-    pyside6_qt_resolve_shot_name,
-    pyside6_qt_resolve_path_tokens,
-    pyside6_qt_refresh_hooks,
-    pyside6_qt_save_config
-)
+from src.ui.widgets.classes.pyside6_qt_button import pyside6_qt_button
+from src.ui.widgets.classes.pyside6_qt_clickable_line_edit import pyside6_qt_clickable_line_edit
+from src.ui.widgets.classes.pyside6_qt_label import pyside6_qt_label
+from src.ui.widgets.classes.pyside6_qt_line_edit import pyside6_qt_line_edit
+from src.ui.widgets.classes.pyside6_qt_list_widget import pyside6_qt_list_widget
+from src.ui.widgets.classes.pyside6_qt_message_window import pyside6_qt_message_window
+from src.ui.widgets.classes.pyside6_qt_password_window import pyside6_qt_password_window
+from src.ui.widgets.classes.pyside6_qt_preset_window import pyside6_qt_preset_window
+from src.ui.widgets.classes.pyside6_qt_progress_window import pyside6_qt_progress_window
+from src.ui.widgets.classes.pyside6_qt_push_button import pyside6_qt_push_button
+from src.ui.widgets.classes.pyside6_qt_push_button_menu import pyside6_qt_push_button_menu
+from src.ui.widgets.classes.pyside6_qt_qdialog import pyside6_qt_qdialog
+from src.ui.widgets.classes.pyside6_qt_slider import pyside6_qt_slider
+from src.ui.widgets.classes.pyside6_qt_text_edit import pyside6_qt_text_edit
+from src.ui.widgets.classes.pyside6_qt_token_push_button import pyside6_qt_token_push_button
+from src.ui.widgets.classes.pyside6_qt_tree_widget import pyside6_qt_tree_widget
+from src.ui.widgets.classes.pyside6_qt_window import pyside6_qt_window
 
 # ========================================================================== #
-# This section defines the pyside6_qt_output_config_ui class.
+# Imports - LOGIK-PROJEKT UI Functions (Direct from widgets)
+# ========================================================================== #
+
+from src.ui.widgets.functions.pyside6_qt_file_browser import pyside6_qt_file_browser
+from src.ui.widgets.functions.pyside6_qt_get_flame_version import pyside6_qt_get_flame_version
+from src.ui.widgets.functions.pyside6_qt_get_shot_name import pyside6_qt_get_shot_name
+from src.ui.widgets.functions.pyside6_qt_load_config import pyside6_qt_load_config
+from src.ui.widgets.functions.pyside6_qt_open_in_finder import pyside6_qt_open_in_finder
+from src.ui.widgets.functions.pyside6_qt_print import pyside6_qt_print
+from src.ui.widgets.functions.pyside6_qt_refresh_hooks import pyside6_qt_refresh_hooks
+from src.ui.widgets.functions.pyside6_qt_resolve_path_tokens import pyside6_qt_resolve_path_tokens
+from src.ui.widgets.functions.pyside6_qt_resolve_shot_name import pyside6_qt_resolve_shot_name
+from src.ui.widgets.functions.pyside6_qt_save_config import pyside6_qt_save_config
+
+# ========================================================================== #
+# Class Definition
 # ========================================================================== #
 
 class pyside6_qt_output_config_ui:
@@ -94,14 +80,7 @@ class pyside6_qt_output_config_ui:
         self.SCRIPT_NAME = script_name
         self.CONFIG_PATH = config_path
         self.VERSION = version
-      
-        # Ensure src package is discoverable for canonical imports
-        import os
-        import sys
-        current_file = os.path.abspath(__file__)
-        src_parent = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
-        if src_parent not in sys.path:
-        	sys.path.insert(0, src_parent)
+
     def output_node_setup(self):
         def save_config():
             if not self.write_file_media_path_lineedit.text():
@@ -307,17 +286,6 @@ class pyside6_qt_output_config_ui:
             frame_index
         )
 
-        # # Setup Token Buttons
-        # write_file_token_dict = {
-        #     'Batch Name': '<batch name>',
-        #     'Batch Iteration': '<batch iteration>',
-        #     'Iteration': '<iteration>',
-        #     'Project': '<project>',
-        #     'Project Nickname': '<project nickname>',
-        #     'Shot Name': '<shot name>',
-        #     'Clip Height
-
-
         # Setup Token Buttons
         write_file_token_dict = {
             'Batch Name': '<batch name>',
@@ -405,19 +373,32 @@ class pyside6_qt_output_config_ui:
         gridbox.addWidget(self.write_file_cancel_btn, 14, 5)
 
         self.setup_window.show()
-# version:               1.0.0
-# modified:              2024-10-30 - 07:35:27
-# comments:              Refactored PySide6 Output Node Config UI.
+
 # -------------------------------------------------------------------------- #
-# version:               1.0.1
-# modified:              2024-11-16 - 16:52:07
-# comments:              Fixed circular import statements
+# Changelist
+# -------------------------------------------------------------------------- #
+
+# version:               1.1.1
+# modified:              2025-11-15
+# comments:              Fixed circular imports - import directly from widgets
+# -------------------------------------------------------------------------- #
+# version:               1.1.0
+# modified:              2025-11-14
+# comments:              Refactored imports - removed sys.path manipulation
+# -------------------------------------------------------------------------- #
+# version:               1.0.3
+# modified:              2025-02-25 - 07:01:22
+# comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #
 # version:               1.0.2
 # modified:              2025-01-19 - 17:47:49
 # comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
-# version:               1.0.3
-# modified:              2025-02-25 - 07:01:22
-# comments:              Added legacy support for PySide2 imports
+# version:               1.0.1
+# modified:              2024-11-16 - 16:52:07
+# comments:              Fixed circular import statements
+# -------------------------------------------------------------------------- #
+# version:               1.0.0
+# modified:              2024-10-30 - 07:35:27
+# comments:              Refactored PySide6 Output Node Config UI.
 # -------------------------------------------------------------------------- #

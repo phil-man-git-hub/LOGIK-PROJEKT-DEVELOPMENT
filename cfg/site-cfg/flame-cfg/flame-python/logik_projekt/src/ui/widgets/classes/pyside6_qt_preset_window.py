@@ -45,11 +45,11 @@ except ImportError:
         QtGui,
     )
 
-from pyside6_qt_button import pyside6_qt_button
-from pyside6_qt_label import pyside6_qt_label
-from pyside6_qt_message_window import pyside6_qt_message_window
-from pyside6_qt_push_button_menu import pyside6_qt_push_button_menu
-from pyside6_qt_window import pyside6_qt_window
+from src.ui.widgets.classes.pyside6_qt_button import pyside6_qt_button
+from src.ui.widgets.classes.pyside6_qt_label import pyside6_qt_label
+from src.ui.widgets.classes.pyside6_qt_message_window import pyside6_qt_message_window
+from src.ui.widgets.classes.pyside6_qt_push_button_menu import pyside6_qt_push_button_menu
+from src.ui.widgets.classes.pyside6_qt_window import pyside6_qt_window
 
 # from ..functions.pyside6_qt_print import pyside6_qt_print
 

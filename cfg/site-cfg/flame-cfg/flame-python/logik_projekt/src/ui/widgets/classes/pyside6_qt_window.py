@@ -45,7 +45,7 @@ except ImportError:
         QtGui,
     )
 
-from pyside6_qt_label import pyside6_qt_label
+from src.ui.widgets.classes.pyside6_qt_label import pyside6_qt_label
 
 class pyside6_qt_window(QtWidgets.QWidget):
     '''
