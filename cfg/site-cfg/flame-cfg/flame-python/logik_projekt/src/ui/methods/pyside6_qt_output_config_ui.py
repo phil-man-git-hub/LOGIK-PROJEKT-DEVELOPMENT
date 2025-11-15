@@ -41,8 +41,7 @@ from typing import (
 current_script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Append parent_dir to sys.path to access modules relative to the script
-parent_dir = os.path.abspath(os.path.join(current_script_dir, "..", ".."))
-sys.path.append(parent_dir)
+sys.path.append(current_script_dir)
 
 # ========================================================================== #
 # This section imports the Qt UI classes.
@@ -96,6 +95,13 @@ class pyside6_qt_output_config_ui:
         self.CONFIG_PATH = config_path
         self.VERSION = version
       
+        # Ensure src package is discoverable for canonical imports
+        import os
+        import sys
+        current_file = os.path.abspath(__file__)
+        src_parent = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
+        if src_parent not in sys.path:
+        	sys.path.insert(0, src_parent)
     def output_node_setup(self):
         def save_config():
             if not self.write_file_media_path_lineedit.text():

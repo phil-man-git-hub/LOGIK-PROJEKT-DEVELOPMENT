@@ -9,36 +9,45 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        logik_projekt_openclip_neat_video.py
+# File Name:        logik_projekt_openclip_multichannel.py
 # Version:          2.0.1
 # Modified:         2025-11-14
 
 import os
 import sys
 
-# Add the script's directory to the Python path to allow absolute imports
+
+import os
+import sys
+current_file = os.path.abspath(__file__)
+src_parent = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
+if src_parent not in sys.path:
+	sys.path.insert(0, src_parent)
+# Define script_dir for path logic
 script_dir = os.path.dirname(os.path.abspath(__file__))
+# Add the script's directory to the Python path to allow absolute imports
+config_path = os.path.join(os.path.dirname(__file__), '../cfg/logik_projekt_openclip_multichannel/config.xml')
 if script_dir not in sys.path:
     sys.path.insert(0, script_dir)
 
-from logik_projekt_openclip import LogikProjektOpenClipNeatVideo
+from src.core.logik_projekt_openclip import LogikProjektOpenClipMultichannel
 
 # -------------------------------------------------------------------------- #
 
-def projekt_neat_video_media_panel_clips(selection):
-    script = LogikProjektOpenClipNeatVideo(selection)
+def projekt_multichannel_media_panel_clips(selection):
+    script = LogikProjektOpenClipMultichannel(selection)
     script.media_panel_projekt_clips()
 
 # -------------------------------------------------------------------------- #
 
-def projekt_neat_video_batch_clips(selection):
-    script = LogikProjektOpenClipNeatVideo(selection)
+def projekt_multichannel_batch_clips(selection):
+    script = LogikProjektOpenClipMultichannel(selection)
     script.batch_projekt_clips()
 
 # -------------------------------------------------------------------------- #
 
 def setup(selection):
-    script = LogikProjektOpenClipNeatVideo(selection)
+    script = LogikProjektOpenClipMultichannel(selection)
     script.output_node_setup()
 
 # -------------------------------------------------------------------------- #
@@ -66,14 +75,14 @@ def get_batch_custom_ui_actions():
         {
             'name': 'create-openclip',
             'hierarchy': ['logik-projekt'],
-            'order': 3,
+            'order': 1,
             'actions': [
                 {
-                    'name': 'projekt_neat_video selected clips',
-                    'order': 3,
+                    'name': 'projekt_multichannel selected clips',
+                    'order': 1,
                     'separator': 'below',
                     'isVisible': scope_clip,
-                    'execute': projekt_neat_video_batch_clips,
+                    'execute': projekt_multichannel_batch_clips,
                     'minimumVersion': '2025'
                 }
             ]
@@ -92,10 +101,10 @@ def get_main_menu_custom_ui_actions():
         {
             'name': 'create-openclip',
             'hierarchy': ['logik-projekt'],
-            'order': 3,
+            'order': 1,
             'actions': [
                 {
-                    'name': 'configure projekt_neat_video',
+                    'name': 'configure projekt_multichannel',
                     'execute': setup,
                     'minimumVersion': '2025'
                 }
@@ -115,14 +124,14 @@ def get_media_panel_custom_ui_actions():
         {
             'name': 'create-openclip',
             'hierarchy': ['logik-projekt'],
-            'order': 3,
+            'order': 1,
             'actions': [
                 {
-                    'name': 'projekt_neat_video selected clips',
-                    'order': 3,
+                    'name': 'projekt_multichannel selected clips',
+                    'order': 1,
                     'separator': 'below',
                     'isVisible': scope_clip,
-                    'execute': projekt_neat_video_media_panel_clips,
+                    'execute': projekt_multichannel_media_panel_clips,
                     'minimumVersion': '2025'
                 }
             ]

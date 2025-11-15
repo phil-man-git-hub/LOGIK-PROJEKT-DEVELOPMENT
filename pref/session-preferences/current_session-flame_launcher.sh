@@ -5,12 +5,12 @@
 # ========================================================================== #
 
 # Launcher Script Name:  %%LAUNCHER_SCRIPT_NAME%%
-# Launcher Script for:   456_debug_python_scripts_2027_romeo
-# Script Creation Date:  2025-11-14 08:59:34
+# Launcher Script for:   789_debug_flame_python_refactor_part_2_2027_romeo
+# Script Creation Date:  2025-11-14 16:15:06
 
-the_projekt_name="456_debug_python_scripts"
+the_projekt_name="789_debug_flame_python_refactor_part_2"
 
-the_projekt_flame_name="456_debug_python_scripts_2027_romeo"
+the_projekt_flame_name="789_debug_flame_python_refactor_part_2_2027_romeo"
 
 flame_workstation_name="romeo"
 
@@ -19,7 +19,7 @@ flame_workstation_name="romeo"
 # ========================================================================== #
 
 # Define the the_flame_first_run_log
-the_flame_first_run_log_dir="/PROJEKTS/456_debug_python_scripts/cfg/log"
+the_flame_first_run_log_dir="/PROJEKTS/789_debug_flame_python_refactor_part_2/cfg/log"
 mkdir -p "$the_flame_first_run_log_dir"
 the_flame_first_run_log_name="current_session-flame_launcher.log"
 the_flame_first_run_log="$the_flame_first_run_log_dir/$the_flame_first_run_log_name"
@@ -35,7 +35,7 @@ execute_command() {
 
 # Construct the flame launch command.
 launch_opt_1="/opt/Autodesk/flame_2027.pr231/bin/startFlame"
-launch_opt_2="-J 456_debug_python_scripts_2027_romeo"
+launch_opt_2="-J 789_debug_flame_python_refactor_part_2_2027_romeo"
 launch_opt_3="--start-workspace=\"romeo\" --create-workspace"
 # logik_projekt_python_dir="/opt/Autodesk/shared/python/logik_projekt"
 # projekt_tool_dir="projekt_tools/logik_projekt_layout/scripts"
@@ -43,7 +43,7 @@ launch_opt_3="--start-workspace=\"romeo\" --create-workspace"
 # launch_script="create_projekt_layout.py"
 # launch_opt_4="--execute-python-script=$projekt_tool_path/$launch_script"
 
-flame_startup_script_dir="/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/456_debug_python_scripts_2027_romeo/setups"
+flame_startup_script_dir="/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo/setups"
 launch_script="scripts/startup/flame_startup_script.py"
 launch_opt_4="--execute-python-script=$flame_startup_script_dir/$launch_script"
 launch_opt_5="--debug"

@@ -6,61 +6,24 @@
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
-
-# ========================================================================== #
-# This section imports the necessary modules and adds the functions directory
-# ========================================================================== #
-
 import os
 import sys
+current_file = os.path.abspath(__file__)
+src_parent = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
+if src_parent not in sys.path:
+	sys.path.insert(0, src_parent)
 
-# Get the directory path of the currently executing script
-current_script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Append the 'functions' directory to sys.path to access modules
-functions_dir = os.path.join(current_script_dir, 'functions')
-sys.path.append(functions_dir)
-
-# ========================================================================== #
-# This section imports the pyflame functions.
-# ========================================================================== #
-
-# # EXAMPLE
-# from functions.example import (
-#     example_function as new_function_name
-# )
-
-from functions.pyside6_qt_get_shot_name import (
-    pyside6_qt_get_shot_name as pyside6_qt_get_shot_name
-)
-from functions.pyside6_qt_print import (
-    pyside6_qt_print as pyside6_qt_print
-)
-from functions.pyside6_qt_get_flame_version import (
-    pyside6_qt_get_flame_version as pyside6_qt_get_flame_version
-)
-from functions.pyside6_qt_file_browser import (
-    pyside6_qt_file_browser as pyside6_qt_file_browser
-)
-from functions.pyside6_qt_resolve_shot_name import (
-    pyside6_qt_resolve_shot_name as pyside6_qt_resolve_shot_name
-)
-from functions.pyside6_qt_resolve_path_tokens import (
-    pyside6_qt_resolve_path_tokens as pyside6_qt_resolve_path_tokens
-)
-from functions.pyside6_qt_refresh_hooks import (
-    pyside6_qt_refresh_hooks as pyside6_qt_refresh_hooks
-)
-from functions.pyside6_qt_open_in_finder import (
-    pyside6_qt_open_in_finder as pyside6_qt_open_in_finder
-)
-from functions.pyside6_qt_load_config import (
-    pyside6_qt_load_config as pyside6_qt_load_config
-)
-from functions.pyside6_qt_save_config import (
-    pyside6_qt_save_config as pyside6_qt_save_config
-)
-# from functions.pyside6_qt_output_config_ui import (
+from src.ui.widgets.functions.pyside6_qt_get_shot_name import pyside6_qt_get_shot_name
+from src.ui.widgets.functions.pyside6_qt_print import pyside6_qt_print
+from src.ui.widgets.functions.pyside6_qt_get_flame_version import pyside6_qt_get_flame_version
+from src.ui.widgets.functions.pyside6_qt_file_browser import pyside6_qt_file_browser
+from src.ui.widgets.functions.pyside6_qt_resolve_shot_name import pyside6_qt_resolve_shot_name
+from src.ui.widgets.functions.pyside6_qt_resolve_path_tokens import pyside6_qt_resolve_path_tokens
+from src.ui.widgets.functions.pyside6_qt_refresh_hooks import pyside6_qt_refresh_hooks
+from src.ui.widgets.functions.pyside6_qt_open_in_finder import pyside6_qt_open_in_finder
+from src.ui.widgets.functions.pyside6_qt_load_config import pyside6_qt_load_config
+from src.ui.widgets.functions.pyside6_qt_save_config import pyside6_qt_save_config
+# from pyside6_qt_output_config_ui import (
 #     pyside6_qt_output_config_ui as pyside6_qt_output_config_ui
 # )
 

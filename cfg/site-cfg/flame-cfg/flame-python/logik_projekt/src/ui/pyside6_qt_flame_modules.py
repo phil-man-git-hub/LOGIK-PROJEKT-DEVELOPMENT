@@ -2,92 +2,163 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        pyside6_qt_flame_classes.py
+# File Name:        pyside6_qt_flame_modules.py
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
 
 # ========================================================================== #
-# This section imports the necessary modules and adds the 'classes' directory
+# This section imports the necessary modules and adds the modules directory
 # ========================================================================== #
 
+# Standard library imports
+import ast
+
+# Setup sys.path for new canonical module locations
 import os
 import sys
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
+methods_dir = os.path.abspath(os.path.join(current_script_dir, '..', 'src', 'ui', 'methods'))
+if methods_dir not in sys.path:
+    sys.path.append(methods_dir)
+
+try:
+    from PySide6 import (
+        QtWidgets,
+        QtCore,
+        QtGui,
+    )
+except ImportError:
+    from PySide2 import (
+        QtWidgets,
+        QtCore,
+        QtGui,
+    )
 
 # Get the directory path of the currently executing script
 current_script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Append the 'classes' directory to sys.path to access modules
-classes_dir = os.path.join(current_script_dir, 'classes')
-sys.path.append(classes_dir)
+# Print the current_script_dir
+print(f"current_script_dir: {current_script_dir}")
 
-# ========================================================================== #
-# This section imports the Qt UI classes.
-# ========================================================================== #
+# # The current_script_dir should be 'resources/flame/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts'
+# # The modules directory should be 'resources/flame/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules'
+# # Check if this is true
+# modules_dir = os.path.join(current_script_dir, 'modules')
+# print(f"modules_dir: {modules_dir}")
 
-# # EXAMPLE
-# from classes.example import (
-#     example_function as new_function_name
-# )
+# # Append the 'modules' directory to sys.path to access modules
+# modules_dir = os.path.join(current_script_dir, 'modules')
+# sys.path.append(modules_dir)
 
-from classes.pyside6_qt_button import (
-    pyside6_qt_button as pyside6_qt_button
+# Construct the path to the new 'methods' directory
+methods_dir = os.path.abspath(os.path.join(current_script_dir, '..', 'src', 'ui', 'methods'))
+
+# Add the 'methods' directory to sys.path if not already present
+if methods_dir not in sys.path:
+    sys.path.append(methods_dir)
+
+
+# Import from canonical modules in src/ui/methods
+from pyside6_qt_flame_classes import (
+    pyside6_qt_button,
+    pyside6_qt_clickable_line_edit,
+    pyside6_qt_label,
+    pyside6_qt_line_edit,
+    pyside6_qt_list_widget,
+    pyside6_qt_message_window,
+    pyside6_qt_password_window,
+    pyside6_qt_preset_window,
+    pyside6_qt_progress_window,
+    pyside6_qt_push_button,
+    pyside6_qt_push_button_menu,
+    pyside6_qt_qdialog,
+    pyside6_qt_slider,
+    pyside6_qt_text_edit,
+    pyside6_qt_token_push_button,
+    pyside6_qt_tree_widget,
+    pyside6_qt_window,
 )
-from classes.pyside6_qt_clickable_line_edit import (
-    pyside6_qt_clickable_line_edit as pyside6_qt_clickable_line_edit
+
+from pyside6_qt_flame_functions import (
+    pyside6_qt_get_shot_name,
+    pyside6_qt_print,
+    pyside6_qt_get_flame_version,
+    pyside6_qt_file_browser,
+    pyside6_qt_resolve_shot_name,
+    pyside6_qt_resolve_path_tokens,
+    pyside6_qt_refresh_hooks,
+    pyside6_qt_open_in_finder,
+    pyside6_qt_load_config,
+    pyside6_qt_save_config,
 )
-from classes.pyside6_qt_label import (
-    pyside6_qt_label as pyside6_qt_label
+
+from pyside6_qt_output_config_ui import (
+    pyside6_qt_output_config_ui
 )
-from classes.pyside6_qt_line_edit import (
-    pyside6_qt_line_edit as pyside6_qt_line_edit
-)
-from classes.pyside6_qt_list_widget import (
-    pyside6_qt_list_widget as pyside6_qt_list_widget
-)
-from classes.pyside6_qt_message_window import (
-    pyside6_qt_message_window as pyside6_qt_message_window
-)
-from classes.pyside6_qt_password_window import (
-    pyside6_qt_password_window as pyside6_qt_password_window
-)
-from classes.pyside6_qt_preset_window import (
-    pyside6_qt_preset_window as pyside6_qt_preset_window
-)
-from classes.pyside6_qt_progress_window import (
-    pyside6_qt_progress_window as pyside6_qt_progress_window
-)
-from classes.pyside6_qt_push_button import (
-    pyside6_qt_push_button as pyside6_qt_push_button
-)
-from classes.pyside6_qt_push_button_menu import (
-    pyside6_qt_push_button_menu as pyside6_qt_push_button_menu
-)
-from classes.pyside6_qt_qdialog import (
-    pyside6_qt_qdialog as pyside6_qt_qdialog
-)
-from classes.pyside6_qt_slider import (
-    pyside6_qt_slider as pyside6_qt_slider
-)
-from classes.pyside6_qt_text_edit import (
-    pyside6_qt_text_edit as pyside6_qt_text_edit
-)
-from classes.pyside6_qt_token_push_button import (
-    pyside6_qt_token_push_button as pyside6_qt_token_push_button
-)
-from classes.pyside6_qt_tree_widget import (
-    pyside6_qt_tree_widget as pyside6_qt_tree_widget
-)
-from classes.pyside6_qt_window import (
-    pyside6_qt_window as pyside6_qt_window
-)
+
+# ============================== TEST ====================================== #
+
+# # Append the 'modules' directory to sys.path to access modules
+# if modules_dir not in sys.path:
+#     sys.path.append(modules_dir)
+
+# # Verify if the modules directory exists
+# if not os.path.exists(modules_dir):
+#     print(f"Error: modules_dir does not exist: {modules_dir}")
+# else:
+#     print(f"modules_dir exists: {modules_dir}")
+
+# # Import modules from the 'modules' directory
+# try:
+#     from modules.pyside6_qt_flame_classes import (
+#         pyside6_qt_button,
+#         pyside6_qt_clickable_line_edit,
+#         pyside6_qt_label,
+#         pyside6_qt_line_edit,
+#         pyside6_qt_list_widget,
+#         pyside6_qt_message_window,
+#         pyside6_qt_password_window,
+#         pyside6_qt_preset_window,
+#         pyside6_qt_progress_window,
+#         pyside6_qt_push_button,
+#         pyside6_qt_push_button_menu,
+#         pyside6_qt_qdialog,
+#         pyside6_qt_slider,
+#         pyside6_qt_text_edit,
+#         pyside6_qt_token_push_button,
+#         pyside6_qt_tree_widget,
+#         pyside6_qt_window,
+#     )
+
+#     from modules.pyside6_qt_flame_functions import (
+#         pyside6_qt_get_shot_name,
+#         pyside6_qt_print,
+#         pyside6_qt_get_flame_version,
+#         pyside6_qt_file_browser,
+#         pyside6_qt_resolve_shot_name,
+#         pyside6_qt_resolve_path_tokens,
+#         pyside6_qt_refresh_hooks,
+#         pyside6_qt_open_in_finder,
+#         pyside6_qt_load_config,
+#         pyside6_qt_save_config,
+#     )
+
+#     from modules.pyside6_qt_output_config_ui import (
+#         pyside6_qt_output_config_ui as pyside6_qt_output_config_ui
+#     )
+  
+# except ImportError as e:
+#     print(f"Error importing modules: {e}")
+
+# ============================== TEST ====================================== #
 
 # ========================================================================== #
 # This section defines how to handle the main script function.
 # ========================================================================== #
 
 # # If this script is executed as main:
-# # Call functions for immediate execution
+# # Call scripts for immediate execution
 # if __name__ == "__main__":
 
 # ========================================================================== #
@@ -206,7 +277,7 @@ from classes.pyside6_qt_window import (
 # comments:              Replaced pyflame_print with pyside6_qt_print
 # -------------------------------------------------------------------------- #
 # version:               0.2.8
-# modified:              2024-05-17 - 13:50:00
+# modified:              2024-05-17 - 13:49:59
 # comments:              Replaced pyflame_refresh_hooks with pyside6_qt_refresh_hooks
 # -------------------------------------------------------------------------- #
 # version:               0.2.9
@@ -238,7 +309,7 @@ from classes.pyside6_qt_window import (
 # comments:              Minor modification to Disclaimer.
 # -------------------------------------------------------------------------- #
 # version:               0.4.5
-# modified:              2024-06-04 - 17:38:52
+# modified:              2024-06-04 - 17:38:53
 # comments:              Added 'Smart Replace' option for render and write nodes
 # -------------------------------------------------------------------------- #
 # version:               0.4.6

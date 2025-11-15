@@ -9,36 +9,39 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        logik_projekt_openclip_mattes.py
+# File Name:        logik_projekt_openclip_neat_video.py
 # Version:          2.0.1
 # Modified:         2025-11-14
 
 import os
 import sys
 
-# Add the script's directory to the Python path to allow absolute imports
+
+# Define script_dir for path logic
 script_dir = os.path.dirname(os.path.abspath(__file__))
+# Add the script's directory to the Python path to allow absolute imports
+config_path = os.path.join(os.path.dirname(__file__), '../cfg/logik_projekt_openclip_neat_video/config.xml')
 if script_dir not in sys.path:
     sys.path.insert(0, script_dir)
 
-from logik_projekt_openclip import LogikProjektOpenClipMattes
+from src.core.logik_projekt_openclip import LogikProjektOpenClipNeatVideo
 
 # -------------------------------------------------------------------------- #
 
-def projekt_mattes_media_panel_clips(selection):
-    script = LogikProjektOpenClipMattes(selection)
+def projekt_neat_video_media_panel_clips(selection):
+    script = LogikProjektOpenClipNeatVideo(selection)
     script.media_panel_projekt_clips()
 
 # -------------------------------------------------------------------------- #
 
-def projekt_mattes_batch_clips(selection):
-    script = LogikProjektOpenClipMattes(selection)
+def projekt_neat_video_batch_clips(selection):
+    script = LogikProjektOpenClipNeatVideo(selection)
     script.batch_projekt_clips()
 
 # -------------------------------------------------------------------------- #
 
 def setup(selection):
-    script = LogikProjektOpenClipMattes(selection)
+    script = LogikProjektOpenClipNeatVideo(selection)
     script.output_node_setup()
 
 # -------------------------------------------------------------------------- #
@@ -66,14 +69,14 @@ def get_batch_custom_ui_actions():
         {
             'name': 'create-openclip',
             'hierarchy': ['logik-projekt'],
-            'order': 2,
+            'order': 3,
             'actions': [
                 {
-                    'name': 'projekt_mattes selected clips',
-                    'order': 2,
+                    'name': 'projekt_neat_video selected clips',
+                    'order': 3,
                     'separator': 'below',
                     'isVisible': scope_clip,
-                    'execute': projekt_mattes_batch_clips,
+                    'execute': projekt_neat_video_batch_clips,
                     'minimumVersion': '2025'
                 }
             ]
@@ -92,10 +95,10 @@ def get_main_menu_custom_ui_actions():
         {
             'name': 'create-openclip',
             'hierarchy': ['logik-projekt'],
-            'order': 2,
+            'order': 3,
             'actions': [
                 {
-                    'name': 'configure projekt_mattes',
+                    'name': 'configure projekt_neat_video',
                     'execute': setup,
                     'minimumVersion': '2025'
                 }
@@ -115,14 +118,14 @@ def get_media_panel_custom_ui_actions():
         {
             'name': 'create-openclip',
             'hierarchy': ['logik-projekt'],
-            'order': 2,
+            'order': 3,
             'actions': [
                 {
-                    'name': 'projekt_mattes selected clips',
-                    'order': 2,
+                    'name': 'projekt_neat_video selected clips',
+                    'order': 3,
                     'separator': 'below',
                     'isVisible': scope_clip,
-                    'execute': projekt_mattes_media_panel_clips,
+                    'execute': projekt_neat_video_media_panel_clips,
                     'minimumVersion': '2025'
                 }
             ]
