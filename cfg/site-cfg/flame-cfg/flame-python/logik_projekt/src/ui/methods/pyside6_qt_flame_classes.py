@@ -42,11 +42,39 @@ from src.ui.widgets.classes.pyside6_qt_token_push_button import pyside6_qt_token
 from src.ui.widgets.classes.pyside6_qt_tree_widget import pyside6_qt_tree_widget
 from src.ui.widgets.classes.pyside6_qt_window import pyside6_qt_window
 
-# -------------------------------------------------------------------------- #
-# Changelist
+
 # -------------------------------------------------------------------------- #
 
-# version:               1.1.0
-# modified:              2025-11-15
-# comments:              Verified imports use full package paths
+# DISCLAIMER:   This file is part of LOGIK-PROJEKT.
+
+#               Copyright © 2025 STRENGTH IN NUMBERS
+
+#               LOGIK-PROJEKT creates directories, files, scripts & tools
+#               for use with Autodesk Flame and other software.
+
+#               LOGIK-PROJEKT is free software.
+
+#               You can redistribute it and/or modify it under the terms
+#               of the GNU General Public License as published by the
+#               Free Software Foundation, either version 3 of the License,
+#               or any later version.
+
+#               This program is distributed in the hope that it will be
+#               useful, but WITHOUT ANY WARRANTY; without even the
+
+#               implied warranty of MERCHANTABILITY or
+#               FITNESS FOR A PARTICULAR PURPOSE.
+
+#               See the GNU General Public License for more details.
+#               You should have received a copy of the GNU General
+#               Public License along with this program.
+
+#               If not, see <https://www.gnu.org/licenses/gpl-3.0.en.html>.
+
+#               Contact: phil_man@mac.com
+
+# -------------------------------------------------------------------------- #
+# C2 A9 32 30 32 35 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 #
+# -------------------------------------------------------------------------- #
+# Changelog:
 # -------------------------------------------------------------------------- #
