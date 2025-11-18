@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        pyside6_qt_qdialog.py
+# File Name:        pyside6_qt_message_window.py
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
@@ -45,102 +45,176 @@ except ImportError:
         QtGui,
     )
 
-from tmp.unused.src.ui.widgets.pyside6_qt_label import pyside6_qt_label
+from tmp.unused.src.core.ui.widgets.button.pyside6_qt_button import pyside6_qt_button
+from tmp.unused.src.core.ui.widgets.label.pyside6_qt_label import pyside6_qt_label
 
-class pyside6_qt_qdialog(QtWidgets.QDialog):
+class pyside6_qt_message_window(QtWidgets.QDialog):
     '''
-    Custom Qt Flame QDialog Widget
+    Custom Qt Flame Message Window
 
-    pyside6_qt_qdialog(window_title, window_layout, window_width, window_height[, window_bar_color]
+    pyside6_qt_message_window(message_type, message_title, message[, time=3, parent=None])
 
-    window_title: Text shown top left of window [str]
-    window_layout: Layout of window [QtWidgets.QLayout]
-    window_width: Width of window [int]
-    window_height: Height of window [int]
-    window_bar_color: (optional) Color of left window bar (Default is blue) [str]
+    message_type: Type of message window to be shown. Options are: confirm, message, error, warning [str] Confirm and warning return True or False values
+    message_title: Text shown in top left of window ie. Confirm Operation [str]
+    message: Text displayed in body of window [str]
+    time: (optional) Time in seconds to display message in flame message area. Default is 3. [int]
+    parent: (optional) - Parent window [QtWidget]
 
-    Example:
+    Message Window Types:
 
-        setup_window = pyside6_qt_qdialog(f'{SCRIPT_NAME}: Setup <small>{VERSION}', gridbox, 1000, 360)
+        confirm: confirm and cancel button / grey left bar - returns True or False
+        message: ok button / blue left bar
+        error: ok button / yellow left bar
+        warning: confirm and cancel button / red left bar - returns True of False
+
+    Examples:
+
+        pyside6_qt_message_window('error', f'{SCRIPT_NAME}: Error', f'Unable to create folder.<br>Check folder permissions')
+
+        or
+
+        if pyside6_qt_message_window('confirm', 'Confirm Operation', 'Some important message'):
+            do something
     '''
 
-    def __init__(self, window_title: str, window_layout, window_width: int, window_height: int, window_bar_color: Optional[str]='blue'):
-        super(pyside6_qt_qdialog, self).__init__()
+    def __init__(self, message_type: str, message_title: str, message: str, time: int=3, parent=None):
+        super(pyside6_qt_message_window, self).__init__()
+        import flame
 
         # Check argument types
 
-        if not isinstance(window_title, str):
-            raise TypeError('pyside6_qt_qdialog: window_title must be a string.')
-        elif not isinstance(window_layout, QtWidgets.QLayout):
-            raise TypeError('pyside6_qt_qdialog: window_layout must be a QtWidgets.QLayout.')
-        elif not isinstance(window_width, int):
-            raise TypeError('pyside6_qt_qdialog: window_width must be an integer.')
-        elif not isinstance(window_height, int):
-            raise TypeError('pyside6_qt_qdialog: window_height must be an integer.')
-        elif not isinstance(window_bar_color, str):
-            raise TypeError('pyside6_qt_qdialog: window_bar_color must be a string.')
+        if message_type not in ['confirm', 'message', 'error', 'warning']:
+            raise ValueError('pyside6_qt_message_window: message_type must be one of: confirm, message, error, warning.')
+        if not isinstance(message_title, str):
+            raise TypeError('pyside6_qt_message_window: message_title must be a string.')
+        if not isinstance(message, str):
+            raise TypeError('pyside6_qt_message_window: message must be a string.')
+        if not isinstance(time, int):
+            raise TypeError('pyside6_qt_message_window: time must be an integer.')
 
-        # Build window
+        # Create message window
 
-        self.window_bar_color = window_bar_color
-        self.window_width = window_width
-        self.window_height = window_height
+        self.message_type = message_type
 
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        self.setMinimumSize(QtCore.QSize(window_width, window_height))
-        self.setMaximumSize(QtCore.QSize(window_width, window_height))
-        self.setStyleSheet('QWidget {background-color: rgb(36, 36, 36)}'
-                           'QTabWidget {background-color: rgb(36, 36, 36); border: none; font: 14px "Discreet"}'
-                           'QTabWidget::tab-bar {alignment: center}'
-                           'QTabBar::tab {color: rgb(154, 154, 154); background-color: rgb(36, 36, 36); min-width: 20ex; padding: 5px;}'
-                           'QTabBar::tab:selected {color: rgb(186, 186, 186); background-color: rgb(31, 31, 31); border: 1px solid rgb(31, 31, 31); border-bottom: 1px solid rgb(51, 102, 173)}'
-                           'QTabBar::tab:!selected {color: rgb(186, 186, 186); background-color: rgb(36, 36, 36); border: none}'
-                           'QTabWidget::pane {border-top: 1px solid rgb(49, 49, 49)}')
+        self.setMinimumSize(QtCore.QSize(500, 330))
+        self.setMaximumSize(QtCore.QSize(500, 330))
+        self.setStyleSheet('background-color: rgb(36, 36, 36)')
 
         primaryScreen = QtWidgets.QApplication.primaryScreen() # resolution = QtWidgets.QDesktopWidget().screenGeometry()
         resolution = primaryScreen.geometry() # Fix for flame 2025
         self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
-        self.window_title_label = pyside6_qt_label(window_title, label_width=window_width)
-        self.window_title_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
-
-        # Layout
+        self.setParent(parent)
 
         self.grid = QtWidgets.QGridLayout()
-        self.grid.addWidget(self.window_title_label, 0, 0)
-        self.grid.addLayout(window_layout, 2, 0, 3, 3)
-        self.grid.setRowMinimumHeight(3, 100)
+
+        self.main_label = pyside6_qt_label(message_title, label_width=500)
+        self.main_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
+
+        self.message_text_edit = QtWidgets.QPlainTextEdit(message) # Fix for flame 2025
+        self.message_text_edit.setDisabled(True)
+        self.message_text_edit.setStyleSheet('QPlainTextEdit {color: rgb(154, 154, 154); background-color: rgb(36, 36, 36); selection-color: rgb(190, 190, 190); selection-background-color: rgb(36, 36, 36); border: none; padding-left: 20px; padding-right: 20px; font: 12px "Discreet"}')  # Fix for flame 2025
+
+        # Set confirm/ok button color
+
+        if message_type == 'confirm':
+            self.confirm_button = pyside6_qt_button('Confirm', self.confirm, button_color='blue', button_width=110)
+        elif message_type == 'warning':
+            self.confirm_button = pyside6_qt_button('Confirm', self.confirm, button_color='red', button_width=110)
+        else:
+            self.ok_button = pyside6_qt_button('Ok', self.confirm, button_color='blue', button_width=110)
+
+        # Set layout for message window
+
+        if message_type == 'confirm' or message_type == 'warning':
+            self.cancel_button = pyside6_qt_button('Cancel', self.cancel, button_width=110)
+            self.grid.addWidget(self.main_label, 0, 0)
+            self.grid.setRowMinimumHeight(1, 30)
+            self.grid.addWidget(self.message_text_edit, 2, 0, 4, 8)
+            self.grid.setRowMinimumHeight(9, 30)
+            self.grid.addWidget(self.cancel_button, 10, 5)
+            self.grid.addWidget(self.confirm_button, 10, 6)
+            self.grid.setRowMinimumHeight(11, 30)
+        else:
+            self.grid.addWidget(self.main_label, 0, 0)
+            self.grid.setRowMinimumHeight(1, 30)
+            self.grid.addWidget(self.message_text_edit, 2, 0, 4, 8)
+            self.grid.setRowMinimumHeight(9, 30)
+            self.grid.addWidget(self.ok_button, 10, 6)
+            self.grid.setRowMinimumHeight(11, 30)
+
+        message = message.replace('<br>', ' ')
+        message = message.replace('<center>', '')
+        message = message.replace('</center>', '')
+        message = message.replace('<dd>', '')
+        message = message.replace('<b>', '')
+        message = message.replace('</b>', '')
+
+        # Print to terminal/shell
+
+        if message_type == 'warning':
+            # print message text in red
+            print(f'\033[91m\n--> {message_title}: {message}\033[0m\n')
+        elif message_type == 'error':
+            # print message text in yellow
+            print(f'\033[93m\n--> {message_title}: {message}\033[0m\n')
+        else:
+            print(f'\n--> {message_title}: {message}\n')
+
+        # Print message to Flame message window - only works in Flame 2023.1 and later
+        # Warning and error intentionally swapped to match color of message window
+
+        message_title = message_title.upper()
+
+        try:
+            if message_type == 'confirm' or message_type == 'message':
+                flame.messages.show_in_console(f'{message_title}: {message}', 'info', time)
+            elif message_type == 'error':
+                flame.messages.show_in_console(f'{message_title}: {message}', 'warning', time)
+            elif message_type == 'warning':
+                flame.messages.show_in_console(f'{message_title}: {message}', 'error', time)
+        except:
+            pass
 
         self.setLayout(self.grid)
+        self.exec()
+
+    def __bool__(self):
+
+        return self.confirmed
+
+    def cancel(self):
+
+        self.close()
+        self.confirmed = False
+        print('--> Cancelled\n')
+
+    def confirm(self):
+
+        self.close()
+        self.confirmed = True
+        if self.message_type == 'confirm':
+            print('--> Confirmed\n')
 
     def paintEvent(self, event):
-        '''
-        Add title bar line and side color lines to window
-        '''
-
-        # Line colors
-
         painter = QtGui.QPainter(self)
-        if self.window_bar_color == 'blue':
-            bar_color = QtGui.QColor(0, 110, 176)
-        elif self.window_bar_color == 'red':
-            bar_color = QtGui.QColor(200, 29, 29)
-        elif self.window_bar_color == 'green':
-            bar_color = QtGui.QColor(0, 180, 13)
-        elif self.window_bar_color == 'yellow':
-            bar_color = QtGui.QColor(251, 181, 73)
-        elif self.window_bar_color == 'gray':
-            bar_color = QtGui.QColor(71, 71, 71)
 
-        # Draw lines
+        if self.message_type == 'confirm':
+            line_color = QtGui.QColor(71, 71, 71)
+        elif self.message_type == 'message':
+            line_color = QtGui.QColor(0, 110, 176)
+        elif self.message_type == 'error':
+            line_color = QtGui.QColor(251, 181, 73)
+        elif self.message_type == 'warning':
+            line_color = QtGui.QColor(200, 29, 29)
 
-        painter.setPen(QtGui.QPen(QtGui.QColor(71, 71, 71), .5, QtCore.Qt.SolidLine))
-        painter.drawLine(0, 40, self.window_width, 40)
-        painter.setPen(QtGui.QPen(bar_color, 6, QtCore.Qt.SolidLine))
-        painter.drawLine(0, 0, 0, self.window_height)
+        painter.setPen(QtGui.QPen(line_color, 6, QtGui.Qt.SolidLine)) # Fix for flame 2025
+        painter.drawLine(0, 0, 0, 330)
 
-    # For moving frameless window
+        painter.setPen(QtGui.QPen(QtGui.QColor(71, 71, 71), .5, QtGui.Qt.SolidLine)) # Fix for flame 2025
+        painter.drawLine(0, 40, 500, 40)
 
     def mousePressEvent(self, event):
         self.oldPosition = event.globalPos()
@@ -342,14 +416,14 @@ class pyside6_qt_qdialog(QtWidgets.QDialog):
 # comments:              Refactored PySide6 Output Node Config UI.
 # -------------------------------------------------------------------------- #
 # version:               1.0.1
-# modified:              2024-11-16 - 16:52:07
+# modified:              2024-11-16 - 16:52:06
 # comments:              Fixed circular import statements
 # -------------------------------------------------------------------------- #
 # version:               1.0.2
-# modified:              2025-01-19 - 17:47:47
+# modified:              2025-01-19 - 17:47:46
 # comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
 # version:               1.0.3
-# modified:              2025-02-25 - 07:01:19
+# modified:              2025-02-25 - 07:01:18
 # comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #

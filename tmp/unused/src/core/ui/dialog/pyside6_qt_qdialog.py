@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        pyside6_qt_window.py
+# File Name:        pyside6_qt_qdialog.py
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
@@ -45,51 +45,50 @@ except ImportError:
         QtGui,
     )
 
-from tmp.unused.src.ui.widgets.pyside6_qt_label import pyside6_qt_label
+from tmp.unused.src.core.ui.widgets.label.pyside6_qt_label import pyside6_qt_label
 
-class pyside6_qt_window(QtWidgets.QWidget):
+class pyside6_qt_qdialog(QtWidgets.QDialog):
     '''
-    Custom Qt Flame Window Widget
+    Custom Qt Flame QDialog Widget
 
-    pyside6_qt_window(window_title, window_layout, window_width, window_height[, window_bar_color='blue'])
+    pyside6_qt_qdialog(window_title, window_layout, window_width, window_height[, window_bar_color]
 
-    window_title: text displayed in top left corner of window [str]
-    window_layout: QLayout object. QLayout should be defined before adding pyside6_qt_window [object]
-    window_width: width of window [int]
-    window_height: height of window [int]
-    window_bar_color: (optional) color of bar on left side of window. options are red, blue, green, yellow, gray, teal. [str] - default is blue
+    window_title: Text shown top left of window [str]
+    window_layout: Layout of window [QtWidgets.QLayout]
+    window_width: Width of window [int]
+    window_height: Height of window [int]
+    window_bar_color: (optional) Color of left window bar (Default is blue) [str]
 
-    Usage:
+    Example:
 
-        grid_layout = QtWidgets.QGridLayout()
-        self.window = pyside6_qt_window(f'Import Camera <small>{VERSION}', grid_layout, 400, 200)
+        setup_window = pyside6_qt_qdialog(f'{SCRIPT_NAME}: Setup <small>{VERSION}', gridbox, 1000, 360)
     '''
 
     def __init__(self, window_title: str, window_layout, window_width: int, window_height: int, window_bar_color: Optional[str]='blue'):
-        super(pyside6_qt_window, self).__init__()
+        super(pyside6_qt_qdialog, self).__init__()
 
         # Check argument types
 
         if not isinstance(window_title, str):
-            raise TypeError('pyside6_qt_window: Window Title must be a string.')
-        if not isinstance(window_width, int):
-            raise TypeError('pyside6_qt_window: Window Width must be a string.')
-        if not isinstance(window_height, int):
-            raise TypeError('pyside6_qt_window: Window Width must be a string.')
-        if window_bar_color not in ['blue', 'red', 'green', 'yellow', 'gray', 'teal']:
-           raise ValueError('pyside6_qt_window: Window Bar Color must be one of: blue, red, green, yellow, gray, teal.')
+            raise TypeError('pyside6_qt_qdialog: window_title must be a string.')
+        elif not isinstance(window_layout, QtWidgets.QLayout):
+            raise TypeError('pyside6_qt_qdialog: window_layout must be a QtWidgets.QLayout.')
+        elif not isinstance(window_width, int):
+            raise TypeError('pyside6_qt_qdialog: window_width must be an integer.')
+        elif not isinstance(window_height, int):
+            raise TypeError('pyside6_qt_qdialog: window_height must be an integer.')
+        elif not isinstance(window_bar_color, str):
+            raise TypeError('pyside6_qt_qdialog: window_bar_color must be a string.')
 
         # Build window
 
         self.window_bar_color = window_bar_color
-
         self.window_width = window_width
         self.window_height = window_height
+
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
         self.setMinimumSize(QtCore.QSize(window_width, window_height))
         self.setMaximumSize(QtCore.QSize(window_width, window_height))
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        self.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.setStyleSheet('QWidget {background-color: rgb(36, 36, 36)}'
                            'QTabWidget {background-color: rgb(36, 36, 36); border: none; font: 14px "Discreet"}'
                            'QTabWidget::tab-bar {alignment: center}'
@@ -98,26 +97,29 @@ class pyside6_qt_window(QtWidgets.QWidget):
                            'QTabBar::tab:!selected {color: rgb(186, 186, 186); background-color: rgb(36, 36, 36); border: none}'
                            'QTabWidget::pane {border-top: 1px solid rgb(49, 49, 49)}')
 
-        # Center window in linux
-
         primaryScreen = QtWidgets.QApplication.primaryScreen() # resolution = QtWidgets.QDesktopWidget().screenGeometry()
         resolution = primaryScreen.geometry() # Fix for flame 2025
         self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
-        self.title_label = pyside6_qt_label(window_title, label_width=window_width)
-        self.title_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
+        self.window_title_label = pyside6_qt_label(window_title, label_width=window_width)
+        self.window_title_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
 
         # Layout
 
         self.grid = QtWidgets.QGridLayout()
-        self.grid.addWidget(self.title_label, 0, 0)
+        self.grid.addWidget(self.window_title_label, 0, 0)
         self.grid.addLayout(window_layout, 2, 0, 3, 3)
         self.grid.setRowMinimumHeight(3, 100)
 
         self.setLayout(self.grid)
 
     def paintEvent(self, event):
+        '''
+        Add title bar line and side color lines to window
+        '''
+
+        # Line colors
 
         painter = QtGui.QPainter(self)
         if self.window_bar_color == 'blue':
@@ -130,16 +132,17 @@ class pyside6_qt_window(QtWidgets.QWidget):
             bar_color = QtGui.QColor(251, 181, 73)
         elif self.window_bar_color == 'gray':
             bar_color = QtGui.QColor(71, 71, 71)
-        elif self.window_bar_color == 'teal':
-            bar_color = QtGui.QColor(14, 110, 106)
+
+        # Draw lines
 
         painter.setPen(QtGui.QPen(QtGui.QColor(71, 71, 71), .5, QtCore.Qt.SolidLine))
         painter.drawLine(0, 40, self.window_width, 40)
         painter.setPen(QtGui.QPen(bar_color, 6, QtCore.Qt.SolidLine))
         painter.drawLine(0, 0, 0, self.window_height)
 
-    def mousePressEvent(self, event):
+    # For moving frameless window
 
+    def mousePressEvent(self, event):
         self.oldPosition = event.globalPos()
 
     def mouseMoveEvent(self, event):
@@ -335,7 +338,7 @@ class pyside6_qt_window(QtWidgets.QWidget):
 # comments:              prep for release.
 # -------------------------------------------------------------------------- #
 # version:               1.0.0
-# modified:              2024-10-30 - 07:35:27
+# modified:              2024-10-30 - 07:35:26
 # comments:              Refactored PySide6 Output Node Config UI.
 # -------------------------------------------------------------------------- #
 # version:               1.0.1
@@ -347,6 +350,6 @@ class pyside6_qt_window(QtWidgets.QWidget):
 # comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
 # version:               1.0.3
-# modified:              2025-02-25 - 07:01:20
+# modified:              2025-02-25 - 07:01:19
 # comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #

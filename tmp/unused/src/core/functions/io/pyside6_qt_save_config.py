@@ -49,7 +49,7 @@ except ImportError:
 # Import required widget functions
 # ========================================================================== #
 
-from tmp.unused.src.utils.pyside6_qt_print import pyside6_qt_print
+from tmp.unused.src.core.functions.print.pyside6_qt_print import pyside6_qt_print
 
 # ========================================================================== #
 # This section defines the main function.

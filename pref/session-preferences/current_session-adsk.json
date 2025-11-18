@@ -1,8 +1,8 @@
 {
-    "Name": "789_debug_flame_python_refactor_part_2_2027_romeo",
-    "ProjectDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo",
-    "SetupDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo/setups",
-    "MediaDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo/media",
+    "Name": "centrik_initial_install_2027_romeo",
+    "ProjectDir": "/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo",
+    "SetupDir": "/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/setups",
+    "MediaDir": "/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/media",
     "Resolution": {
         "FrameWidth": 1920,
         "FrameHeight": 1080,
@@ -14,6 +14,6 @@
     "ConfigTemplate": "1920x1080@23976p.cfg",
     "FrameRate": "23.976 fps",
     "IntermediatesProfile": 2,
-    "FloatIntermediates": 1185912,
+    "FloatIntermediates": 1120376,
     "ColourPolicyName": "ACES 2.0"
 }

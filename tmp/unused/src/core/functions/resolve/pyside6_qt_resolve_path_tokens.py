@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        pyside6_qt_file_browser.py
+# File Name:        pyside6_qt_resolve_path_tokens.py
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
@@ -54,9 +54,9 @@ except ImportError:
 
 # ========================================================================== #
 
-from tmp.unused.src.utils.pyside6_qt_get_flame_version import (
-    pyside6_qt_get_flame_version as pyside6_qt_get_flame_version
-)
+# from src.ui.widgets.functions.pyside6_qt_get_flame_version import (
+#     pyside6_qt_get_flame_version as pyside6_qt_get_flame_version
+# )
 
 # from src.ui.widgets.functions.pyside6_qt_get_shot_name import (
 #     pyside6_qt_get_shot_name as pyside6_qt_get_shot_name
@@ -86,9 +86,9 @@ from tmp.unused.src.utils.pyside6_qt_get_flame_version import (
 #     pyside6_qt_resolve_path_tokens as pyside6_qt_resolve_path_tokens
 # )
 
-# from src.ui.widgets.functions.pyside6_qt_resolve_shot_name import (
-#     pyside6_qt_resolve_shot_name as pyside6_qt_resolve_shot_name
-# )
+from tmp.unused.src.core.functions.resolve.pyside6_qt_resolve_shot_name import (
+    pyside6_qt_resolve_shot_name as pyside6_qt_resolve_shot_name
+)
 
 # from src.ui.widgets.functions.pyside6_qt_save_config import (
 #     pyside6_qt_save_config as pyside6_qt_save_config
@@ -98,136 +98,183 @@ from tmp.unused.src.utils.pyside6_qt_get_flame_version import (
 # This section defines the main function.
 # ========================================================================== #
 
-# ============================================================================ #
-# This section defines the main function.
-# ============================================================================ #
-
-def pyside6_qt_file_browser(
-    title: str,
-    extension: List[str],
-    default_path: str = '/opt/Autodesk',
-    select_directory: Optional[bool] = False,
-    multi_selection: Optional[bool] = False,
-    include_resolution: Optional[bool] = False,
-    use_flame_browser: Optional[bool] = True,
-    window_to_hide=[]
-) -> Union[str, list]:
+def pyside6_qt_resolve_path_tokens(
+    path_to_resolve: str,
+    PyObject=None,
+    date=None
+) -> str:
     '''
-    Opens QT file browser window(Flame 2022 - Flame 2023).
-    Flame's file browser is used 2023.1 and later.
+    Use when resolving paths with tokens.
 
-    title: File browser window title. [str]
+    pyflame_translate_path_tokens(path_to_resolve[, clip=flame_clip, date=datetime])
 
-    extension: File extension filter. [''] for directories. [list]
+    path_to_resolve: Path with tokens to be translated. [str]
+    PyObject: (optional) Flame PyObject. [flame.PyClip]
+    date: (optional) Date/time to use for token translation. Default is None. If None is passed datetime value will be gotten each time function is run. [datetime]
 
-    default_path: Open file browser to this path. [str]
+    Supported tokens are:
 
-    select_directory: (optional) Ability to select directories.
-        Default False. [bool]
+    <ProjectName>, <ProjectNickName>, <UserName>, <UserNickName>, <YYYY>, <YY>, <MM>, <DD>, <Hour>, <Minute>, <AMPM>, <ampm>
 
-    multi_selection: (optional) Ability to select multiple files/folders.
-        Default False. [bool]
+    If a clip is passed, the following tokens will be translated:
 
-    include_resolution: (optional) Enable resolution controls in flame browser.
-        Default False. [bool]
-
-    use_flame_browser: (optional) - Use Flame's file browser if using Flame
-        2023.1 or later. Default True [bool]
-
-    window_to_hide: (optional) - Hide Qt window while file browser
-    window is open. window is restored when browser is closed. [QWidget]
-
-    When Multi Selection is enabled, the file browser will return a list.
-    Otherwise it will return a string.
+    <ShotName>, <SeqName>, <SEQNAME>, <ClipName>, <Resolution>, <ClipHeight>, <ClipWidth>, <TapeName>
 
     Example:
 
-        path = pyside6_qt_file_browser('Load Undistort ST Map(EXR)', 'exr',
-        self.undistort_map_path)
+        export_path = pyflame_translate_path_tokens(self.custom_export_path, clip, self.date)
     '''
 
     import flame
 
-    # Check argument values
+    if not isinstance(path_to_resolve, str):
+        raise TypeError('Pyflame Translate Path Tokens: path_to_resolve must be a string')
 
-    if not isinstance(extension, list):
-        raise TypeError('Pyflame File Browser: extension must be a list.')
-  
-    if not isinstance(default_path, str):
-        raise TypeError('Pyflame File Browser: default_path must be a string.')
-  
-    if not isinstance(select_directory, bool):
-        raise TypeError('Pyflame File Browser: select_directory must be a boolean.')
-  
-    if not isinstance(multi_selection, bool):
-        raise TypeError('Pyflame File Browser: multi_selection must be a boolean.')
+    def get_seq_name(name):
 
-    if not isinstance(include_resolution, bool):
-        raise TypeError('Pyflame File Browser: include_resolution must be a boolean.')
+        # Get sequence name abreviation from shot name
 
-    if not isinstance(window_to_hide, list):
-        raise TypeError('Pyflame File Browser: window_to_hide must be a list.')
+        seq_name = re.split('[^a-zA-Z]', name)[0]
 
-    # Clean up path
+        return seq_name
 
-    while os.path.isdir(default_path) is not True:
-        default_path = default_path.rsplit('/', 1)[0]
-      
-        if '/' not in default_path and not os.path.isdir(default_path):
-            default_path = '/opt/Autodesk'
-        print('Browser path:', default_path, '\n')
+    print('Tokenized path to resolve:', path_to_resolve)
 
-    # Open file browser
+    # Get time values for token conversion
 
-    if pyside6_qt_get_flame_version() >= 2023.1 and use_flame_browser:
+    if not date:
+        date = datetime.datetime.now()
 
-        # Hide Qt window while browser is open
+    yyyy = date.strftime('%Y')
+    yy = date.strftime('%y')
+    mm = date.strftime('%m')
+    dd = date.strftime('%d')
+    hour = date.strftime('%I')
+    if hour.startswith('0'):
+        hour = hour[1:]
+    minute = date.strftime('%M')
+    ampm_caps = date.strftime('%p')
+    ampm = str(date.strftime('%p')).lower()
 
-        if window_to_hide:
-            for window in window_to_hide:
-                window.hide()
+    # Replace tokens in path
 
-        # Open Flame file browser
+    resolved_path = re.sub('<ProjectName>', flame.project.current_project.name, path_to_resolve)
+    resolved_path = re.sub('<ProjectNickName>', flame.project.current_project.nickname, resolved_path)
+    resolved_path = re.sub('<UserName>', flame.users.current_user.name, resolved_path)
+    resolved_path = re.sub('<UserNickName>', flame.users.current_user.nickname, resolved_path)
+    resolved_path = re.sub('<YYYY>', yyyy, resolved_path)
+    resolved_path = re.sub('<YY>', yy, resolved_path)
+    resolved_path = re.sub('<MM>', mm, resolved_path)
+    resolved_path = re.sub('<DD>', dd, resolved_path)
+    resolved_path = re.sub('<Hour>', hour, resolved_path)
+    resolved_path = re.sub('<Minute>', minute, resolved_path)
+    resolved_path = re.sub('<AMPM>', ampm_caps, resolved_path)
+    resolved_path = re.sub('<ampm>', ampm, resolved_path)
 
-        flame.browser.show(
-            title=title,
-            extension=extension,
-            default_path=default_path,
-            select_directory=select_directory,
-            multi_selection=multi_selection,
-            include_resolution=include_resolution
-        )
+    if PyObject:
 
-        # Restore Qt windows
+        if isinstance(PyObject, flame.PyClip):
 
-        if window_to_hide:
-            for window in window_to_hide:
-                window.show()
+            clip = PyObject
 
-        # Return file path(s) from Flame file browser
+            clip_name = str(clip.name)[1:-1]
 
-        if flame.browser.selection:
-            if multi_selection:
-                return flame.browser.selection
-            return flame.browser.selection[0]
-    else:
-        browser = QtWidgets.QFileDialog()
-        browser.setDirectory(default_path)
+            # Get shot name from clip
 
-        if select_directory:
-            browser.setFileMode(
-                QtWidgets.QFileDialog.FileMode.Directory
-            )  # Fix for flame 2025
-        else:
-            browser.setFileMode(
-                QtWidgets.QFileDialog.FileMode.ExistingFile
-            )  # Fix for flame 2025
-            browser.setNameFilter(f'*.{extension[0]}')
+            try:
+                if clip.versions[0].tracks[0].segments[0].shot_name != '':
+                    shot_name = str(clip.versions[0].tracks[0].segments[0].shot_name)[1:-1]
+                else:
+                    shot_name = pyside6_qt_resolve_shot_name(clip_name)
+            except:
+                shot_name = ''
 
-        if browser.exec_():
-            return str(browser.selectedFiles()[0])
+            # Get tape name from clip
 
-        return print('\n--> Import cancelled \n')
+            try:
+                tape_name = str(clip.versions[0].tracks[0].segments[0].tape_name)
+            except:
+                tape_name = ''
+
+            # Get Seq Name from shot name
+
+            seq_name = get_seq_name(shot_name)
+
+            # Replace clip tokens in path
+
+            resolved_path = re.sub('<ShotName>', shot_name, resolved_path)
+            resolved_path = re.sub('<SeqName>', seq_name, resolved_path)
+            resolved_path = re.sub('<SEQNAME>', seq_name.upper(), resolved_path)
+            resolved_path = re.sub('<ClipName>', str(clip.name)[1:-1], resolved_path)
+            resolved_path = re.sub('<Resolution>', str(clip.width) + 'x' + str(clip.height), resolved_path)
+            resolved_path = re.sub('<ClipHeight>', str(clip.height), resolved_path)
+            resolved_path = re.sub('<ClipWidth>', str(clip.width), resolved_path)
+            resolved_path = re.sub('<TapeName>', tape_name, resolved_path)
+
+        elif isinstance(PyObject, flame.PySegment):
+
+            segment = PyObject
+
+            segment_name = str(segment.name)[1:-1]
+
+            # Get shot name from clip
+
+            try:
+                if segment.shot_name != '':
+                    shot_name = str(segment.shot_name)[1:-1]
+                else:
+                    shot_name = pyside6_qt_resolve_shot_name(segment_name)
+            except:
+                shot_name = ''
+
+            # Get tape name from segment
+
+            try:
+                tape_name = str(segment.tape_name)
+            except:
+                tape_name = ''
+
+            # Get Seq Name from shot name
+
+            seq_name = get_seq_name(shot_name)
+
+            # Replace segment tokens in path
+
+            resolved_path = re.sub('<ShotName>', shot_name, resolved_path)
+            resolved_path = re.sub('<SeqName>', seq_name, resolved_path)
+            resolved_path = re.sub('<SEQNAME>', seq_name.upper(), resolved_path)
+            resolved_path = re.sub('<ClipName>', segment_name, resolved_path)
+            resolved_path = re.sub('<Resolution>', 'Unable to Resolve', resolved_path)
+            resolved_path = re.sub('<ClipHeight>', 'Unable to Resolve', resolved_path)
+            resolved_path = re.sub('<ClipWidth>', 'Unable to Resolve', resolved_path)
+            resolved_path = re.sub('<TapeName>', tape_name, resolved_path)
+
+        elif isinstance(PyObject, flame.PyBatch):
+
+            batch = PyObject
+
+            shot_name = ''
+
+            for node in batch.nodes:
+                if node.type in ('Render', 'Write File'):
+                    if node.shot_name:
+                        shot_name = str(node.shot_name)[1:-1]
+                        break
+
+            if not shot_name:
+                shot_name = pyside6_qt_resolve_shot_name(str(batch.name)[1:-1])
+
+            # Get Seq Name from shot name
+
+            seq_name = get_seq_name(shot_name)
+
+            resolved_path = re.sub('<ShotName>', shot_name, resolved_path)
+            resolved_path = re.sub('<SeqName>', seq_name, resolved_path)
+            resolved_path = re.sub('<SEQNAME>', seq_name.upper(), resolved_path)
+
+    print('Resolved path:', resolved_path, '\n')
+
+    return resolved_path
 
 # ========================================================================== #
 # This section defines how to handle the main script function.
@@ -409,7 +456,7 @@ def pyside6_qt_file_browser(
 # comments:              Fixed a version bug for the changelist updater script
 # -------------------------------------------------------------------------- #
 # version:               0.5.0
-# modified:              2024-08-31 - 18:26:05
+# modified:              2024-08-31 - 18:26:06
 # comments:              prep for release.
 # -------------------------------------------------------------------------- #
 # version:               1.0.0
@@ -421,10 +468,10 @@ def pyside6_qt_file_browser(
 # comments:              Fixed circular import statements
 # -------------------------------------------------------------------------- #
 # version:               1.0.2
-# modified:              2025-01-19 - 17:47:47
+# modified:              2025-01-19 - 17:47:48
 # comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
 # version:               1.0.3
-# modified:              2025-02-25 - 07:01:20
+# modified:              2025-02-25 - 07:01:21
 # comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #

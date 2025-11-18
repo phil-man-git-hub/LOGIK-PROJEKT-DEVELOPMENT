@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Project>
-  <Name>789_debug_flame_python_refactor_part_2_2027_romeo</Name>
-  <Nickname>789_debug_flame_python_refactor_part_2</Nickname>
-  <ShotgunProjectName>789_debug_flame_python_refactor_part_2</ShotgunProjectName>
-  <Description>Complete refactoring of Logik Projekt Python Scripts</Description>
-  <CatalogDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo/catalog</CatalogDir>
-  <ProjectDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo</ProjectDir>
-  <SetupDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo/setups</SetupDir>
-  <MediaDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/789_debug_flame_python_refactor_part_2_2027_romeo/media</MediaDir>
+  <Name>centrik_initial_install_2027_romeo</Name>
+  <Nickname>centrik_initial_install</Nickname>
+  <ShotgunProjectName>centrik_initial_install</ShotgunProjectName>
+  <Description>Initial Testing of CENTRIK 2027</Description>
+  <CatalogDir>/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/catalog</CatalogDir>
+  <ProjectDir>/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo</ProjectDir>
+  <SetupDir>/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/setups</SetupDir>
+  <MediaDir>/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/media</MediaDir>
   <Version>2027.pr231</Version>
   <FrameWidth>1920</FrameWidth>
   <FrameHeight>1080</FrameHeight>
@@ -16,7 +16,7 @@
   <FieldDominance>PROGRESSIVE</FieldDominance>
   <ColourPolicyName>ACES 2.0</ColourPolicyName>
   <OCIOConfigFile>/opt/Autodesk/colour_mgmt/configs/flame_configs/2026.0/aces2.0_config/config.ocio</OCIOConfigFile>
-  <IntermediatesProfile>2:1185912</IntermediatesProfile>
+  <IntermediatesProfile>2:1120376</IntermediatesProfile>
   <FrameRate>23.976 fps</FrameRate>
   <DefaultStartFrame>1001</DefaultStartFrame>
 </Project>

@@ -1,9 +1,9 @@
 {
-    "Template Serial Number: ": "789",
-    "Template Client Name: ": "debug",
-    "Template Campaign Name: ": "flame python refactor part 2",
-    "Template Name: ": "789_debug_flame_python_refactor_part_2",
-    "Template Description: ": "Complete refactoring of Logik Projekt Python Scripts",
+    "Template Serial Number: ": "",
+    "Template Client Name: ": "centrik",
+    "Template Campaign Name: ": "initial install",
+    "Template Name: ": "centrik_initial_install",
+    "Template Description: ": "Initial Testing of CENTRIK 2027",
     "Template Resolution: ": "1920 x 1080 x 1.0 | HD 1080 16:9",
     "Template Width: ": "1920",
     "Template Height: ": "1080",
@@ -18,6 +18,6 @@
     "Template OCIO Name: ": "ACES 2.0",
     "Template Cache Integer: ": "Uncompressed (DPX)",
     "Template Cache Integer ID: ": 2,
-    "Template Cache Float: ": "OpenEXR (DWAB)",
-    "Template Cache Float ID: ": 1185912
+    "Template Cache Float: ": "OpenEXR (DWAA)",
+    "Template Cache Float ID: ": 1120376
 }

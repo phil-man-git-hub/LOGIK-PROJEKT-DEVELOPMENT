@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        pyside6_qt_progress_window.py
+# File Name:        pyside6_qt_window.py
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
@@ -45,118 +45,77 @@ except ImportError:
         QtGui,
     )
 
-from tmp.unused.src.ui.widgets.pyside6_qt_button import pyside6_qt_button
-from tmp.unused.src.ui.widgets.pyside6_qt_label import pyside6_qt_label
+from tmp.unused.src.core.ui.widgets.label.pyside6_qt_label import pyside6_qt_label
 
-class pyside6_qt_progress_window(QtWidgets.QDialog):
+class pyside6_qt_window(QtWidgets.QWidget):
     '''
-    Custom Qt Flame Progress Window
+    Custom Qt Flame Window Widget
 
-    pyside6_qt_progress_window(window_title, num_to_do[, text=None, enable_done_button=False, parent=None])
+    pyside6_qt_window(window_title, window_layout, window_width, window_height[, window_bar_color='blue'])
 
-    window_title: text shown in top left of window ie. Rendering... [str]
-    num_to_do: total number of operations to do [int]
-    text: message to show in window [str]
-    enable_done_button: enable done button, default is False [bool]
+    window_title: text displayed in top left corner of window [str]
+    window_layout: QLayout object. QLayout should be defined before adding pyside6_qt_window [object]
+    window_width: width of window [int]
+    window_height: height of window [int]
+    window_bar_color: (optional) color of bar on left side of window. options are red, blue, green, yellow, gray, teal. [str] - default is blue
 
-    Examples:
+    Usage:
 
-        To create window:
-
-            self.progress_window = pyside6_qt_progress_window('Rendering...', 10, text='Rendering: Batch 1 of 5', enable_done_button=True)
-
-        To update progress bar:
-
-            self.progress_window.set_progress_value(number_of_things_done)
-
-        To enable or disable done button - True or False:
-
-            self.progress_window.enable_done_button(True)
+        grid_layout = QtWidgets.QGridLayout()
+        self.window = pyside6_qt_window(f'Import Camera <small>{VERSION}', grid_layout, 400, 200)
     '''
 
-    def __init__(self, window_title: str, num_to_do: int, text: str='', window_bar_color='teal', enable_done_button=False, parent=None):
-        super(pyside6_qt_progress_window, self).__init__()
+    def __init__(self, window_title: str, window_layout, window_width: int, window_height: int, window_bar_color: Optional[str]='blue'):
+        super(pyside6_qt_window, self).__init__()
 
         # Check argument types
 
         if not isinstance(window_title, str):
-            raise TypeError('pyside6_qt_progress_window: window_title must be a string')
-        if not isinstance(num_to_do, int):
-            raise TypeError('pyside6_qt_progress_window: num_to_do must be an integer')
-        if not isinstance(text, str):
-            raise TypeError('pyside6_qt_progress_window: text must be a string')
-        if not isinstance(enable_done_button, bool):
-            raise TypeError('pyside6_qt_progress_window: enable_done_button must be a boolean')
+            raise TypeError('pyside6_qt_window: Window Title must be a string.')
+        if not isinstance(window_width, int):
+            raise TypeError('pyside6_qt_window: Window Width must be a string.')
+        if not isinstance(window_height, int):
+            raise TypeError('pyside6_qt_window: Window Width must be a string.')
         if window_bar_color not in ['blue', 'red', 'green', 'yellow', 'gray', 'teal']:
            raise ValueError('pyside6_qt_window: Window Bar Color must be one of: blue, red, green, yellow, gray, teal.')
 
-        self.window_bar_color = window_bar_color
-
         # Build window
 
+        self.window_bar_color = window_bar_color
+
+        self.window_width = window_width
+        self.window_height = window_height
+        self.setMinimumSize(QtCore.QSize(window_width, window_height))
+        self.setMaximumSize(QtCore.QSize(window_width, window_height))
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        self.setMinimumSize(QtCore.QSize(500, 330))
-        self.setMaximumSize(QtCore.QSize(500, 330))
-        self.setStyleSheet('background-color: rgb(36, 36, 36)')
+        self.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+        self.setStyleSheet('QWidget {background-color: rgb(36, 36, 36)}'
+                           'QTabWidget {background-color: rgb(36, 36, 36); border: none; font: 14px "Discreet"}'
+                           'QTabWidget::tab-bar {alignment: center}'
+                           'QTabBar::tab {color: rgb(154, 154, 154); background-color: rgb(36, 36, 36); min-width: 20ex; padding: 5px;}'
+                           'QTabBar::tab:selected {color: rgb(186, 186, 186); background-color: rgb(31, 31, 31); border: 1px solid rgb(31, 31, 31); border-bottom: 1px solid rgb(51, 102, 173)}'
+                           'QTabBar::tab:!selected {color: rgb(186, 186, 186); background-color: rgb(36, 36, 36); border: none}'
+                           'QTabWidget::pane {border-top: 1px solid rgb(49, 49, 49)}')
+
+        # Center window in linux
 
         primaryScreen = QtWidgets.QApplication.primaryScreen() # resolution = QtWidgets.QDesktopWidget().screenGeometry()
         resolution = primaryScreen.geometry() # Fix for flame 2025
         self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
 
-        self.setParent(parent)
-
-        self.grid = QtWidgets.QGridLayout()
-
-        self.main_label = pyside6_qt_label(window_title, label_width=500)
-        self.main_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
-
-        self.message_text_edit = QtWidgets.QPlainTextEdit('') # Fix for flame 2025
-        self.message_text_edit.setDisabled(True)
-        self.message_text_edit.setStyleSheet('QPlainTextEdit {color: rgb(154, 154, 154); background-color: rgb(36, 36, 36); selection-color: rgb(190, 190, 190); selection-background-color: rgb(36, 36, 36); border: none; padding-left: 20px; padding-right: 20px; font: 12px "Discreet"}') # Fix for flame 2025
-        self.message_text_edit.setText(text)
-
-        # Progress bar
-
-        self.progress_bar = QtWidgets.QProgressBar()
-        self.progress_bar.setMaximum(num_to_do)
-        self.progress_bar.setMaximumHeight(5)
-        self.progress_bar.setTextVisible(False)
-        self.progress_bar.setStyleSheet('QProgressBar {color: rgb(154, 154, 154); background-color: rgb(45, 45, 45); font: 14px "Discreet"; border: none}'
-                                        'QProgressBar:chunk {background-color: rgb(0, 110, 176)}')
-
-        self.done_button = pyside6_qt_button('Done', self.close, button_color='blue', button_width=110)
-        self.done_button.setEnabled(enable_done_button)
+        self.title_label = pyside6_qt_label(window_title, label_width=window_width)
+        self.title_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
 
         # Layout
 
-        self.grid.addWidget(self.main_label, 0, 0)
-        self.grid.setRowMinimumHeight(1, 30)
-        self.grid.addWidget(self.message_text_edit, 2, 0, 1, 4)
-        self.grid.addWidget(self.progress_bar, 8, 0, 1, 7)
-        self.grid.setRowMinimumHeight(9, 30)
-        self.grid.addWidget(self.done_button, 10, 6)
-        self.grid.setRowMinimumHeight(11, 30)
-
-        print(f'\n--> {window_title}\n')
+        self.grid = QtWidgets.QGridLayout()
+        self.grid.addWidget(self.title_label, 0, 0)
+        self.grid.addLayout(window_layout, 2, 0, 3, 3)
+        self.grid.setRowMinimumHeight(3, 100)
 
         self.setLayout(self.grid)
-        self.show()
-
-    def set_text(self, text):
-
-        self.message_text_edit.setText(text)
-
-    def set_progress_value(self, value):
-
-        self.progress_bar.setValue(value)
-
-    def enable_done_button(self, value):
-
-        if value:
-            self.done_button.setEnabled(True)
-        else:
-            self.done_button.setEnabled(False)
 
     def paintEvent(self, event):
 
@@ -175,9 +134,9 @@ class pyside6_qt_progress_window(QtWidgets.QDialog):
             bar_color = QtGui.QColor(14, 110, 106)
 
         painter.setPen(QtGui.QPen(QtGui.QColor(71, 71, 71), .5, QtCore.Qt.SolidLine))
-        painter.drawLine(0, 40, 500, 40)
+        painter.drawLine(0, 40, self.window_width, 40)
         painter.setPen(QtGui.QPen(bar_color, 6, QtCore.Qt.SolidLine))
-        painter.drawLine(0, 0, 0, 330)
+        painter.drawLine(0, 0, 0, self.window_height)
 
     def mousePressEvent(self, event):
 
@@ -376,11 +335,11 @@ class pyside6_qt_progress_window(QtWidgets.QDialog):
 # comments:              prep for release.
 # -------------------------------------------------------------------------- #
 # version:               1.0.0
-# modified:              2024-10-30 - 07:35:26
+# modified:              2024-10-30 - 07:35:27
 # comments:              Refactored PySide6 Output Node Config UI.
 # -------------------------------------------------------------------------- #
 # version:               1.0.1
-# modified:              2024-11-16 - 16:52:06
+# modified:              2024-11-16 - 16:52:07
 # comments:              Fixed circular import statements
 # -------------------------------------------------------------------------- #
 # version:               1.0.2
@@ -388,6 +347,6 @@ class pyside6_qt_progress_window(QtWidgets.QDialog):
 # comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
 # version:               1.0.3
-# modified:              2025-02-25 - 07:01:19
+# modified:              2025-02-25 - 07:01:20
 # comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #

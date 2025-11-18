@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        pyside6_qt_resolve_path_tokens.py
+# File Name:        pyside6_qt_progress_window.py
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
@@ -45,236 +45,152 @@ except ImportError:
         QtGui,
     )
 
-# ========================================================================== #
-# This section imports the pyflame functions.
+from tmp.unused.src.core.ui.widgets.button.pyside6_qt_button import pyside6_qt_button
+from tmp.unused.src.core.ui.widgets.label.pyside6_qt_label import pyside6_qt_label
 
-# from classes_and_functions.functions.example import (
-#     example_function as new_function_name
-# )
-
-# ========================================================================== #
-
-# from src.ui.widgets.functions.pyside6_qt_get_flame_version import (
-#     pyside6_qt_get_flame_version as pyside6_qt_get_flame_version
-# )
-
-# from src.ui.widgets.functions.pyside6_qt_get_shot_name import (
-#     pyside6_qt_get_shot_name as pyside6_qt_get_shot_name
-# )
-
-# from src.ui.widgets.functions.pyside6_qt_file_browser import (
-#     pyside6_qt_file_browser as pyside6_qt_file_browser
-# )
-
-# from src.ui.widgets.functions.pyside6_qt_load_config import (
-#     pyside6_qt_load_config as pyside6_qt_load_config
-# )
-
-# from src.ui.widgets.functions.pyside6_qt_open_in_finder import (
-#     pyside6_qt_open_in_finder as pyside6_qt_open_in_finder
-# )
-
-# from src.ui.widgets.functions.pyside6_qt_print import (
-#     pyside6_qt_print as pyside6_qt_print
-# )
-
-# from src.ui.widgets.functions.pyside6_qt_refresh_hooks import (
-#     pyside6_qt_refresh_hooks as pyside6_qt_refresh_hooks
-# )
-
-# from src.ui.widgets.functions.pyside6_qt_resolve_path_tokens import (
-#     pyside6_qt_resolve_path_tokens as pyside6_qt_resolve_path_tokens
-# )
-
-from tmp.unused.src.utils.pyside6_qt_resolve_shot_name import (
-    pyside6_qt_resolve_shot_name as pyside6_qt_resolve_shot_name
-)
-
-# from src.ui.widgets.functions.pyside6_qt_save_config import (
-#     pyside6_qt_save_config as pyside6_qt_save_config
-# )
-
-# ========================================================================== #
-# This section defines the main function.
-# ========================================================================== #
-
-def pyside6_qt_resolve_path_tokens(
-    path_to_resolve: str,
-    PyObject=None,
-    date=None
-) -> str:
+class pyside6_qt_progress_window(QtWidgets.QDialog):
     '''
-    Use when resolving paths with tokens.
+    Custom Qt Flame Progress Window
 
-    pyflame_translate_path_tokens(path_to_resolve[, clip=flame_clip, date=datetime])
+    pyside6_qt_progress_window(window_title, num_to_do[, text=None, enable_done_button=False, parent=None])
 
-    path_to_resolve: Path with tokens to be translated. [str]
-    PyObject: (optional) Flame PyObject. [flame.PyClip]
-    date: (optional) Date/time to use for token translation. Default is None. If None is passed datetime value will be gotten each time function is run. [datetime]
+    window_title: text shown in top left of window ie. Rendering... [str]
+    num_to_do: total number of operations to do [int]
+    text: message to show in window [str]
+    enable_done_button: enable done button, default is False [bool]
 
-    Supported tokens are:
+    Examples:
 
-    <ProjectName>, <ProjectNickName>, <UserName>, <UserNickName>, <YYYY>, <YY>, <MM>, <DD>, <Hour>, <Minute>, <AMPM>, <ampm>
+        To create window:
 
-    If a clip is passed, the following tokens will be translated:
+            self.progress_window = pyside6_qt_progress_window('Rendering...', 10, text='Rendering: Batch 1 of 5', enable_done_button=True)
 
-    <ShotName>, <SeqName>, <SEQNAME>, <ClipName>, <Resolution>, <ClipHeight>, <ClipWidth>, <TapeName>
+        To update progress bar:
 
-    Example:
+            self.progress_window.set_progress_value(number_of_things_done)
 
-        export_path = pyflame_translate_path_tokens(self.custom_export_path, clip, self.date)
+        To enable or disable done button - True or False:
+
+            self.progress_window.enable_done_button(True)
     '''
 
-    import flame
+    def __init__(self, window_title: str, num_to_do: int, text: str='', window_bar_color='teal', enable_done_button=False, parent=None):
+        super(pyside6_qt_progress_window, self).__init__()
 
-    if not isinstance(path_to_resolve, str):
-        raise TypeError('Pyflame Translate Path Tokens: path_to_resolve must be a string')
+        # Check argument types
 
-    def get_seq_name(name):
+        if not isinstance(window_title, str):
+            raise TypeError('pyside6_qt_progress_window: window_title must be a string')
+        if not isinstance(num_to_do, int):
+            raise TypeError('pyside6_qt_progress_window: num_to_do must be an integer')
+        if not isinstance(text, str):
+            raise TypeError('pyside6_qt_progress_window: text must be a string')
+        if not isinstance(enable_done_button, bool):
+            raise TypeError('pyside6_qt_progress_window: enable_done_button must be a boolean')
+        if window_bar_color not in ['blue', 'red', 'green', 'yellow', 'gray', 'teal']:
+           raise ValueError('pyside6_qt_window: Window Bar Color must be one of: blue, red, green, yellow, gray, teal.')
 
-        # Get sequence name abreviation from shot name
+        self.window_bar_color = window_bar_color
 
-        seq_name = re.split('[^a-zA-Z]', name)[0]
+        # Build window
 
-        return seq_name
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+        self.setMinimumSize(QtCore.QSize(500, 330))
+        self.setMaximumSize(QtCore.QSize(500, 330))
+        self.setStyleSheet('background-color: rgb(36, 36, 36)')
 
-    print('Tokenized path to resolve:', path_to_resolve)
+        primaryScreen = QtWidgets.QApplication.primaryScreen() # resolution = QtWidgets.QDesktopWidget().screenGeometry()
+        resolution = primaryScreen.geometry() # Fix for flame 2025
+        self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
+                  (resolution.height() / 2) - (self.frameSize().height() / 2))
 
-    # Get time values for token conversion
+        self.setParent(parent)
 
-    if not date:
-        date = datetime.datetime.now()
+        self.grid = QtWidgets.QGridLayout()
 
-    yyyy = date.strftime('%Y')
-    yy = date.strftime('%y')
-    mm = date.strftime('%m')
-    dd = date.strftime('%d')
-    hour = date.strftime('%I')
-    if hour.startswith('0'):
-        hour = hour[1:]
-    minute = date.strftime('%M')
-    ampm_caps = date.strftime('%p')
-    ampm = str(date.strftime('%p')).lower()
+        self.main_label = pyside6_qt_label(window_title, label_width=500)
+        self.main_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
 
-    # Replace tokens in path
+        self.message_text_edit = QtWidgets.QPlainTextEdit('') # Fix for flame 2025
+        self.message_text_edit.setDisabled(True)
+        self.message_text_edit.setStyleSheet('QPlainTextEdit {color: rgb(154, 154, 154); background-color: rgb(36, 36, 36); selection-color: rgb(190, 190, 190); selection-background-color: rgb(36, 36, 36); border: none; padding-left: 20px; padding-right: 20px; font: 12px "Discreet"}') # Fix for flame 2025
+        self.message_text_edit.setText(text)
 
-    resolved_path = re.sub('<ProjectName>', flame.project.current_project.name, path_to_resolve)
-    resolved_path = re.sub('<ProjectNickName>', flame.project.current_project.nickname, resolved_path)
-    resolved_path = re.sub('<UserName>', flame.users.current_user.name, resolved_path)
-    resolved_path = re.sub('<UserNickName>', flame.users.current_user.nickname, resolved_path)
-    resolved_path = re.sub('<YYYY>', yyyy, resolved_path)
-    resolved_path = re.sub('<YY>', yy, resolved_path)
-    resolved_path = re.sub('<MM>', mm, resolved_path)
-    resolved_path = re.sub('<DD>', dd, resolved_path)
-    resolved_path = re.sub('<Hour>', hour, resolved_path)
-    resolved_path = re.sub('<Minute>', minute, resolved_path)
-    resolved_path = re.sub('<AMPM>', ampm_caps, resolved_path)
-    resolved_path = re.sub('<ampm>', ampm, resolved_path)
+        # Progress bar
 
-    if PyObject:
+        self.progress_bar = QtWidgets.QProgressBar()
+        self.progress_bar.setMaximum(num_to_do)
+        self.progress_bar.setMaximumHeight(5)
+        self.progress_bar.setTextVisible(False)
+        self.progress_bar.setStyleSheet('QProgressBar {color: rgb(154, 154, 154); background-color: rgb(45, 45, 45); font: 14px "Discreet"; border: none}'
+                                        'QProgressBar:chunk {background-color: rgb(0, 110, 176)}')
 
-        if isinstance(PyObject, flame.PyClip):
+        self.done_button = pyside6_qt_button('Done', self.close, button_color='blue', button_width=110)
+        self.done_button.setEnabled(enable_done_button)
 
-            clip = PyObject
+        # Layout
 
-            clip_name = str(clip.name)[1:-1]
+        self.grid.addWidget(self.main_label, 0, 0)
+        self.grid.setRowMinimumHeight(1, 30)
+        self.grid.addWidget(self.message_text_edit, 2, 0, 1, 4)
+        self.grid.addWidget(self.progress_bar, 8, 0, 1, 7)
+        self.grid.setRowMinimumHeight(9, 30)
+        self.grid.addWidget(self.done_button, 10, 6)
+        self.grid.setRowMinimumHeight(11, 30)
 
-            # Get shot name from clip
+        print(f'\n--> {window_title}\n')
 
-            try:
-                if clip.versions[0].tracks[0].segments[0].shot_name != '':
-                    shot_name = str(clip.versions[0].tracks[0].segments[0].shot_name)[1:-1]
-                else:
-                    shot_name = pyside6_qt_resolve_shot_name(clip_name)
-            except:
-                shot_name = ''
+        self.setLayout(self.grid)
+        self.show()
 
-            # Get tape name from clip
+    def set_text(self, text):
 
-            try:
-                tape_name = str(clip.versions[0].tracks[0].segments[0].tape_name)
-            except:
-                tape_name = ''
+        self.message_text_edit.setText(text)
 
-            # Get Seq Name from shot name
+    def set_progress_value(self, value):
 
-            seq_name = get_seq_name(shot_name)
+        self.progress_bar.setValue(value)
 
-            # Replace clip tokens in path
+    def enable_done_button(self, value):
 
-            resolved_path = re.sub('<ShotName>', shot_name, resolved_path)
-            resolved_path = re.sub('<SeqName>', seq_name, resolved_path)
-            resolved_path = re.sub('<SEQNAME>', seq_name.upper(), resolved_path)
-            resolved_path = re.sub('<ClipName>', str(clip.name)[1:-1], resolved_path)
-            resolved_path = re.sub('<Resolution>', str(clip.width) + 'x' + str(clip.height), resolved_path)
-            resolved_path = re.sub('<ClipHeight>', str(clip.height), resolved_path)
-            resolved_path = re.sub('<ClipWidth>', str(clip.width), resolved_path)
-            resolved_path = re.sub('<TapeName>', tape_name, resolved_path)
+        if value:
+            self.done_button.setEnabled(True)
+        else:
+            self.done_button.setEnabled(False)
 
-        elif isinstance(PyObject, flame.PySegment):
+    def paintEvent(self, event):
 
-            segment = PyObject
+        painter = QtGui.QPainter(self)
+        if self.window_bar_color == 'blue':
+            bar_color = QtGui.QColor(0, 110, 176)
+        elif self.window_bar_color == 'red':
+            bar_color = QtGui.QColor(200, 29, 29)
+        elif self.window_bar_color == 'green':
+            bar_color = QtGui.QColor(0, 180, 13)
+        elif self.window_bar_color == 'yellow':
+            bar_color = QtGui.QColor(251, 181, 73)
+        elif self.window_bar_color == 'gray':
+            bar_color = QtGui.QColor(71, 71, 71)
+        elif self.window_bar_color == 'teal':
+            bar_color = QtGui.QColor(14, 110, 106)
 
-            segment_name = str(segment.name)[1:-1]
+        painter.setPen(QtGui.QPen(QtGui.QColor(71, 71, 71), .5, QtCore.Qt.SolidLine))
+        painter.drawLine(0, 40, 500, 40)
+        painter.setPen(QtGui.QPen(bar_color, 6, QtCore.Qt.SolidLine))
+        painter.drawLine(0, 0, 0, 330)
 
-            # Get shot name from clip
+    def mousePressEvent(self, event):
 
-            try:
-                if segment.shot_name != '':
-                    shot_name = str(segment.shot_name)[1:-1]
-                else:
-                    shot_name = pyside6_qt_resolve_shot_name(segment_name)
-            except:
-                shot_name = ''
+        self.oldPosition = event.globalPos()
 
-            # Get tape name from segment
+    def mouseMoveEvent(self, event):
 
-            try:
-                tape_name = str(segment.tape_name)
-            except:
-                tape_name = ''
-
-            # Get Seq Name from shot name
-
-            seq_name = get_seq_name(shot_name)
-
-            # Replace segment tokens in path
-
-            resolved_path = re.sub('<ShotName>', shot_name, resolved_path)
-            resolved_path = re.sub('<SeqName>', seq_name, resolved_path)
-            resolved_path = re.sub('<SEQNAME>', seq_name.upper(), resolved_path)
-            resolved_path = re.sub('<ClipName>', segment_name, resolved_path)
-            resolved_path = re.sub('<Resolution>', 'Unable to Resolve', resolved_path)
-            resolved_path = re.sub('<ClipHeight>', 'Unable to Resolve', resolved_path)
-            resolved_path = re.sub('<ClipWidth>', 'Unable to Resolve', resolved_path)
-            resolved_path = re.sub('<TapeName>', tape_name, resolved_path)
-
-        elif isinstance(PyObject, flame.PyBatch):
-
-            batch = PyObject
-
-            shot_name = ''
-
-            for node in batch.nodes:
-                if node.type in ('Render', 'Write File'):
-                    if node.shot_name:
-                        shot_name = str(node.shot_name)[1:-1]
-                        break
-
-            if not shot_name:
-                shot_name = pyside6_qt_resolve_shot_name(str(batch.name)[1:-1])
-
-            # Get Seq Name from shot name
-
-            seq_name = get_seq_name(shot_name)
-
-            resolved_path = re.sub('<ShotName>', shot_name, resolved_path)
-            resolved_path = re.sub('<SeqName>', seq_name, resolved_path)
-            resolved_path = re.sub('<SEQNAME>', seq_name.upper(), resolved_path)
-
-    print('Resolved path:', resolved_path, '\n')
-
-    return resolved_path
+        try:
+            delta = QtCore.QPoint(event.globalPos() - self.oldPosition)
+            self.move(self.x() + delta.x(), self.y() + delta.y())
+            self.oldPosition = event.globalPos()
+        except:
+            pass
 
 # ========================================================================== #
 # This section defines how to handle the main script function.
@@ -456,22 +372,22 @@ def pyside6_qt_resolve_path_tokens(
 # comments:              Fixed a version bug for the changelist updater script
 # -------------------------------------------------------------------------- #
 # version:               0.5.0
-# modified:              2024-08-31 - 18:26:06
+# modified:              2024-08-31 - 18:26:05
 # comments:              prep for release.
 # -------------------------------------------------------------------------- #
 # version:               1.0.0
-# modified:              2024-10-30 - 07:35:27
+# modified:              2024-10-30 - 07:35:26
 # comments:              Refactored PySide6 Output Node Config UI.
 # -------------------------------------------------------------------------- #
 # version:               1.0.1
-# modified:              2024-11-16 - 16:52:07
+# modified:              2024-11-16 - 16:52:06
 # comments:              Fixed circular import statements
 # -------------------------------------------------------------------------- #
 # version:               1.0.2
-# modified:              2025-01-19 - 17:47:48
+# modified:              2025-01-19 - 17:47:47
 # comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
 # version:               1.0.3
-# modified:              2025-02-25 - 07:01:21
+# modified:              2025-02-25 - 07:01:19
 # comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #

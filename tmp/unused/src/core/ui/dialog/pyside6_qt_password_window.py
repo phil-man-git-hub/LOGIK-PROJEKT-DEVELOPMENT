@@ -45,10 +45,10 @@ except ImportError:
         QtGui,
     )
 
-from tmp.unused.src.ui.widgets.pyside6_qt_button import pyside6_qt_button
-from tmp.unused.src.ui.widgets.pyside6_qt_label import pyside6_qt_label
-from tmp.unused.src.ui.widgets.pyside6_qt_label import pyside6_qt_label
-from tmp.unused.src.ui.widgets.pyside6_qt_line_edit import pyside6_qt_line_edit
+from tmp.unused.src.core.ui.widgets.button.pyside6_qt_button import pyside6_qt_button
+from tmp.unused.src.core.ui.widgets.label.pyside6_qt_label import pyside6_qt_label
+from tmp.unused.src.core.ui.widgets.label.pyside6_qt_label import pyside6_qt_label
+from tmp.unused.src.core.ui.widgets.line_edit.pyside6_qt_line_edit import pyside6_qt_line_edit
 
 class pyside6_qt_password_window(QtWidgets.QDialog):
     '''

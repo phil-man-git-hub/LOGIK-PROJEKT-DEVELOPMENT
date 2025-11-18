@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        pyside6_qt_message_window.py
+# File Name:        pyside6_qt_file_browser.py
 # Version:          1.0.3
 # Created:          2024-01-19
 # Modified:         2025-02-25
@@ -45,188 +45,189 @@ except ImportError:
         QtGui,
     )
 
-from tmp.unused.src.ui.widgets.pyside6_qt_button import pyside6_qt_button
-from tmp.unused.src.ui.widgets.pyside6_qt_label import pyside6_qt_label
+# ========================================================================== #
+# This section imports the pyflame functions.
 
-class pyside6_qt_message_window(QtWidgets.QDialog):
+# from classes_and_functions.functions.example import (
+#     example_function as new_function_name
+# )
+
+# ========================================================================== #
+
+from tmp.unused.src.core.functions.get.pyside6_qt_get_flame_version import (
+    pyside6_qt_get_flame_version as pyside6_qt_get_flame_version
+)
+
+# from src.ui.widgets.functions.pyside6_qt_get_shot_name import (
+#     pyside6_qt_get_shot_name as pyside6_qt_get_shot_name
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_file_browser import (
+#     pyside6_qt_file_browser as pyside6_qt_file_browser
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_load_config import (
+#     pyside6_qt_load_config as pyside6_qt_load_config
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_open_in_finder import (
+#     pyside6_qt_open_in_finder as pyside6_qt_open_in_finder
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_print import (
+#     pyside6_qt_print as pyside6_qt_print
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_refresh_hooks import (
+#     pyside6_qt_refresh_hooks as pyside6_qt_refresh_hooks
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_resolve_path_tokens import (
+#     pyside6_qt_resolve_path_tokens as pyside6_qt_resolve_path_tokens
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_resolve_shot_name import (
+#     pyside6_qt_resolve_shot_name as pyside6_qt_resolve_shot_name
+# )
+
+# from src.ui.widgets.functions.pyside6_qt_save_config import (
+#     pyside6_qt_save_config as pyside6_qt_save_config
+# )
+
+# ========================================================================== #
+# This section defines the main function.
+# ========================================================================== #
+
+# ============================================================================ #
+# This section defines the main function.
+# ============================================================================ #
+
+def pyside6_qt_file_browser(
+    title: str,
+    extension: List[str],
+    default_path: str = '/opt/Autodesk',
+    select_directory: Optional[bool] = False,
+    multi_selection: Optional[bool] = False,
+    include_resolution: Optional[bool] = False,
+    use_flame_browser: Optional[bool] = True,
+    window_to_hide=[]
+) -> Union[str, list]:
     '''
-    Custom Qt Flame Message Window
+    Opens QT file browser window(Flame 2022 - Flame 2023).
+    Flame's file browser is used 2023.1 and later.
 
-    pyside6_qt_message_window(message_type, message_title, message[, time=3, parent=None])
+    title: File browser window title. [str]
 
-    message_type: Type of message window to be shown. Options are: confirm, message, error, warning [str] Confirm and warning return True or False values
-    message_title: Text shown in top left of window ie. Confirm Operation [str]
-    message: Text displayed in body of window [str]
-    time: (optional) Time in seconds to display message in flame message area. Default is 3. [int]
-    parent: (optional) - Parent window [QtWidget]
+    extension: File extension filter. [''] for directories. [list]
 
-    Message Window Types:
+    default_path: Open file browser to this path. [str]
 
-        confirm: confirm and cancel button / grey left bar - returns True or False
-        message: ok button / blue left bar
-        error: ok button / yellow left bar
-        warning: confirm and cancel button / red left bar - returns True of False
+    select_directory: (optional) Ability to select directories.
+        Default False. [bool]
 
-    Examples:
+    multi_selection: (optional) Ability to select multiple files/folders.
+        Default False. [bool]
 
-        pyside6_qt_message_window('error', f'{SCRIPT_NAME}: Error', f'Unable to create folder.<br>Check folder permissions')
+    include_resolution: (optional) Enable resolution controls in flame browser.
+        Default False. [bool]
 
-        or
+    use_flame_browser: (optional) - Use Flame's file browser if using Flame
+        2023.1 or later. Default True [bool]
 
-        if pyside6_qt_message_window('confirm', 'Confirm Operation', 'Some important message'):
-            do something
+    window_to_hide: (optional) - Hide Qt window while file browser
+    window is open. window is restored when browser is closed. [QWidget]
+
+    When Multi Selection is enabled, the file browser will return a list.
+    Otherwise it will return a string.
+
+    Example:
+
+        path = pyside6_qt_file_browser('Load Undistort ST Map(EXR)', 'exr',
+        self.undistort_map_path)
     '''
 
-    def __init__(self, message_type: str, message_title: str, message: str, time: int=3, parent=None):
-        super(pyside6_qt_message_window, self).__init__()
-        import flame
+    import flame
 
-        # Check argument types
+    # Check argument values
 
-        if message_type not in ['confirm', 'message', 'error', 'warning']:
-            raise ValueError('pyside6_qt_message_window: message_type must be one of: confirm, message, error, warning.')
-        if not isinstance(message_title, str):
-            raise TypeError('pyside6_qt_message_window: message_title must be a string.')
-        if not isinstance(message, str):
-            raise TypeError('pyside6_qt_message_window: message must be a string.')
-        if not isinstance(time, int):
-            raise TypeError('pyside6_qt_message_window: time must be an integer.')
+    if not isinstance(extension, list):
+        raise TypeError('Pyflame File Browser: extension must be a list.')
+  
+    if not isinstance(default_path, str):
+        raise TypeError('Pyflame File Browser: default_path must be a string.')
+  
+    if not isinstance(select_directory, bool):
+        raise TypeError('Pyflame File Browser: select_directory must be a boolean.')
+  
+    if not isinstance(multi_selection, bool):
+        raise TypeError('Pyflame File Browser: multi_selection must be a boolean.')
 
-        # Create message window
+    if not isinstance(include_resolution, bool):
+        raise TypeError('Pyflame File Browser: include_resolution must be a boolean.')
 
-        self.message_type = message_type
+    if not isinstance(window_to_hide, list):
+        raise TypeError('Pyflame File Browser: window_to_hide must be a list.')
 
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        self.setMinimumSize(QtCore.QSize(500, 330))
-        self.setMaximumSize(QtCore.QSize(500, 330))
-        self.setStyleSheet('background-color: rgb(36, 36, 36)')
+    # Clean up path
 
-        primaryScreen = QtWidgets.QApplication.primaryScreen() # resolution = QtWidgets.QDesktopWidget().screenGeometry()
-        resolution = primaryScreen.geometry() # Fix for flame 2025
-        self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
-                  (resolution.height() / 2) - (self.frameSize().height() / 2))
+    while os.path.isdir(default_path) is not True:
+        default_path = default_path.rsplit('/', 1)[0]
+      
+        if '/' not in default_path and not os.path.isdir(default_path):
+            default_path = '/opt/Autodesk'
+        print('Browser path:', default_path, '\n')
 
-        self.setParent(parent)
+    # Open file browser
 
-        self.grid = QtWidgets.QGridLayout()
+    if pyside6_qt_get_flame_version() >= 2023.1 and use_flame_browser:
 
-        self.main_label = pyside6_qt_label(message_title, label_width=500)
-        self.main_label.setStyleSheet('color: rgb(154, 154, 154); font: 18px "Discreet"')
+        # Hide Qt window while browser is open
 
-        self.message_text_edit = QtWidgets.QPlainTextEdit(message) # Fix for flame 2025
-        self.message_text_edit.setDisabled(True)
-        self.message_text_edit.setStyleSheet('QPlainTextEdit {color: rgb(154, 154, 154); background-color: rgb(36, 36, 36); selection-color: rgb(190, 190, 190); selection-background-color: rgb(36, 36, 36); border: none; padding-left: 20px; padding-right: 20px; font: 12px "Discreet"}')  # Fix for flame 2025
+        if window_to_hide:
+            for window in window_to_hide:
+                window.hide()
 
-        # Set confirm/ok button color
+        # Open Flame file browser
 
-        if message_type == 'confirm':
-            self.confirm_button = pyside6_qt_button('Confirm', self.confirm, button_color='blue', button_width=110)
-        elif message_type == 'warning':
-            self.confirm_button = pyside6_qt_button('Confirm', self.confirm, button_color='red', button_width=110)
+        flame.browser.show(
+            title=title,
+            extension=extension,
+            default_path=default_path,
+            select_directory=select_directory,
+            multi_selection=multi_selection,
+            include_resolution=include_resolution
+        )
+
+        # Restore Qt windows
+
+        if window_to_hide:
+            for window in window_to_hide:
+                window.show()
+
+        # Return file path(s) from Flame file browser
+
+        if flame.browser.selection:
+            if multi_selection:
+                return flame.browser.selection
+            return flame.browser.selection[0]
+    else:
+        browser = QtWidgets.QFileDialog()
+        browser.setDirectory(default_path)
+
+        if select_directory:
+            browser.setFileMode(
+                QtWidgets.QFileDialog.FileMode.Directory
+            )  # Fix for flame 2025
         else:
-            self.ok_button = pyside6_qt_button('Ok', self.confirm, button_color='blue', button_width=110)
+            browser.setFileMode(
+                QtWidgets.QFileDialog.FileMode.ExistingFile
+            )  # Fix for flame 2025
+            browser.setNameFilter(f'*.{extension[0]}')
 
-        # Set layout for message window
+        if browser.exec_():
+            return str(browser.selectedFiles()[0])
 
-        if message_type == 'confirm' or message_type == 'warning':
-            self.cancel_button = pyside6_qt_button('Cancel', self.cancel, button_width=110)
-            self.grid.addWidget(self.main_label, 0, 0)
-            self.grid.setRowMinimumHeight(1, 30)
-            self.grid.addWidget(self.message_text_edit, 2, 0, 4, 8)
-            self.grid.setRowMinimumHeight(9, 30)
-            self.grid.addWidget(self.cancel_button, 10, 5)
-            self.grid.addWidget(self.confirm_button, 10, 6)
-            self.grid.setRowMinimumHeight(11, 30)
-        else:
-            self.grid.addWidget(self.main_label, 0, 0)
-            self.grid.setRowMinimumHeight(1, 30)
-            self.grid.addWidget(self.message_text_edit, 2, 0, 4, 8)
-            self.grid.setRowMinimumHeight(9, 30)
-            self.grid.addWidget(self.ok_button, 10, 6)
-            self.grid.setRowMinimumHeight(11, 30)
-
-        message = message.replace('<br>', ' ')
-        message = message.replace('<center>', '')
-        message = message.replace('</center>', '')
-        message = message.replace('<dd>', '')
-        message = message.replace('<b>', '')
-        message = message.replace('</b>', '')
-
-        # Print to terminal/shell
-
-        if message_type == 'warning':
-            # print message text in red
-            print(f'\033[91m\n--> {message_title}: {message}\033[0m\n')
-        elif message_type == 'error':
-            # print message text in yellow
-            print(f'\033[93m\n--> {message_title}: {message}\033[0m\n')
-        else:
-            print(f'\n--> {message_title}: {message}\n')
-
-        # Print message to Flame message window - only works in Flame 2023.1 and later
-        # Warning and error intentionally swapped to match color of message window
-
-        message_title = message_title.upper()
-
-        try:
-            if message_type == 'confirm' or message_type == 'message':
-                flame.messages.show_in_console(f'{message_title}: {message}', 'info', time)
-            elif message_type == 'error':
-                flame.messages.show_in_console(f'{message_title}: {message}', 'warning', time)
-            elif message_type == 'warning':
-                flame.messages.show_in_console(f'{message_title}: {message}', 'error', time)
-        except:
-            pass
-
-        self.setLayout(self.grid)
-        self.exec()
-
-    def __bool__(self):
-
-        return self.confirmed
-
-    def cancel(self):
-
-        self.close()
-        self.confirmed = False
-        print('--> Cancelled\n')
-
-    def confirm(self):
-
-        self.close()
-        self.confirmed = True
-        if self.message_type == 'confirm':
-            print('--> Confirmed\n')
-
-    def paintEvent(self, event):
-        painter = QtGui.QPainter(self)
-
-        if self.message_type == 'confirm':
-            line_color = QtGui.QColor(71, 71, 71)
-        elif self.message_type == 'message':
-            line_color = QtGui.QColor(0, 110, 176)
-        elif self.message_type == 'error':
-            line_color = QtGui.QColor(251, 181, 73)
-        elif self.message_type == 'warning':
-            line_color = QtGui.QColor(200, 29, 29)
-
-        painter.setPen(QtGui.QPen(line_color, 6, QtGui.Qt.SolidLine)) # Fix for flame 2025
-        painter.drawLine(0, 0, 0, 330)
-
-        painter.setPen(QtGui.QPen(QtGui.QColor(71, 71, 71), .5, QtGui.Qt.SolidLine)) # Fix for flame 2025
-        painter.drawLine(0, 40, 500, 40)
-
-    def mousePressEvent(self, event):
-        self.oldPosition = event.globalPos()
-
-    def mouseMoveEvent(self, event):
-
-        try:
-            delta = QtCore.QPoint(event.globalPos() - self.oldPosition)
-            self.move(self.x() + delta.x(), self.y() + delta.y())
-            self.oldPosition = event.globalPos()
-        except:
-            pass
+        return print('\n--> Import cancelled \n')
 
 # ========================================================================== #
 # This section defines how to handle the main script function.
@@ -412,18 +413,18 @@ class pyside6_qt_message_window(QtWidgets.QDialog):
 # comments:              prep for release.
 # -------------------------------------------------------------------------- #
 # version:               1.0.0
-# modified:              2024-10-30 - 07:35:26
+# modified:              2024-10-30 - 07:35:27
 # comments:              Refactored PySide6 Output Node Config UI.
 # -------------------------------------------------------------------------- #
 # version:               1.0.1
-# modified:              2024-11-16 - 16:52:06
+# modified:              2024-11-16 - 16:52:07
 # comments:              Fixed circular import statements
 # -------------------------------------------------------------------------- #
 # version:               1.0.2
-# modified:              2025-01-19 - 17:47:46
+# modified:              2025-01-19 - 17:47:47
 # comments:              Changed import statements to fix shell errors.
 # -------------------------------------------------------------------------- #
 # version:               1.0.3
-# modified:              2025-02-25 - 07:01:18
+# modified:              2025-02-25 - 07:01:20
 # comments:              Added legacy support for PySide2 imports
 # -------------------------------------------------------------------------- #
