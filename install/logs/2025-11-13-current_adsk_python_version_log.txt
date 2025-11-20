@@ -1,32 +1,32 @@
   Analyzing directory: /opt/Autodesk/python
   Sorted contents of /opt/Autodesk/python:
-  2027.pr231
+  2027.pr232
   
-  The highest version is: 2027.pr231
+  The highest version is: 2027.pr232
   
-  Python version 2027.pr231 is available and executable
+  Python version 2027.pr232 is available and executable
   Reading preference file:
   /Users/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEV/install/current_adsk_python_version.pref
   Preference file loaded:
   /opt/Autodesk/python/2026.1.pr224/bin/python
   Updated preference file with:
-  /opt/Autodesk/python/2027.pr231/bin/python
+  /opt/Autodesk/python/2027.pr232/bin/python
 
 + --------------------------------------------------------------------------- +
   Analyzing directory: /opt/Autodesk/python
   Sorted contents of /opt/Autodesk/python:
-  2027.pr231
+  2027.pr232
   
-  The highest version is: 2027.pr231
+  The highest version is: 2027.pr232
   
-  Python version 2027.pr231 is available and executable
+  Python version 2027.pr232 is available and executable
   Reading preference file:
   /Users/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEV/install/current_adsk_python_version.pref
   Preference file loaded:
-  /opt/Autodesk/python/2027.pr231/bin/python
+  /opt/Autodesk/python/2027.pr232/bin/python
   No update needed.
   Preference file already contains the latest version:
-  /opt/Autodesk/python/2027.pr231/bin/python
+  /opt/Autodesk/python/2027.pr232/bin/python
 
 + --------------------------------------------------------------------------- +
   Creating macOS application: LOGIK-PROJEKT-2026.2.0.app
@@ -46,18 +46,18 @@
 + --------------------------------------------------------------------------- +
   Analyzing directory: /opt/Autodesk/python
   Sorted contents of /opt/Autodesk/python:
-  2027.pr231
+  2027.pr232
   
-  The highest version is: 2027.pr231
+  The highest version is: 2027.pr232
   
-  Python version 2027.pr231 is available and executable
+  Python version 2027.pr232 is available and executable
   Reading preference file:
   /Users/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEV/install/current_adsk_python_version.pref
   Preference file loaded:
-  /opt/Autodesk/python/2027.pr231/bin/python
+  /opt/Autodesk/python/2027.pr232/bin/python
   No update needed.
   Preference file already contains the latest version:
-  /opt/Autodesk/python/2027.pr231/bin/python
+  /opt/Autodesk/python/2027.pr232/bin/python
 
 + --------------------------------------------------------------------------- +
   Creating macOS application: LOGIK-PROJEKT-2027.0.0.app

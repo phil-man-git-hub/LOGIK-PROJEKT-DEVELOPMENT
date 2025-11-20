@@ -5,12 +5,12 @@
 # ========================================================================== #
 
 # Launcher Script Name:  %%LAUNCHER_SCRIPT_NAME%%
-# Launcher Script for:   centrik_initial_install_2027_romeo
-# Script Creation Date:  2025-11-17 20:23:45
+# Launcher Script for:   123_flame_alpha_2027_romeo
+# Script Creation Date:  2025-11-20 10:08:17
 
-the_projekt_name="centrik_initial_install"
+the_projekt_name="123_flame_alpha"
 
-the_projekt_flame_name="centrik_initial_install_2027_romeo"
+the_projekt_flame_name="123_flame_alpha_2027_romeo"
 
 flame_workstation_name="romeo"
 
@@ -19,7 +19,7 @@ flame_workstation_name="romeo"
 # ========================================================================== #
 
 # Define the the_flame_first_run_log
-the_flame_first_run_log_dir="/PROJEKTS/centrik_initial_install/cfg/log"
+the_flame_first_run_log_dir="/PROJEKTS/123_flame_alpha/cfg/log"
 mkdir -p "$the_flame_first_run_log_dir"
 the_flame_first_run_log_name="current_session-flame_launcher.log"
 the_flame_first_run_log="$the_flame_first_run_log_dir/$the_flame_first_run_log_name"
@@ -34,8 +34,8 @@ execute_command() {
 # -------------------------------------------------------------------------- #
 
 # Construct the flame launch command.
-launch_opt_1="/opt/Autodesk/flame_2027.pr231/bin/startFlame"
-launch_opt_2="-J centrik_initial_install_2027_romeo"
+launch_opt_1="/opt/Autodesk/flame_2027.pr232/bin/startFlame"
+launch_opt_2="-J 123_flame_alpha_2027_romeo"
 launch_opt_3="--start-workspace=\"romeo\" --create-workspace"
 # logik_projekt_python_dir="/opt/Autodesk/shared/python/logik_projekt"
 # projekt_tool_dir="projekt_tools/logik_projekt_layout/scripts"
@@ -43,7 +43,7 @@ launch_opt_3="--start-workspace=\"romeo\" --create-workspace"
 # launch_script="create_projekt_layout.py"
 # launch_opt_4="--execute-python-script=$projekt_tool_path/$launch_script"
 
-flame_startup_script_dir="/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/setups"
+flame_startup_script_dir="/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/setups"
 launch_script="scripts/startup/flame_startup_script.py"
 launch_opt_4="--execute-python-script=$flame_startup_script_dir/$launch_script"
 launch_opt_5="--debug"

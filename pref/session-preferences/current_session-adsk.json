@@ -1,8 +1,8 @@
 {
-    "Name": "centrik_initial_install_2027_romeo",
-    "ProjectDir": "/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo",
-    "SetupDir": "/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/setups",
-    "MediaDir": "/var/opt/Autodesk/flame/projects/centrik_initial_install_2027_romeo/media",
+    "Name": "123_flame_alpha_2027_romeo",
+    "ProjectDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo",
+    "SetupDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/setups",
+    "MediaDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/media",
     "Resolution": {
         "FrameWidth": 1920,
         "FrameHeight": 1080,
