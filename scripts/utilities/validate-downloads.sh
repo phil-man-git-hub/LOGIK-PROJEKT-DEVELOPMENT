@@ -1,279 +1,694 @@
 #!/bin/bash
+################################################################################
 # validate-downloads.sh
-# Script to analyze Autodesk Flame downloads and match md5 hashes.
+# Enhanced script to validate Autodesk Flame downloads against MD5 checksums
+# Features: robust error handling, logging, CLI args, interactive shell completion
+################################################################################
 
 # -------------------------------------------------------------------------- #
-# Script Execution Options
+# STRICT EXECUTION MODE
 # -------------------------------------------------------------------------- #
 
 # Uncomment these settings for stricter bash execution
-set -e           # Exit on any errors
+# set -e           # Exit on any errors
 # set -u           # Exit if any variable is used without being defined
 # set -o pipefail  # Exit if any command in a pipeline fails
-set -x           # Print each command before execution
+# set -x           # Print each command before execution
+
+set -euo pipefail
+IFS=$'\n\t'
 
 # -------------------------------------------------------------------------- #
-# Detect Operating System
+# EXIT CODES
 # -------------------------------------------------------------------------- #
 
-operating_system=$(uname)
+readonly EXIT_SUCCESS=0
+readonly EXIT_ERROR=1
+readonly EXIT_INVALID_OS=2
+readonly EXIT_INVALID_DIR=3
+readonly EXIT_MISSING_DEPENDENCY=4
+readonly EXIT_USER_CANCELLED=5
+readonly EXIT_NO_FILES=6
 
 # -------------------------------------------------------------------------- #
+# LOGGING LEVELS
+# -------------------------------------------------------------------------- #
 
-# Determine the operating system
-if [[ "$(uname)" == "Darwin" ]]; then
-    # macOS
-    operating_system="macOS"
+readonly LOG_DEBUG=0
+readonly LOG_INFO=1
+readonly LOG_WARN=2
+readonly LOG_ERROR=3
 
-elif [[ "$(uname)" == "Linux" ]]; then
-    # Linux
-    operating_system="Linux"
+# Default log level can be overridden with LOG_LEVEL environment variable
+LOG_LEVEL="${LOG_LEVEL:-$LOG_INFO}"
+TEST_MODE="${TEST_MODE:-false}"
+USE_CLI_MODE="${USE_CLI_MODE:-false}"
 
-else
-    # Default to a common directory if the OS is not recognized
-    echo -e "\n$separator_plus\n"
-    echo -e "  Unsupported operating system."
-    echo -e "\n$separator_plus\n"
-    exit 1
+# -------------------------------------------------------------------------- #
+# DETECT OPERATING SYSTEM
+# -------------------------------------------------------------------------- #
+
+detect_os() {
+    case "$(uname)" in
+        Darwin)  echo "macOS" ;;
+        Linux)   echo "Linux" ;;
+        MINGW*|MSYS*) echo "Windows" ;;
+        *)       echo "unknown" ;;
+    esac
+}
+
+readonly OPERATING_SYSTEM=$(detect_os)
+
+if [[ "$OPERATING_SYSTEM" == "unknown" ]]; then
+    echo "Error: Unsupported operating system." >&2
+    exit "$EXIT_INVALID_OS"
 fi
 
 # -------------------------------------------------------------------------- #
-# Detect Workstation Name
+# PATH DISCOVERY
 # -------------------------------------------------------------------------- #
 
-# Get the workstation name
-if [[ "$operating_system" == "macOS" ]]; then
-    # For macOS
-    workstation_name=$(scutil --get ComputerName)
-elif [[ "$operating_system" == "Linux" ]]; then
-    # For Linux
-    workstation_name=$(hostname)
-else
-    # Default to a generic name if the OS is not recognized
-    workstation_name="UnknownWorkstation"
-fi
+readonly THIS_SCRIPT=$(basename "$0")
+readonly PROGRAM_NAME="${THIS_SCRIPT%.*}"
+readonly PROGRAM_NAME_UC=$(echo "$PROGRAM_NAME" | tr '[:lower:]' '[:upper:]')
+readonly THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Find repo root by searching upward for scripts directory
+find_repo_root() {
+    local current_dir="$THIS_DIR"
+    
+    while [[ "$current_dir" != "/" ]]; do
+        if [[ -d "$current_dir/scripts" ]]; then
+            echo "$current_dir"
+            return 0
+        fi
+        current_dir=$(dirname "$current_dir")
+    done
+    
+    return 1
+}
+
+readonly REPO_DIR=$(find_repo_root || echo ".")
+readonly SCRIPTS_DIR="$REPO_DIR/scripts"
+readonly REPO_NAME=$(basename "$REPO_DIR")
+readonly REPO_PATH=$(dirname "$REPO_DIR")
+readonly PREFS_DIR="$REPO_DIR/prefs"
+readonly LOGS_DIR="$REPO_DIR/logs"
 
 # -------------------------------------------------------------------------- #
-# Detect Current User and Groups
+# CREATE DIRECTORIES IF NEEDED
 # -------------------------------------------------------------------------- #
 
-# Get username, primary group and group memberships.
-CURRENT_USER="$USER"
-PRIMARY_GROUP="$(id -gn)"
-ALL_GROUPS="$(groups | tr ' ' ',' | sed 's/,/, /g')"
+mkdir -p "$LOGS_DIR" "$PREFS_DIR"
 
 # -------------------------------------------------------------------------- #
-# Path Discovery Functions for executable scripts
+# LOGGING SETUP
 # -------------------------------------------------------------------------- #
 
-# Get the name of this script
-this_script=$(basename "$0")
-
-# Set program_name to the name of this script
-program_name="${this_script%.*}"
-
-# Convert program_name to uppercase
-program_name_uc=$(echo "$program_name" | tr '[:lower:]' '[:upper:]')
-
-# Get the directory of this script
-this_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# Find scripts_dir in the path of this_dir
-scripts_dir="${this_dir%/scripts/*}"
-
-# Export the variables
-export this_script program_name program_name_uc this_dir scripts_dir
+readonly PROGRAM_LOG="$LOGS_DIR/${PROGRAM_NAME}_$(date +%Y%m%d_%H%M%S).log"
+touch "$PROGRAM_LOG"
 
 # -------------------------------------------------------------------------- #
-# Path Discovery Functions for Repository
+# LOGGING FUNCTIONS (no output redirection - simpler approach)
 # -------------------------------------------------------------------------- #
 
-# Define repo_dir as the parent directory of scripts_dir
-repo_dir=$(dirname "$scripts_dir")
+log_to_file() {
+    local level="$1"
+    shift
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    printf "[%s] %s: %s\n" "$timestamp" "$level" "$*" >> "$PROGRAM_LOG"
+}
 
-# Get the name of the repo_dir
-repo_name=$(basename "$repo_dir")
+log_to_all() {
+    local level="$1"
+    shift
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    printf "[%s] %s: %s\n" "$timestamp" "$level" "$*" | tee -a "$PROGRAM_LOG"
+}
 
-# Get the path to the parent directory of the repo_dir
-repo_path=$(dirname "$repo_dir")
+log_debug() {
+    [[ $LOG_LEVEL -le $LOG_DEBUG ]] && log_to_all "DEBUG" "$@" || log_to_file "DEBUG" "$@"
+}
 
-# Export the variables
-export repo_dir repo_name repo_path
+log_info() {
+    [[ $LOG_LEVEL -le $LOG_INFO ]] && log_to_all "INFO" "$@" || log_to_file "INFO" "$@"
+}
 
-# -------------------------------------------------------------------------- #
-# Directory and File Path Definitions
-# -------------------------------------------------------------------------- #
+log_warn() {
+    [[ $LOG_LEVEL -le $LOG_WARN ]] && log_to_all "WARN" "$@" || log_to_file "WARN" "$@"
+}
 
-# Define the path to the prefs_dir
-prefs_dir="$repo_dir/prefs"
+log_error() {
+    [[ $LOG_LEVEL -le $LOG_ERROR ]] && log_to_all "ERROR" "$@" >&2 || log_to_file "ERROR" "$@"
+}
 
-# -------------------------------------------------------------------------- #
-# Imports - common
-# -------------------------------------------------------------------------- #
-
-source "$repo_dir/scripts/common/create/create-banners.sh"
-source "$repo_dir/scripts/common/create/create-logs.sh"
-source "$repo_dir/scripts/common/create/create-separators.sh"
-source "$repo_dir/scripts/common/create/create-timestamp.sh"
-
-# -------------------------------------------------------------------------- #
-# Imports - lib
-# -------------------------------------------------------------------------- #
-
-# -------------------------------------------------------------------------- #
-# Imports - utils
-# -------------------------------------------------------------------------- #
+log_success() {
+    log_info "✓ $*"
+}
 
 # -------------------------------------------------------------------------- #
-# Initialize a log file
+# ERROR HANDLING
 # -------------------------------------------------------------------------- #
 
-# Use log_shell_script_activity to create a log file
-log_shell_script_activity "$program_name"
+die() {
+    local message="$1"
+    local exit_code="${2:-$EXIT_ERROR}"
+    log_error "$message"
+    exit "$exit_code"
+}
 
-# Redirect all output to the log file
-exec > >(tee -a "$program_log") 2>&1
+trap_error() {
+    local line_no=$1
+    log_error "Script error on line $line_no"
+    exit "$EXIT_ERROR"
+}
+
+trap_interrupt() {
+    log_warn "Script interrupted by user"
+    exit "$EXIT_USER_CANCELLED"
+}
+
+trap trap_error ERR
+trap trap_interrupt INT TERM
 
 # -------------------------------------------------------------------------- #
-# Add a BANNER to the log file
+# DEPENDENCY CHECKING
 # -------------------------------------------------------------------------- #
 
-# Generate a banner_line_start
-echo -e "\n$separator_plus\n"
-generate_banner_line_start "$program_name_uc"
-echo -e "\n$separator_plus\n"
+check_required_commands() {
+    local commands=("basename" "dirname" "find" "cut" "awk" "date")
+    
+    case "$OPERATING_SYSTEM" in
+        macOS)  commands+=("md5" "scutil") ;;
+        Linux)  commands+=("md5sum") ;;
+    esac
+    
+    for cmd in "${commands[@]}"; do
+        if ! command -v "$cmd" &>/dev/null; then
+            log_error "Required command not found: $cmd"
+            return 1
+        fi
+    done
+    
+    return 0
+}
 
-# Echo the functions/variables
-echo -e "  date: $projekt_date"
-echo -e "  time: $projekt_time"
-echo -e "  now:  $projekt_now"
-echo -e "\n$separator_plus\n"
+check_required_commands || die "Missing required dependencies" "$EXIT_MISSING_DEPENDENCY"
 
 # -------------------------------------------------------------------------- #
-# Prompt User to Choose the Downloads Directory
+# SYSTEM INFORMATION
 # -------------------------------------------------------------------------- #
 
-if [[ "$operating_system" == "Linux" ]]; then
-    if ! command -v zenity &> /dev/null; then
-        echo -e "  Error: 'zenity' is not installed."
-        echo -e "  Please install it to use this script on Linux."
-        exit 1
+get_workstation_name() {
+    case "$OPERATING_SYSTEM" in
+        macOS)  scutil --get ComputerName ;;
+        Linux)  hostname ;;
+        *)      echo "UnknownWorkstation" ;;
+    esac
+}
+
+readonly WORKSTATION_NAME=$(get_workstation_name)
+readonly CURRENT_USER="$USER"
+readonly PRIMARY_GROUP="$(id -gn)"
+
+# -------------------------------------------------------------------------- #
+# SEPARATOR
+# -------------------------------------------------------------------------- #
+
+readonly separator_plus="=========================================================================="
+
+# -------------------------------------------------------------------------- #
+# UTILITY FUNCTIONS
+# -------------------------------------------------------------------------- #
+
+print_usage() {
+    cat << EOF
+Usage: $THIS_SCRIPT [OPTIONS]
+
+Validate Autodesk Flame downloads by comparing MD5 checksums.
+
+OPTIONS:
+    -d, --directory PATH      Use PATH as downloads directory
+    -c, --cli                 Use command-line mode (no GUI dialogs)
+    -q, --quiet              Suppress info output (errors only)
+    -v, --verbose            Enable verbose/debug output
+    -t, --test               Test mode (dry run, no actual validation)
+    -h, --help               Show this help message
+
+EXAMPLES:
+    # Interactive GUI mode
+    $THIS_SCRIPT
+
+    # CLI mode with tab completion
+    $THIS_SCRIPT --cli
+
+    # Validate specific directory
+    $THIS_SCRIPT --directory ~/Downloads
+
+    # Verbose mode
+    $THIS_SCRIPT -v --cli -d /path/to/downloads
+
+ENVIRONMENT VARIABLES:
+    LOG_LEVEL       Set to DEBUG for verbose output
+    TEST_MODE       Set to true for dry run
+    USE_CLI_MODE    Set to true to force CLI mode
+
+EOF
+}
+
+validate_directory() {
+    local dir="$1"
+    
+    # Expand tilde if present
+    dir="${dir/#\~/$HOME}"
+    # Remove trailing slashes
+    dir="${dir%/}"
+    
+    if [[ -z "$dir" ]]; then
+        log_error "Directory path is empty"
+        return 1
     fi
-
-    chosen_downloads_dir=$(zenity \
-    --file-selection \
-    --directory \
-    --title="Select Downloads Directory" \
-    --filename="/home/$USER/Downloads/")
-
-    if [ $? -eq 1 ]; then
-        echo -e "  Operation canceled by the user."
-        exit 0
+    
+    if [[ ! -d "$dir" ]]; then
+        log_error "Directory does not exist: $dir"
+        return 1
     fi
-
-    # For Linux
-    # calculated_md5=$(md5sum "$file_path" | awk '{print $1}')
-
-elif [[ "$operating_system" == "macOS" ]]; then
-
-    chosen_downloads_dir=$(
-        osascript -e 'POSIX path of (choose folder with prompt "Select ADSK Downloads Directory")')
-
-    if [ -z "$chosen_downloads_dir" ]; then
-        echo -e "  Operation canceled by the user."
-        exit 0
+    
+    if [[ ! -r "$dir" ]]; then
+        log_error "Directory is not readable: $dir"
+        return 1
     fi
+    
+    return 0
+}
 
-    # For macOS
-    # calculated_md5=$(md5 -r "$file_path" | awk '{print $1}')
-
-else
-    echo -e "  Unsupported operating system."
-    exit 1
-fi
-
-echo -e "  Chosen Downloads Directory: $chosen_downloads_dir"
-echo -e "\n$separator_plus\n"
-
-if [ ! -d "$chosen_downloads_dir" ]; then
-    echo -e "  Error: Downloads directory does not exist. Exiting."
-    exit 1
-fi
+calculate_md5() {
+    local file_path="$1"
+    
+    case "$OPERATING_SYSTEM" in
+        macOS)
+            md5 -r "$file_path" | awk '{print $1}'
+            ;;
+        Linux)
+            md5sum "$file_path" | awk '{print $1}'
+            ;;
+        *)
+            die "MD5 calculation not supported on $OPERATING_SYSTEM"
+            ;;
+    esac
+}
 
 # -------------------------------------------------------------------------- #
-# Populate the File List
+# DIRECTORY SELECTION - CLI MODE WITH COMPLETION
 # -------------------------------------------------------------------------- #
 
-file_list=()
-
-while IFS= read -r -d '' file_path; do
-    if [[ ! "$file_path" == *.md5 ]]; then
-        file_list+=("$file_path")
+select_directory_cli() {
+    local default_path="${1:-$HOME/Downloads}"
+    local chosen_dir=""
+    
+    echo "  Select downloads directory" >&2
+    echo "  Default: $default_path" >&2
+    echo "  (Press Enter to use default, or type a path with tab completion)" >&2
+    echo "" >&2
+    
+    read -e -p "  Path: " chosen_dir < /dev/tty
+    
+    # If user just pressed enter, use default
+    if [[ -z "$chosen_dir" ]]; then
+        chosen_dir="$default_path"
     fi
-done < <(find "$chosen_downloads_dir" -type f -print0)
+    
+    # Expand tilde
+    chosen_dir="${chosen_dir/#\~/$HOME}"
+    
+    # Only output the path to stdout (which will be captured)
+    echo "$chosen_dir"
+}
 
 # -------------------------------------------------------------------------- #
-
-# Set the list_count
-list_count=1
-
-# Print the entire file list
-echo -e "  The list of files is:"
-for file_path in "${file_list[@]}"; do
-    file_basename=$(basename "$file_path")
-    # echo -e "    $file_basename\n"
-    echo -e "\n    $list_count. $file_basename"
-    list_count=$((list_count + 1))
-done
-
-echo -e "\n$separator_plus\n"
-
-# -------------------------------------------------------------------------- #
-# Process the File List
+# DIRECTORY SELECTION - GUI MODE
 # -------------------------------------------------------------------------- #
 
-# Set the file_count
-file_count=1
+select_directory_gui() {
+    local chosen_dir=""
+    
+    case "$OPERATING_SYSTEM" in
+        macOS)
+            # Use AppleScript via osascript with explicit display handling
+            if command -v osascript &>/dev/null; then
+                chosen_dir=$( { osascript -e 'tell application "System Events"
+    activate
+    set selected_folder to choose folder with prompt "Select ADSK Downloads Directory"
+    return POSIX path of selected_folder
+end tell' ; } 2>&1)
+                
+                if [[ $? -eq 0 && -n "$chosen_dir" && "$chosen_dir" != *"canceled"* ]]; then
+                    echo "$chosen_dir"
+                    return 0
+                else
+                    log_debug "osascript GUI cancelled or failed"
+                    return 1
+                fi
+            else
+                log_debug "osascript command not found"
+                return 1
+            fi
+            ;;
+        Linux)
+            if command -v zenity &>/dev/null; then
+                chosen_dir=$(zenity \
+                    --file-selection \
+                    --directory \
+                    --title="Select ADSK Downloads Directory" \
+                    --filename="$HOME/Downloads/" 2>/dev/null) || return 1
+                echo "$chosen_dir"
+                return 0
+            else
+                log_debug "zenity command not found"
+                return 1
+            fi
+            ;;
+        *)
+            log_debug "GUI not supported on this OS"
+            return 1
+            ;;
+    esac
+}
 
-# Process the entire file list
-for file_path in "${file_list[@]}"; do
-    file_basename=$(basename "$file_path")
-    echo -e "  $file_count. $file_basename"
-    file_count=$((file_count + 1))
-
-    # Calculate MD5 checksum for each file
-    if [[ "$operating_system" == "Linux" ]]; then
-        calculated_md5=$(md5sum "$file_path" | awk '{print $1}')
+select_directory() {
+    local use_cli="${1:-false}"
+    local chosen_dir=""
+    
+    if [[ "$use_cli" == "true" ]]; then
+        chosen_dir=$(select_directory_cli "$HOME/Downloads")
     else
-        calculated_md5=$(md5 -r "$file_path" | awk '{print $1}')
+        # Try GUI first
+        if chosen_dir=$(select_directory_gui 2>/dev/null); then
+            echo "$chosen_dir"
+            return 0
+        else
+            # GUI failed or cancelled, fall back to CLI
+            echo "GUI not available, using command-line mode..." >&2
+            chosen_dir=$(select_directory_cli "$HOME/Downloads")
+        fi
     fi
+    
+    echo "$chosen_dir"
+}
 
-    md5_file="$file_path.md5"
-    if [ ! -e "$md5_file" ]; then
-        echo -e "\n     No corresponding .md5 file found."
-        echo -e "\n     Skipping $file_basename:"
-        echo -e "\n$separator_plus\n"
-       continue
+# -------------------------------------------------------------------------- #
+# FILE COLLECTION
+# -------------------------------------------------------------------------- #
+
+collect_files() {
+    local downloads_dir="$1"
+    
+    log_info "Scanning directory: $downloads_dir"
+    
+    local file_count=0
+    while IFS= read -r -d '' file_path; do
+        if [[ ! "$file_path" == *.md5 ]]; then
+            file_list+=("$file_path")
+            ((file_count++))
+        fi
+    done < <(find "$downloads_dir" -maxdepth 1 -type f -print0 2>/dev/null)
+    
+    if [[ $file_count -eq 0 ]]; then
+        log_warn "No files found in $downloads_dir"
+        return 1
     fi
+    
+    log_info "Found $file_count file(s) to validate"
+    return 0
+}
 
+# -------------------------------------------------------------------------- #
+# VALIDATION LOGIC
+# -------------------------------------------------------------------------- #
+
+validate_file() {
+    local file_path="$1"
+    local file_basename=$(basename "$file_path")
+    
+    log_info "Validating: $file_basename"
+    
+    local md5_file="$file_path.md5"
+    
+    # Add to report
+    report_lines+=("  $((file_counter)). $file_basename")
+    
+    if [[ ! -e "$md5_file" ]]; then
+        log_warn "No MD5 file found: ${file_basename}.md5"
+        report_lines+=("")
+        report_lines+=("     No corresponding .md5 file found.")
+        report_lines+=("")
+        report_lines+=("     Skipping $file_basename:")
+        report_lines+=("")
+        report_lines+=("$separator_plus")
+        report_lines+=("")
+        return 1
+    fi
+    
+    local expected_md5
     expected_md5=$(cut -d' ' -f1 "$md5_file")
-
-    # echo -e "  $expected_md5 - Expected MD5 for $file_basename"
-    echo -e "\n     Expected Checksum: $expected_md5"
-
-    # echo -e "  $calculated_md5 - Checksum for $file_basename"
-    echo -e "     Actual Checksum:   $calculated_md5"
-
-    if [ "$calculated_md5" == "$expected_md5" ]; then
-        echo -e "\n     Checksums match for $file_basename"
-        echo -e "\n     This file is valid."
-        echo -e "\n$separator_plus\n"
-    else
-        echo -e "\n     Checksums DO NOT MATCH for $file_basename"
-        echo -e "\n     This file may be corrupted."
-        echo -e "\n$separator_plus\n"
+    
+    if [[ -z "$expected_md5" ]]; then
+        log_error "MD5 file is empty or malformed: $md5_file"
+        report_lines+=("")
+        report_lines+=("     MD5 file is empty or malformed.")
+        report_lines+=("")
+        report_lines+=("$separator_plus")
+        report_lines+=("")
+        return 1
     fi
-done
+    
+    if [[ "$TEST_MODE" == "true" ]]; then
+        log_debug "TEST MODE: Would validate $file_basename"
+        report_lines+=("")
+        report_lines+=("     TEST MODE: Validation skipped")
+        report_lines+=("")
+        report_lines+=("$separator_plus")
+        report_lines+=("")
+        return 0
+    fi
+    
+    local calculated_md5
+    calculated_md5=$(calculate_md5 "$file_path")
+    
+    log_debug "Expected MD5:   $expected_md5"
+    log_debug "Calculated MD5: $calculated_md5"
+    
+    # Add to report
+    report_lines+=("")
+    report_lines+=("     Expected Checksum: $expected_md5")
+    report_lines+=("     Actual Checksum:   $calculated_md5")
+    
+    if [[ "$calculated_md5" == "$expected_md5" ]]; then
+        log_success "$file_basename - Checksum valid"
+        report_lines+=("")
+        report_lines+=("     Checksums match for $file_basename")
+        report_lines+=("")
+        report_lines+=("     This file is valid.")
+        report_lines+=("")
+        report_lines+=("$separator_plus")
+        report_lines+=("")
+        return 0
+    else
+        log_error "$file_basename - Checksum MISMATCH! File may be corrupted."
+        report_lines+=("")
+        report_lines+=("     Checksums DO NOT MATCH for $file_basename")
+        report_lines+=("")
+        report_lines+=("     This file may be corrupted.")
+        report_lines+=("")
+        report_lines+=("$separator_plus")
+        report_lines+=("")
+        return 1
+    fi
+}
+
+# -------------------------------------------------------------------------- #
+# MAIN PROCESSING
+# -------------------------------------------------------------------------- #
+
+print_banner() {
+    cat << EOF
+
+$separator_plus
+  $PROGRAM_NAME_UC
+$separator_plus
+  Workstation: $WORKSTATION_NAME
+  User:        $CURRENT_USER
+  OS:          $OPERATING_SYSTEM
+  Time:        $(date '+%Y-%m-%d %H:%M:%S')
+$separator_plus
+
+EOF
+}
+
+main() {
+    print_banner
+    log_info "$PROGRAM_NAME started"
+    
+    local use_cli_mode="$USE_CLI_MODE"
+    local chosen_downloads_dir=""
+    
+    # Parse command-line arguments
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -d|--directory)
+                chosen_downloads_dir="$2"
+                shift 2
+                ;;
+            -c|--cli)
+                use_cli_mode=true
+                shift
+                ;;
+            -q|--quiet)
+                LOG_LEVEL=$LOG_ERROR
+                shift
+                ;;
+            -v|--verbose)
+                LOG_LEVEL=$LOG_DEBUG
+                shift
+                ;;
+            -t|--test)
+                TEST_MODE=true
+                shift
+                ;;
+            -h|--help)
+                print_usage
+                exit "$EXIT_SUCCESS"
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                print_usage
+                exit "$EXIT_ERROR"
+                ;;
+        esac
+    done
+    
+    # Select directory if not provided
+    if [[ -z "$chosen_downloads_dir" ]]; then
+        chosen_downloads_dir=$(select_directory "$use_cli_mode")
+    fi
+    
+    # Expand and validate
+    chosen_downloads_dir="${chosen_downloads_dir/#\~/$HOME}"
+    chosen_downloads_dir="${chosen_downloads_dir%/}"
+    
+    validate_directory "$chosen_downloads_dir" || \
+        die "Invalid directory: $chosen_downloads_dir" "$EXIT_INVALID_DIR"
+    
+    log_info "Downloads directory: $chosen_downloads_dir"
+    log_info ""
+    
+    # Initialize global file list array
+    local file_list=()
+    
+    # Collect files
+    collect_files "$chosen_downloads_dir" || \
+        die "Failed to collect files" "$EXIT_NO_FILES"
+    
+    # Print file list
+    log_info "Files to validate:"
+    local count=1
+    for file_path in "${file_list[@]}"; do
+        log_info "  $count. $(basename "$file_path")"
+        ((count++))
+    done
+    log_info ""
+    
+    # Validate each file
+    local valid_count=0
+    local invalid_count=0
+    local file_counter=1
+    local report_lines=()
+    
+    # Add header to report
+    report_lines+=("")
+    report_lines+=("$separator_plus")
+    report_lines+=("")
+    report_lines+=("  The list of files is:")
+    for file_path in "${file_list[@]}"; do
+        report_lines+=("")
+        report_lines+=("    $file_counter. $(basename "$file_path")")
+        ((file_counter++))
+    done
+    report_lines+=("")
+    report_lines+=("$separator_plus")
+    report_lines+=("")
+    
+    # Reset counter for validation
+    file_counter=1
+    
+    for file_path in "${file_list[@]}"; do
+        if validate_file "$file_path" report_lines; then
+            ((valid_count++))
+        else
+            ((invalid_count++))
+        fi
+        ((file_counter++))
+    done
+    
+    # Add summary to report
+    report_lines+=("")
+    report_lines+=("$separator_plus")
+    report_lines+=("")
+    report_lines+=("VALIDATION SUMMARY")
+    report_lines+=("")
+    report_lines+=("Total files:     ${#file_list[@]}")
+    report_lines+=("Valid:           $valid_count")
+    report_lines+=("Invalid/Missing: $invalid_count")
+    report_lines+=("")
+    report_lines+=("$separator_plus")
+    report_lines+=("")
+    
+    # Write detailed report to downloads directory
+    local report_timestamp=$(date +%Y%m%d_%H%M%S)
+    local report_file="$chosen_downloads_dir/VALIDATION_REPORT_${report_timestamp}.txt"
+    
+    {
+        echo ""
+        echo "$separator_plus"
+        echo ""
+        echo "  VALIDATION REPORT"
+        echo ""
+        echo "  date: $(date '+%Y-%m-%d')"
+        echo "  time: $(date '+%H:%M:%S')"
+        echo "  now:  $(date '+%Y-%m-%d %H:%M:%S')"
+        echo ""
+        echo "$separator_plus"
+        echo ""
+        printf '%s\n' "${report_lines[@]}"
+    } > "$report_file"
+    
+    log_success "Validation report written to: $report_file"
+    
+    # Print summary to terminal
+    log_info ""
+    log_info "================================================================================"
+    log_info "VALIDATION SUMMARY"
+    log_info "================================================================================"
+    log_info "Total files:     ${#file_list[@]}"
+    log_info "Valid:           $valid_count"
+    log_info "Invalid/Missing: $invalid_count"
+    log_info "================================================================================"
+    log_info ""
+    
+    if [[ $invalid_count -eq 0 ]]; then
+        log_success "All files validated successfully!"
+        exit "$EXIT_SUCCESS"
+    else
+        log_error "$invalid_count file(s) failed validation"
+        exit "$EXIT_ERROR"
+    fi
+}
+
+# -------------------------------------------------------------------------- #
+# SCRIPT ENTRY POINT
+# -------------------------------------------------------------------------- #
+
+main "$@"
 
 # -------------------------------------------------------------------------- #
 # 53 54 52 45 4E 47 54 48 2D 49 4E 2D 4E 55 4D 42 45 52 53 C2 A9 32 30 32 35 #
@@ -307,4 +722,8 @@ done
 # Version:          1.9.9
 # modified:         2024-12-25 - 09:50:16
 # comments:         Preparation for future features
+# -------------------------------------------------------------------------- #
+# Version:          2027.0.0
+# modified:         2025-11-20 - 11:57:00
+# comments:         Improved validate-downloads.sh with CLI and GUI modes.
 # -------------------------------------------------------------------------- #
