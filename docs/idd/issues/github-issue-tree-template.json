@@ -5,43 +5,50 @@
     "IssueTitle": "{{issue_title}}",
     "children": [
         {
-            "name": "step-01-feature-type",
+            "name": "step-01-issue-type",
+            "file": "issue-type-issue-XX.md",
             "children": [
                 { "name": "issue-{{issue_id}}-feature-type.md", "type": "file" }
             ]
         },
         {
             "name": "step-11-research",
+            "file": "research-issue-XX.md",
             "children": [
                 { "name": "issue-{{issue_id}}-research.md", "type": "file" }
             ]
         },
         {
             "name": "step-21-insight",
+            "file": "insight-issue-XX.md",
             "children": [
                 { "name": "issue-{{issue_id}}-insight.md", "type": "file" }
             ]
         },
         {
             "name": "step-31-cognition",
+            "file": "cognition-issue-XX.md",
             "children": [
                 { "name": "issue-{{issue_id}}-cognition.md", "type": "file" }
             ]
         },
         {
             "name": "step-41-how-to",
+            "file": "how-to-issue-XX.md",
             "children": [
                 { "name": "issue-{{issue_id}}-how-to.md", "type": "file" }
             ]
         },
         {
             "name": "step-51-to-do",
+            "file": "to-do-issue-XX.md",
             "children": [
                 { "name": "issue-{{issue_id}}-to-do.md", "type": "file" }
             ]
         },
         {
             "name": "step-61-memory",
+            "file": "memory-issue-XX.md",
             "children": [
                 { "name": "issue-{{issue_id}}-memory.md", "type": "file" }
             ]

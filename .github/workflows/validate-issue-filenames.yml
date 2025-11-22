@@ -19,4 +19,4 @@ jobs:
         with:
           python-version: '3.13'
       - name: Run filename validation script
-        run: python scripts/validate_issue_filenames.py
+        run: python .github/scripts/validate_issue_filenames.py

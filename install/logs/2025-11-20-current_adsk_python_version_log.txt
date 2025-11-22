@@ -1,0 +1,15 @@
+  Analyzing directory: /opt/Autodesk/python
+  Sorted contents of /opt/Autodesk/python:
+  2027.pr232
+  
+  The highest version is: 2027.pr232
+  
+  Python version 2027.pr232 is available and executable
+  Reading preference file:
+  /Users/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEV/install/current_adsk_python_version.pref
+  Preference file loaded:
+  /opt/Autodesk/python/2027.pr232/bin/python
+  Updated preference file with:
+  /opt/Autodesk/python/2027.pr232/bin/python
+
++ --------------------------------------------------------------------------- +

@@ -6,7 +6,7 @@
 
 # Launcher Script Name:  %%LAUNCHER_SCRIPT_NAME%%
 # Launcher Script for:   123_flame_alpha_2027_romeo
-# Script Creation Date:  2025-11-13 07:23:40
+# Script Creation Date:  2025-11-20 10:08:17
 
 the_projekt_name="123_flame_alpha"
 
@@ -34,7 +34,7 @@ execute_command() {
 # -------------------------------------------------------------------------- #
 
 # Construct the flame launch command.
-launch_opt_1="/opt/Autodesk/flame_2027.pr231/bin/startFlame"
+launch_opt_1="/opt/Autodesk/flame_2027.pr232/bin/startFlame"
 launch_opt_2="-J 123_flame_alpha_2027_romeo"
 launch_opt_3="--start-workspace=\"romeo\" --create-workspace"
 # logik_projekt_python_dir="/opt/Autodesk/shared/python/logik_projekt"

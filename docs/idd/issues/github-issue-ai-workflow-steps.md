@@ -76,13 +76,14 @@ This conversational approach allows the LLM to rationalize user desires and gene
    - Link branch and PR to the GitHub Issue (e.g., “Closes #XX”).
 
 4. **To-Do Phases Injection**
-   - Automation reads [`github-issue-to-do-template.json`](github-issue-to-do-template.json) and injects generic phases/tasks into [`step-51-to-do/README.md`](step-51-to-do/README.md).
+   - Automation reads [`github-issue-to-do-template.json`](github-issue-to-do-template.json) and injects generic phases/tasks into [`step-51-to-do/to-do-XX.md`](step-51-to-do/to-do-XX.md).
+   - Automation also creates an `issue-XX-README.md` in each issue directory, summarizing the issue and linking to all workflow step files for easy navigation.
    - Phases include: Feature Definition, Research, Insight, Implementation, Review, Memory, Finalization.
 
 5. **Subdirectory & Document Creation**
     - Automation reads [`github-issue-tree-template.json`](github-issue-tree-template.json) to scaffold the standard subdirectories and files for each workflow step.
     - Typical structure includes:
-       - [`step-01-feature-type/`](step-01-feature-type/), [`step-11-research/`](step-11-research/), [`step-21-insight/`](step-21-insight/), [`step-31-cognition/`](step-31-cognition/), [`step-41-how-to/`](step-41-how-to/), [`step-51-to-do/`](step-51-to-do/), [`step-61-memory/`](step-61-memory/)
+      - [`step-01-issue-type/issue-type-issue-XX.md`](step-01-issue-type/issue-type-issue-XX.md), [`step-11-research/research-issue-XX.md`](step-11-research/research-issue-XX.md), [`step-21-insight/insight-issue-XX.md`](step-21-insight/insight-issue-XX.md), [`step-31-cognition/cognition-issue-XX.md`](step-31-cognition/cognition-issue-XX.md), [`step-41-how-to/how-to-issue-XX.md`](step-41-how-to/how-to-issue-XX.md), [`step-51-to-do/to-do-issue-XX.md`](step-51-to-do/to-do-issue-XX.md), [`step-61-memory/memory-issue-XX.md`](step-61-memory/memory-issue-XX.md)
     - Each subdirectory is populated with a README or markdown file as defined in the template.
 
 6. **Automated Population & Updates**
