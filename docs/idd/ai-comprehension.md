@@ -137,6 +137,15 @@ gh workflow run auto-label.yml --repo phil-man-git-hub/LOGIK-PROJEKT-DEV
 
 ## See also: [GitHub Issue AI Workflow Steps](github-issue-ai-workflow-steps.md)
 
+### 🚀 AI-Augmented IDD Workflow (The "Turbocharged" Method)
+The IDD process is now driven by the **Antigravity Agent** using the `.gemini/antigravity` "Second Brain". This allows for automated context management and zero-friction development.
+
+#### Core Commands
+*   **`/ag-load-issue <ID>`**: Ingests project context for an issue into the Agent's brain.
+*   **`/ag-start-work <ID>`**: Automates the "Start" phase (Branch + Context + Plan).
+*   **`/ag-sync-status`**: Automates status reporting to GitHub.
+*   **`/ag-capture-all`**: Syncs the Agent's reasoning (Insights) with the Project's history (Git Logs).
+
 ### Generic To-Do Phases Template
  Automation scripts read this template and inject the phases/tasks into each new issue’s to-do file (e.g., `docs/idd/issues/issue-XX/step-51-to-do/to-do-issue-XX.md`).
 - This ensures every issue starts with a consistent, actionable workflow and enables easy updates to the process by editing the template.
@@ -157,16 +166,18 @@ For Phase 5 and directory scaffolding, see [`github-issue-tree-template.json`](g
 - This enables collaborative editing and review before publishing the issue on GitHub.
 
 ### Procedures After GitHub Issue Creation
-- After an issue is created, contributors:
-   - Create a related branch (e.g., `issue-001-add-idd-workflow`).
-   - Link the branch and PR to the GitHub Issue using references like “Closes #1”.
-   - Scaffold a directory in `docs/idd/issues/issue-<number>/` for the new issue.
+- **Legacy Method**: Manually create branches and scaffold directories.
+- **AI-Augmented Method**:
+    1.  Run `/ag-start-work <issue-id>`.
+    2.  The agent creates the branch `feature/issue-<id>-<desc>`.
+    3.  The agent loads context and drafts `implementation_plan.md`.
+    4.  Work begins immediately.
 
 ### Creation of Subdirectories and Documents
-### Documentation of Memories and Decisions Before Final Commit
-- The `step-61-memory/` subdirectory (e.g., `issue-001-memory.md`) is used to record decisions, context, and session history.
-- Contributors and AI agents document key choices, rationale, and outcomes before the final commit and PR.
-- This ensures traceability and context preservation for future work and reviews.
+### Documentation of Memories and Decisions
+- **Active Workspace**: The `.gemini/antigravity/` directory is the active workspace for "thinking" (Sessions, Research, Insights).
+- **Bridge to Project**: The `/ag-capture-all` command bridges this private context to the public project record.
+- **Legacy `step-61-memory/`**: This directory is still used for formal, finalized decision records, but the *process* of reaching those decisions happens in `.gemini`.
 
 ---
 
