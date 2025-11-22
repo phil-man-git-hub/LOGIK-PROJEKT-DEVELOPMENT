@@ -50,3 +50,4 @@ All files in subdirectories (except this README) MUST follow this strict naming 
 *   `/ag-start-work`: Start working on a new issue (branch + context + plan).
 *   `/ag-sync-status`: Generate a status update for the GitHub issue.
 *   `/ag-capture-all`: Capture session to both Antigravity and Project memory.
+*   `/ag-scaffold-issue`: Scaffold standard directory structure for a new issue.
