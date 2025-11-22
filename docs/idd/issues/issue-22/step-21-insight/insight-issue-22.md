@@ -45,6 +45,54 @@ Summarize insights, requirements, and design decisions for improving the Flame P
 
 ---
 
+## Flame Python Environment Constraints
+
+> [!IMPORTANT]
+> **Flame Python Unique Restrictions**
+> 
+> Autodesk Flame has unique Python environment constraints that fundamentally affect script architecture:
+
+### No Conventional Python Packaging
+
+**Constraint:** Flame only loads Python scripts with **unique filenames** across the entire Python path.
+
+**Implications:**
+- ❌ **No `__init__.py` files** - Cannot use standard Python package structure
+- ❌ **No package-style imports** - Cannot use `from package.module import function`
+- ❌ **No relative imports** - Cannot use `from .module import function`
+- ✅ **Direct imports only** - Must use `import unique_module_name`
+
+**Solution:** Use flat directory structure with globally unique filenames and aggregator pattern for centralized imports.
+
+### Path Handling Requirements
+
+**Constraint:** Scripts are developed in one location but deployed to another.
+
+**Development Location:**
+```
+cfg/site-cfg/flame-cfg/flame-python/logik_projekt/
+```
+
+**Production Location:**
+```
+/var/opt/Autodesk/flame/projects/<project-name>/setups/python/logik_projekt/
+```
+
+**Implications:**
+- ❌ **No hardcoded paths** - Will break when copied to Flame project
+- ✅ **Dynamic path resolution** - Use `os.path.dirname(__file__)` or Flame API
+- ✅ **Environment-aware configuration** - Adapt to deployment context
+
+### Import Strategy
+
+The aggregator pattern (e.g., `pyside6_qt_flame_modules.py`) is essential:
+1. Centralize all imports in aggregator scripts
+2. Use direct imports only (`import module_name`)
+3. Maintain flat directory structure
+4. Ensure all filenames are globally unique
+
+---
+
 ## Next Steps
 - Continue deep dives and refactoring for remaining modules.
 - Implement standardized logging and error handling.
