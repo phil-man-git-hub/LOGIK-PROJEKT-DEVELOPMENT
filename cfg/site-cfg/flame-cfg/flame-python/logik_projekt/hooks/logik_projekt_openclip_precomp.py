@@ -33,7 +33,7 @@ if src_parent not in sys.path:
     sys.path.insert(0, src_parent)
 
 # Import the relevant OpenClip classes from the core module
-from src.core.logik_projekt_openclip import (
+from src.core.logik.logik_projekt_openclip import (
     LogikProjektOpenClipComp,         # For comp hook
     LogikProjektOpenClipMattes,       # For mattes hook
     LogikProjektOpenClipMultichannel, # For multichannel hook
@@ -54,7 +54,10 @@ cfg_file = 'config.xml'
 config_path = os.path.join(cfg_dir, cfg_file)
 
 # # Define config path relative to this hook file
-# config_path = os.path.join(os.path.dirname(__file__), '../cfg/logik_projekt_openclip_precomp/config.xml')
+# config_path = os.path.join(
+#     os.path.dirname(__file__),
+#     '../cfg/logik_projekt_openclip_precomp/config.xml'
+# )
 
 # -------------------------------------------------------------------------- #
 # Functions
@@ -91,21 +94,35 @@ def scope_clip(selection):
 # Flame Menus
 # -------------------------------------------------------------------------- #
 
+
 def get_batch_custom_ui_actions():
-    return [
+    print("\n" + "="*80)
+    print("DEBUG: get_batch_custom_ui_actions() called")
+    print("="*80)
+    
+    menu_structure = [
+        # Root menu
         {
             'name': 'logik-projekt',
             'hierarchy': [],
             'actions': []
         },
+        # Second level using hierarchy
         {
-            'name': 'create-openclip',
+            'name': 'create',
             'hierarchy': ['logik-projekt'],
-            'order': 1,
+            'order': 0,
+            'actions': []
+        },
+        # Third level using hierarchy
+        {
+            'name': 'open-clip',
+            'hierarchy': ['logik-projekt', 'create'],
+            'order': 0,
             'actions': [
                 {
-                    'name': 'projekt_precomp selected clips',
-                    'order': 1,
+                    'name': 'precomp',
+                    'order': 0,
                     'separator': 'below',
                     'isVisible': scope_clip,
                     'execute': projekt_precomp_batch_clips,
@@ -114,47 +131,93 @@ def get_batch_custom_ui_actions():
             ]
         }
     ]
+    
+    print("DEBUG: Menu structure with hierarchy approach")
+    for i, item in enumerate(menu_structure):
+        print(
+            f"  [{i}] name='{item.get('name')}', "
+            f"hierarchy={item.get('hierarchy', 'N/A')}"
+        )
+    print("="*80 + "\n")
+    
+    return menu_structure
+
 
 # -------------------------------------------------------------------------- #
 
+
 def get_main_menu_custom_ui_actions():
-    return [
+    print("\n" + "="*80)
+    print("DEBUG: get_main_menu_custom_ui_actions() called")
+    print("="*80)
+    
+    menu_structure = [
         {
             'name': 'logik-projekt',
             'hierarchy': [],
             'actions': []
         },
         {
-            'name': 'create-openclip',
+            'name': 'configure',
             'hierarchy': ['logik-projekt'],
-            'order': 1,
+            'order': 0,
+            'actions': []
+        },
+        {
+            'name': 'open-clip',
+            'hierarchy': ['logik-projekt', 'configure'],
+            'order': 0,
             'actions': [
                 {
-                    'name': 'configure projekt_precomp',
+                    'name': 'precomp',
+                    'order': 0,
+                    'isVisible': lambda sel: True,
                     'execute': setup,
                     'minimumVersion': '2025'
                 }
-           ]
+            ]
         }
     ]
+    
+    print("DEBUG: Menu structure with hierarchy approach")
+    for i, item in enumerate(menu_structure):
+        print(
+            f"  [{i}] name='{item.get('name')}', "
+            f"hierarchy={item.get('hierarchy', 'N/A')}"
+        )
+    print("="*80 + "\n")
+    
+    return menu_structure
+
 
 # -------------------------------------------------------------------------- #
 
+
 def get_media_panel_custom_ui_actions():
-    return [
+    print("\n" + "="*80)
+    print("DEBUG: get_media_panel_custom_ui_actions() called")
+    print("="*80)
+    
+    menu_structure = [
         {
             'name': 'logik-projekt',
             'hierarchy': [],
             'actions': []
         },
         {
-            'name': 'create-openclip',
+            'name': 'create',
             'hierarchy': ['logik-projekt'],
-            'order': 1,
+            'order': 0,
+            'actions': []
+        },
+        {
+            'name': 'open-clip',
+            'hierarchy': ['logik-projekt', 'create'],
+            'order': 0,
             'actions': [
                 {
-                    'name': 'projekt_precomp selected clips',
-                    'order': 1,
+                    'name': 'precomp',
+                    'order': 0,
                     'separator': 'below',
                     'isVisible': scope_clip,
                     'execute': projekt_precomp_media_panel_clips,
@@ -163,6 +226,16 @@ def get_media_panel_custom_ui_actions():
             ]
         }
     ]
+    
+    print("DEBUG: Menu structure with hierarchy approach")
+    for i, item in enumerate(menu_structure):
+        print(
+            f"  [{i}] name='{item.get('name')}', "
+            f"hierarchy={item.get('hierarchy', 'N/A')}"
+        )
+    print("="*80 + "\n")
+    
+    return menu_structure
 
 
 # -------------------------------------------------------------------------- #
