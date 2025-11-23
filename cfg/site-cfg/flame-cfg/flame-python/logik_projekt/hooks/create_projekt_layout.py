@@ -624,30 +624,76 @@ def get_main_menu_custom_ui_actions():
 
 # -------------------------------------------------------------------------- #
 
+
 def get_media_panel_custom_ui_actions():
-
-    # ---------------------------------------------------------------------- #
-
-    # import flame
-
-    # ---------------------------------------------------------------------- #
-
-    return [
+    print("\n" + "="*80)
+    print("DEBUG: get_media_panel_custom_ui_actions() called")
+    print("="*80)
+    
+    menu_structure = [
+        {
+            'name': 'logik-projekt',
+            'hierarchy': [],
+            'actions': []
+        },
         {
             'name': 'create',
             'hierarchy': ['logik-projekt'],
-            'order': 1,
+            'order': 0,
+            'actions': []
+        },
+        {
+            'name': 'workspace',
+            'hierarchy': ['logik-projekt', 'create'],
+            'order': 0,
+            'separator': 'below',
             'actions': [
                 {
-                    'name': 'create layout',
-                    'order': 1,
+                    'name': 'layout',
+                    'order': 0,
                     'separator': 'below',
+                    # 'isVisible': scope_clip,
                     'execute': create_layout,
                     'minimumVersion': '2025'
                 }
             ]
         }
     ]
+    
+    print("DEBUG: Menu structure with hierarchy approach")
+    for i, item in enumerate(menu_structure):
+        print(
+            f"  [{i}] name='{item.get('name')}', "
+            f"hierarchy={item.get('hierarchy', 'N/A')}"
+        )
+    print("="*80 + "\n")
+    
+    return menu_structure
+
+# def get_media_panel_custom_ui_actions():
+
+#     # ---------------------------------------------------------------------- #
+
+#     # import flame
+
+#     # ---------------------------------------------------------------------- #
+
+#     return [
+#         {
+#             'name': 'create',
+#             'hierarchy': ['logik-projekt'],
+#             'order': 1,
+#             'actions': [
+#                 {
+#                     'name': 'create layout',
+#                     'order': 1,
+#                     'separator': 'below',
+#                     'execute': create_layout,
+#                     'minimumVersion': '2025'
+#                 }
+#             ]
+#         }
+#     ]
 
 # ========================================================================== #
 # This section defines how to handle the main script function.

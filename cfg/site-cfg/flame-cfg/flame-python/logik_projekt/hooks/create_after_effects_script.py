@@ -195,49 +195,100 @@ def create_openclips_and_scripts(*args, **kwargs):
 # This section defines the flame menu entries.
 # ========================================================================== #
 
-# Add custom UI actions
-def get_main_menu_custom_ui_actions():
 
-    return [
+def get_main_menu_custom_ui_actions():
+    print("\n" + "="*80)
+    print("DEBUG: get_main_menu_custom_ui_actions() called")
+    print("="*80)
+    
+    menu_structure = [
         {
             'name': 'logik-projekt',
             'hierarchy': [],
             'actions': []
         },
         {
-            'name': 'create',
+            'name': 'configure',
             'hierarchy': ['logik-projekt'],
-            'order': 7,
+            'order': 0,
+            'actions': []
+        },
+        {
+            'name': 'adobe',
+            'hierarchy': ['logik-projekt', 'configure'],
+            'order': 0,
+            'separator': 'below',
             'actions': [
                 {
                     'name': 'after effects scripts',
+                    'order': 0,
+                    'isVisible': lambda sel: True,
                     'execute': create_openclips_and_scripts,
                     'minimumVersion': '2025'
                 }
             ]
         }
     ]
+    
+    print("DEBUG: Menu structure with hierarchy approach")
+    for i, item in enumerate(menu_structure):
+        print(
+            f"  [{i}] name='{item.get('name')}', "
+            f"hierarchy={item.get('hierarchy', 'N/A')}"
+        )
+    print("="*80 + "\n")
+    
+    return menu_structure
+
 
 # -------------------------------------------------------------------------- #
 
-def get_media_panel_custom_ui_actions():
 
-    return [
+def get_media_panel_custom_ui_actions():
+    print("\n" + "="*80)
+    print("DEBUG: get_media_panel_custom_ui_actions() called")
+    print("="*80)
+    
+    menu_structure = [
         {
-            'name': 'create',
+            'name': 'logik-projekt',
+            'hierarchy': [],
+            'actions': []
+        },
+        {
+            'name': 'export',
             'hierarchy': ['logik-projekt'],
-            'order': 6,
+            'order': 0,
+            'actions': []
+        },
+        {
+            'name': 'adobe',
+            'hierarchy': ['logik-projekt', 'export'],
+            'order': 0,
+            'separator': 'below',
             'actions': [
                 {
                     'name': 'after effects scripts',
-                    'order': 7,
+                    'order': 0,
                     'separator': 'below',
+                    # 'isVisible': scope_clip,
                     'execute': create_openclips_and_scripts,
                     'minimumVersion': '2025'
                 }
             ]
         }
     ]
+    
+    print("DEBUG: Menu structure with hierarchy approach")
+    for i, item in enumerate(menu_structure):
+        print(
+            f"  [{i}] name='{item.get('name')}', "
+            f"hierarchy={item.get('hierarchy', 'N/A')}"
+        )
+    print("="*80 + "\n")
+    
+    return menu_structure
+
 
 # ========================================================================== #
 # This section defines how to handle the main script function.

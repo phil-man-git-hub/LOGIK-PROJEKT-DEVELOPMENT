@@ -119,6 +119,7 @@ def get_batch_custom_ui_actions():
             'name': 'open-clip',
             'hierarchy': ['logik-projekt', 'create'],
             'order': 0,
+            'separator': 'below',
             'actions': [
                 {
                     'name': 'multichannel',
@@ -167,6 +168,7 @@ def get_main_menu_custom_ui_actions():
             'name': 'open-clip',
             'hierarchy': ['logik-projekt', 'configure'],
             'order': 0,
+            'separator': 'below',
             'actions': [
                 {
                     'name': 'multichannel',
@@ -214,6 +216,7 @@ def get_media_panel_custom_ui_actions():
             'name': 'open-clip',
             'hierarchy': ['logik-projekt', 'create'],
             'order': 0,
+            'separator': 'below',
             'actions': [
                 {
                     'name': 'multichannel',
