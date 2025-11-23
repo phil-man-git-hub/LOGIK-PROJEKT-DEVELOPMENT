@@ -87,7 +87,7 @@ sys.path.append(functions_dir)
 # ========================================================================== #
 
 # # EXAMPLE:
-# from functions.example import (
+# from src.core.functions.example import (
 #     example_function as new_function_name
 # )
 
@@ -96,7 +96,7 @@ sys.path.append(functions_dir)
 # ========================================================================== #
 
 # # Initiate script logging for debugging
-# from functions.debugging_and_logging import (
+# from src.core.functions.debugging_and_logging import (
 #     debugging_and_logging as debugging_and_logging
 # )
 
@@ -121,7 +121,7 @@ sys.path.append(functions_dir)
 # ========================================================================== #
 
 # Define function to define job structure
-from functions.define_job_structure import (
+from src.core.functions.define.define_job_structure import (
     define_job_structure as define_job_structure
 )
 
@@ -130,35 +130,35 @@ from functions.define_job_structure import (
 # ========================================================================== #
 
 # Define function to list shot directories
-from functions.list_shots_dir import (
+from src.core.functions.list.list_shots_dir import (
     list_shots_dir as list_shots_dir
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to define shot structure
-from functions.define_shot_structure import (
+from src.core.functions.define.define_shot_structure import (
     define_shot_structure as define_shot_structure
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to list shot sources directory
-from functions.list_shot_sources_dir import (
+from src.core.functions.list.list_shot_sources_dir import (
     list_shot_sources_dir as list_shot_sources_dir
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to list the contents of each shot_source_dir
-from functions.list_shot_source_dir import (
+from src.core.functions.list.list_shot_source_dir import (
     list_shot_source_dir as list_shot_source_dir
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to recursively search for OpenEXR image sequences
-from functions.path_to_shot_source_openexr_sequences import (
+from src.core.functions.path.path_to_shot_source_openexr_sequences import (
     path_to_shot_source_openexr_sequences as path_to_shot_source_openexr_sequences
 )
 
@@ -167,14 +167,14 @@ from functions.path_to_shot_source_openexr_sequences import (
 # ========================================================================== #
 
 # Define function to create an openclip output clip for a after effects shot script
-from functions.create_openclip_output_clip import (
+from src.core.functions.create.create_openclip_output_clip import (
     create_openclip_output_clip as create_openclip_output_clip
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to create an openclip segment clip for a after effects source script
-from functions.create_openclip_segment_clip import (
+from src.core.functions.create.create_openclip_segment_clip import (
     create_openclip_segment_clip as create_openclip_segment_clip
 )
 
@@ -183,14 +183,14 @@ from functions.create_openclip_segment_clip import (
 # ========================================================================== #
 
 # Define function to create a shot script for after effects based on task
-from functions.create_after_effects_shot_script import (
+from src.core.functions.create.create_after_effects_shot_script import (
     create_after_effects_shot_script as create_after_effects_shot_script
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to create a source script
-from functions.create_after_effects_source_script import (
+from src.core.functions.create.create_after_effects_source_script import (
     create_after_effects_source_script as create_after_effects_source_script
 )
 
@@ -199,7 +199,7 @@ from functions.create_after_effects_source_script import (
 # ========================================================================== #
 
 # Define function to process shot information
-from functions.process_shot_info_after_effects import (
+from src.core.functions.process.process_shot_info_after_effects import (
     process_shot_info as process_shot_info
 )
 

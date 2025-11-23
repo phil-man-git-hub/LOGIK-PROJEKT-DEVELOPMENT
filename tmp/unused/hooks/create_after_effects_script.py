@@ -2,7 +2,7 @@
 
 # -------------------------------------------------------------------------- #
 
-# File Name:        create_nuke_scripts.py
+# File Name:        create_after_effects_scripts.py
 # Version:          2.2.7
 # Created:          2024-01-19
 # Modified:         2024-08-31
@@ -11,29 +11,10 @@
 # This section imports the necessary modules.
 # ========================================================================== #
 
-# # Standard library imports
-# import flame
-# import os
-# # import pdb; pdb.set_trace()
-# # import re
-# import fileinput
-# # import logging
-# from datetime import datetime
-
-# Standard library imports
-import ast
-import datetime
-import fileinput
-import functools
-import importlib.util
-# import logging
 import os
-# import pdb; pdb.set_trace()
-import re
-import shutil
-import subprocess
 import sys
-import typing
+import fileinput
+import datetime
 from typing import (
     Union,
     List,
@@ -41,10 +22,8 @@ from typing import (
     Optional,
     Callable
 )
-import xml
 import xml.etree.ElementTree as ET
 
-# Third Party library imports
 from PySide6 import (
     QtWidgets,
     QtCore,
@@ -53,75 +32,28 @@ from PySide6 import (
 
 import flame
 
-# Get the directory path of the currently executing script
-current_script_dir = os.path.dirname(os.path.abspath(__file__))
+# Get the project root directory (which is two levels up from this script)
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Print the current_script_dir
-print(f"current_script_dir: {current_script_dir}")
-
-# The current_script_dir should be 'resources/flame/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts'
-# The modules directory should be 'resources/flame/python/logik_projekt/openclip_tools/logik_projekt_openclip/scripts/modules'
-# Check if this is true
-modules_dir = os.path.join(current_script_dir, 'modules')
-print(f"modules_dir: {modules_dir}")
-
-# Append the 'modules' directory to sys.path to access modules
-modules_dir = os.path.join(current_script_dir, 'modules')
-sys.path.append(modules_dir)
-
-# Append the 'modules/functions' directory to sys.path to access functions
-functions_dir = os.path.join(modules_dir, 'functions')
-sys.path.append(functions_dir)
-
-# ========================================================================== #
-# This section imports the external classes.
-# ========================================================================== #
-
-# # EXAMPLE:
-# from modules.classes.example import (
-#     example_function as new_function_name
-# )
-
-# ========================================================================== #
-# This EXAMPLE demonstrates how to imports the external functions.
-# ========================================================================== #
-
-# # EXAMPLE:
-# from functions.example import (
-#     example_function as new_function_name
-# )
+# Add the project root to sys.path to allow for absolute imports
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 # ========================================================================== #
 # This section enables debugging.
 # ========================================================================== #
 
-# # Initiate script logging for debugging
-# from functions.debugging_and_logging import (
-#     debugging_and_logging as debugging_and_logging
-# )
-
-'''def setup_logging(*args, **kwargs):
-    script_path = os.path.abspath(__file__)
-    script_name = os.path.basename(script_path)
-    script_name_without_extension = os.path.splitext(script_name)[0]
-    script_directory = os.path.dirname(script_path)
-    log_directory = os.path.join(script_directory, 'log')
-
-    if not os.path.exists(log_directory):
-        os.makedirs(log_directory)
-
-    log_filename = f"{datetime.now().strftime('%Y-%m-%d-%H-%M')}_{script_name}.debug.log"
-    log_filepath = os.path.join(log_directory, log_filename)
-    print("Log filepath:", log_filepath)  # Add this line for debugging
-    logging.basicConfig(filename=log_filepath, level=logging.DEBUG, *args, **kwargs)
-'''
+# Initiate script logging for debugging
+from src.core.functions.log.debugging_and_logging import (
+    setup_logging as setup_logging
+)
 
 # ========================================================================== #
 # This section defines the logik projekt job structure.
 # ========================================================================== #
 
 # Define function to define job structure
-from functions.define_job_structure import (
+from src.core.functions.define.define_job_structure import (
     define_job_structure as define_job_structure
 )
 
@@ -130,35 +62,35 @@ from functions.define_job_structure import (
 # ========================================================================== #
 
 # Define function to list shot directories
-from functions.list_shots_dir import (
+from src.core.functions.list.list_shots_dir import (
     list_shots_dir as list_shots_dir
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to define shot structure
-from functions.define_shot_structure import (
+from src.core.functions.define.define_shot_structure import (
     define_shot_structure as define_shot_structure
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to list shot sources directory
-from functions.list_shot_sources_dir import (
+from src.core.functions.list.list_shot_sources_dir import (
     list_shot_sources_dir as list_shot_sources_dir
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to list the contents of each shot_source_dir
-from functions.list_shot_source_dir import (
+from src.core.functions.list.list_shot_source_dir import (
     list_shot_source_dir as list_shot_source_dir
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to recursively search for OpenEXR image sequences
-from functions.path_to_shot_source_openexr_sequences import (
+from src.core.functions.path.path_to_shot_source_openexr_sequences import (
     path_to_shot_source_openexr_sequences as path_to_shot_source_openexr_sequences
 )
 
@@ -166,32 +98,32 @@ from functions.path_to_shot_source_openexr_sequences import (
 # This section defines functions to create pattern-based openclip files.
 # ========================================================================== #
 
-# Define function to create an openclip output clip for a nuke shot script
-from functions.create_openclip_output_clip import (
+# Define function to create an openclip output clip for a after effects shot script
+from src.core.functions.create.create_openclip_output_clip import (
     create_openclip_output_clip as create_openclip_output_clip
 )
 
 # -------------------------------------------------------------------------- #
 
-# Define function to create an openclip segment clip for a nuke source script
-from functions.create_openclip_segment_clip import (
+# Define function to create an openclip segment clip for a after effects source script
+from src.core.functions.create.create_openclip_segment_clip import (
     create_openclip_segment_clip as create_openclip_segment_clip
 )
 
 # ========================================================================== #
-# This section defines functions to create nuke scripts.
+# This section defines functions to create after effects scripts.
 # ========================================================================== #
 
-# Define function to create a shot script for nuke based on task
-from functions.create_nuke_shot_script import (
-    create_nuke_shot_script as create_nuke_shot_script
+# Define function to create a shot script for after effects based on task
+from src.core.functions.create.create_after_effects_shot_script import (
+    create_after_effects_shot_script as create_after_effects_shot_script
 )
 
 # -------------------------------------------------------------------------- #
 
 # Define function to create a source script
-from functions.create_nuke_source_script import (
-    create_nuke_source_script as create_nuke_source_script
+from src.core.functions.create.create_after_effects_source_script import (
+    create_after_effects_source_script as create_after_effects_source_script
 )
 
 # ========================================================================== #
@@ -199,7 +131,7 @@ from functions.create_nuke_source_script import (
 # ========================================================================== #
 
 # Define function to process shot information
-from functions.process_shot_info_nuke import (
+from src.core.functions.process.process_shot_info_after_effects import (
     process_shot_info as process_shot_info
 )
 
@@ -212,25 +144,11 @@ def create_openclips_and_scripts(*args, **kwargs):
     # Set up debugging
     # pdb.set_trace()
 
-    # Here are some common debugger commands:
-
-    # n or next: Execute the current line and move to the next line.
-    # s or step: Execute the current line and step into any function calls on that line.
-    # c or continue: Continue execution until the next breakpoint or until the end of the script.
-    # p or print: Print the value of a variable.
-    # l or list: Show the current line and a few lines of code around it.
-
-    # You can find more information about using pdb in the
-    # Python documentation:
-    # https://docs.python.org/3/library/pdb.html
-
     # Set umask
     os.umask(0)
 
     # Define paths
     jobs_dir = '/PROJEKTS'
-
-    import flame
 
     # Get the current Flame project
     the_current_projekt = flame.projects.current_project
@@ -244,15 +162,15 @@ def create_openclips_and_scripts(*args, **kwargs):
     # # Testing
     # job_root = "/PROJEKTS/dry_run_01"
 
-    # # Setup logging
-    # setup_logging()
+    # Setup logging
+    logger = setup_logging()
 
     # Define job structure using the function
     job_structure = define_job_structure(job_root)
-    # logging.info("Job structure defined.")
+    logger.info("Job structure defined.")
 
     # Define app_name and task_types_list
-    app_name = "nuke"
+    app_name = "after_effects"
     task_types_list = (
         "color",
         "comp",
@@ -265,15 +183,6 @@ def create_openclips_and_scripts(*args, **kwargs):
     # and end_frame_max with negative infinity
     start_frame_min = float('inf')
     end_frame_max = float('-inf')
-
-    # Define a function to print variables
-    # def print_variables():
-        # logging.info("Printing variables:")
-        # for key, value in job_structure.items():
-        #     logging.info(f"{key}: {value}")
-
-    # Call the function to print variables
-    # print_variables()
 
     # Process shot information
     process_shot_info(job_structure,
@@ -298,35 +207,16 @@ def get_main_menu_custom_ui_actions():
         {
             'name': 'create',
             'hierarchy': ['logik-projekt'],
-            'order': 6,
+            'order': 7,
             'actions': [
                 {
-                    'name': 'nuke scripts',
+                    'name': 'after effects scripts',
                     'execute': create_openclips_and_scripts,
                     'minimumVersion': '2025'
                 }
             ]
         }
     ]
-
-# -------------------------------------------------------------------------- #
-
-# def get_mediahub_files_custom_ui_actions():
-
-#     return [
-#         {
-#             'name': 'create',
-#             'hierarchy': ['logik-projekt'],
-#             'order': 5,
-#             'actions': [
-#                 {
-#                     'name': 'nuke scripts',
-#                     'execute': create_openclips_and_scripts,
-#                     'minimumVersion': '2025'
-#                 }
-#             ]
-#         }
-#     ]
 
 # -------------------------------------------------------------------------- #
 
@@ -339,8 +229,8 @@ def get_media_panel_custom_ui_actions():
             'order': 6,
             'actions': [
                 {
-                    'name': 'nuke scripts',
-                    'order': 6,
+                    'name': 'after effects scripts',
+                    'order': 7,
                     'separator': 'below',
                     'execute': create_openclips_and_scripts,
                     'minimumVersion': '2025'
@@ -440,10 +330,6 @@ if __name__ == "__main__":
 # version:               2.2.3
 # modified:              2024-05-18 - 18:46:27
 # comments:              Minor modification to Disclaimer.
-# -------------------------------------------------------------------------- #
-# version:               2.2.4
-# modified:              2024-06-08 - 08:47:53
-# comments:              Removed unused code and prep for after effects scripts.
 # -------------------------------------------------------------------------- #
 # version:               2.2.5
 # modified:              2024-06-09 - 11:27:00
