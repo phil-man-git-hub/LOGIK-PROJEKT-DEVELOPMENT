@@ -1,8 +1,8 @@
 {
-    "Name": "123_flame_alpha_2027_romeo",
-    "ProjectDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo",
-    "SetupDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/setups",
-    "MediaDir": "/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/media",
+    "Name": "888_copilot_test_2027_romeo",
+    "ProjectDir": "/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo",
+    "SetupDir": "/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo/setups",
+    "MediaDir": "/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo/media",
     "Resolution": {
         "FrameWidth": 1920,
         "FrameHeight": 1080,
@@ -14,6 +14,6 @@
     "ConfigTemplate": "1920x1080@23976p.cfg",
     "FrameRate": "23.976 fps",
     "IntermediatesProfile": 2,
-    "FloatIntermediates": 1120376,
+    "FloatIntermediates": 1185912,
     "ColourPolicyName": "ACES 2.0"
 }

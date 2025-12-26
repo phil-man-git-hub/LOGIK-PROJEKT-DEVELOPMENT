@@ -25,6 +25,9 @@ import logging
 import sys
 import shutil
 import glob
+import json
+import re
+from datetime import datetime
 from pathlib import Path
 
 from src.core.utils.path_utils import get_repository_root_dir
@@ -33,105 +36,129 @@ from src.core.functions.get.get_application_paths import GetApplicationPaths
 
 def copy_current_session_files(
         logik_projekt_path: str,
-        current_workstation: str
+        current_workstation: str,
+        flame_projekt_nickname: str | None = None
 ):
     """
-    Copies current session files to the project's setups directory.
+    Copies selected current session files to specific target directories
+    with timestamped filenames.
 
     Args:
         logik_projekt_path (str): The absolute path to the LOGIK-PROJEKT
-        project's root directory.
+            project's root directory.
         current_workstation (str): The name of the current workstation.
+        flame_projekt_nickname (str|None): Optional nickname for the Flame
+            project. If None, the function will attempt to read it from
+            the session variables JSON file in the session preferences.
     """
-    logging.info("Copying current session files...")
+    logging.info("Copying current session files with timestamped names...")
 
     try:
         repository_root_dir = get_repository_root_dir()
+        session_files_source = repository_root_dir / GetApplicationPaths.SESSION_PREFERENCES_DIR
 
-        # 1. Rsync pref/session-preferences/* to
-        # logik_projekt_path/logs/current_workstation
-        session_files_source = (
-            repository_root_dir / GetApplicationPaths.SESSION_PREFERENCES_DIR
-            )
-        session_files_destination = (
-            Path(logik_projekt_path) / "logs" / current_workstation
-        )
+        # Read flame_projekt_nickname from variables file if not provided
+        if not flame_projekt_nickname:
+            variables_path = session_files_source / "current_session-variables.json"
+            try:
+                with open(variables_path, "r", encoding="utf-8") as fh:
+                    vars_data = json.load(fh)
+                    flame_projekt_nickname = vars_data.get("flame_projekt_nickname")
+                    logging.debug(f"Loaded flame_projekt_nickname from {variables_path}: {flame_projekt_nickname}")
+            except FileNotFoundError:
+                logging.warning(f"Variables file not found: {variables_path}; flame_projekt_nickname will remain unset.")
+            except json.JSONDecodeError as e:
+                logging.warning(f"Failed to parse variables file {variables_path}: {e}")
 
-        # Create the destination directory if it doesn't exist
-        session_files_destination.mkdir(
-            parents=True,
-            exist_ok=True
-        )
+        # Timestamp to use in filenames
+        timestamp = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
 
-        if session_files_source.exists() and session_files_source.is_dir():
-            rsync_command = (
-                f"rsync -avh --ignore-existing "
-                f"{session_files_source}/ {session_files_destination}"
-            )
-            logging.info(f"Executing: {rsync_command}")
-            os.system(rsync_command)
-            logging.info(
-                f"Successfully rsynced {session_files_source} to "
-                f"{session_files_destination}"
-            )
+        # Helper to sanitize names for filenames
+        def _sanitize(name: str) -> str:
+            return re.sub(r"[^A-Za-z0-9_.-]", "_", name)
+
+        # 1. Copy workstation-scoped files into cfg/workstation/<workstation>/
+        workstation_files = [
+            "current_session-adsk.json",
+            "current_session-flame_launcher.sh",
+            "current_session-variables.json",
+            "current_session-wiretap_template.xml",
+        ]
+
+        workstation_dest = Path(logik_projekt_path) / "cfg" / "workstation" / current_workstation
+        workstation_dest.mkdir(parents=True, exist_ok=True)
+
+        for fname in workstation_files:
+            src = session_files_source / fname
+            if not src.exists():
+                logging.warning(f"Source file missing, skipping: {src}")
+                continue
+
+            new_fname = fname.replace("current_session", f"{timestamp}-{current_workstation}")
+            dst = workstation_dest / new_fname
+            shutil.copy2(src, dst)
+            logging.info(f"Copied {src} -> {dst}")
+
+        # 2. Copy the template file into cfg/template/ and name using the project nickname
+        template_src = session_files_source / "current_session-template.json"
+        if template_src.exists():
+            template_dest_dir = Path(logik_projekt_path) / "cfg" / "template"
+            template_dest_dir.mkdir(parents=True, exist_ok=True)
+
+            nickname = flame_projekt_nickname or "unknown_project"
+            nickname = _sanitize(nickname)
+
+            # Use the clean name format: <timestamp>-<nickname>.json
+            template_dst_name = f"{timestamp}-{nickname}.json"
+            template_dst = template_dest_dir / template_dst_name
+            shutil.copy2(template_src, template_dst)
+            logging.info(f"Copied template {template_src} -> {template_dst}")
         else:
-            logging.warning(
-                "Source directory not found or not a directory: "
-                f"{session_files_source}"
-            )
+            logging.warning(f"Template source not found: {template_src}")
 
-        # 2. Find and copy the most recent session log
+        # 3. Preserve behavior: copy most recent .log into logs/<workstation>/
         log_dir = repository_root_dir / GetApplicationPaths.SESSION_LOGS_DIR
-        log_files = glob.glob(
-            str(log_dir / '**' / '*.log'),
-            recursive=True
-        )
+        log_files = glob.glob(str(log_dir / '**' / '*.log'), recursive=True)
 
         if not log_files:
             logging.warning("No session log files found.")
             return
 
         latest_log_file = max(log_files, key=os.path.getmtime)
-        log_file_destination = (
-            Path(logik_projekt_path) / "logs" / current_workstation
-        )
+        log_file_destination = Path(logik_projekt_path) / "logs" / current_workstation
+        log_file_destination.mkdir(parents=True, exist_ok=True)
 
         if os.path.exists(latest_log_file):
-            shutil.copy(latest_log_file, log_file_destination)
-            logging.info(
-                f"Successfully copied {latest_log_file} to "
-                f"{log_file_destination}"
-            )
+            shutil.copy2(latest_log_file, log_file_destination)
+            logging.info(f"Successfully copied {latest_log_file} to {log_file_destination}")
         else:
             logging.warning(f"Log file not found: {latest_log_file}")
 
     except FileNotFoundError as e:
         logging.error(f"Error finding project root: {e}")
     except Exception as e:
-        logging.error(
-            "An unexpected error occurred during session file copy: "
-            f"{e}"
-        )
+        logging.error(f"An unexpected error occurred during session file copy: {e}")
 
 
 if __name__ == "__main__":
     # Example usage for direct script execution and testing
-    if len(sys.argv) != 3:
+    if not (3 <= len(sys.argv) <= 4):
         print(
             "Usage: python copy_current_session_files.py "
-            "<logik_projekt_path> <current_workstation>"
+            "<logik_projekt_path> <current_workstation> [flame_projekt_nickname]"
         )
         sys.exit(1)
 
     logik_path = sys.argv[1]
     workstation_name = sys.argv[2]
+    flame_nickname = sys.argv[3] if len(sys.argv) == 4 else None
 
     # For testing, create the base directories if they don't exist
     if not os.path.exists(logik_path):
         print(f"Creating test directory: {logik_path}")
         os.makedirs(logik_path)
 
-    copy_current_session_files(logik_path, workstation_name)
+    copy_current_session_files(logik_path, workstation_name, flame_nickname)
 
 
 # -------------------------------------------------------------------------- #

@@ -1,0 +1,51 @@
+  Analyzing directory: /opt/Autodesk/python
+  Sorted contents of /opt/Autodesk/python:
+  2027.pr234
+  2027.pr233
+  2027.pr232
+  
+  The highest version is: 2027.pr234
+  
+  Python version 2027.pr234 is available and executable
+  Reading preference file:
+  /Users/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEV/install/current_adsk_python_version.pref
+  Preference file loaded:
+  /opt/Autodesk/python/2027.pr232/bin/python
+  Updated preference file with:
+  /opt/Autodesk/python/2027.pr234/bin/python
+
++ --------------------------------------------------------------------------- +
+  Analyzing directory: /opt/Autodesk/python
+  Sorted contents of /opt/Autodesk/python:
+  2027.pr234
+  2027.pr233
+  2027.pr232
+  
+  The highest version is: 2027.pr234
+  
+  Python version 2027.pr234 is available and executable
+  Reading preference file:
+  /Users/pman/workspace/GitHub/phil-man-git-hub/LOGIK-PROJEKT-DEV/install/current_adsk_python_version.pref
+  Preference file loaded:
+  /opt/Autodesk/python/2027.pr234/bin/python
+  No update needed.
+  Preference file already contains the latest version:
+  /opt/Autodesk/python/2027.pr234/bin/python
+
++ --------------------------------------------------------------------------- +
+  Creating macOS application: LOGIK-PROJEKT-2027.0.0.app
+  Creating the macOS application components
+
++ --------------------------------------------------------------------------- +
+  Creating LOGIK-PROJEKT shell script for linux: run_logik_projekt.sh
+  Making the file executable: run_logik_projekt.sh
+  Creating macOS application shell script: run_logikprojekt_macos
+
++ --------------------------------------------------------------------------- +
+  Creating desktop entry file: LOGIK-PROJEKT-2027.0.0.desktop
+  Making the file executable: LOGIK-PROJEKT-2027.0.0.desktop
+  This script is not configured to move files on macOS (Darwin).
+  macOS detected. No move needed; desktop entry is not used on macOS.
+  File 'LOGIK-PROJEKT-2027.0.0.desktop' has been created and made executable.
+
++ --------------------------------------------------------------------------- +
