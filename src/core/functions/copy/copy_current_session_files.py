@@ -23,6 +23,7 @@
 import os
 import logging
 import sys
+import argparse
 import shutil
 import glob
 import json
@@ -35,19 +36,19 @@ from src.core.functions.get.get_application_paths import GetApplicationPaths
 
 
 def copy_current_session_files(
-        logik_projekt_path: str,
-        current_workstation: str,
-        flame_projekt_nickname: str | None = None
-):
+    logik_projekt_path: str,
+    current_workstation: str,
+    flame_projekt_nickname: str | None = None,
+) -> None:
     """
-    Copies selected current session files to specific target directories
+    Copy selected current session files to specific target directories
     with timestamped filenames.
 
     Args:
         logik_projekt_path (str): The absolute path to the LOGIK-PROJEKT
             project's root directory.
         current_workstation (str): The name of the current workstation.
-        flame_projekt_nickname (str|None): Optional nickname for the Flame
+        flame_projekt_nickname (str | None): Optional nickname for the Flame
             project. If None, the function will attempt to read it from
             the session variables JSON file in the session preferences.
     """
@@ -55,22 +56,39 @@ def copy_current_session_files(
 
     try:
         repository_root_dir = get_repository_root_dir()
-        session_files_source = repository_root_dir / GetApplicationPaths.SESSION_PREFERENCES_DIR
+        session_files_source = (
+            repository_root_dir
+            / GetApplicationPaths.SESSION_PREFERENCES_DIR
+        )
 
         # Read flame_projekt_nickname from variables file if not provided
         if not flame_projekt_nickname:
-            variables_path = session_files_source / "current_session-variables.json"
+            variables_path = (
+                session_files_source / "current_session-variables.json"
+            )
             try:
                 with open(variables_path, "r", encoding="utf-8") as fh:
                     vars_data = json.load(fh)
-                    flame_projekt_nickname = vars_data.get("flame_projekt_nickname")
-                    logging.debug(f"Loaded flame_projekt_nickname from {variables_path}: {flame_projekt_nickname}")
+                flame_projekt_nickname = vars_data.get(
+                    "flame_projekt_nickname"
+                )
+                logging.debug(
+                    "Loaded flame_projekt_nickname from %s: %s",
+                    variables_path,
+                    flame_projekt_nickname,
+                )
             except FileNotFoundError:
-                logging.warning(f"Variables file not found: {variables_path}; flame_projekt_nickname will remain unset.")
+                logging.warning(
+                    "Variables file not found: %s; "
+                    "flame_projekt_nickname will remain unset.",
+                    variables_path,
+                )
             except json.JSONDecodeError as e:
-                logging.warning(f"Failed to parse variables file {variables_path}: {e}")
-
-        # Timestamp to use in filenames
+                logging.warning(
+                    "Failed to parse variables file %s: %s",
+                    variables_path,
+                    e,
+                )
         timestamp = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
 
         # Helper to sanitize names for filenames
@@ -85,7 +103,9 @@ def copy_current_session_files(
             "current_session-wiretap_template.xml",
         ]
 
-        workstation_dest = Path(logik_projekt_path) / "cfg" / "workstation" / current_workstation
+        workstation_dest = Path(
+            logik_projekt_path, "cfg", "workstation", current_workstation
+        )
         workstation_dest.mkdir(parents=True, exist_ok=True)
 
         for fname in workstation_files:
@@ -94,12 +114,16 @@ def copy_current_session_files(
                 logging.warning(f"Source file missing, skipping: {src}")
                 continue
 
-            new_fname = fname.replace("current_session", f"{timestamp}-{current_workstation}")
+            new_fname = fname.replace(
+                "current_session",
+                f"{timestamp}-{current_workstation}",
+            )
             dst = workstation_dest / new_fname
             shutil.copy2(src, dst)
-            logging.info(f"Copied {src} -> {dst}")
+            logging.info("Copied %s -> %s", src, dst)
 
-        # 2. Copy the template file into cfg/template/ and name using the project nickname
+        # 2. Copy the template file into cfg/template/ and rename 
+        # using the project nickname
         template_src = session_files_source / "current_session-template.json"
         if template_src.exists():
             template_dest_dir = Path(logik_projekt_path) / "cfg" / "template"
@@ -112,9 +136,13 @@ def copy_current_session_files(
             template_dst_name = f"{timestamp}-{nickname}.json"
             template_dst = template_dest_dir / template_dst_name
             shutil.copy2(template_src, template_dst)
-            logging.info(f"Copied template {template_src} -> {template_dst}")
+            logging.info(
+                "Copied template %s -> %s",
+                template_src,
+                template_dst,
+            )
         else:
-            logging.warning(f"Template source not found: {template_src}")
+            logging.warning("Template source not found: %s", template_src)
 
         # 3. Preserve behavior: copy most recent .log into logs/<workstation>/
         log_dir = repository_root_dir / GetApplicationPaths.SESSION_LOGS_DIR
@@ -125,40 +153,74 @@ def copy_current_session_files(
             return
 
         latest_log_file = max(log_files, key=os.path.getmtime)
-        log_file_destination = Path(logik_projekt_path) / "logs" / current_workstation
+        log_file_destination = (
+            Path(logik_projekt_path) / "logs" / current_workstation
+        )
         log_file_destination.mkdir(parents=True, exist_ok=True)
 
         if os.path.exists(latest_log_file):
             shutil.copy2(latest_log_file, log_file_destination)
-            logging.info(f"Successfully copied {latest_log_file} to {log_file_destination}")
+            logging.info(
+                "Successfully copied %s to %s",
+                latest_log_file,
+                log_file_destination,
+            )
         else:
-            logging.warning(f"Log file not found: {latest_log_file}")
+            logging.warning("Log file not found: %s", latest_log_file)
 
     except FileNotFoundError as e:
         logging.error(f"Error finding project root: {e}")
     except Exception as e:
-        logging.error(f"An unexpected error occurred during session file copy: {e}")
+        logging.error(
+            f"An unexpected error occurred during session file copy: {e}"
+        )
+
+
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Copy current session files into a LOGIK-PROJEKT directory "
+            "for the given workstation."
+        )
+    )
+    parser.add_argument(
+        "logik_path",
+        help="Absolute path to the LOGIK-PROJEKT project root.",
+    )
+    parser.add_argument(
+        "workstation_name",
+        help="Name of the current workstation.",
+    )
+    parser.add_argument(
+        "flame_nickname",
+        nargs="?",
+        default=None,
+        help="Optional Flame project nickname.",
+    )
+
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = _parse_args()
+    logik_path = args.logik_path
+    workstation_name = args.workstation_name
+    flame_nickname = args.flame_nickname
+
+    logik_dir = Path(logik_path)
+    if not logik_dir.exists():
+        print(f"Creating test directory: {logik_dir}")
+        logik_dir.mkdir(parents=True, exist_ok=True)
+
+    copy_current_session_files(
+        str(logik_dir),
+        workstation_name,
+        flame_nickname
+    )
 
 
 if __name__ == "__main__":
-    # Example usage for direct script execution and testing
-    if not (3 <= len(sys.argv) <= 4):
-        print(
-            "Usage: python copy_current_session_files.py "
-            "<logik_projekt_path> <current_workstation> [flame_projekt_nickname]"
-        )
-        sys.exit(1)
-
-    logik_path = sys.argv[1]
-    workstation_name = sys.argv[2]
-    flame_nickname = sys.argv[3] if len(sys.argv) == 4 else None
-
-    # For testing, create the base directories if they don't exist
-    if not os.path.exists(logik_path):
-        print(f"Creating test directory: {logik_path}")
-        os.makedirs(logik_path)
-
-    copy_current_session_files(logik_path, workstation_name, flame_nickname)
+    main()
 
 
 # -------------------------------------------------------------------------- #

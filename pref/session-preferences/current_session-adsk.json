@@ -1,8 +1,8 @@
 {
-    "Name": "888_copilot_test_2027_romeo",
-    "ProjectDir": "/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo",
-    "SetupDir": "/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo/setups",
-    "MediaDir": "/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo/media",
+    "Name": "777_test_test_2027_romeo",
+    "ProjectDir": "/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo",
+    "SetupDir": "/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/setups",
+    "MediaDir": "/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/media",
     "Resolution": {
         "FrameWidth": 1920,
         "FrameHeight": 1080,

@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Project>
-  <Name>888_copilot_test_2027_romeo</Name>
-  <Nickname>888_copilot_test</Nickname>
-  <ShotgunProjectName>888_copilot_test</ShotgunProjectName>
-  <Description>test to check new log and template copying</Description>
-  <CatalogDir>/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo/catalog</CatalogDir>
-  <ProjectDir>/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo</ProjectDir>
-  <SetupDir>/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo/setups</SetupDir>
-  <MediaDir>/var/opt/Autodesk/flame/projects/888_copilot_test_2027_romeo/media</MediaDir>
+  <Name>777_test_test_2027_romeo</Name>
+  <Nickname>777_test_test</Nickname>
+  <ShotgunProjectName>777_test_test</ShotgunProjectName>
+  <Description>test test</Description>
+  <CatalogDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/catalog</CatalogDir>
+  <ProjectDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo</ProjectDir>
+  <SetupDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/setups</SetupDir>
+  <MediaDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/media</MediaDir>
   <Version>2027.pr234</Version>
   <FrameWidth>1920</FrameWidth>
   <FrameHeight>1080</FrameHeight>
