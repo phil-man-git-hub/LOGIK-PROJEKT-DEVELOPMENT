@@ -19,8 +19,14 @@
 # Changelog:    Changelog at bottom of script.
 # -------------------------------------------------------------------------- #
 import sys
-import logging
 import os
+# Ensure project root is on sys.path so absolute package imports like 'src.*'
+# work when running this script directly (e.g. `python src/app.py`).
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+import logging
 from datetime import (
     datetime
 )

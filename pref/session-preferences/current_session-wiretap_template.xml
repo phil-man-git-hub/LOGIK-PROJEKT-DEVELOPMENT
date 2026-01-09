@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Project>
-  <Name>123_flame_alpha_2027_romeo</Name>
-  <Nickname>123_flame_alpha</Nickname>
-  <ShotgunProjectName>123_flame_alpha</ShotgunProjectName>
-  <Description>Logik Projekt 2027 Integration Initiative</Description>
-  <CatalogDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/catalog</CatalogDir>
-  <ProjectDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo</ProjectDir>
-  <SetupDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/setups</SetupDir>
-  <MediaDir>/Volumes/Samsung-T3-1TB/Autodesk/flame/projects/123_flame_alpha_2027_romeo/media</MediaDir>
-  <Version>2027.pr232</Version>
+  <Name>777_test_test_2027_romeo</Name>
+  <Nickname>777_test_test</Nickname>
+  <ShotgunProjectName>777_test_test</ShotgunProjectName>
+  <Description>test test</Description>
+  <CatalogDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/catalog</CatalogDir>
+  <ProjectDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo</ProjectDir>
+  <SetupDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/setups</SetupDir>
+  <MediaDir>/var/opt/Autodesk/flame/projects/777_test_test_2027_romeo/media</MediaDir>
+  <Version>2027.pr234</Version>
   <FrameWidth>1920</FrameWidth>
   <FrameHeight>1080</FrameHeight>
   <FrameDepth>16-bit fp</FrameDepth>
@@ -16,7 +16,7 @@
   <FieldDominance>PROGRESSIVE</FieldDominance>
   <ColourPolicyName>ACES 2.0</ColourPolicyName>
   <OCIOConfigFile>/opt/Autodesk/colour_mgmt/configs/flame_configs/2026.0/aces2.0_config/config.ocio</OCIOConfigFile>
-  <IntermediatesProfile>2:1120376</IntermediatesProfile>
+  <IntermediatesProfile>2:1185912</IntermediatesProfile>
   <FrameRate>23.976 fps</FrameRate>
   <DefaultStartFrame>1001</DefaultStartFrame>
 </Project>
