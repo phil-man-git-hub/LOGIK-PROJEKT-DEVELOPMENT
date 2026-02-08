@@ -43,34 +43,69 @@
 </head>
 <body>
     <h1>Application Interface & Process Flow</h1>
-    <p>The LOGIK-PROJEKT 2026.2 interface is designed for high-efficiency project creation. It is divided into two primary columns: <strong>Template Configuration</strong> (Left) and <strong>Deployment Settings</strong> (Right).</p>
+    <p>Hover your mouse over the interface areas below to see a description of their functionality.</p>
 
-    <div class="ui-map">
+    <div class="ui-map" id="ui-map">
         <img src="../../images/app_screenshot.png" alt="LOGIK-PROJEKT Interface">
+        
+        <!-- Interactive Hotspots -->
+        <div class="hotspot" style="top: 6%; left: 6%; width: 32%; height: 16%;" data-desc="<b>Template Metadata:</b> Enter the Serial Number, Client, and Campaign names here. These are used to calculate the final project name automatically."></div>
+        
+        <div class="hotspot" style="top: 22%; left: 6%; width: 32%; height: 35%;" data-desc="<b>Technical Parameters:</b> Configure the resolution, framerate, bit depth, and color management (OCIO) settings for your template."></div>
+        
+        <div class="hotspot" style="top: 58%; left: 6%; width: 32%; height: 32%;" data-desc="<b>Template Summary & Export:</b> Review the current template configuration. Use the 'Export' button to save this setup as a JSON file for future use."></div>
+        
+        <div class="hotspot" style="top: 6%; left: 44%; width: 50%; height: 3%;" data-desc="<b>Template Import:</b> Click here to load an existing LOGIK-PROJEKT template from your filesystem."></div>
+        
+        <div class="hotspot" style="top: 15%; left: 44%; width: 50%; height: 35%;" data-desc="<b>Flame Configuration:</b> Select the target Flame version and verify the Home, Setups, and Media directories. These are derived from your workstation environment."></div>
+        
+        <div class="hotspot" style="top: 52%; left: 44%; width: 50%; height: 25%;" data-desc="<b>Deployment Summary:</b> A final look at the project about to be created, including the full paths and Flame project names."></div>
+        
+        <div class="hotspot" style="top: 77%; left: 44%; width: 50%; height: 3%;" data-desc="<b>Create Project:</b> The 'Big Green Button'. Clicking this executes the ProjektCreator logic to build your project."></div>
+        
+        <div class="hotspot" style="top: 83%; left: 44%; width: 50%; height: 12%;" data-desc="<b>Shell Output:</b> Real-time logs showing the progress of the project creation. This mirrors the data sent to the Live Diagnostics bridge."></div>
     </div>
 
-    <div class="legend">
-        <div class="legend-item">
-            <h3>1. Template Info & Parameters</h3>
-            <p>Define the core metadata (Serial Number, Client, Campaign) and technical specifications (Resolution, Framerate, OCIO) for your project template.</p>
-        </div>
-        <div class="legend-item">
-            <h3>2. Template Management</h3>
-            <p>Use the <strong>Export</strong> and <strong>Import</strong> buttons to save your configurations or load existing templates from your studio's library.</p>
-        </div>
-        <div class="legend-item">
-            <h3>3. Flame Options</h3>
-            <p>Configure Autodesk Flame-specific paths and software versions. The application automatically detects installed Flame versions.</p>
-        </div>
-        <div class="legend-item">
-            <h3>4. Projekt Summary & Creation</h3>
-            <p>Review the final project parameters and paths. Click <strong>Create LOGIK-PROJEKT</strong> to execute the full deployment sequence.</p>
-        </div>
-        <div class="legend-item">
-            <h3>5. Shell Output (Telemetry)</h3>
-            <p>Monitor the creation process in real-time. This area displays the same data broadcast to the <strong>Live Diagnostics</strong> bridge.</p>
-        </div>
+    <div id="info-box" class="note" style="min-height: 50px; border-color: var(--accent-color);">
+        <em>Hover over the interface screenshot above to see details...</em>
     </div>
+
+    <style>
+        .ui-map {
+            position: relative;
+            cursor: crosshair;
+        }
+        .hotspot {
+            position: absolute;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+        .hotspot:hover {
+            border-color: #ffcc00;
+            background-color: rgba(255, 204, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hotspots = document.querySelectorAll('.hotspot');
+            const infoBox = document.getElementById('info-box');
+            const defaultText = infoBox.innerHTML;
+
+            hotspots.forEach(spot => {
+                spot.addEventListener('mouseenter', () => {
+                    infoBox.innerHTML = spot.getAttribute('data-desc');
+                    infoBox.style.backgroundColor = '#2d2d2d';
+                });
+                spot.addEventListener('mouseleave', () => {
+                    infoBox.innerHTML = defaultText;
+                    infoBox.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
 
     <h2>Process Flow Summary</h2>
     <ol>
