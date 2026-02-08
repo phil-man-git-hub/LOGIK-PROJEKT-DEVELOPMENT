@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <h1>Logging & Diagnostics API</h1>
+    <p>LOGIK-PROJEKT uses a multi-layered logging system designed for both human review and automated AI diagnostics.</p>
+
+    <h2>LogTransmitterHandler</h2>
+    <p>The <code>LogTransmitterHandler</code> is a specialized <code>logging.Handler</code> that broadcasts log records as JSON over UDP. It is used to provide real-time telemetry to external listeners.</p>
+
+    <h3>Constructor</h3>
+    <pre><code class="language-python">def __init__(self, host='127.0.0.1', port=54322):</code></pre>
+    <ul>
+        <li><strong>host:</strong> The target address for the UDP broadcast (default: localhost).</li>
+        <li><strong>port:</strong> The target UDP port (default: 54322).</li>
+    </ul>
+
+    <h3>Data Format</h3>
+    <p>The handler broadcasts a JSON object for each log record:</p>
+    <pre><code class="language-json">{
+    "timestamp": "2026-02-08T12:34:56.789",
+    "level": "INFO",
+    "module": "app",
+    "function": "main",
+    "line": 42,
+    "message": "Application started successfully."
+}</code></pre>
+
+    <h2>Threaded Logging</h2>
+    <p>For UI operations, the project leverages <code>threaded_logging_utils.py</code> to ensure that logging from background worker threads does not block the main Qt event loop.</p>
+
+    <div class="note">
+        <strong>Best Practice:</strong> Always use the root logger (<code>logging.getLogger(__name__)</code>) within modules to ensure that logs are correctly routed through the attached handlers (File, Console, and Transmitter).
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+</body>
+</html>

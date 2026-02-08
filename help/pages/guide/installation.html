@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+</head>
+<body>
+    <h1>Installation Guide</h1>
+    
+    <h2>System Requirements</h2>
+    <ul>
+        <li><strong>Workstation:</strong> Linux (Rocky Linux 9.5 recommended) or macOS (Sonoma 15+).</li>
+        <li><strong>DCC:</strong> Autodesk Flame 2026+.</li>
+        <li><strong>Storage:</strong> A root-level mount point at <code>/PROJEKTS</code>.</li>
+    </ul>
+
+    <h2>1. Workspace Preparation</h2>
+    <p>Create a directory for your development projects and clone the repository:</p>
+    <pre><code>mkdir -p ~/workspace/GitHub/
+cd ~/workspace/GitHub/
+git clone git@github.com:flamelogik/LOGIK-PROJEKT.git
+cd LOGIK-PROJEKT</code></pre>
+
+    <h2>2. Python Environment</h2>
+    <p>LOGIK-PROJEKT leverages a Python 3.13.3 environment. Run the setup script to create the local virtual environment:</p>
+    <pre><code>./bin/setup-venv-3.13.3.sh</code></pre>
+    <p>Once created, activate the environment and install dependencies:</p>
+    <pre><code>source .venv3.13.3/bin/activate
+pip install -r requirements.txt</code></pre>
+
+    <h2>3. Flame Integration</h2>
+    <p>To ensure LOGIK-PROJEKT can interact with your local Flame installation, establish the path to the Flame Python interpreter:</p>
+    <pre><code>install/get_current_adsk_python.sh</code></pre>
+
+    <h2>4. Creating Desktop Launchers</h2>
+    <p>Generate the appropriate application bundles or desktop shortcuts for your OS:</p>
+    <pre><code>install/create_desktop_apps.sh</code></pre>
+
+    <div class="note">
+        <strong>macOS Tip:</strong> After running the install scripts, you can find <code>LOGIK-PROJEKT.app</code> in your project root.
+    </div>
+</body>
+</html>

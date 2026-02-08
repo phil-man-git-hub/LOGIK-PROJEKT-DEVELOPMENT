@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <h1>AppLogic Class</h1>
+    <p>The <code>AppLogic</code> class serves as the primary orchestrator for the LOGIK-PROJEKT application logic. It coordinates between the UI and the underlying project and template management systems.</p>
+
+    <h2>Constructor</h2>
+    <pre><code class="language-python">def __init__(self):</code></pre>
+    <p>Initializes the <code>AppLogic</code> instance, creating internal handlers for templates (<code>TemplateHandler</code>) and project creation (<code>ProjektCreator</code>).</p>
+
+    <h2>Methods</h2>
+
+    <h3>import_logik_projekt_template</h3>
+    <pre><code class="language-python">def import_logik_projekt_template(self, file_path: str) -> tuple[TemplateInfo, TemplateParameters, str]:</code></pre>
+    <p>Imports a LOGIK projekt template from a JSON file.</p>
+    <ul>
+        <li><strong>Args:</strong> <code>file_path</code>: Path to the template JSON file.</li>
+        <li><strong>Returns:</strong> A tuple containing <code>TemplateInfo</code>, <code>TemplateParameters</code>, and a success message.</li>
+    </ul>
+
+    <h3>export_logik_projekt_template</h3>
+    <pre><code class="language-python">def export_logik_projekt_template(self, template_info_data: dict, template_params_data: dict) -> str:</code></pre>
+    <p>Exports current template data to a session JSON file.</p>
+
+    <h3>get_default_template_values</h3>
+    <pre><code class="language-python">def get_default_template_values(self) -> dict:</code></pre>
+    <p>Loads default template parameters from the configuration file.</p>
+
+    <h3>create_projekt</h3>
+    <pre><code class="language-python">def create_projekt(self, projekt_summary_data: dict):</code></pre>
+    <p>Triggers the actual creation of a project based on the compiled summary data.</p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

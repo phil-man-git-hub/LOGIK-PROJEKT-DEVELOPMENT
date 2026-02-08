@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <h1>Live Diagnostics</h1>
+    <p>LOGIK-PROJEKT features a real-time telemetry bridge that broadcasts application logs over UDP. This allows developers and AI agents to monitor the application's internal state as it runs.</p>
+
+    <h2>Log Transmitter</h2>
+    <p>The <code>LogTransmitterHandler</code> is a custom logging handler integrated into <code>src/app.py</code>. It automatically intercepts all log records and broadcasts them as JSON packets to <code>localhost:54322</code>.</p>
+
+    <h2>Using the Debug Listener</h2>
+    <p>You can view the live diagnostic stream by running the provided listener utility:</p>
+    <pre><code class="language-bash">./scripts/logik_debug_listener.py</code></pre>
+    <p>This will display formatted logs in your terminal, including the timestamp, log level, module name, and message.</p>
+
+    <h2>AI Interaction</h2>
+    <p>The MCP server includes a tool called <code>listen_to_live_logs</code>. An AI agent can invoke this tool to "listen" to the application for a specified duration (defaulting to 5 seconds) and receive the captured logs as text. This is extremely useful for automated debugging.</p>
+
+    <div class="note">
+        <strong>Performance:</strong> The transmitter uses UDP ("fire-and-forget"), ensuring that the diagnostic stream has zero impact on the responsiveness of the LOGIK-PROJEKT user interface.
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</body>
+</html>

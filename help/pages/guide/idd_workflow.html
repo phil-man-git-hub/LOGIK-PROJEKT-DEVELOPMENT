@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <h1>Issue-Driven Development (IDD)</h1>
+    <p>LOGIK-PROJEKT follows an <strong>Issue-Driven Development (IDD)</strong> workflow. This methodology ensures that every change, feature, or bugfix is tracked, documented, and semantically searchable.</p>
+
+    <h2>The Core Loop</h2>
+    <ol>
+        <li><strong>Issue Creation:</strong> Every task begins as a GitHub Issue.</li>
+        <li><strong>Branching:</strong> A feature branch is created specifically for that issue (e.g., <code>feature/issue-42-add-mcp-tools</code>).</li>
+        <li><strong>Context Capture:</strong> The <code>LogTransmitterHandler</code> and session capture scripts record the development process.</li>
+        <li><strong>Synchronization:</strong> GitHub Actions automatically sync issue status to the project's <code>TO-DO.md</code> file.</li>
+        <li><strong>Finalization:</strong> Insights and decisions made during the session are synthesized into the knowledge base.</li>
+    </ol>
+
+    <h2>AI Integration</h2>
+    <p>By following IDD, we create a rich trail of data that the <strong>RAG System</strong> and <strong>MCP Server</strong> can use to assist future development. The AI can answer questions about <em>why</em> a certain decision was made by looking at the linked issues and session summaries.</p>
+
+    <h2>Key Commands</h2>
+    <pre><code class="language-bash"># Load context for a specific issue
+/ag-load-issue 42
+
+# Sync current session insights
+/ag-capture-all</code></pre>
+
+    <div class="note">
+        <strong>Source of Truth:</strong> In IDD, the GitHub Issue is the single source of truth. The <code>TO-DO.md</code> file acts as a local mirror for quick reference.
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIK-PROJEKT | Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Placeholder for Prism.css for code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">LOGIK-PROJEKT</div>
+        <div class="version">v2027.0.0</div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search topics...">
+            </div>
+            <ul class="nav-tree">
+                <li>
+                    <span class="tree-toggle">Getting Started</span>
+                    <ul>
+                        <li><a href="pages/guide/introduction.html" target="content-frame">Introduction</a></li>
+                        <li><a href="pages/guide/installation.html" target="content-frame">Installation</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="tree-toggle">Core API</span>
+                    <ul>
+                        <li><a href="pages/api/app_logic.html" target="content-frame">AppLogic Class</a></li>
+                        <li><a href="pages/api/projekt_creator.html" target="content-frame">ProjektCreator Class</a></li>
+                        <li><a href="pages/api/logger_class.html" target="content-frame">Logging API</a></li>
+                        <li><a href="pages/api/rag_mcp.html" target="content-frame">RAG & MCP</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="tree-toggle">Workflows</span>
+                    <ul>
+                        <li><a href="pages/guide/idd_workflow.html" target="content-frame">IDD Workflow</a></li>
+                        <li><a href="pages/guide/live_diagnostics.html" target="content-frame">Live Diagnostics</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="content-area">
+            <iframe name="content-frame" src="pages/guide/introduction.html" frameborder="0"></iframe>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 LOGIK-PROJEKT Team. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <!-- Placeholder for Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+</body>
+</html>

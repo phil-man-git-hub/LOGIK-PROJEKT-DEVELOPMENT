@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <h1>ProjektCreator Class</h1>
+    <p>The <code>ProjektCreator</code> class is responsible for the technical execution of project creation. It handles the generation of directories, symbolic links, startup scripts, and Wiretap nodes required for a functional Flame environment.</p>
+
+    <h2>Methods</h2>
+
+    <h3>create_projekt</h3>
+    <pre><code class="language-python">def create_projekt(self, config: ProjektParameters):</code></pre>
+    <p>Executes the full project creation sequence. This is a multi-step process that includes:</p>
+    <ol>
+        <li><strong>Environment Setup:</strong> Validates user and system information.</li>
+        <li><strong>Directory Scaffolding:</strong> Creates the folder hierarchy on the filesystem based on the selected template.</li>
+        <li><strong>Flame Integration:</strong> Generates and exports the project XML for Flame's Wiretap server.</li>
+        <li><strong>Asset Management:</strong> Copies presets, Python scripts, and bookmarks into the project structure.</li>
+        <li><strong>Automation:</strong> Generates launcher aliases, backup scripts, and archive utilities.</li>
+        <li><strong>Database:</strong> Initializes a project-specific PostgreSQL database.</li>
+    </ol>
+
+    <h2>Data Model</h2>
+    <p>The creator relies on the <code>ProjektParameters</code> data model, which encapsulates all technical details such as resolution, frame rate, cache formats, and storage paths.</p>
+
+    <div class="note">
+        <strong>Implementation Detail:</strong> This class leverages <code>subprocess</code> to interact with system-level commands and Flame utilities like <code>startFlame</code>.
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

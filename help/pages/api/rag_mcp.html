@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <h1>RAG & MCP Systems</h1>
+    <p>LOGIK-PROJEKT includes an integrated <strong>Retrieval-Augmented Generation (RAG)</strong> knowledge base and a <strong>Model Context Protocol (MCP)</strong> server to facilitate AI-assisted development and semantic code search.</p>
+
+    <h2>RAG Manager</h2>
+    <p>The <code>RAGManager</code> orchestrates the indexing and querying of the repository context.</p>
+    <pre><code class="language-python">from api.core.rag.rag_manager import RAGManager
+
+manager = RAGManager()
+# Perform semantic search
+context = manager.query_context("How are Flame bookmarks created?")</code></pre>
+
+    <h2>MCP Tools</h2>
+    <p>The MCP server exposes several tools that can be used by LLMs to interact with the project.</p>
+    <ul>
+        <li><strong>query_project_knowledge:</strong> Performs a semantic search across all indexed files.</li>
+        <li><strong>get_project_status:</strong> Returns the content of the project's <code>TO-DO.md</code> file.</li>
+        <li><strong>list_recent_sessions:</strong> Lists recent development session summaries from the Antigravity knowledge base.</li>
+        <li><strong>listen_to_live_logs:</strong> Captures a 5-second burst of live application telemetry.</li>
+    </ul>
+
+    <h2>Deployment</h2>
+    <p>Start the MCP server in the background to allow external AI clients to connect:</p>
+    <pre><code class="language-bash">./scripts/logik_projekt_mcp.py --transport sse --port 54321 --background</code></pre>
+
+    <div class="note">
+        <strong>Endpoint:</strong> Once running, the server is available at <code>http://localhost:54321/sse</code>.
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</body>
+</html>
