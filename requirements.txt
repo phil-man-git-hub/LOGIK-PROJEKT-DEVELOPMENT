@@ -1,3 +1,15 @@
 PySide6
 distro
 netifaces
+opencolorio
+openimageio
+opentimelineio
+langchain
+langchain-text-splitters
+chromadb
+openai
+anthropic
+mcp
+fastapi
+uvicorn
+pydantic

@@ -156,6 +156,7 @@ Thumbs.db
 
 # Project-specific
 cfg/site-cfg/flame-cfg/flame-presets/colour_mgmt
+resources/adsk_python_examples
 
 # Temporary session files
 scratch
@@ -168,3 +169,4 @@ docs/release_notes/bio.md
 
 # Antigravity Knowledge Base
 .gemini/
+\n# RAG and MCP\n.chroma_db/\nlogs/mcp_server.log
