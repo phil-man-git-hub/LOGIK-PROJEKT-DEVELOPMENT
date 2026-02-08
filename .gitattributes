@@ -1,0 +1,22 @@
+# Exclude development and environment files from git archive
+.agent/ export-ignore
+.ai-context/ export-ignore
+.chroma_db/ export-ignore
+.gemini/ export-ignore
+.github/ export-ignore
+.pytest_cache/ export-ignore
+.venv*/ export-ignore
+.vscode/ export-ignore
+logs/ export-ignore
+tests/ export-ignore
+tmp/ export-ignore
+
+# Project documentation and metadata
+CONTRIBUTING.md export-ignore
+dev-requirements.txt export-ignore
+TO-DO.md export-ignore
+RELEASE-*-TO-DO.md export-ignore
+
+# Binary files
+*.app/ export-ignore
+*.desktop export-ignore

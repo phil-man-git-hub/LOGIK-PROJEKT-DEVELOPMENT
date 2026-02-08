@@ -12,40 +12,19 @@
   - Example: Closes #42
 -->
 
-## Description
+Closes #
+
+## IDD Documentation & Scaffolding
 <!--
-  - Briefly describe the purpose and context of this PR.
-  - Include any relevant background, motivation, or design decisions.
+  - Link to the relevant IDD issue directory and files.
+  - Example: [Issue 42 - Add Desktop App Automation](docs/idd/issues/issue-42/)
 -->
 
-## Checklist
-- [ ] PR title follows required format
-- [ ] Linked to a relevant issue (Closes #...)
-- [ ] All new and updated code is documented
-- [ ] Tests added or updated (if applicable)
-- [ ] CI checks pass (lint, tests, workflows)
-- [ ] Changelog and release notes updated
-- [ ] No large, unrelated changes (PR is focused)
-- [ ] All reviewers added
-
-## Additional Notes
-<!--
-  - Add any extra context, screenshots, or migration notes here.
---><!-- 
-Thank you for your Pull Request! 
-Please fill out this template to help reviewers understand your changes.
-Delete sections that aren't applicable to your PR.
--->
+- **IDD Issue Directory:** docs/idd/issues/issue-
+- **Implementation Plan:** docs/idd/issues/issue-/implementation_plan.md
 
 ## Description
 <!-- Provide a clear and concise description of what this PR does -->
-
-
-
-## Closes
-<!-- Link the issue(s) this PR addresses. Use "Closes #123" to auto-close issues when merged -->
-
-Closes #
 
 
 ## Type of Change
