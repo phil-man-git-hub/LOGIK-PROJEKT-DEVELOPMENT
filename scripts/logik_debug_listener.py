@@ -23,8 +23,7 @@ def main():
     print("Press Ctrl+C to stop.")
 
     def signal_handler(sig, frame):
-        print("
-Exiting listener...")
+        print("\nExiting listener...")
         sock.close()
         sys.exit(0)
 

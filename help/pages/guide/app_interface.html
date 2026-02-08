@@ -43,31 +43,30 @@
 </head>
 <body>
     <h1>Application Interface & Process Flow</h1>
-    <p>Hover your mouse over the interface areas below to see a description of their functionality.</p>
+
+    <div id="info-box" class="note" style="min-height: 36px; border-color: var(--accent-color);">
+        <em>Hover over the interface screenshot above to see details...</em>
+    </div>
 
     <div class="ui-map" id="ui-map">
         <img src="../../images/app_screenshot.png" alt="LOGIK-PROJEKT Interface">
         
         <!-- Interactive Hotspots -->
-        <div class="hotspot" style="top: 6%; left: 6%; width: 32%; height: 16%;" data-desc="<b>Template Metadata:</b> Enter the Serial Number, Client, and Campaign names here. These are used to calculate the final project name automatically."></div>
+        <div class="hotspot" style="top: 5.5%; left: 6%; width: 33%; height: 15%;" data-desc="<b>Template Metadata:</b> Enter the Serial Number, Client, and Campaign names here. These are used to calculate the final project name automatically."></div>
         
-        <div class="hotspot" style="top: 22%; left: 6%; width: 32%; height: 35%;" data-desc="<b>Technical Parameters:</b> Configure the resolution, framerate, bit depth, and color management (OCIO) settings for your template."></div>
+        <div class="hotspot" style="top: 21%; left: 6%; width: 33%; height: 36%;" data-desc="<b>Technical Parameters:</b> Configure the resolution, framerate, bit depth, and color management (OCIO) settings for your template."></div>
         
-        <div class="hotspot" style="top: 58%; left: 6%; width: 32%; height: 32%;" data-desc="<b>Template Summary & Export:</b> Review the current template configuration. Use the 'Export' button to save this setup as a JSON file for future use."></div>
+        <div class="hotspot" style="top: 58%; left: 6%; width: 33%; height: 35%;" data-desc="<b>Template Summary & Export:</b> Review the current template configuration. Use the 'Export' button to save this setup as a JSON file for future use."></div>
         
-        <div class="hotspot" style="top: 6%; left: 44%; width: 50%; height: 3%;" data-desc="<b>Template Import:</b> Click here to load an existing LOGIK-PROJEKT template from your filesystem."></div>
+        <div class="hotspot" style="top: 6%; left: 41.5%; width: 55%; height: 26.75%;" data-desc="<b>Template Import & Summary:</b> Click here to load an existing LOGIK-PROJEKT template from your filesystem."></div>
         
-        <div class="hotspot" style="top: 15%; left: 44%; width: 50%; height: 35%;" data-desc="<b>Flame Configuration:</b> Select the target Flame version and verify the Home, Setups, and Media directories. These are derived from your workstation environment."></div>
+        <div class="hotspot" style="top: 33%; left: 41.5%; width: 55%; height: 18%;" data-desc="<b>Flame Configuration:</b> Select the target Flame version and verify the Home, Setups, and Media directories. These are derived from your workstation environment."></div>
         
-        <div class="hotspot" style="top: 52%; left: 44%; width: 50%; height: 25%;" data-desc="<b>Deployment Summary:</b> A final look at the project about to be created, including the full paths and Flame project names."></div>
+        <div class="hotspot" style="top: 51.5%; left: 41.5%; width: 55%; height: 23.5%;" data-desc="<b>Deployment Summary:</b> A final look at the project about to be created, including the full paths and Flame project names."></div>
         
-        <div class="hotspot" style="top: 77%; left: 44%; width: 50%; height: 3%;" data-desc="<b>Create Project:</b> The 'Big Green Button'. Clicking this executes the ProjektCreator logic to build your project."></div>
+        <div class="hotspot" style="top: 75.25%; left: 41.5%; width: 55%; height: 3%;" data-desc="<b>Create Project:</b> The 'Big Green Button'. Clicking this executes the ProjektCreator logic to build your project."></div>
         
-        <div class="hotspot" style="top: 83%; left: 44%; width: 50%; height: 12%;" data-desc="<b>Shell Output:</b> Real-time logs showing the progress of the project creation. This mirrors the data sent to the Live Diagnostics bridge."></div>
-    </div>
-
-    <div id="info-box" class="note" style="min-height: 50px; border-color: var(--accent-color);">
-        <em>Hover over the interface screenshot above to see details...</em>
+        <div class="hotspot" style="top: 79%; left: 41.5%; width: 55%; height: 15%;" data-desc="<b>Shell Output:</b> Real-time logs showing the progress of the project creation. This mirrors the data sent to the Live Diagnostics bridge."></div>
     </div>
 
     <style>
@@ -107,6 +106,10 @@
         });
     </script>
 
+    <div class="note">
+        <strong>Pro Tip:</strong> All fields marked with (Optional) can be left blank if you wish to use the application defaults or omit those metadata tags from your project.
+    </div>
+
     <h2>Process Flow Summary</h2>
     <ol>
         <li><strong>Initialize:</strong> App loads defaults and connects the <strong>UDP Log Transmitter</strong>.</li>
@@ -116,8 +119,5 @@
         <li><strong>Notify:</strong> Status is updated in the Shell Output and broadcast to diagnostic listeners.</li>
     </ol>
 
-    <div class="note">
-        <strong>Pro Tip:</strong> All fields marked with (Optional) can be left blank if you wish to use the application defaults or omit those metadata tags from your project.
-    </div>
 </body>
 </html>

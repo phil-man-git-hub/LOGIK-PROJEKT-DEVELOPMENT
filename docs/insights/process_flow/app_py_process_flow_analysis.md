@@ -8,21 +8,21 @@
 
 The execution of `app.py` follows a sequential flow:
 
-1.  **Initialization**: Sets up logging, creates the QApplication instance, and applies the application-wide stylesheet.
-2.  **Main Window Setup**: Configures the `QMainWindow` and centers it on the screen.
-3.  **UI Integration**: Instantiates the `AppWindow` (which contains all the panels and widgets) and sets it as the central widget of the `QMainWindow`.
+1.  **Initialization**: Sets up logging (including a UDP transmitter for live AI debugging), creates the QApplication instance, and applies the application-wide stylesheet.
+2.  **AppWindow Instantiation**: Instantiates the `AppWindow` (which inherits from `QMainWindow` and contains all panels and widgets).
+3.  **Main Window Configuration**: Sets the window title ("LOGIK-PROJEKT 2026.2") and centers it on the screen.
 4.  **Execution**: Starts the PySide6 event loop, allowing the application to respond to user interactions.
 
 ```mermaid
 graph TD
-    A[Start app.py] --> B{Initialize Logging};
-    B --> C{Create QApplication};
-    C --> D{Apply Stylesheet};
-    D --> E{Create QMainWindow};
-    E --> F{Center Window on Screen};
+    A[Start app.py] --> B{Initialize Standard Logging};
+    B --> C{Initialize UDP Log Transmitter};
+    C --> D{Setup Session File Logging};
+    D --> E{Create QApplication};
+    E --> F{Apply Stylesheet};
     F --> G{Instantiate AppWindow};
-    G --> H{Set AppWindow as Central Widget};
-    H --> I{Show Main Window};
+    G --> H{Set Window Title & Geometry};
+    H --> I{Show AppWindow};
     I --> J{Start Qt Event Loop};
     J --> K[Application Running / Awaiting User Input];
     K --> L{User Interaction};
@@ -37,16 +37,18 @@ graph TD
 
 When `app.py` is executed, the `main()` function is called:
 
-*   **Logging Configuration**: A root logger is configured for console output, and a `FileHandler` is added to create session-specific log files in `logs/session-logs/YYYY/MM/DD/`. It also sets the root logger's level to `logging.DEBUG`. *Note: While `app.py` sets up this basic file logging, the `AppWindow` then adds its own handler for thread-safe logging to the UI.*
+*   **Standard Logging Configuration**: A root logger is configured for console output using `logging.basicConfig`.
+*   **UDP Log Transmitter**: A `LogTransmitterHandler` is added to the root logger, broadcasting log records to port 54322. This enables live AI debugging and telemetry.
+*   **Session File Logging**: A `FileHandler` is added to create session-specific log files in `logs/session-logs/YYYY/MM/DD/`. It also sets the root logger's level to `logging.DEBUG`. *Note: While `app.py` sets up this basic file logging, the `AppWindow` then adds its own handler for thread-safe logging to the UI.*
 *   **`QApplication` Instance**: A `QApplication` instance is created, which is essential for any PySide6 application as it manages the GUI application's control flow and main settings.
 *   **Stylesheet Application**: The application's visual theme is applied by setting the stylesheet using `LogikProjektModularTheme.get_stylesheet()`.
 
 ### 3.2. User Interface Setup
 
-*   **`QMainWindow` Creation**: A `QMainWindow` is instantiated, serving as the top-level window for the application. Its title is set to "LOGIK-PROJEKT 2026.1".
-*   **Window Positioning**: The `QMainWindow` is centered on the primary screen, taking into account `ui_config.WINDOW_WIDTH` and `ui_config.WINDOW_HEIGHT`. If no primary screen is found, it defaults to a fixed position.
-*   **`AppWindow` Instantiation**: The core of the application's UI, `AppWindow` (defined in `src/ui/app_window.py`), is instantiated. This `AppWindow` is a `QWidget` that contains all the individual panels and their respective widgets.
-*   **Central Widget Assignment**: The `AppWindow` instance is set as the central widget of the `QMainWindow`, making it the primary content area of the main window.
+*   **`AppWindow` Instantiation**: The `AppWindow` class (defined in `src/ui/app_window.py`) is instantiated. Since `AppWindow` inherits from `QMainWindow`, it serves as the top-level window for the application.
+*   **Window Title**: The window title is set to "LOGIK-PROJEKT 2026.2".
+*   **Window Positioning**: The `AppWindow` is centered on the primary screen, taking into account `ui_config.WINDOW_WIDTH` and `ui_config.WINDOW_HEIGHT`. If no primary screen is found, it defaults to a fixed position.
+*   **Display**: The window is displayed using `main_window.show()`.
 
 ### 3.3. Event Handling and User Interaction
 
@@ -77,7 +79,7 @@ Data flows primarily from the individual input panels (`TemplateInfoPanel`, `Tem
 
 ### 3.6. Application Execution Loop
 
-*   **`app.exec_()`**: The final step in `main()` is `sys.exit(app.exec_())`. This starts the PySide6 event loop, which continuously monitors for events (user input, system events, etc.) and dispatches them to the appropriate widgets and slots. The application remains active until the event loop is terminated (e.g., by closing the main window).
+*   **`app.exec()`**: The final step in `main()` is `sys.exit(app.exec())`. This starts the PySide6 event loop, which continuously monitors for events (user input, system events, etc.) and dispatches them to the appropriate widgets and slots. The application remains active until the event loop is terminated (e.g., by closing the main window).
 
 ### 3.7. Flame Startup Script and Workspace Generation
 
@@ -93,7 +95,7 @@ Recent developments have refined how the application interacts with Autodesk Fla
 
 `app.py` directly or indirectly relies on the following key modules:
 
-*   `src.ui.app_window.py`: Defines the main application widget, layout, and panel integration.
+*   `src.ui.app_window.py`: Defines the main application window (inheriting from `QMainWindow`), layout, and panel integration.
 *   `src.ui.ui_config.py`: Provides constants for UI dimensions and layout.
 *   `src.ui.themes.modular_dark_theme.py`: Supplies the application's visual stylesheet.
 *   `src.ui.panels.*`: All individual UI panels (e.g., `template_info_panel.py`, `template_parameters_panel.py`, `flame_options_panel.py`, `projekt_template_panel.py`, `template_summary_panel.py`, `projekt_summary_panel.py`).
@@ -102,3 +104,4 @@ Recent developments have refined how the application interacts with Autodesk Fla
 *   `src.core.template_manager.template_models.py`: Defines data models for template information and parameters.
 *   `src.core.utils.threaded_logging_utils.py`: Provides utilities for thread-safe logging.
 *   `src.core.utils.validation_utils.py`: Used for validating user inputs before export or project creation.
+*   `src.core.diagnostics.log_transmitter.py`: Provides the `LogTransmitterHandler` for UDP-based telemetry.
