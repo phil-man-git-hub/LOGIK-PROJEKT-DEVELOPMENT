@@ -2,6 +2,24 @@
 
 Thank you for your interest in contributing! To keep our codebase maintainable and our review process efficient, please follow these guidelines:
 
+## Development Environment
+
+To set up your development environment:
+
+1. **Python 3.13.3**: Ensure you have Python 3.13.3 installed. You can use the provided setup script:
+   ```bash
+   ./bin/setup-venv-3.13.3.sh
+   ```
+2. **Virtual Environment**: Activate the virtual environment:
+   ```bash
+   source .venv3.13.3/bin/activate
+   ```
+3. **Dependencies**: Install development and project dependencies:
+   ```bash
+   pip install -r requirements.txt
+   pip install -r dev-requirements.txt
+   ```
+
 ## Pull Request Guidelines
 
 - **Break large changes into focused PRs:**

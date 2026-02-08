@@ -162,8 +162,8 @@ resources/adsk_python_examples
 scratch
 
 # Local test artifacts (do not push to prod or upstream)
-LOGIK-PROJEKT-2027.0.0.app/
-LOGIK-PROJEKT-2027.0.0.desktop
+LOGIK-PROJEKT-*.app/
+LOGIK-PROJEKT-*.desktop
 run_logik_projekt.sh
 docs/release_notes/bio.md
 

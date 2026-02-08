@@ -36,6 +36,7 @@ For a deeper understanding of each major component of the IDD system, explore th
 *   **[guides/guide-session-capture.md](guides/guide-session-capture.md)**: Detailed guide on how the system automatically captures development session activity and generates AI context files.
 *   **[guides/guide-memory-search.md](guides/guide-memory-search.md)**: Guide to searching and querying captured development sessions and AI context memory.
 *   **[guides/guide-context-retrieval.md](guides/guide-context-retrieval.md)**: Explains how the system intelligently assembles relevant context from multiple sources for AI assistants.
+*   **[guides/guide-ai-diagnostics.md](guides/guide-ai-diagnostics.md)**: Leveraging RAG, MCP, and Live Diagnostics for AI-assisted development and debugging.
 *   **[week_2_completion_summary.md](status-updates/week_2_completion_summary.md)**: A summary of the deliverables and achievements from Phase 2 (AI Memory & Context).
 
 ---
