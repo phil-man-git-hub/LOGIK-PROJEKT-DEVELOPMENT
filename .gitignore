@@ -169,4 +169,7 @@ docs/release_notes/bio.md
 
 # Antigravity Knowledge Base
 .gemini/
-\n# RAG and MCP\n.chroma_db/\nlogs/mcp_server.log
+
+# RAG and MCP
+.chroma_db/
+logs/mcp_server.log
