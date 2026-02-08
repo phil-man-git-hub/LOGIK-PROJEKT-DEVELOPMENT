@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/content.css">
+    <style>
+        .ui-map {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+        }
+        .ui-map img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+        .highlight-box {
+            position: absolute;
+            border: 2px solid var(--accent-color);
+            background-color: rgba(0, 122, 204, 0.1);
+            pointer-events: none;
+        }
+        .legend {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .legend-item {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--code-bg);
+            border-radius: 5px;
+        }
+        .legend-item h3 {
+            margin-top: 0;
+            font-size: 1rem;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>Application Interface & Process Flow</h1>
+    <p>The LOGIK-PROJEKT 2026.2 interface is designed for high-efficiency project creation. It is divided into two primary columns: <strong>Template Configuration</strong> (Left) and <strong>Deployment Settings</strong> (Right).</p>
+
+    <div class="ui-map">
+        <img src="../../images/app_screenshot.png" alt="LOGIK-PROJEKT Interface">
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <h3>1. Template Info & Parameters</h3>
+            <p>Define the core metadata (Serial Number, Client, Campaign) and technical specifications (Resolution, Framerate, OCIO) for your project template.</p>
+        </div>
+        <div class="legend-item">
+            <h3>2. Template Management</h3>
+            <p>Use the <strong>Export</strong> and <strong>Import</strong> buttons to save your configurations or load existing templates from your studio's library.</p>
+        </div>
+        <div class="legend-item">
+            <h3>3. Flame Options</h3>
+            <p>Configure Autodesk Flame-specific paths and software versions. The application automatically detects installed Flame versions.</p>
+        </div>
+        <div class="legend-item">
+            <h3>4. Projekt Summary & Creation</h3>
+            <p>Review the final project parameters and paths. Click <strong>Create LOGIK-PROJEKT</strong> to execute the full deployment sequence.</p>
+        </div>
+        <div class="legend-item">
+            <h3>5. Shell Output (Telemetry)</h3>
+            <p>Monitor the creation process in real-time. This area displays the same data broadcast to the <strong>Live Diagnostics</strong> bridge.</p>
+        </div>
+    </div>
+
+    <h2>Process Flow Summary</h2>
+    <ol>
+        <li><strong>Initialize:</strong> App loads defaults and connects the <strong>UDP Log Transmitter</strong>.</li>
+        <li><strong>Configure:</strong> User inputs template data or imports a JSON template.</li>
+        <li><strong>Consolidate:</strong> <code>AppLogic</code> combines Template and Flame data into a <code>ProjektParameters</code> model.</li>
+        <li><strong>Execute:</strong> A background <strong>Worker Thread</strong> runs the <code>ProjektCreator</code> to build the filesystem and Flame nodes.</li>
+        <li><strong>Notify:</strong> Status is updated in the Shell Output and broadcast to diagnostic listeners.</li>
+    </ol>
+
+    <div class="note">
+        <strong>Pro Tip:</strong> All fields marked with (Optional) can be left blank if you wish to use the application defaults or omit those metadata tags from your project.
+    </div>
+</body>
+</html>
