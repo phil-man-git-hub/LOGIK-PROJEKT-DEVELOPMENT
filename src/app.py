@@ -42,6 +42,9 @@ from src.ui.themes.modular_dark_theme import (
 from src.ui import (
     ui_config
 )
+from src.core.diagnostics.log_transmitter import (
+    LogTransmitterHandler
+)
 
 
 def main():
@@ -50,6 +53,11 @@ def main():
         level=logging.DEBUG,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
+
+    # Add the UDP Log Transmitter (for live AI debugging)
+    udp_handler = LogTransmitterHandler(port=54322)
+    udp_handler.setLevel(logging.DEBUG)
+    logging.getLogger().addHandler(udp_handler)
 
     # Generate session log file path
     log_dir_base = (

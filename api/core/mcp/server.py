@@ -66,6 +66,50 @@ class LogikProjektMCPServer:
             files = sorted(os.listdir(sessions_dir), reverse=True)[:limit]
             return "\n".join(files)
 
+        @self.mcp.tool()
+        async def listen_to_live_logs(duration: int = 5) -> str:
+            """
+            Listens to the live application diagnostic stream for a specified duration (in seconds).
+            Returns the captured log entries. Useful for real-time debugging of the running app.
+            """
+            import socket
+            import time
+            import json
+            
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            sock.settimeout(0.2)
+            try:
+                sock.bind(('127.0.0.1', 54322))
+            except OSError:
+                sock.close()
+                return "Error: Could not bind to diagnostic port. Is another listener active?"
+            
+            captured = []
+            start_time = time.time()
+            
+            while time.time() - start_time < duration:
+                try:
+                    data, addr = sock.recvfrom(4096)
+                    line = data.decode('utf-8')
+                    try:
+                        record = json.loads(line)
+                        level = record.get("level", "INFO")
+                        msg = record.get("message", "")
+                        mod = record.get("module", "")
+                        captured.append(f"[{level}] {mod}: {msg}")
+                    except:
+                        captured.append(line)
+                except socket.timeout:
+                    await asyncio.sleep(0.1)
+                    continue
+            
+            sock.close()
+            
+            if not captured:
+                return f"No logs captured in {duration}s. Ensure LOGIK-PROJEKT is running."
+            
+            return "\n".join(captured)
+
     def run(self, transport: str = "stdio"):
         """Starts the MCP server with the specified transport."""
         if transport == "sse":
