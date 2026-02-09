@@ -12,7 +12,8 @@ import re
 import sys
 
 ISSUE_DIR = "docs/idd/issues"
-PATTERN = re.compile(r"^(bug_report|feature_request|task|documentation|monitoring_alert)-[a-zA-Z0-9_\-]+\.md$")
+# Allow the documented issue filename prefixes plus the historical github-issue prefix
+PATTERN = re.compile(r"^(bug_report|feature_request|task|documentation|monitoring_alert|github-issue)-[a-zA-Z0-9_\-]+\.md$")
 
 def main():
 	errors = []
