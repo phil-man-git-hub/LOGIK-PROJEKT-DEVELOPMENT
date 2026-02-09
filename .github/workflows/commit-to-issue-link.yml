@@ -3,7 +3,7 @@ name: Commit to Issue Linking
 on:
   push:
     branches:
-      - main
+      - prod-2027.0.0
 
 jobs:
   link-commits-to-issues:

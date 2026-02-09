@@ -31,5 +31,5 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/idd/issues/issue-${{ github.event.issue.number }}
           git commit -m "auto: solve GitHub issue #${{ github.event.issue.number }}"
-          git pull --rebase origin main
+          git pull --rebase origin prod-2027.0.0
           git push
