@@ -135,7 +135,7 @@ gh workflow run auto-label.yml --repo phil-man-git-hub/LOGIK-PROJEKT-DEV
 
 ## Crucial IDD Workflow Information
 
-## See also: [GitHub Issue AI Workflow Steps](github-issue-ai-workflow-steps.md)
+## See also: [GitHub Issue AI Workflow Steps](documentation-github-issue-ai-workflow-steps.md)
 
 ### 🚀 AI-Augmented IDD Workflow (The "Turbocharged" Method)
 The IDD process is now driven by the **Antigravity Agent** using the `.gemini/antigravity` "Second Brain". This allows for automated context management and zero-friction development.
