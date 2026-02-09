@@ -15,6 +15,8 @@
 - Updated `.gitignore` to exclude local-only test artifacts (`.app`, `.desktop`, runner scripts) from production and upstream pushes.
 - Validated and fixed CI workflows for Python 3.13 and new branch naming conventions.
 - Ran and passed all unit tests and linters in the dev environment.
+- Renamed MCP module: `api/core/mcp/server.py` → `api/core/mcp/logik_projekt_mcp_server.py`, updated `scripts/logik_projekt_mcp.py`, removed the legacy module, and verified tests pass.
+- Renamed local virtualenv directory from `.venv3.13.3` to `.venv` for consistency.
 - Ensured all changes were staged, committed, and pushed to the working branch (`issue-20/scaffold`).
 - Documented and automated local issue tracking and changelist updates.
 - Verified successful execution of runner scripts and desktop app creation after synthetic mount fixes for `/PROJEKTS`.
