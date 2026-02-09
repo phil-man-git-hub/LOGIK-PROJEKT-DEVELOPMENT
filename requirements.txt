@@ -13,3 +13,8 @@ mcp
 fastapi
 uvicorn
 pydantic
+
+# DB integration dependencies
+watchdog>=3.0.0
+ffmpeg-python>=0.2.1
+Pillow>=9.0.0
