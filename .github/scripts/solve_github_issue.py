@@ -48,3 +48,8 @@ def main():
 		subfile_path = os.path.join(subdir_path, subfile)
 		if not os.path.exists(subfile_path):
 			with open(subfile_path, "w") as f:
+				f.write(STARTER_CONTENT.get(subfile, "").format(issue_number))
+			print(f"Created {subfile_path}")
+
+if __name__ == "__main__":
+	main()
